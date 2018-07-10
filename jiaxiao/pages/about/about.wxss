@@ -1,0 +1,45 @@
+/* pages/about/about.wxss */
+.pages{
+
+}
+.index-header{
+  display: flex;
+  justify-content: center;
+}
+.index-header-image{
+  width:140rpx;
+  height:120rpx;
+}
+.index-header-name{
+  line-height:128rpx;
+  font-size:24px;
+  letter-spacing:15rpx;
+  margin-left:15rpx;
+  color:#292A86;
+  font-weight: bold;
+}
+.index-slogan{
+  text-align: center;
+  color:#0C924D;
+  font-size:14px;
+  font-weight: bold;
+  letter-spacing:5rpx;
+}
+
+.index-introduce{
+  font-size:14px;
+  margin-top: 20rpx;
+  text-indent:50rpx;
+  line-height:1.5;
+  letter-spacing:3rpx;
+}
+
+.index-image{
+  text-align: center;
+}
+
+.index-image image{
+  width: 650rpx;
+  height:350rpx;
+  margin-top: 30rpx
+}

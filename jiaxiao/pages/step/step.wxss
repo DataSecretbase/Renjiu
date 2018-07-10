@@ -1,0 +1,69 @@
+/* pages/step/step.wxss */
+.pages{
+  padding:0 50rpx;
+}
+.step-header{
+  display: flex;
+  justify-content: center;
+}
+.step-header-image{
+  width:140rpx;
+  height:120rpx;
+}
+.step-header-name{
+  line-height:118rpx;
+  font-size:24px;
+  letter-spacing:15rpx;
+  margin-left:15rpx;
+  color:#292A86;
+  font-weight: bold;
+}
+.step-slogan{
+  text-align: center;
+  margin-bottom:60rpx;
+}
+.step-slogan-text{
+  color:#0C924D;
+  font-size:14px;
+  font-weight: bold;
+  letter-spacing:5rpx;
+}
+
+
+.step-row{
+  margin:30rpx 0;
+  border:2px solid #0C924D;
+  border-radius:6px;
+  position:relative;
+}
+
+.step-row:last-child{
+  margin-bottom: 0;
+}
+
+.step-row-title{
+  position:absolute;
+  top:-28rpx;
+  font-size:14px;
+  color:#fff;
+  background-color:#0C924D;
+  padding:10rpx;
+  border-radius:6px;
+  left:50%;
+  margin-left:-70rpx;
+}
+
+.step-row-content{
+  padding:15rpx 30rpx;
+  font-size:12px;
+  padding-top:40rpx;
+  letter-spacing:5rpx;
+  line-height:1.5;
+}
+.step-row-content-title{
+  font-weight: bold;
+}
+.step-row-content span{
+  color: red;
+  margin:10rpx;
+}

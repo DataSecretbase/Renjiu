@@ -1,0 +1,55 @@
+<!--pages/step/step.wxml-->
+<view class="pages">
+  <view class="step-header">
+    <image src="{{logo}}" class="step-header-image"></image>
+    <text class="step-header-name">东南驾校</text>
+  </view>
+
+<view class="step-slogan">
+        <text class="step-slogan-text">选择东南，驾、考不难！</text>
+  </view>
+
+  <view class="step-row">
+    <text class="step-row-title">学车流程</text>
+
+    <view class="step-row-content"> 
+    递交报名材料<span>→</span>学员手机短信验证<span>→</span>30个学时驾驶理论培训<span>→</span>文科学习<span>→</span>文科考试<span>→</span>五项学习<span>→</span>路考<span>→</span>安全文明考试<span>→</span>领取驾驶证
+    </view>
+  </view>
+
+
+  <view class="step-row">
+    <text class="step-row-title">报名资料</text>
+
+    <view class="step-row-content">
+      <text class="step-row-content-title">凡年满18-70周岁身体健康人士均可报名，学车报名须满足以下资料：</text>
+      <text>
+          1、本人身份证，外地户口需要提供居住证或者居住证回执；
+          2、本人白底彩色小1寸16长免冠近照；
+          3、有摩托车驾驶证的须提交原件；
+          4、本人机动车驾驶人身体条件证明；
+          5、本人机动车驾驶证数字相片采集回执。
+      </text>
+    </view>
+  </view>
+
+  <view class="step-row">
+    <text class="step-row-title">服务承诺</text>
+
+    <view class="step-row-content">
+      <view>
+        1、热情服务，包接包送；
+      </view>
+      <view>
+        2、因人施教，耐心解读；
+      </view>
+      <view>
+        3、竭尽所能解决学员的学车问题；
+      </view>
+      <view>
+        4、学车可自由选择练习时间。  
+      </view>
+    </view>
+  </view>
+</view>
+
