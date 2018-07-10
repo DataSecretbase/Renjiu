@@ -1,0 +1,66 @@
+<!--index.wxml-->
+<view class="pages">
+  <view class="index-header flex-row">
+    <view class="index-header-title">
+      <text>{{name}}</text>
+      <text class="desc">专业机动车驾驶员培训</text>
+    </view>
+    <image src="{{logo}}" class="index-header-logo"></image>
+  </view>
+   
+  <view class="index-news flex-row">
+     <text class="iconfont icon-laba iconfont-red flex-grow-1"></text>
+     <view class="index-news-middle flex-grow-58">
+        <view class="">本校开设广东省内快班，<span class="index-news-special">2个月</span>拿证</view>
+        <view class="index-news-follow" catchtap="followMath">
+          <view>详情请关注我们的微信公众号咨询了解</view>
+          <text class="iconfont icon-qianjin-copy"></text>
+        </view>
+        <view class="index-news-helper">
+          <view class="">已关注的请在公众号列表进入，未关注的按如下步骤进行添加关注：</view>
+          <view>1、打开微信点击右上角“+”</view>
+          <view>2、选择添加朋友</view>
+          <view>3、选择公众号</view>
+          <view>4、输入“东南驾校桑园训练基地”</view>
+          <view>5、添加并关注</view>
+        </view>
+     </view>
+  </view>
+
+  <view class="index-propaganda flex-row">
+    <text class="flex-grow-1 iconfont-red iconfont icon-jiaruwomen"></text>
+    <view class="flex-grow-58 index-propaganda-middle">
+      <view class="index-propaganda-text">精良的师资队伍，宽阔的训练场地，先进的教学设备</view>
+      <view class="index-propaganda-text">全新的教练车辆，优质的服务体系，优美的学习环境</view>
+    </view>
+  </view>
+
+  <view class="index-schoolInfo">
+      <view class="flex-row" catchtap="openMap">
+        <text class="flex-grow-1 iconfont icon-dingwei"></text>
+        <span class="index-schoolInfo-item-middle index-min-width flex-grow-58">
+          {{address}}         
+        </span>
+        <text class="flex-grow-1 iconfont icon-qianjin-copy"></text>
+      </view>
+      <view class="flex-row">
+        <text class="flex-grow-1 iconfont icon-shijian"></text>
+        <text class="index-schoolInfo-item-middle flex-grow-58">{{timeText}}</text>
+      </view>
+      <view class="flex-row" catchtap="makePhoneCall">
+        <text class="flex-grow-1 iconfont icon-dianhua"></text>
+        <text class="index-schoolInfo-item-middle flex-grow-58">{{phoneNum}}</text>
+        <view class="flex-grow-1 iconfont icon-qianjin-copy"></view>
+      </view>
+      <view class="flex-row">
+        <text class="flex-grow-1 iconfont icon-tupian"></text>
+        <text class="index-schoolInfo-item-middle flex-grow-58">驾校照片</text>
+        <text class="index-schoolInfo-item-more flex-grow-1" catchtap="moreImg">更多</text>
+      </view>
+       <view class="index-schoolInfo-image">
+        <block wx:for="{{imageList}}">
+         <image src="{{item}}" catchtap="previewImage"></image>
+        </block>
+        </view>
+  </view>
+</view>
