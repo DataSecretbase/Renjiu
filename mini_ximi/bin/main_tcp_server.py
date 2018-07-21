@@ -9,7 +9,7 @@
 __author__ = 'guozhiwei'
 
 import sys
-sys.path.append('/root/mini_ximi')
+sys.path.append('/root/Renjiu/mini_ximi')
 import env
 env.init_env()
 import config
