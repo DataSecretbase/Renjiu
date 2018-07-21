@@ -8,7 +8,7 @@ RABBITMQ_CONNECT_INFO = {
     'vhost':  '/',
     'username':  'guest',
     'password':  'guest',
-    'spec': '/root/mini_ximi/config/amqp0-9-1.stripped.xml',
+    'spec': '/root/Renjiu/mini_ximi/config/amqp0-9-1.stripped.xml',
 }
 
 

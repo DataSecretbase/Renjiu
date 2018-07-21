@@ -4,7 +4,7 @@
 '''
 __author__ = 'guozhiwei'
 import sys
-sys.path.append('/root/mini_ximi')
+sys.path.append('/root/Renjiu/mini_ximi')
 
 import env
 env.init_env()
@@ -13,6 +13,7 @@ from twisted.internet import reactor
 from twisted.internet.protocol import Protocol
 import tcp_pack_helper
 import json_helper
+import gps_helper
 from twisted.internet import task
 from twisted.internet.protocol import ReconnectingClientFactory
 
@@ -25,10 +26,11 @@ class MyProtocol(Protocol):
         :return:
         '''
         print 'is already connect to the server'
-        msg = {
-            'uid' : 911,
-            'pwd' : 'dkjfkdjfkdjfkd',
-        }
+        msg = gps_helper.read()
+	#msg = {
+        #    'uid' : 911,
+        #    'pwd' : 'dkjfkdjfkdjfkd',
+        #}
         cmd = 1000   #定义1000表示登陆
         pack_msg = tcp_pack_helper.pack_msg(cmd, json_helper.dumps(msg))
         self.transport.write(pack_msg)
