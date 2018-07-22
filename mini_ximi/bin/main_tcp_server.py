@@ -9,7 +9,9 @@
 __author__ = 'guozhiwei'
 
 import sys
-sys.path.append('/root/Renjiu/mini_ximi')
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+print os.path.realpath('.')
 import env
 env.init_env()
 import config
