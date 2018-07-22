@@ -32,11 +32,14 @@ class MyProtocol(Protocol):
         #    'pwd' : 'dkjfkdjfkdjfkd',
         #}
         cmd = 1000   #定义1000表示登陆
-        pack_msg = tcp_pack_helper.pack_msg(cmd, json_helper.dumps(msg))
-        self.transport.write(pack_msg)
+        pack_msg = tcp_pack_helper.pack_msg(cmd, json_helper.dumps(gps_helper.read()))
         t = task.LoopingCall(self.heart_beat)
+        t2 = task.LoopingCall(self.transport.write(pack_msg))
         t.start(10, now=True)
+	t2.start(2, now=True)
 
+    def getmsg(self):
+        return gps_helper.read()
 
 
     def connectionLost(self, reason):
