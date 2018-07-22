@@ -2,14 +2,14 @@
 __author__ = 'tianqianwen'
 import re
 import sys
-sys.path.append('/root/mini_ximi/test')
+import os
 
 
 
 
 
 def read():
-	with open("/root/Renjiu/mini_ximi/test/log_2018-07-12.txt") as f:
+	with open(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))+"/test/log_2018-07-12.txt") as f:
 		line = f.readline()
 		line += f.readline()
 		lists = re.findall(r'[[](.*?)[]]',line.replace('\n',''))

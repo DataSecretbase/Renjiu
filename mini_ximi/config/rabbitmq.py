@@ -1,6 +1,6 @@
 #coding=utf8
 __author__ = 'guozhiwei'
-
+import os
 
 RABBITMQ_CONNECT_INFO = {
     'host':  'localhost',
@@ -8,7 +8,7 @@ RABBITMQ_CONNECT_INFO = {
     'vhost':  '/',
     'username':  'guest',
     'password':  'guest',
-    'spec': '/root/Renjiu/mini_ximi/config/amqp0-9-1.stripped.xml',
+    'spec': os.path.dirname(os.path.realpath(__file__))+'/amqp0-9-1.stripped.xml',
 }
 
 
