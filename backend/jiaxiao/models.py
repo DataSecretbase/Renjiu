@@ -9,7 +9,7 @@ from django.utils import timezone
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
-from vecihi.marmara_majors import MAJORS
+from .marmara_majors import MAJORS
 # Create your models here.
 from . import app_com
 
