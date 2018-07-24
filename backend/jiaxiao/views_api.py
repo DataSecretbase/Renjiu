@@ -36,4 +36,33 @@ class FollowShipView(views.APIView):
 		"message":"You followed "+ target_user.username
 	},status = status.HTTP_201_CREATED)
 
-class UserF
+class UserFollowersViewSet(viewsets.ReadOnlyModelViewSet):
+	serializer_class = AccountSerializer
+
+	def get_queryset(self):
+		user_id = self.kwargs['userid']
+		user = User.objects.get(id = user_id)
+		return following(user)
+
+class ActivityViewSet(viewsets.ReadOnlyModelViewSet):
+	queryset = Action.objects.all()
+	serializer_class = ActionSerializer
+	
+	filter_fields = (
+		'actor_content_type', 'actor_content_type_model',
+		'target_content_type', 'target_conent_type_model',
+		'action_object_content_type', 'action_object_content_type_i_model',
+	)
+
+class AccountViewSet(viewsets.ModelViewSet):
+	queryset = User.objects.all()
+	serializer_class = AccountSerializer
+
+	def get_queryset(self):
+		if self.request.query_params.get("search",None):
+			parmas = self.request.query_parmas.get("search", None)
+			return User.objects.fillter(Q(username__icontatains = params)|
+							Q(major__icontains = params)|
+							Q(first_name__icontains = params)
+							)
+
