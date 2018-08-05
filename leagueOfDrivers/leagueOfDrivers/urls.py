@@ -20,5 +20,5 @@ from wx_league import urls as user_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('^league/',include(user_urls)),
+    path('league/',include(user_urls)),
 ]
