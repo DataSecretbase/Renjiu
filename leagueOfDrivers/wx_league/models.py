@@ -1,10 +1,11 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class DriverSchool(models.Model):
 
 	#shop_type = fields.Char('店铺类型')
+
     province_id = models.IntegerField(verbose_name = '省', default = 0)
     #PROVINCE = ((0,'beijin'),)
     #CITY = ((0,'beijin'),(1,"shanghai"))
@@ -30,11 +31,13 @@ class DriverSchool(models.Model):
         _order = 'sort'
 	
 
-class WechatUser(models.Model):
+class WechatUser(AbstractUser):
+ 
+    cookie = models.CharField('用户认证标识', max_length=100,default='')
     name = models.CharField(verbose_name = '昵称', max_length = 40)
-    open_id = models.CharField(verbose_name = 'OpenId', max_length = 255)
+    openid = models.CharField(verbose_name = 'OpenId', max_length = 255)
     union_id = models.CharField(verbose_name = 'UnionId', max_length = 255)
-    gender = models.SmallIntegerField(verbose_name = 'gender')
+    gender = models.SmallIntegerField(verbose_name = 'gender',default = 0)
     language = models.CharField(verbose_name = '语言', max_length = 40)
     #REGISTERTYPE = ((0,"beijin"))
     register_type = models.SmallIntegerField( verbose_name='注册来源',
@@ -48,10 +51,13 @@ class WechatUser(models.Model):
     city = models.IntegerField(verbose_name = '城市', default = 0, max_length = 40)
     avatar = models.ImageField(verbose_name = '头像', upload_to='upload')
     register_ip = models.CharField(verbose_name = '注册IP', max_length = 80)
-    last_login = models.DateTimeField(verbose_name = '登陆时间')
+    #last_login = models.DateTimeField(verbose_name = '登陆时间')
     ip = models.CharField(verbose_name = '登陆IP', max_length = 80)
     #status = fields.Selection(defs.WechatUserStatus.attrs.items(), string='状态',
                               #default=defs.WechatUserStatus.default)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         db_table = 'WechatUser'
