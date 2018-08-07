@@ -4,6 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import logout,login,authenticate
 from django.contrib.auth.hashers import make_password,check_password
 from django.contrib.auth.models import User
+from django.core import serializers
+from django.core.exceptions import ObjectDoesNotExist
 from .models import *
 from .checkuser import checkdata
 import json
@@ -95,3 +97,83 @@ def verify(request):
 def register(request):
     return JsonResponse({"code":10000})
 
+
+@csrf_exempt
+def address(request):
+    data = {}
+    cookie = request.POST.get('cookie','')
+    address_id = request.POST.get('id','')
+    provinceId = request.POST.get('provinceId','')
+    cityId = request.POST.get('cityId','')
+    districtId = request.POST.get('districtId','')
+    linkMan = request.POST.get('linkMan','')
+    address_text = request.POST.get('address','')
+    mobile = request.POST.get('mobile','')
+    code = request.POST.get('code','')
+    isDefault = request.POST.get('isDefault','')
+    user = check_user(cookie)
+    print(user.id) 
+    if user == {}:
+        return JsonResponse({'error':'用户会话信息失败,请重新登录'})
+    address = Address.objects.filter(id = address_id)
+    if len(address) != 1 or address_id == 0:
+        Address.objects.create(province_id = provinceId, city_id = cityId, district_id = districtId, linkMan = linkMan, address = address_text, mobile = mobile, code = code,isDefault = True, owner_type = 0, owner_id = user.id )
+        return JsonResponse({'code':0})
+    else:
+        print(len(address))
+        address.province_id = provinceId
+        address.city_id = cityId
+        address.district_id = districtId
+        address.linkMan = linkMan
+        address.address = address
+        address.mobile = mobile
+        address.code = code
+        address.isDefault = isDefault
+        address.save()
+        return JsonResponse({'code':0})
+
+
+def check_user(cookie):
+    try:
+        user = WechatUser.objects.get(cookie = cookie)
+        return user
+    except ObjectDoesNotExist:
+        user = {}
+   
+def check_address(**filter_kwargs):
+    address = Address.objects.filter(**filter_kwargs)
+    if len(address) !=0:
+        return address
+    else:
+        address = {}
+        return address
+@csrf_exempt 
+def address_detail(request):
+    if request.method =="POST":
+        cookie = request.POST.get('cookie')
+        address_id = request.POST.get('id')
+        user = check_user(cookie)
+        if user == {}:
+            return JsonResponse({'error':'用户会话信息失败,请重新登录'})
+        else:
+            address = check_address(id = address_id)
+            if address == {}:
+                return JsonResponse({"code":100}) #code 100 没有查询结果
+            else:
+                  return JsonResponse({"code":0,"data":{"provinceStr":"湖北省","cityStr":"武汉市","areaStr":"洪山区","provinceId":address.province_id,"cityId":address.city_id,"districtId":address.district_id}})
+
+@csrf_exempt
+def address_list(request):
+    if request.method =="POST":
+        cookie = request.POST.get('cookie')
+        user = check_user(cookie)
+        if user == {}:
+            return JsonResponse({'error':'用户会话信息失败,请重新登录'})
+        else:
+            address = check_address(owner_id = user.id)
+            if address == {}:
+                return JsonResponse({"code":100}) #code 100 没有查询结果
+            else:
+                print(serializers.serialize("json", address))
+                return JsonResponse({"code":0,"data":{serializers.serialize("json", address)}})
+                #return JsonResponse({"code":0,"data":"json"})

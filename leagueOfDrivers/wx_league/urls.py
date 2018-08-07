@@ -12,5 +12,8 @@ urlpatterns = [
     url('^user/check-token$', views.check_token, name='datein'),
     url('^user/check-token$', views.check_token, name='datein'),
     url('^user/login$', views.verify, name='datein'),
+    url('^address$', views.address, name='datein'),
+    url('^address/detail$', views.address_detail, name='datein'),
+    url('^address/list$', views.address_list, name='datein'),
 
 ]

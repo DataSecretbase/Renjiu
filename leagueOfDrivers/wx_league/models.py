@@ -44,18 +44,16 @@ class WechatUser(AbstractUser):
                                      default=0)
     phone = models.CharField(verbose_name = '手机号码', max_length = 50)
     #COUNTRY = ((0,"beijin"))
-    country = models.IntegerField(verbose_name = '国家', default = 0, max_length = 40) 
+    country = models.IntegerField(verbose_name = '国家', default = 0) 
     #PROVINCE = ((0,"beijin"))
-    province = models.IntegerField(verbose_name = '省份', default = 0, max_length = 40)
+    province = models.IntegerField(verbose_name = '省份', default = 0)
     #CITY = ((0,"beijin"))
-    city = models.IntegerField(verbose_name = '城市', default = 0, max_length = 40)
+    city = models.IntegerField(verbose_name = '城市', default = 0)
     avatar = models.ImageField(verbose_name = '头像', upload_to='upload')
     register_ip = models.CharField(verbose_name = '注册IP', max_length = 80)
     #last_login = models.DateTimeField(verbose_name = '登陆时间')
     ip = models.CharField(verbose_name = '登陆IP', max_length = 80)
-    #status = fields.Selection(defs.WechatUserStatus.attrs.items(), string='状态',
-                              #default=defs.WechatUserStatus.default)
-
+    
     def __str__(self):
         return self.name
 
@@ -220,4 +218,17 @@ class Payment(models.Model):
         db_table = 'Payment'
         _description = '支付记录'
 
-
+class Address(models.Model):
+    province_id = models.IntegerField(verbose_name = '省', default = 0)
+    #PROVINCE = ((0,'beijin'),)
+    #CITY = ((0,'beijin'),(1,"shanghai"))
+    city_id = models.IntegerField(verbose_name = '城市', default = 0)
+    #DISTRICT = ((0,'beijin'))
+    district_id = models.IntegerField(verbose_name = '区', default = 0)
+    linkMan = models.CharField(verbose_name = '联系人', max_length = 15)
+    address = models.CharField(verbose_name = '详细地址', max_length = 100)
+    mobile = models.CharField(verbose_name = '电话号码', max_length = 40)
+    code = models.CharField(verbose_name = '邮政编码', max_length = 20)
+    isDefault = models.BooleanField(verbose_name = '默认地址')
+    owner_type = models.SmallIntegerField(verbose_name = "被标注地址的类型eg:微信用户,订单")
+    owner_id = models.IntegerField(verbose_name = "微信用户、订单的id")
