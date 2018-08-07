@@ -17,8 +17,8 @@ def decrypt(*userinfo):
 
 def checkdata(code, ecrypteddata, iv):
 
-    appid = 'wx199700fc60c13a4c'
-    secret = 'a8f83b60580ab55c9d148f81f2f3fbb2'
+    appid = config.APPINFO["appid"]
+    secret = config.APPINFO["secret"]
 
     url = "https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code"
     v_url = url.format(appid, secret, code)
@@ -27,9 +27,6 @@ def checkdata(code, ecrypteddata, iv):
         req = requests.get(v_url)
         res = req.json()
         print(res)
-        print(type(res))
-        print(res['session_key'])
-        print(res['openid'])
         sessionkey = res['session_key']
         openid = res['openid']
 
@@ -49,7 +46,7 @@ def checkdata(code, ecrypteddata, iv):
     if openid != v_res['openId']:
         data = {'error':'用户认证错误'}
         return data
-
+    v_res={"cookie":None,"openid":None,"session_key":None}
     cookie = gen_cookie(8)
     v_res['cookie'] = cookie
     v_res['openid'] = openid
