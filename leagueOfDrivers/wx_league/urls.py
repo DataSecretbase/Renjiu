@@ -15,5 +15,7 @@ urlpatterns = [
     url('^address$', views.address, name='datein'),
     url('^address/detail$', views.address_detail, name='datein'),
     url('^address/list$', views.address_list, name='datein'),
+    url('^address/delete$', views.address_delete, name='datein'),
+    url('^goods/list$', views.goods_list, name='datein'),
 
 ]
