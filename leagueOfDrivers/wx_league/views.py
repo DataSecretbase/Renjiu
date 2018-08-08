@@ -7,8 +7,10 @@ from django.contrib.auth.models import User
 from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
 from .models import *
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .checkuser import checkdata
 import json
+import re
 import requests
 # Create your views here.
 
@@ -120,12 +122,12 @@ def address(request):
         Address.objects.create(province_id = provinceId, city_id = cityId, district_id = districtId, linkMan = linkMan, address = address_text, mobile = mobile, code = code,isDefault = True, owner_type = 0, owner_id = user.id )
         return JsonResponse({'code':0})
     else:
-        print(len(address))
+        address = Address.objects.get(id = address_id)
         address.province_id = provinceId
         address.city_id = cityId
         address.district_id = districtId
         address.linkMan = linkMan
-        address.address = address
+        address.address = address_text
         address.mobile = mobile
         address.code = code
         address.isDefault = isDefault
@@ -160,7 +162,9 @@ def address_detail(request):
             if address == {}:
                 return JsonResponse({"code":100}) #code 100 没有查询结果
             else:
-                  return JsonResponse({"code":0,"data":{"provinceStr":"湖北省","cityStr":"武汉市","areaStr":"洪山区","provinceId":address.province_id,"cityId":address.city_id,"districtId":address.district_id}})
+                ser_ = serializers.serialize("json", address)
+                ser_ = json.loads(ser_)
+                return JsonResponse({"code":0,"data":ser_})
 
 @csrf_exempt
 def address_list(request):
@@ -174,6 +178,68 @@ def address_list(request):
             if address == {}:
                 return JsonResponse({"code":100}) #code 100 没有查询结果
             else:
-                print(serializers.serialize("json", address))
-                return JsonResponse({"code":0,"data":{serializers.serialize("json", address)}})
+                ser_ = serializers.serialize("json", address)
+                ser_ = json.loads(ser_)
+                print(ser_)
+                print(type(ser_))
+                return JsonResponse({"code":0,"data":ser_})
                 #return JsonResponse({"code":0,"data":"json"})
+
+@csrf_exempt
+def address_delete(request):
+    if request.method =="POST":
+        cookie = request.POST.get('cookie')
+        user = check_user(cookie)
+        address_id = request.POST.get('id')
+        if user == {}:
+            return JsonResponse({'error':'用户会话信息失败,请重新登录'})
+        else:
+            address = check_address(id = address_id,owner_id = user.id)
+            if address == {}:
+                return JsonResponse({"code":100}) #code 100 没有查询结果
+            else:
+                address.delete()
+                return JsonResponse({"code":0,"data":"删除成功"})
+
+def check_goods(page, pageSize, **filter_kwargs):
+    goods_list = goods.objects.filter(**filter_kwargs)
+    if goods_list == {}:
+        return JsonResponse({"code":"400"})
+    else:
+        paginator = Paginator(goods_list, pageSize)
+        try:
+            goods_page = paginator.page(page)
+        except PageNotAnInteger:
+            goods_page = paginator.page(1)
+        except EmptyPage:
+            goods_page = paginator.page(paginator.num_pagesi)
+        return goods_page
+
+@csrf_exempt
+def goods_list(request):
+    if request.method == "POST":
+        page = request.POST.get("page")
+        pageSize = request.POST.get("pageSize")
+        category_id = request.POST.get('categoryId')
+        data_all = request.POST.get("all")
+        print(page)
+        print(type(page))
+        print(pageSize)
+        print(type(pageSize))
+        print(category_id)
+        print(type(category_id))
+        if data_all == "true":
+            category = Category.objects.all()
+            ser_ = serializers.serialize("json", category)
+            ser_ = json.loads(ser_)
+            return JsonResponse({"code":0, "data":ser_})
+        category_goods = check_goods(int(page),int(pageSize),category_id = int(category_id))
+        if category_goods == {}:
+            return JsonResponse({"code":400}) #code 100 没有查询结果
+        else:
+            ser_ = serializers.serialize("json", category_goods)
+            ser_ = json.loads(ser_)
+            print(ser_)
+            print(type(ser_))
+            return JsonResponse({"code":0,"data":ser_})
+
