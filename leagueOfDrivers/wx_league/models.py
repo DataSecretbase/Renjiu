@@ -18,7 +18,7 @@ class DriverSchool(models.Model):
     introduce = models.TextField(verbose_name='驾校介绍')
     characteristic = models.TextField(verbose_name = '驾校特色')
     sort = models.IntegerField(verbose_name = '排序')
-    pic = models.ForeignKey('Attachment', verbose_name='图片', on_delete = models.DO_NOTHING)
+    pic = models.ForeignKey('Icon', verbose_name='驾校商标', on_delete = models.DO_NOTHING)
     activity = models.CharField(verbose_name = '打折优惠信息', max_length=255)
     latitude = models.FloatField(verbose_name = '纬度')
     longitude = models.FloatField(verbose_name = '经度')
@@ -75,15 +75,15 @@ class goods(models.Model):
     dateStart = models.DateTimeField(verbose_name = '上架时间', auto_now_add = True)
     dateUpdate = models.DateTimeField(verbose_name = '更新时间', auto_now = True)
     logistics_id = models.IntegerField(verbose_name = '物流id', default = 0)
-    MinPrice = models.FloatField(verbose_name = '最小价格',)
-    MinScore = models.SmallIntegerField(verbose_name = '最小评分', default = 0)
+    minPrice = models.FloatField(verbose_name = '最小价格',)
+    minScore = models.SmallIntegerField(verbose_name = '最小评分', default = 0)
     name = models.CharField(verbose_name = '名称', max_length = 60)
     numberFav = models.IntegerField(default = 0)
     numberGoodReputation = models.IntegerField(default = 0)
-    numberOrders = models.IntegerField(default = 0)
+    numberOrders = models.IntegerField(verbose_name = '已售数量',default = 0)
     originalPrice = models.FloatField(verbose_name = "原价")
     paixu = models.IntegerField(default = 0)
-    pic = models.ForeignKey('Attachment', verbose_name = "商品图片连接", on_delete = models.SET_DEFAULT, default = 0)
+    pic = models.ForeignKey('Icon', verbose_name = "商品图片连接", on_delete = models.SET_DEFAULT, default = 0)
     pingtuan = models.BooleanField(verbose_name = "拼团" , default = False)
     pingtuanPrice = models.FloatField(verbose_name = "拼团价格", default = 0.00)
     recommendStatus = models.SmallIntegerField(verbose_name = "推荐状态", default = 0)
@@ -142,7 +142,7 @@ class OrderGoods(models.Model):
     goods_id = models.IntegerField(verbose_name = '商品id')
     name = models.CharField(verbose_name = '商品名称', max_length = 50)
     display_pic = models.ImageField(verbose_name = '图片')
-    pic = models.ForeignKey('Attachment', verbose_name='图片', on_delete = models.SET_DEFAULT, default = 0)
+    pic = models.ForeignKey('Icon', verbose_name='图片', on_delete = models.SET_DEFAULT, default = 0)
     property_str = models.CharField(verbose_name = '商品规格', max_length = 200)
     price = models.FloatField(verbose_name = '单价')
     amount = models.IntegerField(verbose_name = '商品数量')
@@ -206,7 +206,7 @@ class Category(models.Model):
     category_type = models.CharField(verbose_name = '类型',max_length = 30)
     pid = models.ForeignKey('Category', verbose_name='上级分类', on_delete = models.SET_DEFAULT, default = 0)
     key = models.IntegerField(verbose_name='编号')
-    icon = models.ForeignKey('Attachment', verbose_name='图标', on_delete = models.CASCADE)
+    icon = models.ForeignKey('Icon', verbose_name='图标', on_delete = models.CASCADE)
     level = models.SmallIntegerField(verbose_name='分类级别')
     is_use = models.BooleanField(verbose_name='是否启用', default=True)
     sort = models.IntegerField(verbose_name='排序')
@@ -218,11 +218,24 @@ class Category(models.Model):
 
    #goods_ids = fields.One2many('wechat_mall.goods', 'category_id', '商品')
 
+
+class Icon(models.Model):
+    display_pic = models.ImageField(verbose_name = "icon 对应",upload_to='img')
+    
+    class Meta:
+        db_table = 'Icon'
+
+
 class Attachment(models.Model):
-    display_pic = models.ImageField(upload_to='img')
+    OWNER_TYPE = (("DriverSchool","DriverSchool"),("WechatUser","WechatUser"),("Goods","Goods"),("Unkown","Unkown"))
+    
+    display_pic = models.ImageField(verbose_name = "附件图片",upload_to='img')
+    owner_id = models.IntegerField(default = 0)
+    owner_type = models.CharField(choices = OWNER_TYPE, max_length = 20, default = "Unkown")
     
     class Meta:
         db_table = 'Attachment'
+
 
 
 class Payment(models.Model):
