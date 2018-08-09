@@ -34,26 +34,26 @@ class DriverSchool(models.Model):
 
 class WechatUser(AbstractUser):
  
-    cookie = models.CharField('用户认证标识', max_length=100,default='')
-    name = models.CharField(verbose_name = '昵称', max_length = 40)
-    openid = models.CharField(verbose_name = 'OpenId', max_length = 255)
-    union_id = models.CharField(verbose_name = 'UnionId', max_length = 255)
-    gender = models.SmallIntegerField(verbose_name = 'gender',default = 0)
-    language = models.CharField(verbose_name = '语言', max_length = 40)
+    cookie = models.CharField('用户认证标识', max_length=100,default='', blank = True)
+    name = models.CharField(verbose_name = '昵称', max_length = 40, blank = True)
+    openid = models.CharField(verbose_name = 'OpenId', max_length = 255, blank = True)
+    union_id = models.CharField(verbose_name = 'UnionId', max_length = 255, blank = True)
+    gender = models.SmallIntegerField(verbose_name = 'gender',default = 0, blank = True)
+    language = models.CharField(verbose_name = '语言', max_length = 40, blank = True)
     #REGISTERTYPE = ((0,"beijin"))
     register_type = models.SmallIntegerField( verbose_name='注册来源',
                                      default=0)
-    phone = models.CharField(verbose_name = '手机号码', max_length = 50)
+    phone = models.CharField(verbose_name = '手机号码', max_length = 50, blank = True)
     #COUNTRY = ((0,"beijin"))
-    country = models.IntegerField(verbose_name = '国家', default = 0) 
+    country = models.IntegerField(verbose_name = '国家', default = 0, blank = True) 
     #PROVINCE = ((0,"beijin"))
     province = models.IntegerField(verbose_name = '省份', default = 0)
     #CITY = ((0,"beijin"))
     city = models.IntegerField(verbose_name = '城市', default = 0)
-    avatar = models.ImageField(verbose_name = '头像', upload_to='upload')
-    register_ip = models.CharField(verbose_name = '注册IP', max_length = 80)
+    avatar = models.ImageField(verbose_name = '头像', upload_to='upload', blank = True)
+    register_ip = models.CharField(verbose_name = '注册IP', max_length = 80, blank = True)
     #last_login = models.DateTimeField(verbose_name = '登陆时间')
-    ip = models.CharField(verbose_name = '登陆IP', max_length = 80)
+    ip = models.CharField(verbose_name = '登陆IP', max_length = 80, blank = True)
     
     def __str__(self):
         return self.name

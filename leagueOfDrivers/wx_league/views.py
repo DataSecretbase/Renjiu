@@ -81,9 +81,10 @@ def verify(request):
             data['code'] = 0
         #新建用户
         else:
+            passwd = make_password(openid)
             wechatuser = WechatUser.objects.create(
-                username=openid,
-                password = password,
+                username = openid,
+                password = passwd,
                 openid = openid,
                 cookie = res['cookie']
             )
