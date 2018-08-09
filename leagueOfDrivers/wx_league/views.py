@@ -262,3 +262,4 @@ def goods_detail(request):
         ser_pics = serializers.serialize("json", pics_query)
         json_pics = json.loads(ser_pics)
         return JsonResponse({"code":0,"data":{"basicInfo" : json_basicInfo, "category" : json_category, "pics" : json_pics}})
+

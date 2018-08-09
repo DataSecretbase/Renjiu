@@ -279,3 +279,14 @@ class Address(models.Model):
     isDefault = models.BooleanField(verbose_name = '默认地址')
     owner_type = models.SmallIntegerField(verbose_name = "被标注地址的类型eg:微信用户,订单")
     owner_id = models.IntegerField(verbose_name = "微信用户、订单的id")
+
+
+class Coupons(models.Model):
+    name = models.CharField(verbose_name = '优惠券名称', max_length = 50)
+    moneyMin = models.FloatField(verbose_name = '优惠券金额')
+    moneyHreshold = models.FloatField(verbose_name = '满 减 最低额度')
+    DATE_END_TYPE = ((0,"截止某日前有效"),(1,"领取后有效时间倒计"))
+    dateEndType = models.SmallIntegerField(verbose_name = '优惠券有效期类型', choices = DATE_END_TYPE)
+    dateEndDays = models.DateTimeField(verbose_name = "优惠券截止时间")
+    date = models.SmallIntegerField(verbose_name = "优惠券有效期倒计时(天)")
+    goods_id =  models.ForeignKey('Goods', on_delete = models.CASCADE, verbose_name = "商品id")
