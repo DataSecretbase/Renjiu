@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'wx_league',
     'werkzeug_debugger_runserver',
     'django_extensions',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

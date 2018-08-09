@@ -15,10 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from rest_framework import routers
+from wx_league import views
 from wx_league import urls as user_urls
+
+
+router = routers.DefaultRouter()
+router.register(r'coupons', views.CouponsViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('league/',include(user_urls)),
+    path('api-auth/',include('rest_framework.urls', namespace = 'rest_framework')),
 ]

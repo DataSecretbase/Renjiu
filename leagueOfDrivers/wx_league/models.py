@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import django.utils.timezone as timezone
 # Create your models here.
 
 class DriverSchool(models.Model):
@@ -287,6 +288,8 @@ class Coupons(models.Model):
     moneyHreshold = models.FloatField(verbose_name = '满 减 最低额度')
     DATE_END_TYPE = ((0,"截止某日前有效"),(1,"领取后有效时间倒计"))
     dateEndType = models.SmallIntegerField(verbose_name = '优惠券有效期类型', choices = DATE_END_TYPE)
-    dateEndDays = models.DateTimeField(verbose_name = "优惠券截止时间")
+    #dateEndDays = models.DateTimeField(verbose_name = "优惠券截止时间", default = timezone.now)
     date = models.SmallIntegerField(verbose_name = "优惠券有效期倒计时(天)")
     goods_id =  models.ForeignKey('Goods', on_delete = models.CASCADE, verbose_name = "商品id")
+    is_activate = models.BooleanField(verbose_name = "优惠券是否有效")
+    #date_add = models.DateField(verbose_name = "优惠券添加的时间0", auto_now_add = True)

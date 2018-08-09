@@ -6,6 +6,9 @@ from django.contrib.auth.hashers import make_password,check_password
 from django.contrib.auth.models import User
 from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
+
+from .serializers import CouponsSerializer
+from rest_framework import viewsets
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .checkuser import checkdata
@@ -263,3 +266,10 @@ def goods_detail(request):
         json_pics = json.loads(ser_pics)
         return JsonResponse({"code":0,"data":{"basicInfo" : json_basicInfo, "category" : json_category, "pics" : json_pics}})
 
+
+class CouponsViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Coupons to be viewed or edited.
+    """
+    queryset = Coupons.objects.all()
+    serializer_class = CouponsSerializer
