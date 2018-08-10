@@ -280,3 +280,29 @@ class CouponsViewSet(viewsets.ModelViewSet):
 #class CouponsDetail(generics.RetrieveUpdateDestroyAPIView):
 #    queryset = Coupons.objects.all()
 #    serializer_class = CouponsSerializer
+
+def serializers_json(seri):
+    ser_ = serializers.serialize("json", seri)
+    json_ = json.loads(ser_)
+    return json_
+
+@csrf_exempt
+def coupons(request):
+    if request.method == 'POST':
+        coupons_id = request.POST.get('refId')
+        coupons_id = int(coupons_id) if isinstance(coupons_id,(str)) else coupons_id
+        print(type(coupons_id))
+        type_coupons = request.POST.get('type')
+        if type_coupons == '1':
+            coupons = Coupons.objects.filter(coupons_type = 1)
+        else:
+            if coupons_id != None:
+                try:
+                    coupons = Coupons.objects.filter(id = coupons_id)
+                
+                except TypeError:
+                    return JsonResponse({"code":0,"error":"优惠券id类型错误"})
+            else:
+                coupons = Coupons.objects.filter(goods_id = 0)
+        data = serializers_json(coupons)
+        return JsonResponse({"code":0,"data":data})

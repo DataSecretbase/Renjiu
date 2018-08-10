@@ -18,5 +18,6 @@ urlpatterns = [
     url('^address/delete$', views.address_delete, name='datein'),
     url('^goods/list$', views.goods_list, name='datein'),
     url('^goods/detail$', views.goods_detail, name='datein'),
+    url('^coupons$', views.coupons, name='datein'),
 
 ]

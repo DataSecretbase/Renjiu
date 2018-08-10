@@ -293,3 +293,4 @@ class Coupons(models.Model):
     goods_id =  models.ForeignKey('Goods', on_delete = models.CASCADE, verbose_name = "商品id")
     is_active = models.BooleanField(verbose_name = "优惠券是否有效")
     date_add = models.DateTimeField(verbose_name = "优惠券添加的时间", default = timezone.now)
+    coupons_type = models.SmallIntegerField(verbose_name = "优惠券类型1.通用型,2.分类专用型,3.商品专用型,4.店铺专用型", default = 0)
