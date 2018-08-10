@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.http import Http404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import logout,login,authenticate
 from django.contrib.auth.hashers import make_password,check_password
@@ -8,6 +9,8 @@ from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
 
 from .serializers import CouponsSerializer
+
+from rest_framework import generics
 from rest_framework import viewsets
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -16,7 +19,6 @@ import json
 import re
 import requests
 # Create your views here.
-
 
 
 def notice_list(request):
@@ -272,5 +274,9 @@ class CouponsViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Coupons to be viewed or edited.
     """
-    queryset = Coupons.objects.all()
+    queryset = Coupons.objects.all().filter(is_active = True).order_by('-id')
     serializer_class = CouponsSerializer
+
+#class CouponsDetail(generics.RetrieveUpdateDestroyAPIView):
+#    queryset = Coupons.objects.all()
+#    serializer_class = CouponsSerializer

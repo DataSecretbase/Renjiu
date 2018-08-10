@@ -25,6 +25,7 @@ router.register(r'coupons', views.CouponsViewSet)
 
 
 urlpatterns = [
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('league/',include(user_urls)),
     path('api-auth/',include('rest_framework.urls', namespace = 'rest_framework')),
