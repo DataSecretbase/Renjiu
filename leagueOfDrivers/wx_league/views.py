@@ -303,6 +303,8 @@ def coupons(request):
                 except TypeError:
                     return JsonResponse({"code":0,"error":"优惠券id类型错误"})
             else:
-                coupons = Coupons.objects.filter(goods_id = 0)
+                coupons = Coupons.objects.filter(coupons_type = 1)
         data = serializers_json(coupons)
         return JsonResponse({"code":0,"data":data})
+    else:
+        return JsonResponse({"code":500,"error":"请使用POST方式请求"})
