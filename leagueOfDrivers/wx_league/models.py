@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import django.utils.timezone as timezone
 # Create your models here.
 
 class DriverSchool(models.Model):
@@ -18,7 +19,7 @@ class DriverSchool(models.Model):
     introduce = models.TextField(verbose_name='驾校介绍')
     characteristic = models.TextField(verbose_name = '驾校特色')
     sort = models.IntegerField(verbose_name = '排序')
-    pic = models.ForeignKey('Attachment', verbose_name='图片', on_delete = models.DO_NOTHING)
+    pic = models.ForeignKey('Icon', verbose_name='驾校商标', on_delete = models.DO_NOTHING)
     activity = models.CharField(verbose_name = '打折优惠信息', max_length=255)
     latitude = models.FloatField(verbose_name = '纬度')
     longitude = models.FloatField(verbose_name = '经度')
@@ -33,26 +34,26 @@ class DriverSchool(models.Model):
 
 class WechatUser(AbstractUser):
  
-    cookie = models.CharField('用户认证标识', max_length=100,default='')
-    name = models.CharField(verbose_name = '昵称', max_length = 40)
-    openid = models.CharField(verbose_name = 'OpenId', max_length = 255)
-    union_id = models.CharField(verbose_name = 'UnionId', max_length = 255)
-    gender = models.SmallIntegerField(verbose_name = 'gender',default = 0)
-    language = models.CharField(verbose_name = '语言', max_length = 40)
+    cookie = models.CharField('用户认证标识', max_length=100,default='', blank = True)
+    name = models.CharField(verbose_name = '昵称', max_length = 40, blank = True)
+    openid = models.CharField(verbose_name = 'OpenId', max_length = 255, blank = True)
+    union_id = models.CharField(verbose_name = 'UnionId', max_length = 255, blank = True)
+    gender = models.SmallIntegerField(verbose_name = 'gender',default = 0, blank = True)
+    language = models.CharField(verbose_name = '语言', max_length = 40, blank = True)
     #REGISTERTYPE = ((0,"beijin"))
     register_type = models.SmallIntegerField( verbose_name='注册来源',
                                      default=0)
-    phone = models.CharField(verbose_name = '手机号码', max_length = 50)
+    phone = models.CharField(verbose_name = '手机号码', max_length = 50, blank = True)
     #COUNTRY = ((0,"beijin"))
-    country = models.IntegerField(verbose_name = '国家', default = 0) 
+    country = models.IntegerField(verbose_name = '国家', default = 0, blank = True) 
     #PROVINCE = ((0,"beijin"))
     province = models.IntegerField(verbose_name = '省份', default = 0)
     #CITY = ((0,"beijin"))
     city = models.IntegerField(verbose_name = '城市', default = 0)
-    avatar = models.ImageField(verbose_name = '头像', upload_to='upload')
-    register_ip = models.CharField(verbose_name = '注册IP', max_length = 80)
+    avatar = models.ImageField(verbose_name = '头像', upload_to='upload', blank = True)
+    register_ip = models.CharField(verbose_name = '注册IP', max_length = 80, blank = True)
     #last_login = models.DateTimeField(verbose_name = '登陆时间')
-    ip = models.CharField(verbose_name = '登陆IP', max_length = 80)
+    ip = models.CharField(verbose_name = '登陆IP', max_length = 80, blank = True)
     
     def __str__(self):
         return self.name
@@ -75,15 +76,15 @@ class goods(models.Model):
     dateStart = models.DateTimeField(verbose_name = '上架时间', auto_now_add = True)
     dateUpdate = models.DateTimeField(verbose_name = '更新时间', auto_now = True)
     logistics_id = models.IntegerField(verbose_name = '物流id', default = 0)
-    MinPrice = models.FloatField(verbose_name = '最小价格',)
-    MinScore = models.SmallIntegerField(verbose_name = '最小评分', default = 0)
+    minPrice = models.FloatField(verbose_name = '最小价格',)
+    minScore = models.SmallIntegerField(verbose_name = '最小评分', default = 0)
     name = models.CharField(verbose_name = '名称', max_length = 60)
     numberFav = models.IntegerField(default = 0)
     numberGoodReputation = models.IntegerField(default = 0)
-    numberOrders = models.IntegerField(default = 0)
+    numberOrders = models.IntegerField(verbose_name = '已售数量',default = 0)
     originalPrice = models.FloatField(verbose_name = "原价")
     paixu = models.IntegerField(default = 0)
-    pic = models.ForeignKey('Attachment', verbose_name = "商品图片连接", on_delete = models.SET_DEFAULT, default = 0)
+    pic = models.ForeignKey('Icon', verbose_name = "商品图片连接", on_delete = models.SET_DEFAULT, default = 0)
     pingtuan = models.BooleanField(verbose_name = "拼团" , default = False)
     pingtuanPrice = models.FloatField(verbose_name = "拼团价格", default = 0.00)
     recommendStatus = models.SmallIntegerField(verbose_name = "推荐状态", default = 0)
@@ -142,7 +143,7 @@ class OrderGoods(models.Model):
     goods_id = models.IntegerField(verbose_name = '商品id')
     name = models.CharField(verbose_name = '商品名称', max_length = 50)
     display_pic = models.ImageField(verbose_name = '图片')
-    pic = models.ForeignKey('Attachment', verbose_name='图片', on_delete = models.SET_DEFAULT, default = 0)
+    pic = models.ForeignKey('Icon', verbose_name='图片', on_delete = models.SET_DEFAULT, default = 0)
     property_str = models.CharField(verbose_name = '商品规格', max_length = 200)
     price = models.FloatField(verbose_name = '单价')
     amount = models.IntegerField(verbose_name = '商品数量')
@@ -206,7 +207,7 @@ class Category(models.Model):
     category_type = models.CharField(verbose_name = '类型',max_length = 30)
     pid = models.ForeignKey('Category', verbose_name='上级分类', on_delete = models.SET_DEFAULT, default = 0)
     key = models.IntegerField(verbose_name='编号')
-    icon = models.ForeignKey('Attachment', verbose_name='图标', on_delete = models.CASCADE)
+    icon = models.ForeignKey('Icon', verbose_name='图标', on_delete = models.CASCADE)
     level = models.SmallIntegerField(verbose_name='分类级别')
     is_use = models.BooleanField(verbose_name='是否启用', default=True)
     sort = models.IntegerField(verbose_name='排序')
@@ -218,11 +219,24 @@ class Category(models.Model):
 
    #goods_ids = fields.One2many('wechat_mall.goods', 'category_id', '商品')
 
+
+class Icon(models.Model):
+    display_pic = models.ImageField(verbose_name = "icon 对应",upload_to='img')
+    
+    class Meta:
+        db_table = 'Icon'
+
+
 class Attachment(models.Model):
-    display_pic = models.ImageField(upload_to='img')
+    OWNER_TYPE = (("DriverSchool","DriverSchool"),("WechatUser","WechatUser"),("Goods","Goods"),("Unkown","Unkown"))
+    
+    display_pic = models.ImageField(verbose_name = "附件图片",upload_to='img')
+    owner_id = models.IntegerField(default = 0)
+    owner_type = models.CharField(choices = OWNER_TYPE, max_length = 20, default = "Unkown")
     
     class Meta:
         db_table = 'Attachment'
+
 
 
 class Payment(models.Model):
@@ -266,3 +280,16 @@ class Address(models.Model):
     isDefault = models.BooleanField(verbose_name = '默认地址')
     owner_type = models.SmallIntegerField(verbose_name = "被标注地址的类型eg:微信用户,订单")
     owner_id = models.IntegerField(verbose_name = "微信用户、订单的id")
+
+
+class Coupons(models.Model):
+    name = models.CharField(verbose_name = '优惠券名称', max_length = 50)
+    moneyMin = models.FloatField(verbose_name = '优惠券金额')
+    moneyHreshold = models.FloatField(verbose_name = '满 减 最低额度')
+    DATE_END_TYPE = ((0,"截止某日前有效"),(1,"领取后有效时间倒计"))
+    dateEndType = models.SmallIntegerField(verbose_name = '优惠券有效期类型', choices = DATE_END_TYPE)
+    dateEndDays = models.DateTimeField(verbose_name = "优惠券截止时间", default = timezone.now)
+    date = models.SmallIntegerField(verbose_name = "优惠券有效期倒计时(天)")
+    goods_id =  models.ForeignKey('Goods', on_delete = models.CASCADE, verbose_name = "商品id")
+    is_active = models.BooleanField(verbose_name = "优惠券是否有效")
+    date_add = models.DateTimeField(verbose_name = "优惠券添加的时间", default = timezone.now)

@@ -1,11 +1,17 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.http import Http404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import logout,login,authenticate
 from django.contrib.auth.hashers import make_password,check_password
 from django.contrib.auth.models import User
 from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
+
+from .serializers import CouponsSerializer
+
+from rest_framework import generics
+from rest_framework import viewsets
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .checkuser import checkdata
@@ -13,7 +19,6 @@ import json
 import re
 import requests
 # Create your views here.
-
 
 
 def notice_list(request):
@@ -78,9 +83,10 @@ def verify(request):
             data['code'] = 0
         #新建用户
         else:
+            passwd = make_password(openid)
             wechatuser = WechatUser.objects.create(
-                username=openid,
-                password = password,
+                username = openid,
+                password = passwd,
                 openid = openid,
                 cookie = res['cookie']
             )
@@ -201,11 +207,13 @@ def address_delete(request):
                 address.delete()
                 return JsonResponse({"code":0,"data":"删除成功"})
 
-def check_goods(page, pageSize, **filter_kwargs):
+def check_goods(page = 0, pageSize = 0, **filter_kwargs):
     goods_list = goods.objects.filter(**filter_kwargs)
-    if goods_list == {}:
-        return JsonResponse({"code":"400"})
+    if len(goods_list) == 0:
+        return {}
     else:
+        if page == 0 and pageSize == 0:
+            return goods_list
         paginator = Paginator(goods_list, pageSize)
         try:
             goods_page = paginator.page(page)
@@ -222,12 +230,6 @@ def goods_list(request):
         pageSize = request.POST.get("pageSize")
         category_id = request.POST.get('categoryId')
         data_all = request.POST.get("all")
-        print(page)
-        print(type(page))
-        print(pageSize)
-        print(type(pageSize))
-        print(category_id)
-        print(type(category_id))
         if data_all == "true":
             category = Category.objects.all()
             ser_ = serializers.serialize("json", category)
@@ -243,3 +245,38 @@ def goods_list(request):
             print(type(ser_))
             return JsonResponse({"code":0,"data":ser_})
 
+@csrf_exempt
+def goods_detail(request):
+    if request.method == 'POST':
+        good_id = request.POST.get("id")
+        basicInfo = {"category_id":[],"goods_id":[]}
+        print(good_id)
+        print(type(good_id))
+        basicInfo_query = check_goods(id = int(good_id))
+        if basicInfo_query == {}:
+            return JsonResponse({"code":400}) 
+        for info in basicInfo_query:
+            basicInfo['category_id'].append(info.category_id.id)
+            basicInfo['goods_id'].append(info.id)
+        print(basicInfo)
+        category_query = Category.objects.filter(id = basicInfo['category_id'][0])
+        pics_query = Attachment.objects.filter(owner_id = basicInfo['goods_id'][0])
+        ser_category = serializers.serialize("json", category_query)
+        json_category = json.loads(ser_category)
+        ser_basicInfo = serializers.serialize("json", basicInfo_query)
+        json_basicInfo = json.loads(ser_basicInfo)
+        ser_pics = serializers.serialize("json", pics_query)
+        json_pics = json.loads(ser_pics)
+        return JsonResponse({"code":0,"data":{"basicInfo" : json_basicInfo, "category" : json_category, "pics" : json_pics}})
+
+
+class CouponsViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Coupons to be viewed or edited.
+    """
+    queryset = Coupons.objects.all().filter(is_active = True).order_by('-id')
+    serializer_class = CouponsSerializer
+
+#class CouponsDetail(generics.RetrieveUpdateDestroyAPIView):
+#    queryset = Coupons.objects.all()
+#    serializer_class = CouponsSerializer
