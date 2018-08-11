@@ -1,0 +1,13 @@
+/* pages/special/index.wxss */
+
+.part image {
+  width: 60%;
+  height: 120px;
+  margin: 20px 0 0 10px;
+}
+
+.part text {
+  width: 30%;
+  padding: 20px 10px 0 0;
+  font-size: 12px;
+}
