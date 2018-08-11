@@ -1,0 +1,23 @@
+.swiper {
+  width: 100%;
+  height: 220px;
+}
+
+.discount {
+  display: flex;
+  justify-content: space-around;
+  /* flex-direction: column; */
+  align-items: center;
+  width: 100%;
+}
+
+.discount-item {
+  width: 25%;
+  height: 60px;
+}
+
+.discount-item image {
+  width: 100%;
+  height: 60px;
+}
+

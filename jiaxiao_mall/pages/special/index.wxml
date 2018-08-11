@@ -1,0 +1,19 @@
+<!--pages/special/index.wxml-->
+<view class='container'>
+  <view class='part clearfix'>
+    <image class='fl' src='http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'></image>
+    <text class='fr'>如果你无法简洁的表达你的想法，那只说明你还不够了解它。</text>
+  </view>
+  <view class='part clearfix'>
+    <image class='fl' src='http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'></image>
+    <text class='fr'>如果你无法简洁的表达你的想法，那只说明你还不够了解它。</text>
+  </view>
+  <view class='part clearfix'>
+    <image class='fl' src='http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'></image>
+    <text class='fr'>如果你无法简洁的表达你的想法，那只说明你还不够了解它。</text>
+  </view>
+  <view class='part clearfix'>
+    <image class='fl' src='http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'></image>
+    <text class='fr'>如果你无法简洁的表达你的想法，那只说明你还不够了解它。</text>
+  </view>
+</view>
