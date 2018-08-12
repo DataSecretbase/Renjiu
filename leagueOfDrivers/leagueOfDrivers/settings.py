@@ -124,3 +124,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 APPEND_SLASH=False
+MEDIA_ROOT = 'media/'
+MEDIA_URL = '/media/'

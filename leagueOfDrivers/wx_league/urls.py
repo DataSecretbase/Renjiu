@@ -18,6 +18,12 @@ urlpatterns = [
     url('^address/delete$', views.address_delete, name='datein'),
     url('^goods/list$', views.goods_list, name='datein'),
     url('^goods/detail$', views.goods_detail, name='datein'),
+    url('^goods/price$', views.goods_price, name='datein'),
     url('^coupons$', views.coupons, name='datein'),
+    url('^coupons/fetch$', views.coupons_fetch, name='datein'),
+    url('^coupons/my$', views.coupons_my, name='datein'),
+    url('^order/list$', views.order_list, name='datein'),
+    url('^order/close$', views.order_close, name='datein'),
+    url('^order/create$', views.order_create, name='datein'),
 
 ]

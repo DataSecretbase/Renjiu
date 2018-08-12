@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 import django.utils.timezone as timezone
+import random
+import time
+from uuid import uuid4
+from datetime import datetime
 # Create your models here.
 
 class DriverSchool(models.Model):
@@ -102,32 +106,32 @@ class goods(models.Model):
 
 class Order(models.Model):
     wechat_user_id = models.ForeignKey('WechatUser', verbose_name ='微信用户', on_delete = models.DO_NOTHING)
-    order_num = models.BigIntegerField(verbose_name = '订单号')
     #goods_ids= models.ManyToManyField('Goods', verbose_name='商品真实数据冗余')
     #order_goods_ids = fields.One2many('wechat_mall.order.goods', 'order_id',
                                       #verbose_name='订单商品', help='商品参数数据冗余，防止商品修改或删除。')
-    number_goods = models.IntegerField(verbose_name = '商品数量')
+    number_goods = models.IntegerField(verbose_name = '商品数量',default = 0)
     goods_price = models.FloatField(verbose_name = '商品总金额', default=0)
     logistics_price = models.FloatField(verbose_name = '物流费用', default=0)
     total = models.FloatField('实际支付', default=0 )
-    #GOODS_STATUS = ((0,"22"))
-    status = models.SmallIntegerField(verbose_name = '状态')
-    remark = models.CharField(verbose_name  = '备注', max_length = 100)
-    linkman = models.CharField(verbose_name = '联系人', max_length = 100)
-    phone = models.CharField(verbose_name = '手机号码', max_length = 50)
+    ORDER_STATUS = [(0,"待付款"),(1,'待发货'),(2,'待收货'),(3,'待评价'),(4,'已完成'),(5,'已删除')]
+    status = models.SmallIntegerField(verbose_name = '状态', choices = ORDER_STATUS, default = 0)
+    remark = models.CharField(verbose_name  = '备注', max_length = 100, blank = True)
+    linkman = models.CharField(verbose_name = '联系人', max_length = 100, blank = True)
+    phone = models.CharField(verbose_name = '手机号码', max_length = 50, blank = True)
     #PROVINCE = ((0,"22"))
-    province_id = models.SmallIntegerField(verbose_name='省')
+    province_id = models.SmallIntegerField(verbose_name='省', default = 0)
     #CITY = ((0,"22"))
-    city_id = models.SmallIntegerField(verbose_name = '市')
-    district_id = models.SmallIntegerField(verbose_name = '区')
-    address = models.CharField(verbose_name = '详细地址', max_length = 100)
-    postcode = models.CharField(verbose_name = '邮政编码', max_length = 20)
+    city_id = models.SmallIntegerField(verbose_name = '市', default = 0)
+    district_id = models.SmallIntegerField(verbose_name = '区', default = 0)
+    address = models.CharField(verbose_name = '详细地址', max_length = 100, blank = True)
+    postcode = models.CharField(verbose_name = '邮政编码', max_length = 20, blank = True)
 
-    shipper_id = models.ForeignKey('Shipper', verbose_name='快递承运商', on_delete = models.DO_NOTHING)
-    tracking_number = models.CharField(verbose_name = '运单号', max_length = 200)
+    shipper_id = models.ForeignKey('Shipper', verbose_name='快递承运商', on_delete = models.DO_NOTHING, default = 1)
+    tracking_number = models.CharField(verbose_name = '运单号', max_length = 200, blank = True)
     #display_traces = fields.Html('物流信息', compute='_compute_display_traces')
-    traces = models.TextField(verbose_name = '物流信息')
+    traces = models.TextField(verbose_name = '物流信息', blank = True)
 
+    dateAdd = models.DateTimeField(verbose_name = '下单时间', default = timezone.now)
     class Meta:
         db_table = "Order"
         _inherit = ['mail.thread']
@@ -137,17 +141,16 @@ class Order(models.Model):
     #payment_ids = fields.One2many('wechat_mall.payment', 'order_id', '支付记录')
 
 class OrderGoods(models.Model):
-    order_id = models.ForeignKey('Order', verbose_name='订单', on_delete=models.CASCADE)
+    order_id = models.IntegerField(verbose_name='订单', default = 0)
 
     # 冗余记录商品，防止商品删除后订单数据不完整
-    goods_id = models.IntegerField(verbose_name = '商品id')
-    name = models.CharField(verbose_name = '商品名称', max_length = 50)
-    display_pic = models.ImageField(verbose_name = '图片')
-    pic = models.ForeignKey('Icon', verbose_name='图片', on_delete = models.SET_DEFAULT, default = 0)
-    property_str = models.CharField(verbose_name = '商品规格', max_length = 200)
-    price = models.FloatField(verbose_name = '单价')
-    amount = models.IntegerField(verbose_name = '商品数量')
-    total = models.FloatField(verbose_name = '总价')
+    goods_id = models.IntegerField(verbose_name = '商品id',default = 0)
+    name = models.CharField(verbose_name = '商品名称', max_length = 50, blank =True)
+    display_pic = models.ImageField(verbose_name = '图片', blank = True)
+    property_str = models.CharField(verbose_name = '商品规格', max_length = 200, blank = True)
+    price = models.FloatField(verbose_name = '单价', default = 0)
+    amount = models.IntegerField(verbose_name = '商品数量', default = 0)
+    total = models.FloatField(verbose_name = '总价', default = 0)
     
     class Meta:
         db_table = 'OrderGoods'
@@ -219,9 +222,16 @@ class Category(models.Model):
 
    #goods_ids = fields.One2many('wechat_mall.goods', 'category_id', '商品')
 
+def filepath(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = '{}.{}'.format(uuid4().hex, ext)
+    year = datetime.now().year
+    month =datetime.now().month
+    day = datetime.now().day
+    return "img/{0}/{1}/{2}/{3}".format(year,month,day,filename)
 
 class Icon(models.Model):
-    display_pic = models.ImageField(verbose_name = "icon 对应",upload_to='img')
+    display_pic = models.ImageField(verbose_name = "icon 对应",upload_to=filepath)
     
     class Meta:
         db_table = 'Icon'
@@ -289,8 +299,13 @@ class Coupons(models.Model):
     DATE_END_TYPE = ((0,"截止某日前有效"),(1,"领取后有效时间倒计"))
     dateEndType = models.SmallIntegerField(verbose_name = '优惠券有效期类型', choices = DATE_END_TYPE)
     dateEndDays = models.DateTimeField(verbose_name = "优惠券截止时间", default = timezone.now)
-    date = models.SmallIntegerField(verbose_name = "优惠券有效期倒计时(天)")
     goods_id =  models.ForeignKey('Goods', on_delete = models.CASCADE, verbose_name = "商品id")
     is_active = models.BooleanField(verbose_name = "优惠券是否有效")
     date_add = models.DateTimeField(verbose_name = "优惠券添加的时间", default = timezone.now)
     coupons_type = models.SmallIntegerField(verbose_name = "优惠券类型1.通用型,2.分类专用型,3.商品专用型,4.店铺专用型", default = 0)
+
+class Coupons_users(models.Model):
+    coupons_id = models.IntegerField(verbose_name = "优惠券id")
+    user_id = models.IntegerField(verbose_name = "用户id")
+    date_add = models.DateTimeField(verbose_name = "优惠券添加的时间", default = timezone.now)
+    dateEndDays = models.DateTimeField(verbose_name = "优惠券截止时间", default = timezone.now)

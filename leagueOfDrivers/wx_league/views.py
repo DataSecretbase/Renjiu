@@ -21,6 +21,13 @@ import requests
 # Create your views here.
 
 
+def serializers_json(seri):
+    ser_ = serializers.serialize("json", seri)
+    json_ = json.loads(ser_)
+    return json_
+
+
+
 def notice_list(request):
     return JsonResponse({"code":0,"data":{"totalRow":2,"totalPage":1,"dataList":[{"dateAdd":"2017-10-23 13:59:55","id":345,"isShow":"0","title":"天气又冷","userId":1614},{"dateAdd":"2017-10-23 13:59:44","id":344,"isShow":"0","title":"天气热","userId":1614}]},"msg":"success"})
 
@@ -230,10 +237,18 @@ def goods_list(request):
         pageSize = request.POST.get("pageSize")
         category_id = request.POST.get('categoryId')
         data_all = request.POST.get("all")
+        iconList = []
         if data_all == "true":
             category = Category.objects.all()
+            for icon in category:
+                print(icon.icon.display_pic)
+                iconList.append({"id":id,"icon":icon.icon.display_pic})
             ser_ = serializers.serialize("json", category)
             ser_ = json.loads(ser_)
+            print(type(iconList[0]["icon"].url))
+            print(ser_)
+            for x in range(len(ser_)):
+                ser_[x]["fields"]["icon"] = "https://qgdxsw.com:8000"+iconList[x]["icon"].url
             return JsonResponse({"code":0, "data":ser_})
         category_goods = check_goods(int(page),int(pageSize),category_id = int(category_id))
         if category_goods == {}:
@@ -241,8 +256,6 @@ def goods_list(request):
         else:
             ser_ = serializers.serialize("json", category_goods)
             ser_ = json.loads(ser_)
-            print(ser_)
-            print(type(ser_))
             return JsonResponse({"code":0,"data":ser_})
 
 @csrf_exempt
@@ -277,14 +290,6 @@ class CouponsViewSet(viewsets.ModelViewSet):
     queryset = Coupons.objects.all().filter(is_active = True).order_by('-id')
     serializer_class = CouponsSerializer
 
-#class CouponsDetail(generics.RetrieveUpdateDestroyAPIView):
-#    queryset = Coupons.objects.all()
-#    serializer_class = CouponsSerializer
-
-def serializers_json(seri):
-    ser_ = serializers.serialize("json", seri)
-    json_ = json.loads(ser_)
-    return json_
 
 @csrf_exempt
 def coupons(request):
@@ -308,3 +313,105 @@ def coupons(request):
         return JsonResponse({"code":0,"data":data})
     else:
         return JsonResponse({"code":500,"error":"请使用POST方式请求"})
+
+@csrf_exempt
+def coupons_fetch(request):
+    if request.method == "POST":
+        coupons_id = request.POST.get('id')
+        coupons_id = int(coupons_id) if isinstance(coupons_id,(str)) else coupons_id
+        cookie = request.POST.get('cookie')
+        user = check_user(cookie)
+        if user == {}:
+            return JsonResponse({"code":500,"msg":"请重新登录"})
+        else:
+            try:
+                coupons = Coupons_users.objects.create(coupons_id = coupons_id, user_id = user.id)
+            except ObjectDoesNotExist:
+                return JsonResponse({"code":20001})
+            return JsonResponse({"code":0})
+
+@csrf_exempt
+def coupons_my(request):
+    if request.method == 'POST':
+        cookie = request.POST.get('cookie')
+        user = check_user(cookie)
+        basicInfo = {"coupons_id":[]}
+        if user == {}:
+            return JsonResponse({"code":500,"msg":"请重新登录"})
+        else:
+            coupons_query = Coupons_users.objects.filter(user_id = user.id)
+            for info in coupons_query:
+                basicInfo['coupons_id'].append(info.coupons_id)
+            coupons_list = []
+            for coupons_id in basicInfo['coupons_id']:
+                coupons_list.append(Coupons.objects.filter(id = coupons_id)[0])
+            data = serializers_json(coupons_list)
+            return JsonResponse({"code":0,"data":data})
+
+@csrf_exempt
+def order_list(request):
+    if request.method == 'POST':
+        cookie = request.POST.get('cookie')
+        status = request.POST.get('status')
+        status = int(status) if isinstance(status,(str)) else status
+        user = check_user(cookie)
+        basicInfo = {"order_id":[]}
+        if user == {}:
+            return JsonResponse({"code":500,"msg":"请重新登录"})
+        else:
+            orders_query = Order.objects.filter(wechat_user_id = user.id, status = status)
+            for orders in orders_query:
+                basicInfo["order_id"].append(orders.id)
+            for order_id in basicInfo["order_id"]:
+                OrderGoods_query = OrderGoods.objects.filter(order_id = order_id)
+        data = {}
+        try:
+            data["goodsMap"] = serializers_json(OrderGoods_query)
+            data["orderList"] = serializers_json(orders_query)
+        except UnboundLocalError:
+            return JsonResponse({"code":400,"msg":"没有订单"})    
+        return JsonResponse({"code":0,"data":data})
+
+@csrf_exempt
+def order_close(request):
+    if request.method == "POST":
+        cookie = request.POST.get('cookie')
+        orderId = request.POST.get('orderId')
+        orderId = int(orderId) if isinstance(orderId,(str)) else orderId
+        user = check_user(cookie)
+        if user == {}:
+            return JsonResponse({"code":500,"msg":"请重新登录"})       
+        order = Order.objects.get(wechat_user_id = user.id, id = orderId)
+        order.status = 5
+        order.save()
+        return JsonResponse({"code":0,"msg":"删除订单"})
+
+@csrf_exempt
+def goods_price(request):
+    if request.method == "POST":
+        id = request.POST.get("id")
+        goods_query = goods.objects.filter(id = id)
+        data = serializers_json(goods_query)
+        return JsonResponse({"code":0,"data":data})
+
+@csrf_exempt
+def order_create(request):
+    if request.method == "POST":
+        cookie = request.POST.get('cookie')
+        remark = request.POST.get('remark')
+        goodsJsonStr = request.POST.get('goodsJsonStr')
+        payOnDelivery = request.POST.get('payOnDelivery')
+        user = check_user(cookie)
+        if user == {}:
+            return JsonResponse({"code":0,"msg":"请重新登录"})
+        order = Order.objects.create(wechat_user_id = user,status = 0,remark = remark)
+        goods_list = json.loads(goodsJsonStr)
+        print(goods_list)
+        print(order)
+        amountTotle = []
+        for good in goods_list:
+            goodsId = goods.objects.get(id = good['goodsId'])
+            amountTotle.append(goodsId.minPrice)
+            ordergoods = OrderGoods.objects.create(order_id = order.id, goods_id = goodsId.id)
+        return JsonResponse({"code":0,"data":{"isNeedLogistics":"no","amountTotle":sum(amountTotle),"amountLogistics":5}})
+        
