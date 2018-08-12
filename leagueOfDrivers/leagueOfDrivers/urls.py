@@ -18,7 +18,8 @@ from django.urls import path,include
 from rest_framework import routers
 from wx_league import views
 from wx_league import urls as user_urls
-
+from django.conf.urls.static import static
+from . import settings
 
 router = routers.DefaultRouter()
 router.register(r'coupons', views.CouponsViewSet)
@@ -30,3 +31,5 @@ urlpatterns = [
     path('league/',include(user_urls)),
     path('api-auth/',include('rest_framework.urls', namespace = 'rest_framework')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
