@@ -126,3 +126,22 @@ STATIC_URL = '/static/'
 APPEND_SLASH=False
 MEDIA_ROOT = 'media/'
 MEDIA_URL = '/media/'
+'''
+QINIU_ACCESS_KEY = 'yLAD0JMxDrx5eqHUVWbSiAKTonSL8DfY372l9AO6'
+QINIU_SECRET_KEY = '179S3CXzY1r4BCJm1wZmUAA3wcDI2oUshchjGwQd'
+QINIU_BUCKET_NAME = 'jiamengtong'
+QINIU_BUCKET_DOMAIN = 'pdftpnc7u.bkt.clouddn.com'
+QINIU_SECURE_URL = False
+
+
+PREFIX_URL = 'http://'
+MEDIA_URL = PREFIX_URL + QINIU_BUCKET_DOMAIN + '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuMediaStorage'
+
+STATIC_URL = QINIU_BUCKET_DOMAIN + '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+#STATICFILES_STORAGE = 'qiniustorage.backends.QiniuStaticStorage'
+'''

@@ -7,8 +7,6 @@ urlpatterns = [
     url('^discounts/coupons/$', views.discounts_coupons, name='datein'),
     url('^discounts/fetch/$', views.discounts_fetch, name='datein'),
     url('^banner/list/$', views.banner_list, name='datein'),
-    url('^shop/goods/category/all$', views.category, name='datein'),
-    url('^config/get-value$', views.get_value, name='datein'),
     url('^user/check-token$', views.check_token, name='datein'),
     url('^user/check-token$', views.check_token, name='datein'),
     url('^user/login$', views.verify, name='datein'),
@@ -25,5 +23,6 @@ urlpatterns = [
     url('^order/list$', views.order_list, name='datein'),
     url('^order/close$', views.order_close, name='datein'),
     url('^order/create$', views.order_create, name='datein'),
+    url('^index/imageList$', views.index_imageList, name='datein'),
 
 ]
