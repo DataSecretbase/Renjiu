@@ -32,7 +32,10 @@ def url_image(query_set):
         iconList.append({"id":id,"icon":icon.display_pic})
     ser_ = serializers_json(query_set)
     for x in range(len(ser_)):
-        ser_[x]["fields"]["icon"] = "https://qgdxsw.com:8000"+iconList[x]["icon"].url
+        try:
+            ser_[x]["fields"]["icon"] = "https://qgdxsw.com:8000"+iconList[x]["icon"].url
+        except AttributeError:
+            ser_[x]["fields"]["icon"] = "https://qgdxsw.com:8000"+iconList[x]["icon"].display_pic.url
     return ser_
 
 def image_comment(image_json):
@@ -363,7 +366,7 @@ def order_list(request):
                 OrderGoods_query = OrderGoods.objects.filter(order_id = order_id)
         data = {}
         try:
-            data["goodsMap"] = serializers_json(OrderGoods_query)
+            data["goodsMap"] = url_image(OrderGoods_query)
             data["orderList"] = serializers_json(orders_query)
         except UnboundLocalError:
             return JsonResponse({"code":400,"msg":"没有订单"})    
@@ -407,6 +410,16 @@ def order_create(request):
         for good in goods_list:
             goodsId = goods.objects.get(id = good['goodsId'])
             amountTotle.append(goodsId.minPrice)
-            ordergoods = OrderGoods.objects.create(order_id = order.id, goods_id = goodsId.id)
+            ordergoods = OrderGoods.objects.create(order_id = order.id,\
+                                                   goods_id = goodsId.id,\
+                                                   name = goodsId.name,\
+                                                   display_pic = goodsId.pic,\
+                                                   property_str = "-",\
+                                                   price = goodsId.minPrice,\
+                                                   amount = 1,\
+                                                   total = goodsId.minPrice)
+        order.goods_price = sum(amountTotle)
+        order.number_goods = len(amountTotle)
+        order.save()
         return JsonResponse({"code":0,"data":{"isNeedLogistics":"no","amountTotle":sum(amountTotle),"amountLogistics":5}})
         

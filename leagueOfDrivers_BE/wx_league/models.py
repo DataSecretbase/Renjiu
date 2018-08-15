@@ -119,6 +119,7 @@ class Order(models.Model):
                                       #verbose_name='订单商品', help='商品参数数据冗余，防止商品修改或删除。')
     number_goods = models.IntegerField(verbose_name = '商品数量',default = 0)
     goods_price = models.FloatField(verbose_name = '商品总金额', default=0)
+    logistics_id = models.ForeignKey('Logistics'.verbose_name = '物流id', default = 0)
     logistics_price = models.FloatField(verbose_name = '物流费用', default=0)
     total = models.FloatField('实际支付', default=0 )
     ORDER_STATUS = [(0,"待付款"),(1,'待发货'),(2,'待收货'),(3,'待评价'),(4,'已完成'),(5,'已删除')]
@@ -148,7 +149,7 @@ class Order(models.Model):
  
     #payment_ids = fields.One2many('wechat_mall.payment', 'order_id', '支付记录')
     def __str__(self):
-        return self.id
+        return "{0}".format(self.id)
 
 
 class OrderGoods(models.Model):
@@ -157,7 +158,7 @@ class OrderGoods(models.Model):
     # 冗余记录商品，防止商品删除后订单数据不完整
     goods_id = models.IntegerField(verbose_name = '商品id',default = 0)
     name = models.CharField(verbose_name = '商品名称', max_length = 50, blank =True)
-    display_pic = models.ImageField(verbose_name = '图片', blank = True)
+    display_pic = models.ForeignKey('Icon',verbose_name = '图片', on_delete = models.SET_DEFAULT, default = 0)
     property_str = models.CharField(verbose_name = '商品规格', max_length = 200, blank = True)
     price = models.FloatField(verbose_name = '单价', default = 0)
     amount = models.IntegerField(verbose_name = '商品数量', default = 0)
@@ -216,7 +217,8 @@ class Logistics(models.Model):
 
     class Meta:
         db_table = 'Logistics'
-        _description = '物流'
+        verbose_name = '物流信息'
+        verbose_name_plural = '物流信息'
     #transportation_ids = fields.One2many('wechat_mall.transportation', 'logistics_id', string='运送费用')
     #district_transportation_ids = fields.One2many('wechat_mall.district.transportation', 'logistics_id',
                                                   #string='区域运送费用')
