@@ -14,15 +14,15 @@
       </view>
       <scroll-view scroll-x="true" class="scroll-view-x" style="padding-top:10rpx" scroll-with-animation="true" wx:if="{{tlist[currentTab].secondList}}" scroll-left='0' bindscroll="getleft">
         <view>
-          <view class="navigator_second" wx:for="{{tlist[currentTab].secondList}}" wx:for-item="childItem" bindtap="getProductList" data-id="{{childItem.id}}">
-            <image class="navigator_icon" src="{{childItem.icon}}"></image>
-            <text class="navigator_text">{{childItem.name}}</text>
+          <view  bindtap="getProductList" class="navigator_second" wx:for="{{tlist[currentTab].secondList}}" wx:for-item="childItem"  data-id="{{childItem.pk}}">
+            <image class="navigator_icon" src="{{childItem.fields.icon}}"></image>
+            <text class="navigator_text">{{childItem.fields.name}}</text>
           </view>
         </view>
         <view wx:if="{{tlist[currentTab].thirdList}}">
-          <view class="navigator_second" wx:for="{{tlist[currentTab].thirdList}}" wx:for-item="childItem" data-id="{{childItem.id}}" bindtap="getProductList">
-            <image class="navigator_icon" src="{{childItem.icon}}" ></image>
-            <text class="navigator_text">{{childItem.name}}</text>
+          <view class="navigator_second" wx:for="{{tlist[currentTab].thirdList}}" wx:for-item="childItem" data-id="{{childItem.pk}}" bindtap="getProductList">
+            <image class="navigator_icon" src="{{childItem.fields.icon}}" ></image>
+            <text class="navigator_text">{{childItem.fields.name}}</text>
           </view>
         </view>
       </scroll-view >
@@ -32,7 +32,7 @@
         </view>
       </view>
       <view>
-        <productBox pList="{{list[currentTab]}}">
+        <productBox pList="{{list[currentTab]}}" en_name = "goods">
         </productBox>
       </view>
     </view>

@@ -13,12 +13,15 @@ Page({
   getMyCoupons: function () {
     var that = this;
     wx.request({
-      url:  app.globalData.baseUrl + '/discounts/my',
+      url: 'https://qgdxsw.com:8000/league/coupons/my',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      method: "POST",
       data: {
         cookie: app.globalData.cookie,
         status: 0
       },
       success: function (res) {
+        console.log(res)
         if (res.data.code == 0) {
           var coupons = res.data.data;
           if (coupons.length > 0) {

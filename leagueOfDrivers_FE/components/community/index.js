@@ -1,26 +1,22 @@
 Component({
   properties: {
-    pList:{
+    pList: {
       type: Array,
       value: [],
       observer: function (newVal, oldVal) {
         this.setData({
           pList: newVal
         })
-      } 
+      }
     },
-    en_name:{
-      type: String,
-      value:"goods"
-    },
-    sHeight:{
-      type:Number,
-      value:0
+    sHeight: {
+      type: Number,
+      value: 0
     }
   },
-  methods:{
+  methods: {
     product_detail: function (e) {
-      var _id = e.currentTarget.dataset.id ;
+      var _id = e.currentTarget.dataset.id;
       wx.navigateTo({
         url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
       })

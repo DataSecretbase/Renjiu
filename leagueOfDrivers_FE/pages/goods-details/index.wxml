@@ -101,7 +101,7 @@
               <view class="coupon_time" wx:if="{{item.fields.dateEndType == 0}}"> {{item.fields.dateEnd}} 前有效 </view>
               <view wx:if="{{item.fields.dateEndType == 1}}"> 领取 {{item.fields.dateEndDays}} 天内有效 </view>
             </view>
-            <view class="coupons_receive" bindtap='receiveCoupons' data-id="{{item.fields.id}}">
+            <view class="coupons_receive" bindtap='receiveCoupons' data-id="{{item.pk}}">
               立即领取
             </view>
           </view>
@@ -115,7 +115,7 @@
               <view class="coupon_time" wx:if="{{item.fields.dateEndType == 0}}"> {{item.fields.dateEnd}} 前有效 </view>
               <view wx:if="{{item.fields.dateEndType == 1}}"> 领取 {{item.fields.dateEndDays}} 天内有效 </view>
             </view>
-            <view class="coupons_receive" bindtap='receiveCoupons' data-id="{{item.fields.id}}">
+            <view class="coupons_receive" bindtap='receiveCoupons' data-id="{{item.pk}}">
               立即领取
             </view>
           </view>

@@ -33,6 +33,7 @@ Page({
     this.setData({
       currentType: e.detail.current
     })
+    console.log(e.detail.current)
     if (!this.data.list[e.detail.current].length)
       this.getList();
   } ,
@@ -45,16 +46,37 @@ Page({
     };
     var _page = that.data.statusType[that.data.currentType].page+1 ;;
     wx.request({
-      url: app.globalData.baseUrl + '/order/list',
+      url: 'https://qgdxsw.com:8000/league/order/list',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      method: "POST",
       data: postData,
       success: (res) => {
+        console.log(res)
         wx.hideLoading();
         var param = {}, str1 = "list[" + that.data.currentType + "]", str2 = 'statusType[' + that.data.currentType + '].page', str3 = "logisticsMap[" + that.data.currentType + "]", str4 = "goodsMap[" + that.data.currentType + "]" ;
         if (res.data.code == 0) {
           param[str1] = res.data.data.orderList ;
           param[str2] = _page ;
-          param[str3] = res.data.data.logisticsMap ;
+          //param[str3] = res.data.data.logisticsMap ;
+          param[str3] = "";
+
           param[str4] = res.data.data.goodsMap ;
+
+          for (var orders in res.data.data.orderList)
+          {
+            param[str1][orders]["fields"].goodsmap = []
+            for (var goods in param[str4])
+            {
+              console.log(param[str1][orders].pk, param[str4][goods].fields.order_id)
+              if (param[str1][orders].pk == param[str4][goods].fields.order_id)
+              {
+                param[str1][orders]["fields"].goodsmap.push(param[str4][goods].fields);
+              }
+            }
+          }
+          console.log("param[str1]")
+
+          console.log(param[str1])
           that.setData(param);
         } else {
           param[str1] = [];
@@ -81,7 +103,9 @@ Page({
         if (res.confirm) {
           wx.showLoading();
           wx.request({
-            url: app.globalData.baseUrl + '/order/close',
+            url: 'https://qgdxsw.com:8000/league/order/close',
+            header: { "Content-Type": "application/x-www-form-urlencoded" },
+            method: "POST",
             data: {
               cookie: app.globalData.cookie,
               orderId: orderId
