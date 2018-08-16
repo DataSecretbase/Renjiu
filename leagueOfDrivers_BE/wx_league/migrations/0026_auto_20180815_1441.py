@@ -125,4 +125,13 @@ class Migration(migrations.Migration):
             name='display_pic',
             field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.SET_DEFAULT, to='wx_league.Icon', verbose_name='图片'),
         ),
+        migrations.AlterModelTable(
+            name='coupons',
+            table='Coupons',
+        ),
+        migrations.AlterModelTable(
+            name='coupons_users',
+            table='Coupons_users',
+        ),
+
     ]

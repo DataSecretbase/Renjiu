@@ -119,7 +119,7 @@ class Order(models.Model):
                                       #verbose_name='订单商品', help='商品参数数据冗余，防止商品修改或删除。')
     number_goods = models.IntegerField(verbose_name = '商品数量',default = 0)
     goods_price = models.FloatField(verbose_name = '商品总金额', default=0)
-    logistics_id = models.ForeignKey('Logistics'.verbose_name = '物流id', default = 0)
+    logistics_id = models.ForeignKey('Logistics',verbose_name = '物流id', on_delete = models.SET_DEFAULT, default = 0)
     logistics_price = models.FloatField(verbose_name = '物流费用', default=0)
     total = models.FloatField('实际支付', default=0 )
     ORDER_STATUS = [(0,"待付款"),(1,'待发货'),(2,'待收货'),(3,'待评价'),(4,'已完成'),(5,'已删除')]
@@ -328,7 +328,7 @@ class Address(models.Model):
     address = models.CharField(verbose_name = '详细地址', max_length = 100)
     mobile = models.CharField(verbose_name = '电话号码', max_length = 40)
     code = models.CharField(verbose_name = '邮政编码', max_length = 20)
-    isDefault = models.BooleanField(verbose_name = '默认地址')
+    isDefault = models.BooleanField(verbose_name = '默认地址',default = False)
     owner_type = models.SmallIntegerField(verbose_name = "被标注地址的类型eg:微信用户,订单")
     owner_id = models.IntegerField(verbose_name = "微信用户、订单的id")
 
