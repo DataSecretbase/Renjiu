@@ -166,14 +166,15 @@ Page({
   getBanners(){
     var self = this ;
     wx.request({
-      url: app.globalData.baseUrl + '/banner/list',
+      url: 'https://qgdxsw.com:8000/league/index/imageList',
       data:{
         type:0
       },
       success(res){
+        console.log(res.data.data.pics)
         if(res.data.code==0){
           self.setData({
-            banners:res.data.data
+            banners:res.data.data.pics
           })
         }
       }
@@ -208,7 +209,7 @@ Page({
       data: {
         page: _page ,
         pageSize: 6,
-        categoryId: self.data.tlist[current].firstType.id
+        categoryId: self.data.tlist[current].firstType.pk
       },
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       method:"POST",

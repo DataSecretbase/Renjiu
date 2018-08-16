@@ -35,7 +35,19 @@ App({
       }
     })
     this.login();
-    this.getTlist();
+    this.getTlist(); 
+    this.btnclick()
+  },
+  btnclick: function () {
+    wx.getLocation({
+      type: 'wgs84',// 默认wgs84
+      success: function (res) 
+      {
+        console.log(res)
+      },
+      fail: function (res) { },
+      complete: function () { },
+    });
   },
   login : function () {
     var that = this;
@@ -141,14 +153,16 @@ App({
         //选出一级分类，放入firstType
         for (var x in _data) {
           if (_data[x].fields.level == 1) {
-            _data[x].fields.id = _data[x].pk
             _tlist.push({
-              firstType: _data[x].fields,
+              firstType: _data[x],
               second: []
             })
           }
           //判断是否存在二级分类
-          if (self.globalData.navigate_type == 1 && _data[x].fields.level != 1){
+          if (self.globalData.navigate_type == 1 && _data[x].fields.level == 2){
+            console.log("type2")
+            console.log(_data[x].fields.level)
+
             self.globalData.navigate_type = 2 ;
           }
         }
@@ -157,12 +171,15 @@ App({
           //选出二级分类，放入对应的secondList
           for (var x in _data) {
             for (var y in _tlist) {
-              if (_data[x].fields.pid == _tlist[y].firstType.id) {
-                _data[x].fields.id = _data[x].pk
-                _tlist[y].second.push(_data[x].fields);
+              console.log("type2")
+              console.log(_data[x].fields.pid , _tlist[y].firstType.pk)
+              if (_data[x].fields.pid == _tlist[y].firstType.pk) {
+                _tlist[y].second.push(_data[x]);
               }
             }
           }
+          console.log(_tlist)
+
           //整理二级分类
           for (var x in _tlist) {
             //两行显示
@@ -196,6 +213,7 @@ App({
           } 
         }
         self.globalData.tlist = _tlist;
+        console.log("_tlist!!!!!!!!!!!!!!!")
         console.log(_tlist)
 
       }

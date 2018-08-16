@@ -103,15 +103,18 @@ Page({
       postData.calculate = "true";
     }
     postData.payOnDelivery = 1 ;
+    console.log("postData")
 
+    console.log(postData)
     wx.request({
-      url: app.globalData.baseUrl +'/order/create',
+      url: 'https://qgdxsw.com:8000/league/order/create',
       method:'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
-      },
+      }, 
       data: postData, // 设置请求的 参数
       success: (res) =>{
+        console.log(res)
         wx.hideLoading();
         if (res.data.code != 0) {
           wx.showModal({

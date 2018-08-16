@@ -14,9 +14,10 @@ Page({
   onLoad(){
     var _windowHeight = wx.getSystemInfoSync().windowHeight ;
     var _leftHeight = app.globalData.tlist.length * 50 ;
+    console.log(app.globalData.tlist)
     this.setData({
       tlist:app.globalData.tlist,
-      curNav:app.globalData.tlist[0].firstType.id,
+      curNav:app.globalData.tlist[0].firstType.pk,
       leftHeight: _leftHeight <= _windowHeight-40 ? _windowHeight-40 : _leftHeight,
       windowHeight:_windowHeight
     })
@@ -30,7 +31,7 @@ Page({
   //事件处理函数  
   switchRightTab: function (e) {
     // 获取item项的id，和数组的下标值  
-    let  id = e ? e.currentTarget.dataset.id : this.data.tlist[0].firstType.id,
+    let  id = e ? e.currentTarget.dataset.id : this.data.tlist[0].firstType.pk,
       index = e ? parseInt(e.currentTarget.dataset.index) : 0,
     _length = this.data.tlist[index].second.length ;
     // 把点击到的某一项，设为当前index  
@@ -55,7 +56,7 @@ Page({
   getTypeDetail(e){
     var self = this ;
     var _page = self.data.page;
-    let id = e ? e.currentTarget.dataset.id : this.data.tlist[0].firstType.id ;
+    let id = e ? e.currentTarget.dataset.id : this.data.tlist[0].firstType.pk ;
     this.setData({
       page: 1,
       list:[]

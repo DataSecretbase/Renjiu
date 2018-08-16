@@ -12,7 +12,7 @@
         <block wx:for="{{tlist}}">
           <!--当前项的id等于item项的id，那个就是当前状态-->
           <!--用data-index记录这个数据在数组的下标位置，使用data-id设置每个item的id值，供打开2级页面使用-->
-          <view class="nav_left_items {{curNav == item.firstType.id ? 'active' : ''}}" bindtap="switchRightTab" data-index="{{index}}" data-id="{{item.firstType.id}}">{{item.firstType.name}}        </view>
+          <view class="nav_left_items {{curNav == item.firstType.pk? 'active' : ''}}" bindtap="switchRightTab" data-index="{{index}}" data-id="{{item.firstType.pk}}">{{item.firstType.fields.name}}        </view>
         </block>
       </view>
     </scroll-view>
@@ -21,7 +21,7 @@
       <view style='height:auto;'>
         <view wx:if="{{type_detail==2}}">
           <view wx:for="{{list}}" class="single_item" bindtap='goDetail' data-id='{{item.pk}}'>
-            <view class="img-box"><image src="{{item.fields.pic}}"></image></view>
+            <view class="img-box"><image src="{{item.fields.icon}}"></image></view>
             <view class="right-box">
                 <text class="goods-title">{{item.fields.name}}</text>
                 <text class="goods-volume">已售 <text style="color:#ff4a4a">{{item.fields.numberOrders}}</text> 件</text>
@@ -35,9 +35,9 @@
           <block wx:for="{{tlist[curIndex].second}}">
             <view class="nav_right_items">
             <!--界面跳转 -->
-              <view bindtap='getTypeDetail' data-id="{{item.id}}">
-                <image src="{{item.icon}}"></image>
-                <text>{{item.name}}</text>
+              <view bindtap='getTypeDetail' data-id="{{item.pk}}">
+                <image src="{{item.fields.icon}}"></image>
+                <text>{{item.fields.name}}</text>
               </view>
             </view>
           </block>

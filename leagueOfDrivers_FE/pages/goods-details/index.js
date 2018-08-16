@@ -125,13 +125,17 @@ Page({
   //用户领取优惠券
   receiveCoupons(e){
     var that = this;
+    console.log(e)
     wx.request({
-      url: app.globalData.baseUrl+ '/discounts/fetch',
+      url: 'https://qgdxsw.com:8000/league/coupons/fetch',
       data: {
         id: e.currentTarget.dataset.id,
         cookie: app.globalData.cookie
-      },
+      }, 
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      method: "POST",
       success: function (res) {
+        console.log(res)
         if (res.data.code == 20001 || res.data.code == 20002) {
           wx.showModal({
             title: '错误',
@@ -298,7 +302,7 @@ Page({
       wx.request({
         url: app.globalData.baseUrl +'/shop/goods/price',
         data: {
-          goodsId: that.data.goodsDetail.basicInfo.id,
+          goodsId: that.data.goodsDetail.basicInfo[0].pk,
           propertyChildIds:propertyChildIds
         },
         success: function(res) {
@@ -412,19 +416,20 @@ Page({
   bulidShopCarInfo: function () {
     // 加入购物车
     var shopCarMap = {};
-    shopCarMap.goodsId = this.data.goodsDetail.basicInfo.id;
-    shopCarMap.pic = this.data.goodsDetail.basicInfo.pic;
-    shopCarMap.name = this.data.goodsDetail.basicInfo.name;
-    // shopCarMap.label=this.data.goodsDetail.basicInfo.id; 规格尺寸 
+    console.log(this.data.goodsDetail)
+    shopCarMap.goodsId = this.data.goodsDetail.basicInfo[0].pk;
+    shopCarMap.pic = this.data.goodsDetail.basicInfo[0].fields.pic;
+    shopCarMap.name = this.data.goodsDetail.basicInfo[0].fields.name;
+    // shopCarMap.label=this.data.goodsDetail.basicInfo[0].id; 规格尺寸 
     shopCarMap.propertyChildIds = this.data.propertyChildIds;
     shopCarMap.label = this.data.propertyChildNames;
     shopCarMap.price = this.data.selectSizePrice;
     shopCarMap.left = "";
     shopCarMap.active = true;
     shopCarMap.number = this.data.buyNumber;
-    shopCarMap.logisticsType = this.data.goodsDetail.basicInfo.logisticsId;
+    shopCarMap.logisticsType = this.data.goodsDetail.basicInfo[0].fields.logisticsId;
     shopCarMap.logistics = this.data.goodsDetail.logistics;
-    shopCarMap.weight = this.data.goodsDetail.basicInfo.weight;
+    shopCarMap.weight = this.data.goodsDetail.basicInfo[0].fields.weight;
 
     var shopCarInfo = this.data.shopCarInfo;
     if (!shopCarInfo.shopNum) {
@@ -456,19 +461,19 @@ Page({
 	 */
   buliduBuyNowInfo: function () {
     var shopCarMap = {};
-    shopCarMap.goodsId = this.data.goodsDetail.basicInfo.id;
-    shopCarMap.pic = this.data.goodsDetail.basicInfo.pic;
-    shopCarMap.name = this.data.goodsDetail.basicInfo.name;
-    // shopCarMap.label=this.data.goodsDetail.basicInfo.id; 规格尺寸 
+    shopCarMap.goodsId = this.data.goodsDetail.basicInfo[0].pk;
+    shopCarMap.pic = this.data.goodsDetail.basicInfo[0].fields.pic;
+    shopCarMap.name = this.data.goodsDetail.basicInfo[0].fields.name;
+    // shopCarMap.label=this.data.goodsDetail.basicInfo[0].id; 规格尺寸 
     shopCarMap.propertyChildIds = this.data.propertyChildIds;
     shopCarMap.label = this.data.propertyChildNames;
     shopCarMap.price = this.data.selectSizePrice;
     shopCarMap.left = "";
     shopCarMap.active = true;
     shopCarMap.number = this.data.buyNumber;
-    shopCarMap.logisticsType = this.data.goodsDetail.basicInfo.logisticsId;
+    shopCarMap.logisticsType = this.data.goodsDetail.basicInfo[0].fields.logisticsId;
     shopCarMap.logistics = this.data.goodsDetail.logistics;
-    shopCarMap.weight = this.data.goodsDetail.basicInfo.weight;
+    shopCarMap.weight = this.data.goodsDetail.basicInfo[0].fields.weight;
 
     var buyNowInfo = {};
     if (!buyNowInfo.shopNum) {
@@ -498,8 +503,8 @@ Page({
   },   
   onShareAppMessage: function () {
     return {
-      title: this.data.goodsDetail.basicInfo.name,
-      path: '/pages/goods-details/index?id=' + this.data.goodsDetail.basicInfo.id + '&inviter_id=' + app.globalData.uid,
+      title: this.data.goodsDetail.basicInfo[0].fields.name,
+      path: '/pages/goods-details/index?id=' + this.data.goodsDetail.basicInfo[0].pk + '&inviter_id=' + app.globalData.uid,
       success: function (res) {
         // 转发成功
         console.log('转发成功')

@@ -1,7 +1,8 @@
-<view class="goods-container">
-  <view class="goods-box" wx:for="{{pList}}" wx:key="childIndex" wx:for-item="childItem" bindtap="product_detail" data-id="{{childItem.pk}}">
-    <view class="img-box"><image src="{{childItem.fields.pic}}"></image></view>
-    <text class="goods-title">{{childItem.fields.name}}</text>
-    <text class="goods-price">￥{{childItem.fields.minPrice}}</text>
+
+  <view class="{{en_name}}">
+    <view class="goods-box" wx:for="{{pList}}" wx:key="childIndex" wx:for-item="childItem" bindtap="product_detail" data-id="{{childItem.pk}}">
+      <view class="img-box"><image src="{{childItem.fields.pic}}"></image></view>
+      <text class="goods-title">{{childItem.fields.name}}</text>
+      <text wx:if ="{{childItem.fields.category_id != 3}}" class="goods-price">￥{{childItem.fields.minPrice}}</text>
+    </view>
   </view>
-</view>

@@ -1,10 +1,11 @@
-<!--pages/product_list/index.wxml-->
+<!--pages/community/community.wxml-->
 <view style="margin:0">
-  <productBox pList="{{list}}" en_name = "{{en_name}}">
-  </productBox>
+  <Community pList="{{list}}" en_name = "{{en_name}}">
+  </Community>
 </view>
 <view>  
   <loading hidden="{{hidden}}" bindchange="loadingChange">  
   加载中...  
   </loading>  
 </view>  
+

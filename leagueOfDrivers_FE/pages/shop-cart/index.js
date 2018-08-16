@@ -281,36 +281,41 @@ Page({
         // 获取价格和库存
         if (!carShopBean.propertyChildIds || carShopBean.propertyChildIds == "") {
           wx.request({
-            url:  app.globalData.baseUrl +'/shop/goods/detail',
+            url: 'https://qgdxsw.com:8000/league/goods/price',
+            header: { "Content-Type": "application/x-www-form-urlencoded" },
+            method: "POST",
             data: {
               id: carShopBean.goodsId
             },
             success: function(res) {
+              console.log(res)
               doneNumber++;
+              console.log("sssssssssssssssssssssssssss")
               if (res.data.data.properties) {
+
                 wx.showModal({
                   title: '提示',
-                  content: res.data.data.basicInfo.name + ' 商品已失效，请重新购买',
+                  content: res.data.data[0].fields.name + ' 商品已失效，请重新购买',
                   showCancel:false
                 })
                 isFail = true;
                 wx.hideLoading();
                 return;
               }
-              if (res.data.data.basicInfo.stores < carShopBean.number) {
+              if (res.data.data[0].fields.stores < carShopBean.number) {
                 wx.showModal({
                   title: '提示',
-                  content: res.data.data.basicInfo.name + ' 库存不足，请重新购买',
+                  content: res.data.data[0].fields.name + ' 库存不足，请重新购买',
                   showCancel:false
                 })
                 isFail = true;
                 wx.hideLoading();
                 return;
               }
-              if (res.data.data.basicInfo.minPrice != carShopBean.price) {
+              if (res.data.data[0].fields.minPrice != carShopBean.price) {
                 wx.showModal({
                   title: '提示',
-                  content: res.data.data.basicInfo.name + ' 价格有调整，请重新购买',
+                  content: res.data.data[0].fields.name + ' 价格有调整，请重新购买',
                   showCancel:false
                 })
                 isFail = true;
@@ -325,6 +330,8 @@ Page({
         } else {
           wx.request({
             url: app.globalData.baseUrl +'/shop/goods/price',
+            header: { "Content-Type": "application/x-www-form-urlencoded" },
+            method: "POST",
             data: {
               goodsId: carShopBean.goodsId,
               propertyChildIds:carShopBean.propertyChildIds
