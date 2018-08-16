@@ -7,6 +7,7 @@ from django.contrib.auth.hashers import make_password,check_password
 from django.contrib.auth.models import User
 from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
+from django.forms.models import model_to_dict
 
 from .serializers import CouponsSerializer
 
@@ -68,7 +69,8 @@ def banner_list(request):
 
 
 
-def check_token(request):
+def check_cookies(request):
+    check_cookie(request.POST.get("cookei"))
     return JsonResponse({"code":200})
 
 @csrf_exempt
@@ -143,7 +145,7 @@ def address(request):
         return JsonResponse({'error':'用户会话信息失败,请重新登录'})
     address = Address.objects.filter(id = address_id)
     if len(address) != 1 or address_id == 0:
-        Address.objects.create(province_id = provinceId, city_id = cityId, district_id = districtId, linkMan = linkMan, address = address_text, mobile = mobile, code = code,isDefault = True, owner_type = 0, owner_id = user.id )
+        Address.objects.create(province_id = provinceId, city_id = cityId, district_id = districtId, linkMan = linkMan, address = address_text, mobile = mobile, code = code,isDefault = False, owner_type = 0, owner_id = user.id )
         return JsonResponse({'code':0})
     else:
         address = Address.objects.get(id = address_id)
@@ -154,7 +156,6 @@ def address(request):
         address.address = address_text
         address.mobile = mobile
         address.code = code
-        address.isDefault = isDefault
         address.save()
         return JsonResponse({'code':0})
 
@@ -195,16 +196,43 @@ def address_list(request):
     if request.method =="POST":
         cookie = request.POST.get('cookie')
         user = check_user(cookie)
+        default = request.POST.get('default')
         if user == {}:
             return JsonResponse({'error':'用户会话信息失败,请重新登录'})
         else:
             address = check_address(owner_id = user.id)
+            if default == 'true':
+                address = check_address(owner_id = user.id, isDefault = True)
             if address == {}:
                 return JsonResponse({"code":100}) #code 100 没有查询结果
             else:
                 ser_ = serializers.serialize("json", address)
                 ser_ = json.loads(ser_)
                 return JsonResponse({"code":0,"data":ser_})
+
+@csrf_exempt
+def address_update(request):
+    if request.method =="POST":
+        cookie = request.POST.get('cookie')
+        user = check_user(cookie)
+        address_id = request.POST.get('id')
+        address_id = int(address_id) if isinstance(address_id,(str)) else address_id
+        if user == {}:
+            return JsonResponse({'error':'用户会话信息失败,请重新登录'})
+        else:
+            address_query = check_address(owner_id = user.id)
+            if address_query == {}:
+                return JsonResponse({"code":100}) #code 100 没有查询结果
+            else:
+                for address in address_query:
+                    address.isDefault = False
+                    if address.id == address_id:
+                        address.isDefault = True
+                    address.save()
+                return JsonResponse({"code":0,"data":"选择成功"})
+
+
+
 
 @csrf_exempt
 def address_delete(request):
@@ -404,7 +432,11 @@ def order_create(request):
         user = check_user(cookie)
         if user == {}:
             return JsonResponse({"code":0,"msg":"请重新登录"})
-        order = Order.objects.create(wechat_user_id = user,status = 0,remark = remark)
+        order = Order.objects.create(wechat_user_id = user,\
+                                     status = 0,\
+                                     remark = remark,\
+                                     logistics_id = Logistics.objects.get(id = 1)
+                                     )
         goods_list = json.loads(goodsJsonStr)
         amountTotle = []
         for good in goods_list:
@@ -421,5 +453,35 @@ def order_create(request):
         order.goods_price = sum(amountTotle)
         order.number_goods = len(amountTotle)
         order.save()
-        return JsonResponse({"code":0,"data":{"isNeedLogistics":"no","amountTotle":sum(amountTotle),"amountLogistics":5}})
+        return JsonResponse({"code":0,"data":{"isNeedLogistics":1,"amountTotle":sum(amountTotle),"amountLogistics":5}})
         
+
+@csrf_exempt
+def order_detail(request):
+    if request.method == "POST":
+        cookie = request.POST.get('cookie')
+        orderId = request.POST.get('id')
+        orderId = int(orderId) if isinstance(orderId, (str)) else orderId
+        user = check_user(cookie)
+        if user == {}:
+            return JsonResponse({"code":400,"msg":"请重新登录"})
+        order_obj = Order.objects.filter(wechat_user_id = user.id, id = orderId )
+        ser_ = serializers_json(order_obj)
+        return JsonResponse({"code":0,"data":ser_})
+
+def order_pay(request):
+    if request.method == "POST":
+        cookie = request.POST.get('cookie')
+        remark = request.POST.get('remark')
+        goodsJsonStr = request.POST.get('goodsJsonStr')
+        payOnDelivery = request.POST.get('payOnDelivery')
+        user = check_user(cookie)
+        if user == {}:
+            return JsonResponse({"code":0,"msg":"请重新登录"})
+        order = Order.objects.create(wechat_user_id = user,\
+                                     status = 0,\
+                                     remark = remark,\
+                                     logistics_id = Logistics.objects.get(id = 1)
+                                     )
+        goods_list = json.loads(goodsJsonStr)
+ 
