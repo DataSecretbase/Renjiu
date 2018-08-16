@@ -2,7 +2,7 @@
 <view style="margin:0">
   <productBox pList="{{list}}" en_name = "{{en_name}}">
   </productBox>
-</view>
+</view> 
 <view>  
   <loading hidden="{{hidden}}" bindchange="loadingChange">  
   加载中...  

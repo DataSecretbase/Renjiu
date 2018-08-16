@@ -166,14 +166,22 @@ Page({
   initShippingAddress: function () {
     var that = this;
     wx.request({
-      url:  app.globalData.baseUrl +'/user/shipping-address/default',
+      url: 'https://qgdxsw.com:8000/league/address/list',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      }, 
       data: {
-        cookie:app.globalData.cookie
+        cookie:app.globalData.cookie,
+        default:'true'
       },
       success: (res) =>{
+        console.log("address detail")
+
+        console.log(res)
         if (res.data.code == 0) {
           that.setData({
-            curAddressData:res.data.data
+            curAddressData:res.data.data[0]
           });
         }else{
           that.setData({

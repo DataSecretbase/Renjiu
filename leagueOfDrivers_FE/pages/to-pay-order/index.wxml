@@ -5,8 +5,8 @@
             <view class="title" bindtap="addAddress">新增收货地址</view>
         </view>
         <view class="show-address" hidden="{{!curAddressData}}" bindtap="selectAddress">
-            <view class="name-tel">{{curAddressData.linkMan}}  {{curAddressData.mobile}}</view>
-            <view class="addr-text">{{curAddressData.address}}</view>
+            <view class="name-tel">{{curAddressData.fields.linkMan}}  {{curAddressData.fields.mobile}}</view>
+            <view class="addr-text">{{curAddressData.fields.address}}</view>
         </view>
      </view>
      <view class="goods-list">

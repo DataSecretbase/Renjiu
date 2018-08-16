@@ -2,27 +2,27 @@
     <view class="sec-wrap">
         <view class="order-status">
             <view class="icon-box">
-                <image wx:if="{{orderDetail.orderInfo.status==-1}}" class="icon" src="/assets/imgs/order-details/icon-ddgb.png"></image>
-                <image wx:elif="{{orderDetail.orderInfo.status==0}}" class="icon" src="/assets/imgs/order-details/icon-ddfk.png"></image>
-                <image wx:elif="{{orderDetail.orderInfo.status==1}}" class="icon" src="/assets/imgs/order-details/icon-ddfh.png"></image>
-                <image wx:elif="{{orderDetail.orderInfo.status==2}}" class="icon" src="/assets/imgs/order-details/icon-ddsh.png"></image>
-                <image wx:elif="{{orderDetail.orderInfo.status==3 || orderDetail.orderInfo.status==4}}" class="icon" src="/assets/imgs/order-details/icon-jycg.png"></image>
+                <image wx:if="{{orderDetail.fields.tatus==-1}}" class="icon" src="/assets/imgs/order-details/icon-ddgb.png"></image>
+                <image wx:elif="{{orderDetail.fields.status==0}}" class="icon" src="/assets/imgs/order-details/icon-ddfk.png"></image>
+                <image wx:elif="{{orderDetail.fields.status==1}}" class="icon" src="/assets/imgs/order-details/icon-ddfh.png"></image>
+                <image wx:elif="{{orderDetail.fields.status==2}}" class="icon" src="/assets/imgs/order-details/icon-ddsh.png"></image>
+                <image wx:elif="{{orderDetail.fields.status==3 || orderDetail.fields.status==4}}" class="icon" src="/assets/imgs/order-details/icon-jycg.png"></image>
             </view>
             <view class="right-text">
-                <view class="status red">{{orderDetail.orderInfo.statusStr}}</view>
+                <view class="status red">{{orderDetail.fields.statusStr}}</view>
                 <view class="des" hidden="true">请于11时59分59秒内付款，超时订单将自动关闭</view>
             </view>
         </view>
-        <block wx:if="{{orderDetail.logistics}}">
-          <view wx:if="{{orderDetail.logisticsTraces}}" class="wuliu-box">
+        <block wx:if="{{orderDetail.fields.logistics}}">
+          <view wx:if="{{orderDetail.fields.logisticsTraces}}" class="wuliu-box">
               <view class="icon-box">
                   <image class="icon" src="/assets/imgs/order-details/icon-wuliu.png"></image>
               </view>
-              <view class="right-text" bindtap="wuliuDetailsTap" data-id="{{orderDetail.orderInfo.id}}">
-                  <view class="order-number">快递单号：{{orderDetail.logistics.trackingNumber}}</view>
-                  <block wx:if="{{orderDetail.logisticsTraces}}">
-                  <view class="wuliu-text">{{orderDetail.logisticsTraces[orderDetail.logisticsTraces.length-1].AcceptStation}}</view>
-                  <view class="wuliu-date">{{orderDetail.logisticsTraces[orderDetail.logisticsTraces.length-1].AcceptTime}}</view>
+              <view class="right-text" bindtap="wuliuDetailsTap" data-id="{{orderDetail.pk}}">
+                  <view class="order-number">快递单号：{{orderDetail.fields.logistics.trackingNumber}}</view>
+                  <block wx:if="{{orderDetail.fields.logisticsTraces}}">
+                  <view class="wuliu-text">{{orderDetail.fields.logisticsTraces[orderDetail.fields.logisticsTraces.length-1].AcceptStation}}</view>
+                  <view class="wuliu-date">{{orderDetail.fields.logisticsTraces[orderDetail.fields.logisticsTraces.length-1].AcceptTime}}</view>
                   </block>
               </view>
               <view class="arrow-right">
@@ -34,7 +34,7 @@
                   <image class="icon" src="/assets/imgs/order-details/icon-wuliu.png"></image>
               </view>
               <view class="right-text">
-                  <view class="order-number">快递单号：{{orderDetail.logistics.trackingNumber}}</view>
+                  <view class="order-number">快递单号：{{orderDetail.fields.logistics.trackingNumber}}</view>
                   <view class="wuliu-text">暂无物流信息</view>
               </view>
           </view>
@@ -43,9 +43,9 @@
                   <image class="icon" src="/assets/imgs/order-details/icon-address.png"></image>
               </view>
               <view class="right-box">
-                  <view class="name-tel">{{orderDetail.logistics.linkMan}}  {{orderDetail.logistics.mobile}}</view>
+                  <view class="name-tel">{{orderDetail.fields.logistics.linkMan}}  {{orderDetail.fields.logistics.mobile}}</view>
                   <view class="text">
-                      {{orderDetail.logistics.address}}
+                      {{orderDetail.fields.logistics.address}}
                   </view>
               </view>
           </view>
@@ -54,7 +54,7 @@
     <view class="goods-list">
             <view class="list-title">商品信息</view>
             <form bindsubmit="submitReputation">
-            <block wx:for-items="{{orderDetail.goods}}" wx:key="{{index}}">
+            <block wx:for-items="{{orderDetail.fields.goods}}" wx:key="{{index}}">
             <view class="a-goods">
                 <view class="img-box">
                     <image src="{{item.pic}}" class="img" />

@@ -128,7 +128,9 @@ Page({
     var orderId = e.currentTarget.dataset.id;
     var money = e.currentTarget.dataset.money;
     wx.request({
-      url: app.globalData.baseUrl + '/user/amount',
+      url: 'https://qgdxsw.com:8000/league/check/user',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      method: "POST",
       data: {
         cookie: app.globalData.cookie
       },

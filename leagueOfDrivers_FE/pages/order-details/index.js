@@ -30,12 +30,15 @@ Page({
     onShow : function () {
       var that = this;
       wx.request({
-        url: app.globalData.baseUrl + '/order/detail',
+        url: 'https://qgdxsw.com:8000/league/order/detail',
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+        method: "POST",
         data: {
           cookie: app.globalData.cookie,
           id: that.data.orderId
         },
         success: (res) => {
+          console.log(res.data.data)
           wx.hideLoading();
           if (res.data.code != 0) {
             wx.showModal({
@@ -46,7 +49,7 @@ Page({
             return;
           }
           that.setData({
-            orderDetail: res.data.data
+            orderDetail: res.data.data[0]
           });
         }
       })

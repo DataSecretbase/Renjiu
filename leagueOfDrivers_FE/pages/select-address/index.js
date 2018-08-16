@@ -9,7 +9,9 @@ Page({
   selectTap: function (e) {
     var id = e.currentTarget.dataset.id;
     wx.request({
-      url:  app.globalData.baseUrl +'/user/shipping-address/update',
+      url: 'https://qgdxsw.com:8000/league/address/update',
+      method: "POST",
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
       data: {
         cookie:app.globalData.cookie,
         id:id,

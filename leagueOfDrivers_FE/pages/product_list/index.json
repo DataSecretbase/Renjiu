@@ -3,6 +3,7 @@
   "backgroundColor": "#FB5D5D",
   "onReachBottomDistance": 10,
   "usingComponents": {
-    "productBox": "../../components/product_box/index"
+    "productBox": "../../components/product_box/index",
+    "partner": "../../components/community/index"
   }
 }
