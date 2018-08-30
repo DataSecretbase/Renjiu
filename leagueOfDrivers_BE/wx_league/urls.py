@@ -25,5 +25,8 @@ urlpatterns = [
     url('^order/create$', views.order_create, name='datein'),
     url('^index/imageList$', views.index_imageList, name='datein'),
     url('^order/detail$', views.order_detail, name='datein'),
-
+    url('^checkqr$', views.checkqr, name='datein'),
+    url('^dateupdate$', views.datein, name='datein'),
+    url('^school/detail$', views.school_detail, name='datein'),
+    url('^email', views.send_email, name = 'datein')
 ]

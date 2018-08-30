@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wx_league',
+    'email_manage',
     'werkzeug_debugger_runserver',
     'django_extensions',
     'rest_framework',
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'leagueOfDrivers.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, '/email_manage/email_templat')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -145,3 +146,27 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 #STATICFILES_STORAGE = 'qiniustorage.backends.QiniuStaticStorage'
 '''
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.qq.com'
+
+EMAIL_PORT = 465
+
+EMAIL_HOST_USER = '2144799613@qq.com'
+
+#POP3 dltdrvtvrdqmbaja
+#IMAP zbsqzmcsdkxmciaj
+EMAIL_HOST_PASSWORD = 'sbdjromigufwbjgg'
+
+
+EMAIL_SUBJECT_PREFIX = u'django' 
+
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+EMAIL_FROM = '2144799613@qq.com'
+
+

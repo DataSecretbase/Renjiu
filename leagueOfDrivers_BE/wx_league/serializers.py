@@ -10,7 +10,7 @@ class CouponsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Coupons
-        fields = ("id","moneyMin","moneyHreshold","dateEndType","dateEndDays","restOfDay","date","is_active","date_add", "goods_id")
+        fields = ("id","moneyMin","moneyHreshold","dateEndType","dateEndDays","restOfDay","is_active","date_add", "goods_id")
 
     def get_restOfDay(self, obj):
         return (now() - obj.date_add).days

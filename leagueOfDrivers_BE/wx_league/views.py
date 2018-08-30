@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.http import Http404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import logout,login,authenticate
@@ -9,6 +9,8 @@ from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms.models import model_to_dict
 
+from django.core.mail import send_mail
+from django.conf import settings
 from .serializers import CouponsSerializer
 
 from rest_framework import generics
@@ -22,8 +24,8 @@ import requests
 # Create your views here.
 
 
-def serializers_json(seri):
-    ser_ = serializers.serialize("json", seri)
+def serializers_json(seri,use_natural = False):
+    ser_ = serializers.serialize("json", seri,use_natural_foreign_keys = use_natural)
     json_ = json.loads(ser_)
     return json_
 
@@ -94,6 +96,7 @@ def verify(request):
         openid = res['openid']
         user = authenticate(username = openid, password = openid)
         #登录用户并保存cookie
+        print(res['cookie'])
         if user is not None and user.is_active:
             login(request, user)
             query_user = WechatUser.objects.get(openid=openid)
@@ -469,6 +472,7 @@ def order_detail(request):
         ser_ = serializers_json(order_obj)
         return JsonResponse({"code":0,"data":ser_})
 
+@csrf_exempt
 def order_pay(request):
     if request.method == "POST":
         cookie = request.POST.get('cookie')
@@ -484,4 +488,78 @@ def order_pay(request):
                                      logistics_id = Logistics.objects.get(id = 1)
                                      )
         goods_list = json.loads(goodsJsonStr)
+
+def datein(request):
+
+    if request.method == 'GET':
+        data = {}
+        cookie = request.GET.get('cookie')
+        datetime = request.GET.get('date')
+        user = check_user(cookie)
+        if user == "{}":
+            return JsonResponse({code:500,err:"请重新登录"})
+
+        datetime = json.loads(datetime)
+        try:
+            book_query = Book.objects.get(id = datetime['pk'])
+        except ObjectDoseNotExist:
+            return JsonResponse({'code':400,'msg':'该预约记录未找到'})            
+
+        book_query.book_time_start = datetime['fields']['book_time_start']
+        book_query.status = datetime['fields']['status']
+        book_query.save()
+        data['exist'] = 'existed'
+             # 添加日志记录
+                #new_log = Log.objects.create(
+                #    owner=profile,
+                #    type='0',
+                #    device=device
+                #)
+
+
+        return JsonResponse(data)
+
+
+    data = {'error': '仅接受GET请求'}
+    return JsonResponse(data)
  
+# 索引数据库
+def checkqr(request):
+    # pass
+    if request.method == 'GET':
+        data = {}
+        cookie = request.GET.get("cookie")
+        print(cookie)
+        # 验证用户
+        user = check_user(cookie)
+        if user == {}:
+            
+            data = {'error': '用户错误'}
+            return JsonResponse(data)
+
+        book_query = Book.objects.filter(coach = user.id)
+        book_ser = serializers_json(book_query,True) 
+
+        return JsonResponse({"code":0,"data":book_ser})
+
+
+    data = {'error': '仅接受POST请求'}
+    return JsonResponse({"code":500,"msg":data})
+
+@csrf_exempt
+def school_detail(request):
+    if request.method == 'POST':
+        id = request.POST.get('bookid')
+        school_query = DriverSchool.objects.filter(id = id)
+        school_ser = serializers_json(school_query)
+        return JsonResponse({"code":0,"data":school_ser})
+    data = {"code":500,"msg":"仅接受POST请求"}
+    return JsonResponse(data)
+
+def send_email(request):
+    msg='<a href="哈哈哈" target="_blank">点击激活</a>'
+    send_mail('标题','内容',settings.EMAIL_FROM,
+              ['2175666031@qq.com'],
+              html_message = msg,
+              fail_silently=False)
+    return HttpResponse('ok')

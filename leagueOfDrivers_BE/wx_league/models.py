@@ -37,6 +37,10 @@ class DriverSchool(models.Model):
         _order = 'sort'
     def __str__(self):
         return self.name
+    
+    def natural_key(self):
+        return self.name
+
 
 class WechatUser(AbstractUser):
  
@@ -71,7 +75,8 @@ class WechatUser(AbstractUser):
     def __str__(self):
         return self.name
 
-
+    def natural_key(self):
+        return self.name
 
     #address_ids = fields.One2many('wechat_mall.address', 'wechat_user_id', string='收货地址')
     #order_ids = fields.One2many('wechat_mall.order', 'wechat_user_id', string='订单')
@@ -364,4 +369,18 @@ class Coupons_users(models.Model):
     def __str__(self):
         return self.id
 
-
+class Book(models.Model):
+    coach = models.ForeignKey('WechatUser', on_delete = models.CASCADE, verbose_name = "教练id")
+    train_ground = models.ForeignKey('DriverSchool', on_delete = models.CASCADE, verbose_name = "训练场id")
+    length_time = models.FloatField(verbose_name = "预约时间长度")
+    book_time_start = models.IntegerField(verbose_name = "预约开始时间",default = datetime.now)
+    book_time_end = models.IntegerField(verbose_name = "预约结束时间", default = datetime.now)
+    last_active_time = models.DateTimeField('最近操作时间', auto_now=True)
+    status = models.SmallIntegerField(verbose_name = '预约状态')
+    
+    class Meta:
+        db_table = 'Book'
+        verbose_name = '学员教练预约'
+        verbose_name_plural = "学员教练预约"
+    def __str__(self):
+        return "教练"
