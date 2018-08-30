@@ -130,7 +130,7 @@ Page({
       url: 'https://qgdxsw.com:8000/league/coupons/fetch',
       data: {
         id: e.currentTarget.dataset.id,
-        cookie: app.globalData.cookie
+        cookie: wx.getStorageSync('cookie')
       }, 
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       method: "POST",

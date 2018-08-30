@@ -27,6 +27,7 @@ Page({
     this.getList();
   },
   getList(){
+
     var self = this;
     var _page = self.data.page;
     self.setData({
@@ -58,17 +59,49 @@ Page({
         var en_name = "";
         for (var x in second)
         {
-          console.log("ssssssssssssss"+second[x].pk, res.data.data[0].fields.category_id)
+
            if(second[x].pk == res.data.data[0].fields.category_id)
            {
              en_name = second[x].fields.eng_name;
            }
+        }
+        if (en_name == "parter") {
+          wx.navigateTo({
+            url: "/pages/joinus/index"
+          })
+          return
         }
         self.setData({
           en_name:en_name,
           page : _page+1,
           list: _page == 1 ? res.data.data : self.data.list.concat(res.data.data)
         });//当前页页数+1
+        if(en_name == 'appointment'){
+
+          for(var x in self.data.list){
+            console.log('en_name '+x)
+          
+          wx.request({
+            url: 'https://qgdxsw.com:8000/league/school/detail',
+            header: { "Content-Type": "application/x-www-form-urlencoded" },
+            method: "POST",
+            data: {
+              bookid: self.data.list[x]['fields']['shop_id']
+            },
+            success: function (res) {
+              console.log('en_name serc  ' + x)
+              for(var y in self.data.list){
+              if(self.data.list[y]['fields']['shop_id'] == res.data.data[0]['pk'])               {
+                self.data.list[y]['fields']['shop_id'] = res.data.data[0]
+              }
+              }
+              console.log(res.data.data)
+
+              console.log(self.data.list)
+            }
+          })
+          }
+        }
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
         console.log(en_name)

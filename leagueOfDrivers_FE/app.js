@@ -1,130 +1,69 @@
 //app.js
 App({
-  onShow:function(options){
+  onShow: function (options) {
     console.log(options);
   },
-  onHide(){
+  onHide() {
     console.log('hide');
   },
-  getUserInfo:function(cb){
+  getUserInfo: function (cb) {
   },
-  globalData:{
-    userInfo:null,
-    baseUrl:'https://api.it120.cc/jy02149522',
+  globalData: {
+    userInfo: null,
+    baseUrl: 'https://api.it120.cc/jy02149522',
     version: "1.7",
-    cookie:'tianqianwen',
+    cookie: 'tianqianwen',
     shareProfile: '百款精品商品，总有一款适合您', // 首页转发的时候话术
-    navigate_type:1,
-    tlist:[]
+    navigate_type: 1,
+    tlist: []
   },
-  dateToObj(dateObj){
+  dateToObj(dateObj) {
     return JSON.parse(JSON.stringify(dateObj))
   },
   onLaunch: function () {
     var that = this;
     //  获取商城名称
     wx.request({
-      url:  that.globalData.baseUrl +'/config/get-value',
+      url: that.globalData.baseUrl + '/config/get-value',
       data: {
         key: 'mallName'
       },
-      success: function(res) {
+      success: function (res) {
         if (res.data.code == 0) {
           wx.setStorageSync('mallName', res.data.data.value);
         }
       }
     })
-    this.login();
-    this.getTlist(); 
+    this.getTlist();
     this.btnclick()
   },
   btnclick: function () {
     wx.getLocation({
       type: 'wgs84',// 默认wgs84
-      success: function (res) 
-      {
+      success: function (res) {
         console.log(res)
       },
       fail: function (res) { },
       complete: function () { },
     });
   },
-  login : function () {
-    var that = this;
-    var cookie = that.globalData.cookie;
-    if (cookie) {
-      wx.request({
-        url: that.globalData.baseUrl + '/user/check-token',
-        data: {
-          cookie: cookie
-        },
-        success: function (res) {
-          if (res.data.code != 0) {
-            that.globalData.cookie = null;
-            that.login();
-          }
-        }
-      })
-      return;
-    }
-    wx.login({
-      success: function (res) {
-        console.log(res.code)
-        var code = res.code
-        wx.getUserInfo({
-          success:function(r){
-            console.log(r.encryptedData)
-              wx.request({
-              //url:that.globalData.baseUrl +'/user/wxapp/login',
-              url: 'https://qgdxsw.com:8000/league/user/login',
-              header: { "Content-Type": "application/x-www-form-urlencoded" },
-              method: 'POST',
-              data: {
-                code: code,
-                iv: r.iv,
-                encrypteddata: r.encryptedData
-              },
-
-              success: function(res) {
-
-                console.log(res.data)
-                if (res.data.code != 0) {
-                  // 登录错误
-                  wx.hideLoading();
-                  wx.showModal({
-                    title: '提示',
-                    content: '无法登录，请重试',
-                    showCancel:false
-                  })
-                  return;
-                }
-                console.log(res.data.info.cookie)
-                that.globalData.cookie = res.data.info.cookie;
-                that.globalData.uid = res.data.info.openid;
-              }
-            })
-          }
-        })
-      }
-    })
-  },
-  sendTempleMsg: function (orderId, trigger, template_id, form_id, page, postJsonString){
+  sendTempleMsg: function (orderId, trigger, template_id, form_id, page, postJsonString) {
     var that = this;
     wx.request({
       url: that.globalData.baseUrl + '/template-msg/put',
-      method:'POST',
+      method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
         cookie: that.globalData.cookie,
-        type:0,
-        module:'order',
+        type: 0,
+        module: 'order',
         business_id: orderId,
         trigger: trigger,
         template_id: template_id,
         form_id: form_id,
-        url:page,
+        url: page,
         postJsonString: postJsonString
       },
       success: (res) => {
@@ -140,7 +79,7 @@ App({
     wx.request({
       url: "https://qgdxsw.com:8000/league/goods/list",
       data: {
-        all:"true",
+        all: "true",
       },
       method: 'POST',
       header: {
@@ -159,20 +98,20 @@ App({
             })
           }
           //判断是否存在二级分类
-          if (self.globalData.navigate_type == 1 && _data[x].fields.level == 2){
+          if (self.globalData.navigate_type == 1 && _data[x].fields.level == 2) {
             console.log("type2")
             console.log(_data[x].fields.level)
 
-            self.globalData.navigate_type = 2 ;
+            self.globalData.navigate_type = 2;
           }
         }
         //如果存在二级分类
-        if (self.globalData.navigate_type == 2 ){
+        if (self.globalData.navigate_type == 2) {
           //选出二级分类，放入对应的secondList
           for (var x in _data) {
             for (var y in _tlist) {
               console.log("type2")
-              console.log(_data[x].fields.pid , _tlist[y].firstType.pk)
+              console.log(_data[x].fields.pid, _tlist[y].firstType.pk)
               if (_data[x].fields.pid == _tlist[y].firstType.pk) {
                 _tlist[y].second.push(_data[x]);
               }
@@ -196,7 +135,7 @@ App({
               }
             }
           }
-        }else{
+        } else {
           _tlist[0].secondList = [];
           _tlist[0].thirdList = [];
           for (var x in _tlist) {
@@ -207,10 +146,10 @@ App({
               } else {
                 _tlist[0].secondList.push(_tlist[x].firstType);
               }
-            }else{
+            } else {
               _tlist[0].secondList.push(_tlist[x].firstType);
             }
-          } 
+          }
         }
         self.globalData.tlist = _tlist;
         console.log("_tlist!!!!!!!!!!!!!!!")

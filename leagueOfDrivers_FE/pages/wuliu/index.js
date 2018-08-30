@@ -12,7 +12,7 @@ Page({
     wx.request({
       url: app.globalData.baseUrl + '/order/detail',
       data: {
-        cookie: app.globalData.cookie,
+        cookie: wx.getStorageSync('cookie'),
         id: that.data.orderId
       },
       success: (res) => {

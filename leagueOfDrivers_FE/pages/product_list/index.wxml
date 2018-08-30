@@ -1,7 +1,11 @@
 <!--pages/product_list/index.wxml-->
-<view style="margin:0">
+<view style="margin:0" wx:if="{{en_name =='goods'}}">
   <productBox pList="{{list}}" en_name = "{{en_name}}">
   </productBox>
+</view>
+<view style="margin:0" wx:if="{{en_name == 'appointment'}}">
+  <book pList="{{list}}" en_name = "{{en_name}}">
+  </book>
 </view> 
 <view>  
   <loading hidden="{{hidden}}" bindchange="loadingChange">  

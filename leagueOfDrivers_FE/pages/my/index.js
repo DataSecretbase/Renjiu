@@ -11,10 +11,18 @@ Page({
     
 	},	
   onShow() {
-    this.getUserInfo();
-    this.setData({
-      version: app.globalData.version
-    });
+    let that = this;
+    let userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      wx.navigateTo({
+        url: "/pages/tologin/index"
+      })
+    } else {
+      that.setData({
+        userInfo: userInfo,
+        version: app.globalData.version
+      })
+    }
   },	
   getUserInfo: function (cb) {
       var that = this
@@ -39,7 +47,7 @@ Page({
   aboutUs : function () {
     wx.showModal({
       title: '关于我们',
-      content: '本系统基于开源小程序商城系统 https://github.com/EastWorld/wechat-app-mall 搭建，祝大家使用愉快！',
+      content: '本系统基于开源小程序商城系统 https://github.com/developertqw2017/Renjiu.git 搭建，祝大家使用愉快！',
       showCancel:false
     })
   },
