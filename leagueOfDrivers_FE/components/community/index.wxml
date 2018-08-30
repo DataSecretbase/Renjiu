@@ -1,76 +1,23 @@
-<!--components/appointment/index.wxml-->
-<import src="../../wxParse/wxParse.wxml" />
-<view class="container"> 
-   <view class="swiper-container">
-      <swiperImg sHeight="748rpx" imgList="{{goodsDetail.pics}}" url="pic"></swiperImg>
-   </view>
-   <view class="goods-info">
-        <view class="goods-title"> {{goodsDetail.basicInfo[0].fields.name}}</view>
-        <view class="goods-share" wx:if="{{goodsDetail.basicInfo[0].fields.commissionType == 1}}">转发分享该商品，好友下单后可得 {{goodsDetail.basicInfo[0].fields.commission}} 积分奖励</view>
-        <view class="goods-share" wx:if="{{goodsDetail.basicInfo[0].fields.commissionType == 2}}">转发分享该商品，好友下单后可得 {{goodsDetail.basicInfo[0].fields.commission}}元 现金奖励</view>
-        <view class="goods-price" style="padding-left:35rpx;">¥ {{selectSizePrice}}</view>
-        <view class="goods-price" style="color:#999;font-size:24rpx;">购买{{goodsDetail.basicInfo[0].fields.numberOrders}}次</view>
-        <view class="goods-price" style="color:#999;font-size:24rpx;">共收到 {{goodsDetail.basicInfo[0].fields.numberGoodReputation}} 次好评</view>
-   </view>
-   <view wx:if="{{hasMoreSelect}}" class="row-arrow" bindtap="bindGuiGeTap">
-      {{selectSize}}
-   </view>
-   <view wx:if="{{hasCoupons}}" class="row-arrow" bindtap='bindCouponTap'>
-    商品优惠券
-   </view>
-    <view class="goods-des-info">
-        <view class="label-title">商品介绍</view>
-        <view class="goods-text">
-            <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-         </view>
+<view class="container">
+    <view class="text">
+        <view class="line_flag"></view>
+        <text>正在上映</text>
     </view>
-    <view class="goods-des-info" style="margin-top:35rpx;" wx:if="{{reputation}}">
-        <view class="label-title" style="border-bottom:1px solid #eee;">商品评价<text style="color:red">（{{reputation.length}}）</text></view>
-        <view class="goods-text" style="margin-top:15rpx;" wx:for="{{reputation}}" wx:key="id">
-          <view style="width:100rpx;float:left;">
-            <image style="width: 100rpx; height: 100rpx;" src="{{item.user.avatarUrl}}"></image>
-            <view style="text-align:center;width:100rpx;">{{item.goods.goodReputationStr}}</view>
-          </view>
-          <view style="width:550rpx;float:left;margin-left:35rpx;border-bottom:1px solid #eee;">
-            <view>{{item.goods.goodReputationRemark}}</view>
-            <view style="color: #B0B0B0;font-size:24rpx;">{{item.goods.dateReputation}}     {{item.goods.property}}</view>
-          </view>
-        </view>
-    </view>
-    <view class="footer-box">        
-        <view class="contact">
-          <contact-button style="opacity:0;position:absolute;" type="default-dark"  session-from="weapp" size="27"></contact-button>
-          客服
-        </view>
-        <view class="now-buy" bindtap="tobuy">立即购买</view>
-   </view>
-    <view class="show-popup" hidden="{{hideShopPopup}}" >
-        <view class="popup-mask" bindtap="closePopupTap"></view>
-        <view class="popup-contents" style="height:auto">
-             <view class="pop-goods-info">
-                <view class="pop-img-box">
-                    <image src="{{goodsDetail.basicInfo[0].fields.pic}}" class="goods-thumbnail"/>
-                </view>
-                <view class="pop-goods-des">
-                    <view class="pop-goods-title">{{goodsDetail.basicInfo[0].fields.name}}</view>
-                    <view class="pop-goods-price">¥ {{selectSizePrice}}</view>
-                </view>
-                <view class="pop-goods-close" bindtap="closePopupTap"></view>
-             </view>
-             <view class="size-label-box">
-                <block wx:for="{{goodsDetail.properties}}" wx:for-item="property" wx:for-index="idx" wx:key="id">
-                <view class="label">{{property.name}}</view> 
-                <view class="label-item-box">
-                    <view class="label-item {{item.active ? 'active' : '' }}" wx:for="{{property.childsCurGoods}}" wx:key="id" bindtap="labelItemTap" data-propertyindex="{{idx}}" data-propertyid="{{property.id}}" data-propertyname="{{property.name}}" data-propertychildindex="{{index}}" data-propertychildid="{{item.id}}" data-propertychildname="{{item.name}}">
-                        {{item.name}}
-                    </view> 
-                </view>
-                </block>
-             </view> 
-             <view class="popup-join-btn" wx:if="{{shopType =='tobuy'}}" bindtap="buyNow">
-                立即购买
-             </view>                      
-        </view>
-    </view>
-</view>
 
+    <block wx:for-items="{{pList}}">
+        <view class="flex item">
+            <view class="item_left">
+                <image src="{{item['fields']['pic']}}"/>
+            </view>
+            <view class="flex_auto item_middle">
+                <view><text class="title">{{item['fields']['name']}}</text></view>
+                <view><text class="sub_title">{{item['fields']['characteristic']}}</text></view>
+                <view><text class="actor">{{item['fields']['minPrice']}}</text></view>
+            </view>
+            <view class="item_right">
+                <view><text class="score">{{item['fields']['minScore']}}</text></view>
+                <view><text class="action" bindtap="product_detail" data-id="{{item['pk']}}">前往报名</text></view>
+            </view>
+        </view>
+    </block>
+</view>

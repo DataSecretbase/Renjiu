@@ -1,0 +1,55 @@
+<!--index.wxml-->
+<wxs src="./api.wxs" module="api" />
+<view class="container">
+  <view class="userinfo">
+    <!--<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> fianji</button>-->
+    <button bindtap="books"> 刷新</button>
+
+  </view>
+  <view class="titleBar">
+    <view class="status">
+      <text class="{{status == 1?'active':''}}" data-status="1" bindtap="showStatus">全部</text>
+      <text class="{{status == 2?'active':''}}" data-status="2" bindtap="showStatus">未完成</text>
+      <text class="{{status == 3?'active':''}}" data-status="3" bindtap="showStatus">已完成</text>
+    </view>
+    <view class='add'>
+    <button class="mini-btn" type="warn" size="mini" bindtap="commitTodo">+ 提交</button>
+    </view>
+  </view>
+  <scroll-view class="lists" scroll-y>
+    <block wx:if="{{curLists.length < 1}}">
+      <view class="nodata">暂无数据</view>
+    </block>
+    <view class="item" wx:for="{{curLists}}" wx:key="index">
+      <view class="content" style="{{item.txtStyle}}" data-index="{{index}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE">
+        <icon class="icon-small" type="{{item['fields']['status'] == 0?'circle':'success'}}" size="23" data-item="{{item['pk']}}" bindtap="changeTodo"></icon>
+        <text class="title {{item['fields']['status']  == 1?'over':''}}">{{item['fields']['coach']}} {{item['fields']['train_ground']}}</text>
+        <text class="time" data-item="{{item['pk']}}" bindtap="changePick">训练时间 ：{{api.formatTime(item['fields']['book_time_start'])}}</text>
+      </view>
+      <view class="del" data-item="{{item['pk']}}" bindtap="delTodo"><text>删除</text></view>
+    </view>
+  </scroll-view>
+  <view class="addForm {{addShow?'':'hide'}}">
+    <view class="addForm-div">
+      <input class="weui-input" placeholder="请输入todo" value="{{addText}}" bindinput="setInput" focus="{{focus}}" />
+      <view class="addForm-btn">
+        <button class="weui-btn mini-btn" type="warn" bindtap="addTodo" size="mini">确定提交</button>
+        <button class="weui-btn mini-btn" type="default" bindtap="addTodoHide" size="mini">取消</button>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="Pick {{PickShow?'':'hide'}}">
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindDateChange">
+    <picker-view-column>
+      <view wx:for="{{years}}" style="line-height: 50px">{{item}}年</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{months}}" style="line-height: 50px">{{item}}月</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
+    </picker-view-column>
+  </picker-view>
+  <button class="weui-btn" type="warn" bindtap="PickHide" >确定提交</button>
+</view>

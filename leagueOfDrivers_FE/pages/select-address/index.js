@@ -13,7 +13,7 @@ Page({
       method: "POST",
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       data: {
-        cookie:app.globalData.cookie,
+        cookie: wx.getStorageSync('cookie'),
         id:id,
         isDefault:'true'
       },
@@ -48,7 +48,7 @@ Page({
     wx.request({
       url: "https://qgdxsw.com:8000/league/address/list",
       data: {
-        cookie:app.globalData.cookie
+        cookie: wx.getStorageSync('cookie')
       },
       method:"POST",
       header: { "Content-Type": "application/x-www-form-urlencoded" },

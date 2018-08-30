@@ -85,11 +85,11 @@ Page({
     } else {
       apiAddid = 0;
     }
-    console.log(app.globalData.cookie, apiAddid, commonCityData.cityData[this.data.selProvinceIndex].id, cityId, districtId, linkMan, address, mobile, code)
+    console.log(wx.getStorageSync('cookie'), apiAddid, commonCityData.cityData[this.data.selProvinceIndex].id, cityId, districtId, linkMan, address, mobile, code)
     wx.request({
       url: "https://qgdxsw.com:8000/league/address",
       data: {
-        cookie: app.globalData.cookie,
+        cookie: wx.getStorageSync('cookie'),
         id: apiAddid,
         provinceId: commonCityData.cityData[this.data.selProvinceIndex].id,
         cityId: cityId,
@@ -189,7 +189,7 @@ Page({
       wx.request({
         url: "https://qgdxsw.com:8000/league/address/detail",
         data: {
-          cookie: app.globalData.cookie,
+          cookie: wx.getStorageSync('cookie'),
           id: id
         },
         method:"POST",
@@ -252,7 +252,7 @@ Page({
             method: "POST",
             header: { "Content-Type": "application/x-www-form-urlencoded" },
             data: {
-              cookie: app.globalData.cookie,
+              cookie: wx.getStorageSync('cookie'),
               id: id
             },
             success: (res) => {

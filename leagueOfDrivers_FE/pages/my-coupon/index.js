@@ -17,7 +17,7 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       method: "POST",
       data: {
-        cookie: app.globalData.cookie,
+        cookie: wx.getStorageSync('cookie'),
         status: 0
       },
       success: function (res) {

@@ -64,7 +64,7 @@ Page({
   createOrder:function (e) {
     wx.showLoading();
     var that = this;
-    var loginToken = app.globalData.cookie // 用户登录 token
+    var loginToken = wx.getStorageSync('cookie')// 用户登录 token
     var remark = ""; // 备注信息
     if (e) {
       remark = e.detail.value.remark; // 备注信息
@@ -172,7 +172,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       }, 
       data: {
-        cookie:app.globalData.cookie,
+        cookie: wx.getStorageSync('cookie'),
         default:'true'
       },
       success: (res) =>{
@@ -247,7 +247,7 @@ Page({
     wx.request({
       url: app.globalData.baseUrl + '/discounts/my',
       data: {
-        cookie: app.globalData.cookie,
+        cookie: wx.getStorageSync('cookie'),
         status:0
       },
       success: function (res) {

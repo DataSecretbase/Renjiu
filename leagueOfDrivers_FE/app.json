@@ -5,6 +5,7 @@
     "pages/my/index",
     "pages/product_list/index",
     "pages/goods-details/index",
+    "pages/book/index/index",
     "pages/to-pay-order/index",
     "pages/recharge/index",
     "pages/withdraw/index",
@@ -22,7 +23,11 @@
     "pages/my-footprint/index",
     "pages/my-customerService/index",
     "pages/my-setUp/index",
-    "pages/community/community"
+    "pages/community/community",
+    "pages/tologin/index",
+    "pages/stubook/index",
+    "components/joinus/index",
+    "pages/joinus/index"
   ],
   "window": {
     "navigationBarTextStyle": "#ffffff",
@@ -60,6 +65,12 @@
         "iconPath": "assets/imgs/nav/my-off.png",
         "selectedIconPath": "assets/imgs/nav/my-on.png",
         "text": "我的"
+      },
+      {
+        "pagePath": "pages/book/index/index",
+        "iconPath": "assets/imgs/nav/my-off.png",
+        "selectedIconPath": "assets/imgs/nav/my-on.png",
+        "text": "我的预约"
       }
     ]
   }

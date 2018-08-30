@@ -4,6 +4,6 @@
   "onReachBottomDistance": 10,
   "usingComponents": {
     "productBox": "../../components/product_box/index",
-    "partner": "../../components/community/index"
+    "book": "../../components/community/index"
   }
 }
