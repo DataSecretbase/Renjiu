@@ -6,6 +6,7 @@ cryptography==2.3
 Django==2.1
 django-extensions==2.1.0
 django-filter==2.0.0
+django-qiniu-storage==2.3.1
 django-werkzeug-debugger-runserver==0.3.1
 djangorestframework==3.8.2
 get==1.0.3
@@ -18,6 +19,7 @@ pycparser==2.18
 pycrypto==2.6.1
 pyOpenSSL==18.0.0
 pytz==2018.5
+qiniu==7.2.2
 query-string==1.0.2
 request==1.0.2
 requests==2.19.1
