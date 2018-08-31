@@ -537,10 +537,8 @@ def checkqr(request):
         # 验证用户
         user = check_user(cookie)
         if user == {}:
-            
             data = {'error': '用户错误'}
             return JsonResponse(data)
-
         book_query = Book.objects.filter(coach = user.id)
         book_ser = serializers_json(book_query,True) 
 
@@ -549,6 +547,8 @@ def checkqr(request):
 
     data = {'error': '仅接受POST请求'}
     return JsonResponse({"code":500,"msg":data})
+
+
 
 @csrf_exempt
 def school_detail(request):
@@ -580,6 +580,7 @@ def bargain_add(request):
     bargain_id = int(bargain_id) if isinstance(bargain_id,(str)) else bargain_id
     cookie = request.GET.get('cookie')
     joiner = request.GET.get('joinerUser')
+    joiner = int(joiner) if isinstance(joiner,(str)) else joiner
     user = check_user(cookie)
     if user == {}:
         return JsonResponse({"code":500,"msg":"请重新登录"})
@@ -588,12 +589,16 @@ def bargain_add(request):
     except ObjectDoesNotExist:
         return JsonResponse({"code":500,"msg":"活动已经过期"})
     try:
-        bargainUser_query = BargainUser.objects.get(user_id = user.id)
+        bargainFriend_query = BargainFriend.objects.get(bargainFriend_id = user.id)
     except ObjectDoesNotExist:
-        BargainUser.objects.create(user_id = user,bargain_id = bargain_query)
+        BargainFriend.objects.create(bargainFriend_id = user,
+                                     rank = bargain_query.times + 1,
+                                     bargainUser_id = BargainUser.objects.get(bargain_id = bargain_id,
+                                                                              user_id = joiner))
         bargain_query.times +=1
+        bargain_query.save()
         return JsonResponse({"code":0,"data":"砍价成功"})
-
+    return JsonResponse({"code":500,"msg":"你已经砍过一次了"})
  
 def bargain_detail(request):
     goods_id = request.GET.get('goods_id')
@@ -611,21 +616,43 @@ def bargain_detail(request):
         return JsonResponse({"code":500,"msg":"请重新登录"})
     joiner = int(joiner) if isinstance(joiner,(str)) else joiner
     print(joiner)
-    if joiner is None:
+    if joiner is None and goods_id is None:
         print("joiner未参加")
+        
         BargainUser.objects.create(bargain_id = bargain_query[0],user_id = user)
         joiner = user.id
-    print(joiner)
+    print(joiner, goods_id)
+    if joiner is None and goods_id is not None:
+        bargainUser_query = BargainUser.objects.filter(bargain_id = bargain_query.values()[0]['id'], user_id = user.id)
+        if len(bargainUser_query) == 0:
+            BargainUser.objects.create(bargain_id = bargain_query[0],user_id = user)
+        joiner = user.id
     try:
         joiner = WechatUser.objects.get(id = joiner)
     except ObjectDoesNotExist:
         return JsonResponse({"code":405,"msg":"该用户不存在"})
     bargain_json = serializers_json(bargain_query)
     print(bargain_query.values())
-    bargainUser_query = BargainUser.objects.filter(bargain_id = bargain_query.values()[0]['id'], user_id = joiner)
+    bargainUser_query = BargainUser.objects.filter(bargain_id = bargain_query.values()[0]['id'], user_id = joiner.id)
     bargainUser_json = serializers_json(bargainUser_query)
+
+    bargainFriend_query = BargainFriend.objects.filter(bargainUser_id = bargainUser_query.values()[0]['id'])
+    bargainFriend_json = serializers_json(bargainFriend_query,use_natural = True)
     for bargain in bargain_json:
         bargain['fields']['price'] = method.method_log(cur_times = bargain['fields']['times'],\
                                                        exp_times = bargain['fields']['expected_times'],\
                                                        change = bargain['fields']['expected_price'])
-    return JsonResponse({"code":0,"data":{"bargain":bargain_json,"bargainUser":bargainUser_json,"bargainUserName":bargainUser_query[0].user_id.name}})
+    return JsonResponse({"code":0,"data":{"bargain":bargain_json,"bargainUser":bargainUser_json,"bargainUserName":bargainUser_query[0].user_id.name,"bargainFriend":bargainFriend_json}})
+
+
+def is_enrol(request):
+    cookie = request.GET.get("cookie")
+    user = check_user(cookie)
+    if user is {}:
+        return JsonResponse({"code":500,"msg":"请重新登录"})
+    userExam_query = UserExam.objects.filter(user_id = user.id,exam_status = 1)
+    if len(userExam_query) ==0:
+        return JsonResponse({"code":500,"msg":"你暂时没有需要进行的预约教学，如果还未报名，请报名"})
+    return JsonResponse({"code":0})
+
+

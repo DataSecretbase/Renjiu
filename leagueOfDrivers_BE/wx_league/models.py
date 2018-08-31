@@ -42,6 +42,31 @@ class DriverSchool(models.Model):
         return self.name
 
 
+class UserExam(models.Model):
+    user_id = models.ForeignKey('WechatUser',verbose_name = "考生",on_delete = models.CASCADE)
+    exam_status = models.SmallIntegerField(verbose_name="考试状态",choices = m_set.EXAM_STATUS)
+    exam_type = models.SmallIntegerField(verbose_name = "考试类型",choices = m_set.EXAM_TYPE)
+    exam_results = models.FloatField(verbose_name = "考试成绩")
+    dateAdd = models.DateTimeField(verbose_name = "考试开始时间",auto_now_add = True)
+    dateEnd = models.DateTimeField(verbose_name = "考试结束时间",auto_now = True)
+
+    class Meta:
+        db_table = 'UserExam'
+        verbose_name = '学生考试信息'
+        verbose_name_plural = '学生考试信息'
+    
+    def __str__(self):
+        return self.user_id.name+" "+self.get_exam_type_display()
+
+    def natural_key(self):
+        return {"id":self.id,
+                "user_id":self.user_id.natural_key(),
+                "exam_status":self.exam_status,
+                "exam_type":self.exam_type,
+                "exam_results":self.exam_results,
+                "dateAdd":self.dateAdd,
+                "dateEnd":self.dateEnd}
+
 class WechatUser(AbstractUser):
     cookie = models.CharField('用户认证标识', max_length=100,default='', blank = True)
     name = models.CharField(verbose_name = '昵称', max_length = 40, blank = True)
@@ -73,7 +98,9 @@ class WechatUser(AbstractUser):
         verbose_name_plural = '微信用户'
 
     def natural_key(self):
-        return {"url":"https://qgdxsw.com:8000"+self.avatar.display_pic.url,"name":self.name}
+        return {"url":"https://qgdxsw.com:8000"+self.avatar.display_pic.url,
+                "name":self.name,
+                "id":self.id}
 
 
 class Goods(models.Model):
@@ -109,7 +136,7 @@ class Goods(models.Model):
         return self.name
 
     def natural_key(self):
-        return {"category_id":self.category_id,
+        return {"id":self.id,
                 "characteristic":self.characteristic,
                 "dateAdd":self.dateAdd,
                 "dateStart":self.dateStart,
@@ -122,10 +149,8 @@ class Goods(models.Model):
                 "numberOrders":self.numberOrders,
                 "originalPrice":self.originalPrice,
                 "paixu":self.paixu,
-                "pic":self.pic,
                 "pingtuan":self.pingtuan,
                 "recommendStatus":self.recommendStatus,
-                "shop_id":self.shop_id,
                 "status":self.status,
                 "stores":self.stores,
                 "video_id":self.video_id,
@@ -166,27 +191,6 @@ class Order(models.Model):
     def __str__(self):
         return "{0}".format(self.id)
 
-    def natural_key(self):
-        return {"wechat_user_id":self.wechat_user_id,
-                "number_goods":self.number_goods,
-                "goods_price":self.goods_price,
-                "logistics_id":self.logistics_id,
-                "logistics_price":self.logistics_price,
-                "total":self.total,
-                "status":self.get_status_display,
-                "remark":self.remark,
-                "linkman":self.linkman,
-                "phone":self.phone,
-                "province_id":self.province_id,
-                "city_id":self.city_id,
-                "district_id":self.district_id,
-                "address":self.address,
-                "postcode":self.postcode,
-                "shipper_id":self.shipper_id,
-                "tracking_number":self.tracking_number,
-                "traces":self.traces,
-                "dateAdd":self.dateAdd}
-
 
 class OrderGoods(models.Model):
     order_id = models.IntegerField(verbose_name='订单', default = 0)
@@ -207,16 +211,6 @@ class OrderGoods(models.Model):
     def __str__(self):
         return self.name
 
-    def natural_key(self):
-        return {"order_id":self.order_id,
-                "goods_id":self.goods_id,
-                "name":self.name,
-                "display_pic":self.display_pic,
-                "property_str":self.property_str,
-                "price":self.price,
-                "amount":self.amount,
-                "total":self.total}
-
 
 class ModifyPriceWizard(models.Model):
     order_id = models.ForeignKey('Order', verbose_name ='订单', on_delete = models.CASCADE)
@@ -228,7 +222,8 @@ class ModifyPriceWizard(models.Model):
         verbose_name_plural = '修改价格'
 
     def natural_key(self):
-        return {"order_id":self.order_id,
+        return {"id":self.id,
+                "order_id":self.order_id,
                 "total":self.total}
 
 
@@ -244,7 +239,8 @@ class DeliverWizard(models.Model):
         _description = '发货'
 
     def natural_key(self):
-        return {"order_id":self.order_id,
+        return {"id":self.id,
+                "order_id":self.order_id,
                 "shipper_id":self.shipper_id,
                 "tracking_number":self.tracking_number,
                 "status":self.status}
@@ -263,7 +259,8 @@ class Shipper(models.Model):
         return self.name
 
     def natural_key(self):
-        return {"name":self.name,
+        return {"id":self.id,
+                "name":self.name,
                 "code":self.code}
 
 
@@ -284,7 +281,8 @@ class Logistics(models.Model):
         return self.name
 
     def natural_key(self):
-        return {"name":self.name,
+        return {"id":self.id,
+                "name":self.name,
                 "by_self":self.name,
                 "free":self.free,
                 "valuation_type":self.valuation_type}
@@ -308,17 +306,6 @@ class Category(models.Model):
         _order = 'level,sort'
     def __str__(self):
         return self.name
-
-    def natural_key(self):
-        return {"name":self.name,
-                "eng_name":self.eng_name,
-                "category_type":self.category_type,
-                "pid":self.pid,
-                "key":self.key,
-                "icon":self.icon,
-                "level":self.level,
-                "is_use":self.is_use,
-                "sort":self.sort}
 
 def filepath(instance, filename):
     ext = filename.split('.')[-1]
@@ -386,26 +373,6 @@ class Payment(models.Model):
     def __str__(self):
         return self.id
 
-    def natural_key(self):
-        return {"order_id":self.order_id,
-                "payment_number":self.payment_number,
-                "wechat_user_id":self.wechat_user_id,
-                "price":self.price,
-                "status":self.get_status_display,
-                "openid":self.openid,
-                "result_code":self.result_cde,
-                "err_code":self.err_code,
-                "err_code_des":self.err_code_des,
-                "transaction_id":self.transaction_id,
-                "bank_type":self.bank_type,
-                "fee_type":self.fee_type,
-                "total_fee":self.total_fee,
-                "settlement_total":self.settlement_total,
-                "cash_fee":self.cash_fee,
-                "cash_fee_type":self.cash_fee_type,
-                "coupon_fee":self.coupon_fee,
-                "coupon_count":self.coupon_count}
-
 
 class Address(models.Model):
     province_id = models.IntegerField(verbose_name = '省', default = 0)
@@ -428,7 +395,8 @@ class Address(models.Model):
         verbose_name_plural = '地址'
 
     def natural_key(self):
-        return {"province_id":self.province_id,
+        return {"id":self.id,
+                "province_id":self.province_id,
                 "city_id":self.city_id,
                 "district_id":self.district_id,
                 "linkMan":self.linkMan,
@@ -461,11 +429,10 @@ class Coupons(models.Model):
         return self.name
 
     def natural_key(self):
-        return {"name":self.name,
+        return {"id":self.id,
+                "name":self.name,
                 "moneyMin":self.moneyMin,
                 "moneyHreshold":self.moneyHreshold,
-                "dateEndType":self.get_dateEndType_display,
-                "goods_id":self.goods_id,
                 "is_active":self.is_active,
                 "date_add":self.date_add,
                 "coupons_type":self.coupons_type}
@@ -487,7 +454,8 @@ class Coupons_users(models.Model):
         return self.id
 
     def natural_key(self):
-        return {"coupons_id":self.coupons_id,
+        return {"id":self.id,
+                "coupons_id":self.coupons_id,
                 "user_id":self.user_id,
                 "date_add":self.date_add,
                 "dateEndDays":self.dateEndDays}
@@ -510,15 +478,6 @@ class Book(models.Model):
     def __str__(self):
         return "教练"
     
-    def natural_key(self):
-        return {"coach":self.coach,
-                "train_ground":self.train_ground,
-                "length_time":self.length_time,
-                "book_time_start":self.book_time_start,
-                "book_time_end":self.book_time_end,
-                "last_active_end":self.last_active_time,
-                "status":self.status}
-
 
 class Bargain(models.Model):
     goods_id = models.ForeignKey('Goods', on_delete = models.CASCADE, verbose_name = '货物')
@@ -542,11 +501,10 @@ class Bargain(models.Model):
 
     def natural_key(self):
         return {"id":self.id,
-                "goods_id":self.goods_id,
+                "goods":self.goods_id.natural_key(),
                 "times":self.times,
                 "price":self.price,
                 "minPrice":self.minPrice,
-                "caculate_method":self.get_calculate_method_display,
                 "expected_price":self.expected_price,
                 "expected_times":self.expected_times,
                 "date_start":self.date_start,
@@ -566,13 +524,27 @@ class BargainUser(models.Model):
         return self.bargain_id.goods_id.name+self.user_id.name
 
     def natural_key(self):
-        return {"id":self.id,"bargain_id":bargain_id,"user_id":user_id}
+        return {"id":self.id,"bargain_id":self.bargain_id.natural_key(),"user_id":self.user_id.natural_key()}
 
 
 class BargainFriend(models.Model):
     bargainUser_id = models.ForeignKey('BargainUser', on_delete = models.CASCADE, verbose_name = '砍价发起用户')
     bargainFriend_id = models.ForeignKey('WechatUser', on_delete = models.CASCADE, verbose_name = '参与砍价好友')
+    rank = models.IntegerField(verbose_name = "砍价次序")
+    dateAdd = models.DateTimeField(verbose_name = '砍价时间',auto_now_add = True)
+    class Meta:
+        db_table = 'BargainFriend'
+        verbose_name = '帮忙砍价的好友'
+        verbose_name_plural = "帮忙砍价的好友"
 
+    def __str__(self):
+        return self.bargainUser_id.user_id.name+self.bargainFriend_id.name
+ 
+    def natural_key(self):
+        return {"id":self.id,
+                "bargainUser_id":self.bargainUser_id.natural_key(),
+                "bargainFriend_id":self.bargainFriend_id.natural_key(),
+                "rank":self.rank}
 
 class GoodsReputation(models.Model):
     goods_id = models.ForeignKey('Goods', on_delete = models.CASCADE, verbose_name = '商品')

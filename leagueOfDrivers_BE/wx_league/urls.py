@@ -32,5 +32,6 @@ urlpatterns = [
     url('^goods/reputation', views.goods_reputation, name = 'datein'),
     url('^bargain/detail', views.bargain_detail, name = 'datein'),
     url('^bargain/add', views.bargain_add, name = 'datein'),
+    url('^isenrol', views.is_enrol, name = 'datein'),
     
 ]
