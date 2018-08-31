@@ -13,6 +13,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .serializers import CouponsSerializer
 
+from .bargain_method import method
+
 from rest_framework import generics
 from rest_framework import viewsets
 from .models import *
@@ -21,6 +23,7 @@ from .checkuser import checkdata
 import json
 import re
 import requests
+
 # Create your views here.
 
 
@@ -254,7 +257,7 @@ def address_delete(request):
                 return JsonResponse({"code":0,"data":"删除成功"})
 
 def check_goods(page = 0, pageSize = 0, **filter_kwargs):
-    goods_list = goods.objects.filter(**filter_kwargs)
+    goods_list = Goods.objects.filter(**filter_kwargs)
     if len(goods_list) == 0:
         return {}
     else:
@@ -298,22 +301,23 @@ def goods_list(request):
 
 @csrf_exempt
 def goods_detail(request):
+    if request.method == 'GET':
+        good_id = request.GET.get("id")
     if request.method == 'POST':
         good_id = request.POST.get("id")
-        basicInfo = {"category_id":[],"goods_id":[]}
-        basicInfo_query = check_goods(id = int(good_id))
-        if basicInfo_query == {}:
-            return JsonResponse({"code":400}) 
-        for info in basicInfo_query:
-            basicInfo['category_id'].append(info.category_id.id)
-            basicInfo['goods_id'].append(info.id)
-        category_query = Category.objects.filter(id = basicInfo['category_id'][0])
-        pics_query = Attachment.objects.filter(owner_id = basicInfo['goods_id'][0])
-        json_pics = url_image(pics_query)
-        json_category = serializers_json(category_query)
-        json_basicInfo = serializers_json(basicInfo_query)
-        return JsonResponse({"code":0,"data":{"basicInfo" : json_basicInfo, "category" : json_category, "pics" : json_pics, "content":image_comment(json_pics)}})
-
+    basicInfo = {"category_id":[],"goods_id":[]}
+    basicInfo_query = check_goods(id = int(good_id))
+    if basicInfo_query == {}:
+        return JsonResponse({"code":400}) 
+    for info in basicInfo_query:
+        basicInfo['category_id'].append(info.category_id.id)
+        basicInfo['goods_id'].append(info.id)
+    category_query = Category.objects.filter(id = basicInfo['category_id'][0])
+    pics_query = Attachment.objects.filter(owner_id = basicInfo['goods_id'][0])
+    json_pics = url_image(pics_query)
+    json_category = serializers_json(category_query)
+    json_basicInfo = serializers_json(basicInfo_query)
+    return JsonResponse({"code":0,"data":{"basicInfo" : json_basicInfo, "category" : json_category, "pics" : json_pics, "content":image_comment(json_pics)}})
 
 class CouponsViewSet(viewsets.ModelViewSet):
     """
@@ -421,7 +425,7 @@ def order_close(request):
 def goods_price(request):
     if request.method == "POST":
         id = request.POST.get("id")
-        goods_query = goods.objects.filter(id = id)
+        goods_query = Goods.objects.filter(id = id)
         data = serializers_json(goods_query)
         return JsonResponse({"code":0,"data":data})
 
@@ -443,7 +447,7 @@ def order_create(request):
         goods_list = json.loads(goodsJsonStr)
         amountTotle = []
         for good in goods_list:
-            goodsId = goods.objects.get(id = good['goodsId'])
+            goodsId = Goods.objects.get(id = good['goodsId'])
             amountTotle.append(goodsId.minPrice)
             ordergoods = OrderGoods.objects.create(order_id = order.id,\
                                                    goods_id = goodsId.id,\
@@ -563,3 +567,65 @@ def send_email(request):
               html_message = msg,
               fail_silently=False)
     return HttpResponse('ok')
+
+def goods_reputation(request):
+    goods_id = request.GET.get('goodsId')
+    goods_id = int(goods_id) if isinstance(goods_id,(str)) else goods_id
+    reputation_query = GoodsReputation.objects.filter(goods_id = goods_id)
+    reputation_ser = serializers_json(reputation_query, use_natural = True)
+    return JsonResponse({"code":0,"data":reputation_ser})
+
+def bargain_add(request):
+    bargain_id = request.GET.get('kjid')
+    bargain_id = int(bargain_id) if isinstance(bargain_id,(str)) else bargain_id
+    cookie = request.GET.get('cookie')
+    joiner = request.GET.get('joinerUser')
+    user = check_user(cookie)
+    if user == {}:
+        return JsonResponse({"code":500,"msg":"请重新登录"})
+    try:
+        bargain_query = Bargain.objects.get(id = bargain_id)
+    except ObjectDoesNotExist:
+        return JsonResponse({"code":500,"msg":"活动已经过期"})
+    try:
+        bargainUser_query = BargainUser.objects.get(user_id = user.id)
+    except ObjectDoesNotExist:
+        BargainUser.objects.create(user_id = user,bargain_id = bargain_query)
+        bargain_query.times +=1
+        return JsonResponse({"code":0,"data":"砍价成功"})
+
+ 
+def bargain_detail(request):
+    goods_id = request.GET.get('goods_id')
+    goods_id = int(goods_id) if isinstance(goods_id,(str)) else goods_id
+    kjid = request.GET.get('kjid')
+    goods_id = int(goods_id) if isinstance(goods_id,(str)) else goods_id
+    cookie = request.GET.get('cookie')
+    joiner = request.GET.get('joiner')
+    bargain_query = Bargain.objects.filter(goods_id = goods_id)
+    if kjid is not None: 
+        bargain_query = Bargain.objects.filter(id = kjid)
+    print(bargain_query.values(), goods_id)
+    user = check_user(cookie)
+    if user == {}:
+        return JsonResponse({"code":500,"msg":"请重新登录"})
+    joiner = int(joiner) if isinstance(joiner,(str)) else joiner
+    print(joiner)
+    if joiner is None:
+        print("joiner未参加")
+        BargainUser.objects.create(bargain_id = bargain_query[0],user_id = user)
+        joiner = user.id
+    print(joiner)
+    try:
+        joiner = WechatUser.objects.get(id = joiner)
+    except ObjectDoesNotExist:
+        return JsonResponse({"code":405,"msg":"该用户不存在"})
+    bargain_json = serializers_json(bargain_query)
+    print(bargain_query.values())
+    bargainUser_query = BargainUser.objects.filter(bargain_id = bargain_query.values()[0]['id'], user_id = joiner)
+    bargainUser_json = serializers_json(bargainUser_query)
+    for bargain in bargain_json:
+        bargain['fields']['price'] = method.method_log(cur_times = bargain['fields']['times'],\
+                                                       exp_times = bargain['fields']['expected_times'],\
+                                                       change = bargain['fields']['expected_price'])
+    return JsonResponse({"code":0,"data":{"bargain":bargain_json,"bargainUser":bargainUser_json,"bargainUserName":bargainUser_query[0].user_id.name}})

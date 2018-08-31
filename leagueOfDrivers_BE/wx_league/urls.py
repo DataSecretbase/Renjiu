@@ -28,5 +28,9 @@ urlpatterns = [
     url('^checkqr$', views.checkqr, name='datein'),
     url('^dateupdate$', views.datein, name='datein'),
     url('^school/detail$', views.school_detail, name='datein'),
-    url('^email', views.send_email, name = 'datein')
+    url('^email', views.send_email, name = 'datein'),
+    url('^goods/reputation', views.goods_reputation, name = 'datein'),
+    url('^bargain/detail', views.bargain_detail, name = 'datein'),
+    url('^bargain/add', views.bargain_add, name = 'datein'),
+    
 ]
