@@ -312,7 +312,7 @@ Page({
                 wx.hideLoading();
                 return;
               }
-              if (res.data.data[0].fields.minPrice != carShopBean.price) {
+              if (res.data.data[0].fields.min_price != carShopBean.price) {
                 wx.showModal({
                   title: '提示',
                   content: res.data.data[0].fields.name + ' 价格有调整，请重新购买',

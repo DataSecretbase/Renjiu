@@ -1,66 +1,79 @@
-// pages/my-setUp/index.js
+const app = getApp()
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    balance: 0,
+    freeze: 0,
+    score: 0,
+    score_sign_continuous: 0
   },
+  onLoad() {
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  onShow() {
+    let that = this;
+    let userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      wx.navigateTo({
+        url: "/pages/tologin/index"
+      })
+    } else {
+      that.setData({
+        userInfo: userInfo,
+        version: app.globalData.version
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  getUserInfo: function (cb) {
+    var that = this
+    wx.login({
+      success: function () {
+        wx.getUserInfo({
+          success: function (res) {
+            that.setData({
+              userInfo: res.userInfo
+            });
+          }
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  allOrder(e) {
+    var _id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: "/pages/order-list/index?id=" + _id
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  aboutUs: function () {
+    wx.showModal({
+      title: '关于我们',
+      content: '本系统基于开源小程序商城系统 https://github.com/developertqw2017/Renjiu.git 搭建，祝大家使用愉快！',
+      showCancel: false
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  relogin: function () {
+    var that = this;
+    app.globalData.cookie = null;
+    app.login();
+    wx.showModal({
+      title: '提示',
+      content: '重新登陆成功',
+      showCancel: false,
+      success: function (res) {
+        if (res.confirm) {
+          that.onShow();
+        }
+      }
+    })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+  recharge: function () {
+    wx.navigateTo({
+      url: "/pages/recharge/index"
+    })
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  withdraw: function () {
+    wx.navigateTo({
+      url: "/pages/withdraw/index"
+    })
   }
 })

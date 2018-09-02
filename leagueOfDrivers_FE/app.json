@@ -27,7 +27,8 @@
     "pages/tologin/index",
     "pages/stubook/index",
     "components/joinus/index",
-    "pages/joinus/index"
+    "pages/joinus/index",
+    "pages/kanjia/index"
   ],
   "window": {
     "navigationBarTextStyle": "#ffffff",
@@ -65,13 +66,14 @@
         "iconPath": "assets/imgs/nav/my-off.png",
         "selectedIconPath": "assets/imgs/nav/my-on.png",
         "text": "我的"
-      },
-      {
-        "pagePath": "pages/book/index/index",
-        "iconPath": "assets/imgs/nav/my-off.png",
-        "selectedIconPath": "assets/imgs/nav/my-on.png",
-        "text": "我的预约"
       }
     ]
+  },
+  "plugins": {
+    "myPlugin": {
+      "version": "1.0.0",
+      "provider": "wx84472d5652384779"
+    }
   }
+  
 }

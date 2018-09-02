@@ -23,8 +23,8 @@
     <view class="item" wx:for="{{curLists}}" wx:key="index">
       <view class="content" style="{{item.txtStyle}}" data-index="{{index}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE">
         <icon class="icon-small" type="{{item['fields']['status'] == 0?'circle':'success'}}" size="23" data-item="{{item['pk']}}" bindtap="changeTodo"></icon>
-        <text class="title {{item['fields']['status']  == 1?'over':''}}">{{item['fields']['coach']}} {{item['fields']['train_ground']}}</text>
-        <text class="time" data-item="{{item['pk']}}" bindtap="changePick">训练时间 ：{{api.formatTime(item['fields']['book_time_start'])}}</text>
+        <text class="title {{item['fields']['status']  == 1?'over':''}}">{{item['fields']['coach']['name']}} {{item['fields']['train_ground']}}</text>
+        <text class="time" data-item="{{item['pk']}}">训练时间 ：{{item['fields']['book_time_start']}}</text>
       </view>
       <view class="del" data-item="{{item['pk']}}" bindtap="delTodo"><text>删除</text></view>
     </view>
@@ -38,18 +38,4 @@
       </view>
     </view>
   </view>
-</view>
-<view class="Pick {{PickShow?'':'hide'}}">
-  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindDateChange">
-    <picker-view-column>
-      <view wx:for="{{years}}" style="line-height: 50px">{{item}}年</view>
-    </picker-view-column>
-    <picker-view-column>
-      <view wx:for="{{months}}" style="line-height: 50px">{{item}}月</view>
-    </picker-view-column>
-    <picker-view-column>
-      <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
-    </picker-view-column>
-  </picker-view>
-  <button class="weui-btn" type="warn" bindtap="PickHide" >确定提交</button>
 </view>

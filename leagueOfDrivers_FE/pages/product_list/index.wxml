@@ -4,9 +4,17 @@
   </productBox>
 </view>
 <view style="margin:0" wx:if="{{en_name == 'appointment'}}">
-  <book pList="{{list}}" en_name = "{{en_name}}">
+  <appointment pList="{{list}}" en_name = "{{en_name}}">
+  </appointment>
+</view>
+<view style="margin:0" wx:if="{{en_name == 'book'}}">
+  <book pList="{{coach_list}}" en_name = "{{en_name}}">
   </book>
-</view> 
+</view>
+<view style="margin:0" wx:if="{{en_name == 'driverSchool'}}">
+  <appointment pList="{{list}}" en_name = "{{en_name}}">
+  </appointment>
+</view>
 <view>  
   <loading hidden="{{hidden}}" bindchange="loadingChange">  
   加载中...  

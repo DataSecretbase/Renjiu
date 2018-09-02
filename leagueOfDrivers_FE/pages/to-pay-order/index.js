@@ -97,7 +97,7 @@ Page({
 
     }
     if (that.data.curCoupon) {
-      postData.couponId = that.data.curCoupon.id;
+      postData.couponId = that.data.curCoupon['pk'];
     }
     if (!e) {
       postData.calculate = "true";
@@ -245,15 +245,18 @@ Page({
   getMyCoupons: function () {
     var that = this;
     wx.request({
-      url: app.globalData.baseUrl + '/discounts/my',
+      url: 'https://qgdxsw.com:8000/league/coupons/my',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      method: "POST",
       data: {
         cookie: wx.getStorageSync('cookie'),
         status:0
       },
       success: function (res) {
+        console.log(res.data.data)
         if (res.data.code == 0) {
           var coupons = res.data.data.filter(entity => {
-            return entity.moneyHreshold <= that.data.allGoodsAndYunPrice;
+            return entity.fields.money_hreshold <= that.data.allGoodsAndYunPrice;
           });
           if (coupons.length > 0) {
             that.setData({
@@ -266,6 +269,7 @@ Page({
     })
   },
   bindChangeCoupon: function (e) {
+    console.log(e.detail)
     const selIndex = e.detail.value[0] - 1;
     if (selIndex == -1) {
       this.setData({
@@ -276,7 +280,7 @@ Page({
     }
     //console.log("selIndex:" + selIndex);
     this.setData({
-      youhuijine: this.data.coupons[selIndex].money,
+      youhuijine: this.data.coupons[selIndex].fields.money_min,
       curCoupon: this.data.coupons[selIndex]
     });
   }

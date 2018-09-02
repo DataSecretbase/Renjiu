@@ -10,8 +10,8 @@
             <scroll-view scroll-y="true" class="order-list" scroll-with-animation="true" lower-threshold="1" bindscrolltolower="scrolltolower" style="height: {{windowHeight-35}}px;" hidden="{{item ? flase : true}}">
               <view class="a-order" wx:for="{{item}}"  wx:key="childIndex" wx:for-item="childItem" >
                 <view class="order-date">
-                    <view class="date-box">下单时间：{{childItem.fields.dateAdd}}</view>
-                    <view class="status {{(childItem.fields.status==-1 || childItem.fields.status==4) ? '':'red'}}">{{item.statusStr}}</view>
+                    <view class="date-box">下单时间：{{childItem.fields.date_add}}</view>
+                    <view class="status {{(childItem.fields.status==-1 || childItem.fields.status==4) ? '':'red'}}">{{item.status_str}}</view>
                 </view>
                 <view class="goods-info" bindtap="orderDetail" data-id="{{childItem.pk}}">
                     <view class="goods-des">

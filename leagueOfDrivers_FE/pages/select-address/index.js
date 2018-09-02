@@ -18,6 +18,7 @@ Page({
         isDefault:'true'
       },
       success: (res) =>{
+        console.log(res)
         wx.navigateBack({})
       }
     })

@@ -59,7 +59,7 @@
     <navigator url="/pages/my-coupon/index" hover-class="navigator-hover"><image src='../../assets/imgs/my-info/myquan.png'></image>我的优惠券</navigator>
   </view>
   <view class="my-item">
-    <navigator url="/pages/my-refund/index" hover-class="navigator-hover"><image src='../../assets/imgs/my-info/tuikuan.png'></image>退款/售后</navigator>
+    <navigator url="/pages/book/index/index" hover-class="navigator-hover"><image src='../../assets/imgs/my-info/tuikuan.png'></image>我的预约</navigator>
   </view>
   <view class="my-item">
     <navigator url="/pages/select-address/index" hover-class="navigator-hover"><image src='../../assets/imgs/my-info/dizhi.png'></image>收货地址</navigator>
@@ -70,9 +70,6 @@
   </view>
   <view class="my-item">
     <navigator url="/pages/my-setUp/index" hover-class="navigator-hover"><image src='../../assets/imgs/my-info/shezhi.png'></image>设置</navigator>
-  </view>
-  <view class="about" bindtap="aboutUs">
-    关于我们
   </view>
   <view style="height:20rpx;background: #eee;width:100%;"></view>
 </view>

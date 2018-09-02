@@ -36,6 +36,16 @@ App({
     })
     this.getTlist();
     this.btnclick()
+    // 获取砍价设置
+    wx.request({
+      url: 'https://api.it120.cc/' + that.globalData.subDomain + '/shop/goods/kanjia/list',
+      data: {},
+      success: function (res) {
+        if (res.data.code == 0) {
+          that.globalData.kanjiaList = res.data.data.result;
+        }
+      }
+    })
   },
   btnclick: function () {
     wx.getLocation({
@@ -73,6 +83,7 @@ App({
       }
     })
   },
+  
   //获取类别列表
   getTlist() {
     var self = this;

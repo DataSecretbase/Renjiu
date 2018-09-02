@@ -9,20 +9,20 @@
                 <image wx:elif="{{orderDetail.fields.status==3 || orderDetail.fields.status==4}}" class="icon" src="/assets/imgs/order-details/icon-jycg.png"></image>
             </view>
             <view class="right-text">
-                <view class="status red">{{orderDetail.fields.statusStr}}</view>
+                <view class="status red">{{orderDetail.fields.status_str}}</view>
                 <view class="des" hidden="true">请于11时59分59秒内付款，超时订单将自动关闭</view>
             </view>
         </view>
         <block wx:if="{{orderDetail.fields.logistics}}">
-          <view wx:if="{{orderDetail.fields.logisticsTraces}}" class="wuliu-box">
+          <view wx:if="{{orderDetail.fields.logistics_traces}}" class="wuliu-box">
               <view class="icon-box">
                   <image class="icon" src="/assets/imgs/order-details/icon-wuliu.png"></image>
               </view>
               <view class="right-text" bindtap="wuliuDetailsTap" data-id="{{orderDetail.pk}}">
-                  <view class="order-number">快递单号：{{orderDetail.fields.logistics.trackingNumber}}</view>
+                  <view class="order-number">快递单号：{{orderDetail.fields.logistics.tracking_number}}</view>
                   <block wx:if="{{orderDetail.fields.logisticsTraces}}">
-                  <view class="wuliu-text">{{orderDetail.fields.logisticsTraces[orderDetail.fields.logisticsTraces.length-1].AcceptStation}}</view>
-                  <view class="wuliu-date">{{orderDetail.fields.logisticsTraces[orderDetail.fields.logisticsTraces.length-1].AcceptTime}}</view>
+                  <view class="wuliu-text">{{orderDetail.fields.logistics_traces[orderDetail.fields.logistics_traces.length-1].AcceptStation}}</view>
+                  <view class="wuliu-date">{{orderDetail.fields.logistics_traces[orderDetail.fields.logistics_traces.length-1].AcceptTime}}</view>
                   </block>
               </view>
               <view class="arrow-right">
@@ -34,7 +34,7 @@
                   <image class="icon" src="/assets/imgs/order-details/icon-wuliu.png"></image>
               </view>
               <view class="right-text">
-                  <view class="order-number">快递单号：{{orderDetail.fields.logistics.trackingNumber}}</view>
+                  <view class="order-number">快递单号：{{orderDetail.fields.logistics.tracking_number}}</view>
                   <view class="wuliu-text">暂无物流信息</view>
               </view>
           </view>
@@ -43,7 +43,7 @@
                   <image class="icon" src="/assets/imgs/order-details/icon-address.png"></image>
               </view>
               <view class="right-box">
-                  <view class="name-tel">{{orderDetail.fields.logistics.linkMan}}  {{orderDetail.fields.logistics.mobile}}</view>
+                  <view class="name-tel">{{orderDetail.fields.logistics.link_man}}  {{orderDetail.fields.logistics.mobile}}</view>
                   <view class="text">
                       {{orderDetail.fields.logistics.address}}
                   </view>

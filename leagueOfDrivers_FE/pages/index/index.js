@@ -253,6 +253,20 @@ Page({
       url: "/pages/product_list/index?id=" + _id
     })
   } ,
+  onShareAppMessage: function () {
+    return {
+      title: "驾校小程序",
+      path: '/pages/index/index',
+      success: function (res) {
+        // 转发成功
+        console.log('转发成功')
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log('转发失败')
+      }
+    }
+  },
   getleft(e){
     //slideLeft动态变化
     this.setData({

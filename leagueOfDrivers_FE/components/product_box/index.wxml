@@ -3,6 +3,6 @@
     <view class="goods-box" wx:for="{{pList}}" wx:key="childIndex" wx:for-item="childItem" bindtap="product_detail" data-id="{{childItem.pk}}">
       <view class="img-box"><image src="{{childItem.fields.pic}}"></image></view>
       <text class="goods-title">{{childItem.fields.name}}</text>
-      <text wx:if ="{{childItem.fields.category_id != 3}}" class="goods-price">￥{{childItem.fields.minPrice}}</text>
+      <text wx:if ="{{childItem.fields.category_id != 3}}" class="goods-price">￥{{childItem.fields.original_price}}</text>
     </view>
   </view>

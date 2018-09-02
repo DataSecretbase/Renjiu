@@ -4,6 +4,7 @@
   "onReachBottomDistance": 10,
   "usingComponents": {
     "productBox": "../../components/product_box/index",
-    "book": "../../components/community/index"
+    "appointment": "../../components/community/index",
+    "book":"../../components/book/book"
   }
 }

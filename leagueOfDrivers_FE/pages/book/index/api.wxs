@@ -1,5 +1,8 @@
-var formatTime = function (time) {
+var formatTime = function (time) { 
   // 获取当前时间
+  time = time.replace('T',' ')
+  time = getDate(time)
+  time = date.getTime(time);
   var getUnix = function () {
     var date = getDate()
     return date.getTime()

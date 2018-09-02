@@ -72,13 +72,14 @@ Page({
           that.setData({
             hasMoreSelect:true,
             selectSize:that.data.selectSize + selectSizeTemp,
-            selectSizePrice: res.data.data.basicInfo[0].fields.minPrice,
+            selectSizePrice: res.data.data.basicInfo[0].fields.original_price,
           });
         }
         that.data.goodsDetail = res.data.data;
+        console.log(res.data.data)
         that.setData({
           goodsDetail:res.data.data,
-          selectSizePrice: res.data.data.basicInfo[0].fields.minPrice,
+          selectSizePrice: res.data.data.basicInfo[0].fields.original_price,
           buyNumMax: res.data.data.basicInfo[0].fields.stores,
           buyNumber: (res.data.data.basicInfo[0].fields.stores>0) ? 1: 0
         });
@@ -99,6 +100,8 @@ Page({
         refId:id
       },
       success:function(res){
+        console.log('coupons')
+        console.log(res.data.data)
         if(res.data.code == 0){
           self.setData({
             hasCoupons:true,
@@ -518,18 +521,68 @@ Page({
   reputation: function (goodsId) {
     var that = this;
     wx.request({
-      url: app.globalData.baseUrl + '/shop/goods/reputation',
+      url: 'https://qgdxsw.com:8000/league/goods/reputation',
       data: {
         goodsId: goodsId
       },
       success: function (res) {
         if (res.data.code == 0) {
-          //console.log(res.data.data);
+          console.log(res.data.data);
           that.setData({
             reputation: res.data.data
           });
         }
       }
     })
-  }
+  },
+  getKanjiaInfo: function (gid) {
+    var that = this;
+    if (!app.globalData.kanjiaList || app.globalData.kanjiaList.length == 0) {
+      that.setData({
+        curGoodsKanjia: null
+      });
+      return;
+    }
+    let curGoodsKanjia = app.globalData.kanjiaList.find(ele => {
+      return ele.goodsId == gid
+    });
+    if (curGoodsKanjia) {
+      that.setData({
+        curGoodsKanjia: curGoodsKanjia
+      });
+    } else {
+      that.setData({
+        curGoodsKanjia: null
+      });
+    }
+  },
+    goKanjia: function () {
+    var that = this;
+      if (!that.data.goodsDetail.basicInfo[0].fields.pingtuan) {
+      return;
+    }
+      console.log(that.data.goodsDetail.basicInfo[0].pk)
+    wx.request({
+      url: 'https://qgdxsw.com:8000/league/bargain/detail/',
+      data: {
+        goods_id: that.data.goodsDetail.basicInfo[0].pk,
+        cookie: wx.getStorageSync('cookie')
+      },
+      success: function (res) {
+        console.log(res.data.data);
+
+        if (res.data.code == 0) {
+          wx.navigateTo({
+            url: "/pages/kanjia/index?kjId=" + res.data.data.bargain[0].pk + "&joiner=" + res.data.data.bargainUser[0].fields.user_id + "&id=" + res.data.data.bargain[0].fields.goods_id
+          })
+        } else {
+          wx.showModal({
+            title: '错误',
+            content: res.data.msg,
+            showCancel: false
+          })
+        }
+      }
+    })
+  },
 })

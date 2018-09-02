@@ -74,7 +74,7 @@ Page({
         } else {
           wx.showModal({
             title: '',
-            content: '该设备已完成维保，确定撤销？',
+            content: '该预约已完成，确定撤销？',
             confirmText: "确定",
             cancelText: "不了",
             success: function (res) {
@@ -95,27 +95,7 @@ Page({
       }
     })
   },
-  changePick: function (e) {
-    var _this = this
-    var item = e.currentTarget.dataset.item
-    console.log(item)
-    var item_date = new Date(item)
-    var item_year = item_date.getFullYear(item)
-    var item_month = item_date.getMonth(item) + 1
-    var item_day = item_date.getDate()
-    var temp = _this.data.lists
-    console.log(typeof (temp))
-    _this.setData({
-      temp_item:item,
-      temp_temp:temp,
-      day: item_day,
-      month: item_month,
-      year: 2018,
-    })
-    console.log(item_day)
-    _this.PickShow()
-    
-  },
+
   commitTodo: function (e) {
     var _this = this
     var item = e.currentTarget.dataset.item
@@ -186,50 +166,7 @@ Page({
       addText: ''
     })
   },
-  PickShow: function () {
-    this.setData({
-      PickShow: true,
-    })
-  },
-  PickHide: function () {
-    this.setData({
-      PickShow: false,
-    
-    })
-  },
-  bindDateChange: function (e) {
-    var _this = this
-    const val = e.detail.value
-    _this.setData({
-      year: this.data.years[val[0]],
-      month: this.data.months[val[1]],
-      day: this.data.days[val[2]]
-    })
-    var temp = _this.data.temp_temp
-    var item = _this.data.temp_item
-    console.log(temp)
-    console.log('item')
 
-    console.log(item)
-
-    temp.forEach(el => {
-      if (el['pk'] == item) {
-        console.log('true')
-        console.log(typeof(_this.data.year+'/'+_this.data.month+'/'+_this.data.day))
-        var str_date = _this.data.year +  '/' + _this.data.month + '/' + _this.data.day
-        el['fields']['book_time_start'] = new Date(str_date).getTime(),
-        _this.data.temp_item = el['fields']['book_time_start'],
-        console.log(temp)
-        _this.showCur(temp)
-        wx.setStorage({
-          key: "lists",
-          data: temp
-        })
-      
-      }
-      
-    })
-  },
   setInput: function (e) {
     this.setData({
       addText: e.detail.value

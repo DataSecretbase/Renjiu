@@ -8,14 +8,17 @@
         <view class="goods-share" wx:if="{{goodsDetail.basicInfo[0].fields.commissionType == 1}}">转发分享该商品，好友下单后可得 {{goodsDetail.basicInfo[0].fields.commission}} 积分奖励</view>
         <view class="goods-share" wx:if="{{goodsDetail.basicInfo[0].fields.commissionType == 2}}">转发分享该商品，好友下单后可得 {{goodsDetail.basicInfo[0].fields.commission}}元 现金奖励</view>
         <view class="goods-price" style="padding-left:35rpx;">¥ {{selectSizePrice}}</view>
-        <view class="goods-price" style="color:#999;font-size:24rpx;">购买{{goodsDetail.basicInfo[0].fields.numberOrders}}次</view>
-        <view class="goods-price" style="color:#999;font-size:24rpx;">共收到 {{goodsDetail.basicInfo[0].fields.numberGoodReputation}} 次好评</view>
+        <view class="goods-price" style="color:#999;font-size:24rpx;">购买{{goodsDetail.basicInfo[0].fields.number_orders}}次</view>
+        <view class="goods-price" style="color:#999;font-size:24rpx;">共收到 {{goodsDetail.basicInfo[0].fields.number_good_reputation}} 次好评</view>
    </view>
    <view wx:if="{{hasMoreSelect}}" class="row-arrow" bindtap="bindGuiGeTap">
       {{selectSize}}
    </view>
    <view wx:if="{{hasCoupons}}" class="row-arrow" bindtap='bindCouponTap'>
     商品优惠券
+   </view>
+      <view wx:if="{{goodsDetail.basicInfo[0].fields.pingtuan}}" class="row-arrow" bindtap="goKanjia">
+      邀请好友帮忙砍价 ( <text style='color:red'>底价 {{goodsDetail.basicInfo[0].fields.original_price}} 元</text>）
    </view>
     <view class="goods-des-info">
         <view class="label-title">商品介绍</view>
@@ -27,12 +30,12 @@
         <view class="label-title" style="border-bottom:1px solid #eee;">商品评价<text style="color:red">（{{reputation.length}}）</text></view>
         <view class="goods-text" style="margin-top:15rpx;" wx:for="{{reputation}}" wx:key="id">
           <view style="width:100rpx;float:left;">
-            <image style="width: 100rpx; height: 100rpx;" src="{{item.user.avatarUrl}}"></image>
-            <view style="text-align:center;width:100rpx;">{{item.goods.goodReputationStr}}</view>
+            <image style="width: 100rpx; height: 100rpx;" src="{{item.fields.user_id.url}}"></image>
+            <view style="text-align:center;width:100rpx;">{{item.fields.goods_reputation_str}}</view>
           </view>
           <view style="width:550rpx;float:left;margin-left:35rpx;border-bottom:1px solid #eee;">
-            <view>{{item.goods.goodReputationRemark}}</view>
-            <view style="color: #B0B0B0;font-size:24rpx;">{{item.goods.dateReputation}}     {{item.goods.property}}</view>
+            <view>{{item.fields.goods_reputation_remark}}</view>
+            <view style="color: #B0B0B0;font-size:24rpx;">{{item.fields.dates_reputation}}     {{item.fields.user_id.name}}</view>
           </view>
         </view>
     </view>
@@ -96,10 +99,10 @@
         <view class="couponsList" wx:if="{{couponsList.length}}" >
           <view class="coupon_item" wx:for="{{couponsList}}">
             <view class="coupons_details">
-              <view class="coupon_price">¥ <text>{{item.fields.moneyMin}}</text> </view>
-              <view class="coupon_full"> 满 {{item.fileds.moneyHreshold}} 元使用 </view>
-              <view class="coupon_time" wx:if="{{item.fields.dateEndType == 0}}"> {{item.fields.dateEnd}} 前有效 </view>
-              <view wx:if="{{item.fields.dateEndType == 1}}"> 领取 {{item.fields.dateEndDays}} 天内有效 </view>
+              <view class="coupon_price">¥ <text>{{item.fields.money_min}}</text> </view>
+              <view class="coupon_full"> 满 {{item.fields.money_hreshold}} 元使用 </view>
+              <view class="coupon_time" wx:if="{{item.fields.date_end_type == 0}}"> {{item.fields.date_end_days}} 前有效 </view>
+              <view wx:if="{{item.fields.date_end_type == 1}}"> 领取 {{item.fields.date_end_days}} 天内有效 </view>
             </view>
             <view class="coupons_receive" bindtap='receiveCoupons' data-id="{{item.pk}}">
               立即领取
@@ -110,10 +113,10 @@
         <view class="couponsList" wx:if="{{couponsList1.length}}" >
           <view class="coupon_item" wx:for="{{couponsList1}}">
             <view class="coupons_details">
-              <view class="coupon_price">¥ <text>{{item.fields.moneyMin}}</text> </view>
-              <view class="coupon_full"> 满 {{item.fields.moneyHreshold}} 元使用 </view>
-              <view class="coupon_time" wx:if="{{item.fields.dateEndType == 0}}"> {{item.fields.dateEnd}} 前有效 </view>
-              <view wx:if="{{item.fields.dateEndType == 1}}"> 领取 {{item.fields.dateEndDays}} 天内有效 </view>
+              <view class="coupon_price">¥ <text>{{item.fields.money_min}}</text> </view>
+              <view class="coupon_full"> 满 {{item.fields.money_hreshold}} 元使用 </view>
+              <view class="coupon_time" wx:if="{{item.fields.date_end_type == 0}}"> {{item.fields.date_end}} 前有效 </view>
+              <view wx:if="{{item.fields.date_end_type == 1}}"> 领取 {{item.fields.date_end_days}} 天内有效 </view>
             </view>
             <view class="coupons_receive" bindtap='receiveCoupons' data-id="{{item.pk}}">
               立即领取

@@ -1171,18 +1171,7 @@ icon {
 .addForm.hide {
   display: none;
 }
-.Pick {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(242,203, 203, 0.85);
-  z-index: 99;
-}
-.Pick.hide {
-  display: none;
-}
+
 .addForm .addForm-div {
   background: #fff;
   padding: 30rpx;
