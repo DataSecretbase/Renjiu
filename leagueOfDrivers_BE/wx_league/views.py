@@ -24,6 +24,8 @@ import json
 import re
 import requests
 
+import datetime
+
 # Create your views here.
 
 
@@ -47,7 +49,8 @@ def url_image(query_set):
 def image_comment(image_json):
     comment = "<p>2222222222222222222</p>"
     for x in image_json:
-        comment += "<p><img src='{0}' style='' title='{1}'/></p>".format(x["fields"]["icon"],x["fields"]["display_pic"])
+        comment += "<p><img src='{0}' style='' title='{1}'/></p>".format(x["fields"]["icon"],
+                                                                         x["fields"]["display_pic"])
     return comment
 
 def index_imageList(request):
@@ -61,6 +64,16 @@ def notice_list(request):
 
 
 def discounts_coupons(request):
+    
+
+
+
+
+
+
+
+
+
     return JsonResponse({"code":0,"data":[{"dateAdd":"2017-11-14 11:04:41","dateEndDays":30,"dateEndType":1,"dateStartType":1,"id":546,"moneyHreshold":300.00,"moneyMax":30.00,"moneyMin":30.00,"name":"满减优惠券","needScore":0,"needSignedContinuous":0,"numberGit":1,"numberGitNumber":1,"numberLeft":2999,"numberPersonMax":1,"numberTotle":3000,"numberUsed":1,"status":0,"statusStr":"正常","type":"1"},{"dateAdd":"2017-11-14 11:03:48","dateEndDays":30,"dateEndType":1,"dateStartType":1,"id":545,"moneyHreshold":200.00,"moneyMax":20.00,"moneyMin":20.00,"name":"满减优惠券","needScore":0,"needSignedContinuous":0,"numberGit":1,"numberGitNumber":1,"numberLeft":2999,"numberPersonMax":1,"numberTotle":3000,"numberUsed":1,"status":0,"statusStr":"正常","type":"1"},{"dateAdd":"2017-11-14 11:02:31","dateEndDays":30,"dateEndType":1,"dateStartType":1,"id":544,"moneyHreshold":100.00,"moneyMax":10.00,"moneyMin":10.00,"name":"满减优惠券","needScore":0,"needSignedContinuous":0,"numberGit":1,"numberGitNumber":1,"numberLeft":2999,"numberPersonMax":1,"numberTotle":3000,"numberUsed":1,"status":0,"statusStr":"正常","type":"1"}],"msg":"success"})
 
 
@@ -151,14 +164,23 @@ def address(request):
         return JsonResponse({'error':'用户会话信息失败,请重新登录'})
     address = Address.objects.filter(id = address_id)
     if len(address) != 1 or address_id == 0:
-        Address.objects.create(province_id = provinceId, city_id = cityId, district_id = districtId, linkMan = linkMan, address = address_text, mobile = mobile, code = code,isDefault = False, owner_type = 0, owner_id = user.id )
+        Address.objects.create(province_id = provinceId,
+                               city_id = cityId,
+                               district_id = districtId,
+                               link_man = linkMan,
+                               address = address_text,
+                               mobile = mobile,
+                               code = code,
+                               is_default = False,
+                               owner_type = 0,
+                               owner_id = user.id )
         return JsonResponse({'code':0})
     else:
         address = Address.objects.get(id = address_id)
         address.province_id = provinceId
         address.city_id = cityId
         address.district_id = districtId
-        address.linkMan = linkMan
+        address.link_man = linkMan
         address.address = address_text
         address.mobile = mobile
         address.code = code
@@ -208,7 +230,7 @@ def address_list(request):
         else:
             address = check_address(owner_id = user.id)
             if default == 'true':
-                address = check_address(owner_id = user.id, isDefault = True)
+                address = check_address(owner_id = user.id, is_default = True)
             if address == {}:
                 return JsonResponse({"code":100}) #code 100 没有查询结果
             else:
@@ -231,9 +253,9 @@ def address_update(request):
                 return JsonResponse({"code":100}) #code 100 没有查询结果
             else:
                 for address in address_query:
-                    address.isDefault = False
+                    address.is_default = False
                     if address.id == address_id:
-                        address.isDefault = True
+                        address.is_default = True
                     address.save()
                 return JsonResponse({"code":0,"data":"选择成功"})
 
@@ -317,7 +339,12 @@ def goods_detail(request):
     json_pics = url_image(pics_query)
     json_category = serializers_json(category_query)
     json_basicInfo = serializers_json(basicInfo_query)
-    return JsonResponse({"code":0,"data":{"basicInfo" : json_basicInfo, "category" : json_category, "pics" : json_pics, "content":image_comment(json_pics)}})
+    return JsonResponse({"code":0,
+                         "data":{"basicInfo" : json_basicInfo,
+                                 "category" : json_category,
+                                 "pics" : json_pics,
+                                 "content":image_comment(json_pics)}
+                       })
 
 class CouponsViewSet(viewsets.ModelViewSet):
     """
@@ -330,15 +357,14 @@ class CouponsViewSet(viewsets.ModelViewSet):
 @csrf_exempt
 def coupons(request):
     if request.method == 'POST':
-        coupons_id = request.POST.get('refId')
-        coupons_id = int(coupons_id) if isinstance(coupons_id,(str)) else coupons_id
-        type_coupons = request.POST.get('type')
-        if type_coupons == '1':
+        goods_id = request.POST.get('refId')
+        goods_id = int(goods_id) if isinstance(goods_id,(str)) else goods_id
+        if goods_id is None:
             coupons = Coupons.objects.filter(coupons_type = 1)
         else:
-            if coupons_id != None:
+            if goods_id != None:
                 try:
-                    coupons = Coupons.objects.filter(id = coupons_id)
+                    coupons = Coupons.objects.filter(goods_id = goods_id)
                 
                 except TypeError:
                     return JsonResponse({"code":0,"error":"优惠券id类型错误"})
@@ -360,7 +386,7 @@ def coupons_fetch(request):
             return JsonResponse({"code":500,"msg":"请重新登录"})
         else:
             try:
-                coupons = Coupons_users.objects.create(coupons_id = coupons_id, user_id = user.id)
+                coupons = Coupons_users.objects.create(coupons_id = coupons_id, user_id = user.id,date_end_days = Coupons.objects.get(id = coupons_id).date_end_days)
             except ObjectDoesNotExist:
                 return JsonResponse({"code":20001})
             return JsonResponse({"code":0})
@@ -370,16 +396,25 @@ def coupons_my(request):
     if request.method == 'POST':
         cookie = request.POST.get('cookie')
         user = check_user(cookie)
+        goodsList = request.POST.get('goodsList')
         basicInfo = {"coupons_id":[]}
         if user == {}:
             return JsonResponse({"code":500,"msg":"请重新登录"})
         else:
-            coupons_query = Coupons_users.objects.filter(user_id = user.id)
+            coupons_query = Coupons_users.objects.filter(user_id = user.id,date_end_days__lte=datetime.date.today())
             for info in coupons_query:
                 basicInfo['coupons_id'].append(info.coupons_id)
             coupons_list = []
-            for coupons_id in basicInfo['coupons_id']:
-                coupons_list.append(Coupons.objects.filter(id = coupons_id)[0])
+            if goodsList is None:
+                for coupons_id in basicInfo['coupons_id']:
+                    coupons_list.append(Coupons.objects.filter(id = coupons_id)[0])
+            else:
+                for coupons_id in basicInfo['coupons_id']:
+                    coupons_query = Coupons.objects.get(id = coupons_id)
+                    for good in goodsList:
+                        if coupons_query.goods_id == good['pk']:
+                            coupons_list.append(Coupons.objects.filter(id = coupons_id)[0])
+                            break
             data = serializers_json(coupons_list)
             return JsonResponse({"code":0,"data":data})
 
@@ -436,31 +471,48 @@ def order_create(request):
         remark = request.POST.get('remark')
         goodsJsonStr = request.POST.get('goodsJsonStr')
         payOnDelivery = request.POST.get('payOnDelivery')
+        couponId = request.POST.get('couponId')
+        caculate = request.POST.get('caculate')
+        
         user = check_user(cookie)
         if user == {}:
             return JsonResponse({"code":0,"msg":"请重新登录"})
-        order = Order.objects.create(wechat_user_id = user,\
-                                     status = 0,\
-                                     remark = remark,\
+        #检查优惠券信息
+        try:
+            coupons_query = Coupons_users.objects.get(coupons_id = couponId,
+                                      user_id = user.id,
+                                      date_end_days__lte=datetime.date.today())
+            min_price = coupons_query.min_price
+        except ObjectDoesNotExist:
+            couponId = 0
+            min_price = 0
+        order = Order.objects.create(wechat_user_id = user,
+                                     status = 0,
+                                     remark = remark,
+                                     coupons_id = couponId,
                                      logistics_id = Logistics.objects.get(id = 1)
                                      )
         goods_list = json.loads(goodsJsonStr)
         amountTotle = []
         for good in goods_list:
             goodsId = Goods.objects.get(id = good['goodsId'])
-            amountTotle.append(goodsId.minPrice)
-            ordergoods = OrderGoods.objects.create(order_id = order.id,\
-                                                   goods_id = goodsId.id,\
-                                                   name = goodsId.name,\
-                                                   display_pic = goodsId.pic,\
-                                                   property_str = "-",\
-                                                   price = goodsId.minPrice,\
-                                                   amount = 1,\
-                                                   total = goodsId.minPrice)
-        order.goods_price = sum(amountTotle)
+            amountTotle.append(goodsId.original_price)
+            ordergoods = OrderGoods.objects.create(order_id = order.id,
+                                                   goods_id = goodsId.id,
+                                                   name = goodsId.name,
+                                                   display_pic = goodsId.pic,
+                                                   property_str = "-",
+                                                   price = goodsId.original_price,
+                                                   amount = 1,
+                                                   total = goodsId.original_price)
+        order.goods_price = sum(amountTotle)-min_price
         order.number_goods = len(amountTotle)
         order.save()
-        return JsonResponse({"code":0,"data":{"isNeedLogistics":1,"amountTotle":sum(amountTotle),"amountLogistics":5}})
+        return JsonResponse({"code":0,
+                             "data":{"isNeedLogistics":0,
+                                     "amountTotle":sum(amountTotle),
+                                     "amountLogistics":0}
+                           })
         
 
 @csrf_exempt
@@ -509,7 +561,6 @@ def datein(request):
         except ObjectDoseNotExist:
             return JsonResponse({'code':400,'msg':'该预约记录未找到'})            
 
-        book_query.book_time_start = datetime['fields']['book_time_start']
         book_query.status = datetime['fields']['status']
         book_query.save()
         data['exist'] = 'existed'
@@ -589,11 +640,11 @@ def bargain_add(request):
     except ObjectDoesNotExist:
         return JsonResponse({"code":500,"msg":"活动已经过期"})
     try:
-        bargainFriend_query = BargainFriend.objects.get(bargainFriend_id = user.id)
+        bargainFriend_query = BargainFriend.objects.get(bargain_friend_id = user.id)
     except ObjectDoesNotExist:
-        BargainFriend.objects.create(bargainFriend_id = user,
+        BargainFriend.objects.create(bargain_friend_id = user,
                                      rank = bargain_query.times + 1,
-                                     bargainUser_id = BargainUser.objects.get(bargain_id = bargain_id,
+                                     bargain_user_id = BargainUser.objects.get(bargain_id = bargain_id,
                                                                               user_id = joiner))
         bargain_query.times +=1
         bargain_query.save()
@@ -604,7 +655,7 @@ def bargain_detail(request):
     goods_id = request.GET.get('goods_id')
     goods_id = int(goods_id) if isinstance(goods_id,(str)) else goods_id
     kjid = request.GET.get('kjid')
-    goods_id = int(goods_id) if isinstance(goods_id,(str)) else goods_id
+    kjid = int(kjid) if isinstance(kjid,(str)) else kjid
     cookie = request.GET.get('cookie')
     joiner = request.GET.get('joiner')
     bargain_query = Bargain.objects.filter(goods_id = goods_id)
@@ -623,7 +674,8 @@ def bargain_detail(request):
         joiner = user.id
     print(joiner, goods_id)
     if joiner is None and goods_id is not None:
-        bargainUser_query = BargainUser.objects.filter(bargain_id = bargain_query.values()[0]['id'], user_id = user.id)
+        bargainUser_query = BargainUser.objects.filter(bargain_id = bargain_query.values()[0]['id'],
+                                                       user_id = user.id)
         if len(bargainUser_query) == 0:
             BargainUser.objects.create(bargain_id = bargain_query[0],user_id = user)
         joiner = user.id
@@ -633,16 +685,22 @@ def bargain_detail(request):
         return JsonResponse({"code":405,"msg":"该用户不存在"})
     bargain_json = serializers_json(bargain_query)
     print(bargain_query.values())
-    bargainUser_query = BargainUser.objects.filter(bargain_id = bargain_query.values()[0]['id'], user_id = joiner.id)
+    bargainUser_query = BargainUser.objects.filter(bargain_id = bargain_query.values()[0]['id'],
+                                                   user_id = joiner.id)
     bargainUser_json = serializers_json(bargainUser_query)
 
-    bargainFriend_query = BargainFriend.objects.filter(bargainUser_id = bargainUser_query.values()[0]['id'])
+    bargainFriend_query = BargainFriend.objects.filter(bargain_user_id = bargainUser_query.values()[0]['id'])
     bargainFriend_json = serializers_json(bargainFriend_query,use_natural = True)
     for bargain in bargain_json:
-        bargain['fields']['price'] = method.method_log(cur_times = bargain['fields']['times'],\
-                                                       exp_times = bargain['fields']['expected_times'],\
+        bargain['fields']['price'] = method.method_log(cur_times = bargain['fields']['times'],
+                                                       exp_times = bargain['fields']['expected_times'],
                                                        change = bargain['fields']['expected_price'])
-    return JsonResponse({"code":0,"data":{"bargain":bargain_json,"bargainUser":bargainUser_json,"bargainUserName":bargainUser_query[0].user_id.name,"bargainFriend":bargainFriend_json}})
+    return JsonResponse({"code":0,
+                         "data":{"bargain":bargain_json,
+                                 "bargainUser":bargainUser_json,
+                                 "bargainUserName":bargainUser_query[0].user_id.name,
+                                 "bargainFriend":bargainFriend_json}
+                       })
 
 
 def is_enrol(request):
@@ -656,3 +714,59 @@ def is_enrol(request):
     return JsonResponse({"code":0})
 
 
+def coach_list(request):
+    cookie = request.GET.get("cookie")
+    user = check_user(cookie)
+    if user is {}:
+        return JsonResponse({"code":500,"msg":"请重新登录"})
+    userExam_query = UserExam.objects.filter(user_id = user.id,exam_status = 1)
+    print(userExam_query.values()[0]['train_ground_id'])
+    train_ground = userExam_query.values()[0]['train_ground_id']
+    coachDriverSchool_query = CoachDriverSchool.objects.filter(train_ground = train_ground)
+    coachDriverSchool_json = serializers_json(coachDriverSchool_query, use_natural = True)
+    for coachDriverSchool in coachDriverSchool_json:
+        print(coachDriverSchool)
+        book_query = Book.objects.filter(coach = coachDriverSchool["fields"]["coach"]["id"])
+        book_json = serializers_json(book_query,use_natural = True)
+        bookSet_query = BookSet.objects.filter(coach_driver_school = coachDriverSchool["pk"],
+                                            status = 1)
+        bookSet_json = serializers_json(bookSet_query)
+        bookSet_list = []
+        for bookSet in bookSet_json:
+            bookSet_list.append({"startTime":bookSet["fields"]["book_date_start"].replace("T"," "),
+                            "endTime":bookSet["fields"]["book_date_end"].replace("T"," "),
+                            "status":bookSet["fields"]["status"]})
+        coachDriverSchool['book_list'] = book_json
+        coachDriverSchool['bookSet_list'] = bookSet_list
+    return JsonResponse({"code":0,"data":coachDriverSchool_json})
+
+def book_add(request):
+    startTimeText = request.GET.get('startTimeText')
+    startTime_datetime = datetime.datetime.strptime(startTimeText, "%Y-%m-%d %H:%M:%S")
+    endTimeText = request.GET.get('endTimeText')
+    endTime_datetime = datetime.datetime.strptime(endTimeText, "%Y-%m-%d %H:%M:%S")
+    cookie = request.GET.get('cookie')
+    coach_id = request.GET.get('coach_id')
+    coach_id = int(coach_id) if isinstance(coach_id,(str)) else coach_id
+    train_ground = request.GET.get('train_ground')
+    user = check_user(cookie)
+    if user is {}:
+        return JsonResponse({"code":500,"msg":"请重新登录"})
+    try:
+        coachDriverSchool_query = CoachDriverSchool.objects.get(coach = coach_id,
+                                                                train_ground = DriverSchool.objects.get(name = train_ground))
+    except ObjectDoesNotExist:
+        return JsonResponse({"code":500,"msg":"预约信息有误"})
+    try:
+        bookSet_query = BookSet.objects.get(coach_driver_school = coachDriverSchool_query.id,
+                                            book_date_start = startTime_datetime,
+                                            book_date_end = endTime_datetime)
+    except ObjectDoesNotExist:
+        return JsonResponse({"code":500,"msg":"不能查找到预约设置"})
+    if bookSet_query.cur_book == bookSet_query.num_student:
+        return JsonResponse({"code":500,"msg":"当前预约已满,请换一个时间段"})
+    coach_query = WechatUser.objects.get(id = coach_id)
+    book_create = Book.objects.create(coach = coach_query,user = user, train_ground = DriverSchool.objects.get(name = train_ground), book_time_start = startTime_datetime,book_time_end = endTime_datetime,status = 1)
+    bookSet_query.cur_book +=1
+    bookSet_query.save()
+    return JsonResponse({"code":0,"data":"预约成功"})

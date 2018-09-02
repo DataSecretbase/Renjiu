@@ -6,6 +6,7 @@ urlpatterns = [
     url('^notice/list/$', views.notice_list, name='datein'),
     url('^discounts/coupons/$', views.discounts_coupons, name='datein'),
     url('^discounts/fetch/$', views.discounts_fetch, name='datein'),
+    url('^discounts/my$', views.discounts_fetch, name='datein'),
     url('^banner/list/$', views.banner_list, name='datein'),
     url('^check/user$', views.check_cookies, name='datein'),
     url('^user/login$', views.verify, name='datein'),
@@ -33,5 +34,7 @@ urlpatterns = [
     url('^bargain/detail', views.bargain_detail, name = 'datein'),
     url('^bargain/add', views.bargain_add, name = 'datein'),
     url('^isenrol', views.is_enrol, name = 'datein'),
+    url('^coach/list', views.coach_list, name = 'datein'),
+    url('^book/add', views.book_add, name = 'datein'),
     
 ]

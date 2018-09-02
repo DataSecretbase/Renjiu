@@ -4,7 +4,7 @@ import django.utils.timezone as timezone
 import random
 import time
 from uuid import uuid4
-from datetime import datetime
+from datetime import datetime,date
 
 from .datasettings import league_model as m_set
 # Create your models here.
@@ -17,12 +17,20 @@ class DriverSchool(models.Model):
     #DISTRICT = ((0,'beijin'))
     district_id = models.IntegerField(verbose_name = '区', default = 0)
     name = models.CharField(verbose_name = '店铺名称', max_length = 30)
-    address = models.CharField(verbose_name='地址', max_length=100,blank = True, null = True)
-    phone = models.CharField(verbose_name = '联系电话', max_length=50, blank = True, null = True)
+    address = models.CharField(verbose_name='地址',
+                               max_length=100,
+                               blank = True,
+                               null = True)
+    phone = models.CharField(verbose_name = '联系电话',
+                             max_length=50,
+                             blank = True,
+                             null = True)
     introduce = models.TextField(verbose_name='驾校介绍')
     characteristic = models.TextField(verbose_name = '驾校特色')
     sort = models.IntegerField(verbose_name = '排序')
-    pic = models.ForeignKey('Icon', verbose_name='驾校商标', on_delete = models.DO_NOTHING)
+    pic = models.ForeignKey('Icon',
+                            verbose_name='驾校商标',
+                            on_delete = models.DO_NOTHING)
     activity = models.CharField(verbose_name = '打折优惠信息', max_length=255)
     latitude = models.FloatField(verbose_name = '纬度')
     longitude = models.FloatField(verbose_name = '经度')
@@ -42,13 +50,67 @@ class DriverSchool(models.Model):
         return self.name
 
 
+class BookSet(models.Model):
+    coach_driver_school = models.ForeignKey('CoachDriverSchool',
+                                           on_delete = models.CASCADE,
+                                           verbose_name = '教练所属驾校')
+    num_student = models.SmallIntegerField(verbose_name = "预约学生数量")
+    book_date_start = models.DateTimeField(verbose_name = "预约设置开始的日期")
+    book_date_end = models.DateTimeField(verbose_name = "预约设置结束的日期")
+    cur_book = models.SmallIntegerField(verbose_name = "当前已经预约学生",default = 0)
+    status = models.SmallIntegerField(verbose_name = "预约状态",default = 0)
+    class Meta:
+        db_table = 'BookSet'
+        verbose_name = '预约设置'
+        verbose_name_plural = "预约设置"
+
+    def __str__(self):
+        return self.coach_driver_school.coach.name+\
+               " "+self.coach_driver_school.train_ground.name
+
+    def natural_key(self):
+        return {"id":self.id,
+                "coach_driver_school":self.coach_driver_school.natural_key(),
+                "num_student":self.num_student,
+                "book_datetime":self.book_datetime,
+                "status":self.status}
+
+
+class CoachDriverSchool(models.Model):
+    coach = models.ForeignKey('WechatUser',
+                              on_delete = models.CASCADE,
+                              verbose_name = "教练id")
+    train_ground = models.ForeignKey('DriverSchool',
+                                     on_delete = models.DO_NOTHING,
+                                     verbose_name = "训练场id")
+
+    class Meta:
+       db_table = "CoachDriverSchool"
+       verbose_name = "教练所属驾校"
+       verbose_name_plural = "教练所属驾校"
+    
+    def __str__(self):
+        return self.coach.name+" "+self.train_ground.name
+
+    def natural_key(self):
+        return {"id":self.id,
+                "coach":self.coach.natural_key(),
+                "train_ground":self.train_ground.natural_key()}
+
 class UserExam(models.Model):
-    user_id = models.ForeignKey('WechatUser',verbose_name = "考生",on_delete = models.CASCADE)
-    exam_status = models.SmallIntegerField(verbose_name="考试状态",choices = m_set.EXAM_STATUS)
-    exam_type = models.SmallIntegerField(verbose_name = "考试类型",choices = m_set.EXAM_TYPE)
+    user_id = models.ForeignKey('WechatUser',
+                                verbose_name = "考生",
+                                on_delete = models.CASCADE)
+    exam_status = models.SmallIntegerField(verbose_name="考试状态",
+                                           choices = m_set.EXAM_STATUS)
+    exam_type = models.SmallIntegerField(verbose_name = "考试类型",
+                                         choices = m_set.EXAM_TYPE)
     exam_results = models.FloatField(verbose_name = "考试成绩")
-    dateAdd = models.DateTimeField(verbose_name = "考试开始时间",auto_now_add = True)
-    dateEnd = models.DateTimeField(verbose_name = "考试结束时间",auto_now = True)
+    train_ground = models.ForeignKey('DriverSchool',
+                                     on_delete = models.DO_NOTHING,
+                                     verbose_name = "训练场id")
+    date_add = models.DateTimeField(verbose_name = "考试开始时间",auto_now_add = True)
+    date_end = models.DateTimeField(verbose_name = "考试结束时间",auto_now = True)
 
     class Meta:
         db_table = 'UserExam'
@@ -64,30 +126,58 @@ class UserExam(models.Model):
                 "exam_status":self.exam_status,
                 "exam_type":self.exam_type,
                 "exam_results":self.exam_results,
-                "dateAdd":self.dateAdd,
-                "dateEnd":self.dateEnd}
+                "date_add":self.date_add,
+                "date_and":self.date_end}
+
+
 
 class WechatUser(AbstractUser):
-    cookie = models.CharField('用户认证标识', max_length=100,default='', blank = True)
-    name = models.CharField(verbose_name = '昵称', max_length = 40, blank = True)
-    openid = models.CharField(verbose_name = 'OpenId', max_length = 255, blank = True)
-    union_id = models.CharField(verbose_name = 'UnionId', max_length = 255, blank = True)
-    gender = models.SmallIntegerField(verbose_name = 'gender',default = 0, blank = True)
-    language = models.CharField(verbose_name = '语言', max_length = 40, blank = True)
+    cookie = models.CharField('用户认证标识',
+                              max_length=100,
+                              default='',
+                              blank = True)
+    name = models.CharField(verbose_name = '昵称',
+                            max_length = 40,
+                            blank = True)
+    openid = models.CharField(verbose_name = 'OpenId',
+                              max_length = 255,
+                              blank = True)
+    union_id = models.CharField(verbose_name = 'UnionId',
+                                max_length = 255,
+                                blank = True)
+    gender = models.SmallIntegerField(verbose_name = 'gender',
+                                      default = 0,
+                                      blank = True)
+    language = models.CharField(verbose_name = '语言',
+                                max_length = 40,
+                                blank = True)
     #REGISTERTYPE = ((0,"beijin"))
+    user_type = models.SmallIntegerField(verbose_name = '用户类型',
+                                         choices = m_set.USER_TYPE,
+                                         default = 0)
     register_type = models.SmallIntegerField( verbose_name='注册来源',
                                      default=0)
-    phone = models.CharField(verbose_name = '手机号码', max_length = 50, blank = True)
+    phone = models.CharField(verbose_name = '手机号码',
+                             max_length = 50,
+                             blank = True)
     #COUNTRY = ((0,"beijin"))
-    country = models.IntegerField(verbose_name = '国家', default = 0, blank = True) 
+    country = models.IntegerField(verbose_name = '国家',
+                                  default = 0,
+                                  blank = True) 
     #PROVINCE = ((0,"beijin"))
     province = models.IntegerField(verbose_name = '省份', default = 0)
     #CITY = ((0,"beijin"))
     city = models.IntegerField(verbose_name = '城市', default = 0)
-    avatar = models.ForeignKey('Icon', verbose_name='头像', on_delete = models.DO_NOTHING)
-    register_ip = models.CharField(verbose_name = '注册IP', max_length = 80, blank = True)
+    avatar = models.ForeignKey('Icon',
+                               verbose_name='头像',
+                               on_delete = models.DO_NOTHING)
+    register_ip = models.CharField(verbose_name = '注册IP',
+                                   max_length = 80,
+                                   blank = True)
     #last_login = models.DateTimeField(verbose_name = '登陆时间')
-    ip = models.CharField(verbose_name = '登陆IP', max_length = 80, blank = True)
+    ip = models.CharField(verbose_name = '登陆IP',
+                          max_length = 80,
+                          blank = True)
     
     def __str__(self):
         return self.name
@@ -104,23 +194,32 @@ class WechatUser(AbstractUser):
 
 
 class Goods(models.Model):
-    category_id = models.ForeignKey('Category', on_delete = models.SET_DEFAULT, default = 0)
-    characteristic = models.CharField(verbose_name = "描述", max_length = 100, default = '')
-    dateAdd = models.DateTimeField(verbose_name = '上架时间', auto_now_add = True)
-    dateStart = models.DateTimeField(verbose_name = '上架时间', auto_now_add = True)
-    dateUpdate = models.DateTimeField(verbose_name = '更新时间', auto_now = True)
+    category_id = models.ForeignKey('Category',
+                                    on_delete = models.SET_DEFAULT,
+                                    default = 0)
+    characteristic = models.CharField(verbose_name = "描述",
+                                      max_length = 100,
+                                      default = '')
+    date_add = models.DateTimeField(verbose_name = '上架时间', auto_now_add = True)
+    date_start = models.DateTimeField(verbose_name = '上架时间', auto_now_add = True)
+    date_update = models.DateTimeField(verbose_name = '更新时间', auto_now = True)
     logistics_id = models.IntegerField(verbose_name = '物流id', default = 0)
-    minScore = models.SmallIntegerField(verbose_name = '最小评分', default = 0)
+    min_score = models.SmallIntegerField(verbose_name = '最小评分', default = 0)
     name = models.CharField(verbose_name = '名称', max_length = 60)
-    numberFav = models.IntegerField(verbose_name = "收藏人数",default = 0)
-    numberGoodReputation = models.IntegerField(verbose_name = "好评数量",default = 0)
-    numberOrders = models.IntegerField(verbose_name = '已售数量',default = 0)
-    originalPrice = models.FloatField(verbose_name = "原价")
+    number_fav = models.IntegerField(verbose_name = "收藏人数",default = 0)
+    number_good_reputation = models.IntegerField(verbose_name = "好评数量",default = 0)
+    number_orders = models.IntegerField(verbose_name = '已售数量',default = 0)
+    original_price = models.FloatField(verbose_name = "原价")
     paixu = models.IntegerField(default = 0)
-    pic = models.ForeignKey('Icon', verbose_name = "商品图片连接", on_delete = models.SET_DEFAULT, default = 0)
+    pic = models.ForeignKey('Icon',
+                            verbose_name = "商品图片连接",
+                            on_delete = models.SET_DEFAULT,
+                            default = 0)
     pingtuan = models.BooleanField(verbose_name = "拼团" , default = False)
-    recommendStatus = models.SmallIntegerField(verbose_name = "推荐状态", default = 0)
-    shop_id = models.ForeignKey("DriverSchool",verbose_name = "商店id", on_delete = models.CASCADE)
+    recommend_status = models.SmallIntegerField(verbose_name = "推荐状态", default = 0)
+    shop_id = models.ForeignKey("DriverSchool",
+                                verbose_name = "商店id",
+                                on_delete = models.CASCADE)
     status = models.SmallIntegerField(verbose_name  = "商品状态", default = 0)
     stores = models.IntegerField(verbose_name = "库存")
     video_id = models.IntegerField(default = 0)
@@ -138,19 +237,19 @@ class Goods(models.Model):
     def natural_key(self):
         return {"id":self.id,
                 "characteristic":self.characteristic,
-                "dateAdd":self.dateAdd,
-                "dateStart":self.dateStart,
-                "dateUpdate":self.dateUpdate,
+                "date_add":self.date_add,
+                "date_start":self.date_start,
+                "date_update":self.date_update,
                 "logistics_id":self.logistics_id,
-                "minScore":self.minScore,
+                "min_score":self.min_score,
                 "name":self.name,
-                "numberFav":self.numberFav,
-                "numberGoodReputation":self.numberGoodReputation,
-                "numberOrders":self.numberOrders,
-                "originalPrice":self.originalPrice,
+                "number_fav":self.number_fav,
+                "number_good_reputation":self.number_good_reputation,
+                "numberOrders":self.number_orders,
+                "original_price":self.original_price,
                 "paixu":self.paixu,
                 "pingtuan":self.pingtuan,
-                "recommendStatus":self.recommendStatus,
+                "recommend_status":self.recommend_status,
                 "status":self.status,
                 "stores":self.stores,
                 "video_id":self.video_id,
@@ -158,14 +257,24 @@ class Goods(models.Model):
                 "weight":self.weight}
 
 class Order(models.Model):
-    wechat_user_id = models.ForeignKey('WechatUser', verbose_name ='微信用户', on_delete = models.DO_NOTHING)
+    wechat_user_id = models.ForeignKey('WechatUser',
+                                       verbose_name ='微信用户',
+                                       on_delete = models.DO_NOTHING)
     number_goods = models.IntegerField(verbose_name = '商品数量',default = 0)
     goods_price = models.FloatField(verbose_name = '商品总金额', default=0)
-    logistics_id = models.ForeignKey('Logistics',verbose_name = '物流id', on_delete = models.SET_DEFAULT, default = 0)
+    coupons_id = models.IntegerField(verbose_name = '使用的优惠券id', default=0)
+    logistics_id = models.ForeignKey('Logistics',
+                                     verbose_name = '物流id',
+                                     on_delete = models.SET_DEFAULT,
+                                     default = 0)
     logistics_price = models.FloatField(verbose_name = '物流费用', default=0)
     total = models.FloatField('实际支付', default=0 )
-    ORDER_STATUS = [(0,"待付款"),(1,'待发货'),(2,'待收货'),(3,'待评价'),(4,'已完成'),(5,'已删除')]
-    status = models.SmallIntegerField(verbose_name = '状态', choices = ORDER_STATUS, default = 0)
+    ORDER_STATUS = [(0,"待付款"),(1,'待发货'),
+                    (2,'待收货'),(3,'待评价'),
+                    (4,'已完成'),(5,'已删除')]
+    status = models.SmallIntegerField(verbose_name = '状态',
+                                      choices = ORDER_STATUS,
+                                      default = 0)
     remark = models.CharField(verbose_name  = '备注', max_length = 100, blank = True)
     linkman = models.CharField(verbose_name = '联系人', max_length = 100, blank = True)
     phone = models.CharField(verbose_name = '手机号码', max_length = 50, blank = True)
@@ -176,11 +285,17 @@ class Order(models.Model):
     district_id = models.SmallIntegerField(verbose_name = '区', default = 0)
     address = models.CharField(verbose_name = '详细地址', max_length = 100, blank = True)
     postcode = models.CharField(verbose_name = '邮政编码', max_length = 20, blank = True)
-    shipper_id = models.ForeignKey('Shipper', verbose_name='快递承运商', on_delete = models.DO_NOTHING, default = 1)
-    tracking_number = models.CharField(verbose_name = '运单号', max_length = 200, blank = True)
+    shipper_id = models.ForeignKey('Shipper',
+                                   verbose_name='快递承运商',
+                                   on_delete = models.DO_NOTHING,
+                                   default = 1)
+    tracking_number = models.CharField(verbose_name = '运单号',
+                                       max_length = 200,
+                                       blank = True)
     #display_traces = fields.Html('物流信息', compute='_compute_display_traces')
     traces = models.TextField(verbose_name = '物流信息', blank = True)
-    dateAdd = models.DateTimeField(verbose_name = '下单时间', default = timezone.now)
+    date_add = models.DateTimeField(verbose_name = '下单时间',
+                                   default = timezone.now)
 
     class Meta:
         db_table = 'Order'
@@ -196,9 +311,16 @@ class OrderGoods(models.Model):
     order_id = models.IntegerField(verbose_name='订单', default = 0)
     # 冗余记录商品，防止商品删除后订单数据不完整
     goods_id = models.IntegerField(verbose_name = '商品id',default = 0)
-    name = models.CharField(verbose_name = '商品名称', max_length = 50, blank =True)
-    display_pic = models.ForeignKey('Icon',verbose_name = '图片', on_delete = models.SET_DEFAULT, default = 0)
-    property_str = models.CharField(verbose_name = '商品规格', max_length = 200, blank = True)
+    name = models.CharField(verbose_name = '商品名称',
+                            max_length = 50,
+                            blank =True)
+    display_pic = models.ForeignKey('Icon',
+                                    verbose_name = '图片',
+                                    on_delete = models.SET_DEFAULT,
+                                    default = 0)
+    property_str = models.CharField(verbose_name = '商品规格',
+                                    max_length = 200,
+                                    blank = True)
     price = models.FloatField(verbose_name = '单价', default = 0)
     amount = models.IntegerField(verbose_name = '商品数量', default = 0)
     total = models.FloatField(verbose_name = '总价', default = 0)
@@ -213,7 +335,9 @@ class OrderGoods(models.Model):
 
 
 class ModifyPriceWizard(models.Model):
-    order_id = models.ForeignKey('Order', verbose_name ='订单', on_delete = models.CASCADE)
+    order_id = models.ForeignKey('Order',
+                                 verbose_name ='订单',
+                                 on_delete = models.CASCADE)
     total = models.FloatField(verbose_name = '金额')
 
     class Meta:
@@ -229,8 +353,12 @@ class ModifyPriceWizard(models.Model):
 
 class DeliverWizard(models.Model):
     _name = 'wechat_mall.deliver.wizard'
-    order_id = models.ForeignKey('Order', verbose_name='订单', on_delete = models.CASCADE)
-    shipper_id = models.ForeignKey('Shipper', verbose_name='快递承运商', on_delete = models.CASCADE)
+    order_id = models.ForeignKey('Order',
+                                 verbose_name='订单',
+                                 on_delete = models.CASCADE)
+    shipper_id = models.ForeignKey('Shipper',
+                                   verbose_name='快递承运商',
+                                   on_delete = models.CASCADE)
     tracking_number = models.CharField(verbose_name = '运单号', max_length = 200)
     status = models.CharField(verbose_name = '状态', max_length = 20)
 
@@ -292,9 +420,14 @@ class Category(models.Model):
     name = models.CharField(verbose_name='名称', max_length = 100)
     eng_name = models.CharField(verbose_name = '名称(英文)', max_length = 100)
     category_type = models.CharField(verbose_name = '类型',max_length = 30)
-    pid = models.ForeignKey('Category', verbose_name='上级分类', on_delete = models.SET_DEFAULT, default = 0)
+    pid = models.ForeignKey('Category',
+                            verbose_name='上级分类',
+                            on_delete = models.SET_DEFAULT,
+                            default = 0)
     key = models.IntegerField(verbose_name='编号')
-    icon = models.ForeignKey('Icon', verbose_name='图标', on_delete = models.CASCADE)
+    icon = models.ForeignKey('Icon',
+                             verbose_name='图标',
+                             on_delete = models.CASCADE)
     level = models.SmallIntegerField(verbose_name='分类级别')
     is_use = models.BooleanField(verbose_name='是否启用', default=True)
     sort = models.IntegerField(verbose_name='排序')
@@ -331,7 +464,9 @@ class Icon(models.Model):
 class Attachment(models.Model):
     
     display_pic = models.ImageField(verbose_name = "附件图片",upload_to=filepath)
-    owner_id = models.ForeignKey("Goods",verbose_name = "所属货物", on_delete = models.CASCADE)
+    owner_id = models.ForeignKey("Goods",
+                                 verbose_name = "所属货物",
+                                 on_delete = models.CASCADE)
     
     class Meta:
         db_table = 'Attachment'
@@ -344,12 +479,18 @@ class Attachment(models.Model):
 
 class Payment(models.Model):
 
-    order_id = models.ForeignKey('Order', verbose_name = '订单', on_delete = models.CASCADE)
+    order_id = models.ForeignKey('Order',
+                                 verbose_name = '订单',
+                                 on_delete = models.CASCADE)
     payment_number = models.CharField(verbose_name = '支付单号', max_length = 255)
-    wechat_user_id = models.ForeignKey('WechatUser', verbose_name = '微信用户', on_delete = models.DO_NOTHING)
+    wechat_user_id = models.ForeignKey('WechatUser',
+                                       verbose_name = '微信用户',
+                                       on_delete = models.DO_NOTHING)
     price = models.FloatField(verbose_name = '支付金额(元)')
     #PAYMENT_STATUS = ((0,"22"))
-    status = models.SmallIntegerField(verbose_name = '状态', choices = m_set.PAYMENT_STATUS, default=1)
+    status = models.SmallIntegerField(verbose_name = '状态',
+                                      choices = m_set.PAYMENT_STATUS,
+                                      default=1)
     # 微信notify返回参数
     openid = models.CharField(verbose_name = 'openid', max_length = 255)
     result_code = models.CharField(verbose_name = '业务结果', max_length = 30)
@@ -381,11 +522,11 @@ class Address(models.Model):
     city_id = models.IntegerField(verbose_name = '城市', default = 0)
     #DISTRICT = ((0,'beijin'))
     district_id = models.IntegerField(verbose_name = '区', default = 0)
-    linkMan = models.CharField(verbose_name = '联系人', max_length = 15)
+    link_man = models.CharField(verbose_name = '联系人', max_length = 15)
     address = models.CharField(verbose_name = '详细地址', max_length = 100)
     mobile = models.CharField(verbose_name = '电话号码', max_length = 40)
     code = models.CharField(verbose_name = '邮政编码', max_length = 20)
-    isDefault = models.BooleanField(verbose_name = '默认地址',default = False)
+    is_default = models.BooleanField(verbose_name = '默认地址',default = False)
     owner_type = models.SmallIntegerField(verbose_name = "被标注地址的类型eg:微信用户,订单")
     owner_id = models.IntegerField(verbose_name = "微信用户、订单的id")
 
@@ -399,26 +540,32 @@ class Address(models.Model):
                 "province_id":self.province_id,
                 "city_id":self.city_id,
                 "district_id":self.district_id,
-                "linkMan":self.linkMan,
+                "link_man":self.link_man,
                 "address":self.address,
                 "mobile":self.mobile,
                 "code":self.code,
-                "isDefault":self.isDefault,
+                "is_default":self.is_default,
                 "owner_type":self.owner_type,
                 "owner_id":self.owner_id}
 
 
 class Coupons(models.Model):
     name = models.CharField(verbose_name = '优惠券名称', max_length = 50)
-    moneyMin = models.FloatField(verbose_name = '优惠券金额')
-    moneyHreshold = models.FloatField(verbose_name = '满 减 最低额度')
+    money_min = models.FloatField(verbose_name = '优惠券金额')
+    money_hreshold = models.FloatField(verbose_name = '满 减 最低额度')
     DATE_END_TYPE = ((0,"截止某日前有效"),(1,"领取后有效时间倒计"))
-    dateEndType = models.SmallIntegerField(verbose_name = '优惠券有效期类型', choices = DATE_END_TYPE)
-    dateEndDays = models.DateTimeField(verbose_name = "优惠券截止时间", default = timezone.now)
-    goods_id =  models.ForeignKey('Goods', on_delete = models.CASCADE, verbose_name = "商品id")
+    date_end_type = models.SmallIntegerField(verbose_name = '优惠券有效期类型',
+                                           choices = DATE_END_TYPE)
+    date_end_days = models.DateTimeField(verbose_name = "优惠券截止时间",
+                                       default = timezone.now)
+    goods_id =  models.ForeignKey('Goods',
+                                  on_delete = models.CASCADE,
+                                  verbose_name = "商品id")
     is_active = models.BooleanField(verbose_name = "优惠券是否有效")
-    date_add = models.DateTimeField(verbose_name = "优惠券添加的时间", default = timezone.now)
-    coupons_type = models.SmallIntegerField(verbose_name = "优惠券类型1.通用型,2.分类专用型,3.商品专用型,4.店铺专用型", default = 0)
+    date_add = models.DateTimeField(verbose_name = "优惠券添加的时间",
+                                    default = timezone.now)
+    coupons_type = models.SmallIntegerField(verbose_name = "优惠券类型1.通用型,2.分类专用型,3.商品专用型,4.店铺专用型",
+                                       default = 0)
 
     class Meta:
         db_table = 'Coupons'
@@ -431,8 +578,8 @@ class Coupons(models.Model):
     def natural_key(self):
         return {"id":self.id,
                 "name":self.name,
-                "moneyMin":self.moneyMin,
-                "moneyHreshold":self.moneyHreshold,
+                "money_min":self.money_min,
+                "money_hreshold":self.money_hreshold,
                 "is_active":self.is_active,
                 "date_add":self.date_add,
                 "coupons_type":self.coupons_type}
@@ -442,8 +589,10 @@ class Coupons(models.Model):
 class Coupons_users(models.Model):
     coupons_id = models.IntegerField(verbose_name = "优惠券id")
     user_id = models.IntegerField(verbose_name = "用户id")
-    date_add = models.DateTimeField(verbose_name = "优惠券添加的时间", default = timezone.now)
-    dateEndDays = models.DateTimeField(verbose_name = "优惠券截止时间", default = timezone.now)
+    date_add = models.DateTimeField(verbose_name = "优惠券添加的时间",
+                                    default = timezone.now)
+    date_end_days = models.DateTimeField(verbose_name = "优惠券截止时间",
+                                       default = timezone.now)
 
     class Meta:
         db_table = 'Coupons_users'
@@ -458,15 +607,23 @@ class Coupons_users(models.Model):
                 "coupons_id":self.coupons_id,
                 "user_id":self.user_id,
                 "date_add":self.date_add,
-                "dateEndDays":self.dateEndDays}
+                "date_end_days":self.date_end_days}
 
 
 class Book(models.Model):
-    coach = models.ForeignKey('WechatUser', on_delete = models.CASCADE, verbose_name = "教练id")
-    train_ground = models.ForeignKey('DriverSchool', on_delete = models.CASCADE, verbose_name = "训练场id")
-    length_time = models.FloatField(verbose_name = "预约时间长度")
-    book_time_start = models.IntegerField(verbose_name = "预约开始时间",default = datetime.now)
-    book_time_end = models.IntegerField(verbose_name = "预约结束时间", default = datetime.now)
+    coach = models.ForeignKey('WechatUser',
+                              related_name = 'coach_wechatuser',
+                              on_delete = models.CASCADE,
+                              verbose_name = "教练id")
+    user = models.ForeignKey('WechatUser',
+                             related_name = 'user_wechatuser',
+                             on_delete = models.DO_NOTHING,
+                             verbose_name = '学员')
+    train_ground = models.ForeignKey('DriverSchool',
+                                     on_delete = models.CASCADE,
+                                     verbose_name = "训练场id")
+    book_time_start = models.DateTimeField(verbose_name = "预约开始时间")
+    book_time_end = models.DateTimeField(verbose_name = "预约结束时间")
     last_active_time = models.DateTimeField('最近操作时间', auto_now=True)
     status = models.SmallIntegerField(verbose_name = '预约状态')
     
@@ -480,15 +637,20 @@ class Book(models.Model):
     
 
 class Bargain(models.Model):
-    goods_id = models.ForeignKey('Goods', on_delete = models.CASCADE, verbose_name = '货物')
+    goods_id = models.ForeignKey('Goods',
+                                 on_delete = models.CASCADE,
+                                 verbose_name = '货物')
     times = models.IntegerField(verbose_name = '砍价次数', default = 0)
 
     price = models.FloatField(verbose_name = '砍价当前价格')
-    minPrice = models.FloatField(verbose_name = '砍价最低价格')
-    calculate_method = models.SmallIntegerField(verbose_name = '砍价计算模式', choices = m_set.BARGAIN_CALCULATE_METHOD, max_length = 50)
+    min_price = models.FloatField(verbose_name = '砍价最低价格')
+    calculate_method = models.SmallIntegerField(verbose_name = '砍价计算模式',
+                                                choices = m_set.BARGAIN_CALCULATE_METHOD,
+                                                max_length = 50)
     expected_price = models.FloatField(verbose_name = '期望砍价价格') 
     expected_times = models.FloatField(verbose_name = '期望砍价次数') 
-    date_start = models.DateTimeField(verbose_name = '活动开始时间',auto_now_add = True)
+    date_start = models.DateTimeField(verbose_name = '活动开始时间',
+                                      auto_now_add = True)
     date_end = models.DateTimeField(verbose_name = '活动结束时间')
 
     class Meta:
@@ -504,7 +666,7 @@ class Bargain(models.Model):
                 "goods":self.goods_id.natural_key(),
                 "times":self.times,
                 "price":self.price,
-                "minPrice":self.minPrice,
+                "min_price":self.min_price,
                 "expected_price":self.expected_price,
                 "expected_times":self.expected_times,
                 "date_start":self.date_start,
@@ -512,9 +674,14 @@ class Bargain(models.Model):
 
 
 class BargainUser(models.Model):
-    bargain_id = models.ForeignKey('Bargain', on_delete = models.CASCADE, verbose_name = '砍价活动')
-    user_id = models.ForeignKey('WechatUser', on_delete = models.CASCADE, verbose_name = '砍价用户')
-    bargain_date = models.DateTimeField(verbose_name = "砍价发起时间", auto_now_add = True)
+    bargain_id = models.ForeignKey('Bargain',
+                                   on_delete = models.CASCADE,
+                                   verbose_name = '砍价活动')
+    user_id = models.ForeignKey('WechatUser',
+                                on_delete = models.CASCADE,
+                                verbose_name = '砍价用户')
+    bargain_date = models.DateTimeField(verbose_name = "砍价发起时间",
+                                        auto_now_add = True)
     class Meta:
         db_table = 'BargainUser'
         verbose_name = '砍价用户记录'
@@ -524,14 +691,21 @@ class BargainUser(models.Model):
         return self.bargain_id.goods_id.name+self.user_id.name
 
     def natural_key(self):
-        return {"id":self.id,"bargain_id":self.bargain_id.natural_key(),"user_id":self.user_id.natural_key()}
+        return {"id":self.id,
+                "bargain_id":self.bargain_id.natural_key(),
+                "user_id":self.user_id.natural_key()}
 
 
 class BargainFriend(models.Model):
-    bargainUser_id = models.ForeignKey('BargainUser', on_delete = models.CASCADE, verbose_name = '砍价发起用户')
-    bargainFriend_id = models.ForeignKey('WechatUser', on_delete = models.CASCADE, verbose_name = '参与砍价好友')
+    bargain_user_id = models.ForeignKey('BargainUser',
+                                       on_delete = models.CASCADE,
+                                       verbose_name = '砍价发起用户')
+    bargain_friend_id = models.ForeignKey('WechatUser',
+                                         on_delete = models.CASCADE,
+                                         verbose_name = '参与砍价好友')
     rank = models.IntegerField(verbose_name = "砍价次序")
-    dateAdd = models.DateTimeField(verbose_name = '砍价时间',auto_now_add = True)
+    date_add = models.DateTimeField(verbose_name = '砍价时间',
+                                   auto_now_add = True)
     class Meta:
         db_table = 'BargainFriend'
         verbose_name = '帮忙砍价的好友'
@@ -542,16 +716,22 @@ class BargainFriend(models.Model):
  
     def natural_key(self):
         return {"id":self.id,
-                "bargainUser_id":self.bargainUser_id.natural_key(),
-                "bargainFriend_id":self.bargainFriend_id.natural_key(),
+                "bargain_user_id":self.bargain_user_id.natural_key(),
+                "bargain_friend_id":self.bargain_friend_id.natural_key(),
                 "rank":self.rank}
 
 class GoodsReputation(models.Model):
-    goods_id = models.ForeignKey('Goods', on_delete = models.CASCADE, verbose_name = '商品')
-    user_id = models.ForeignKey('WechatUser', on_delete = models.DO_NOTHING, verbose_name = '评论用户')
-    goods_reputation_str = models.CharField(verbose_name = "评价级别", max_length = 20)
+    goods_id = models.ForeignKey('Goods',
+                                 on_delete = models.CASCADE,
+                                 verbose_name = '商品')
+    user_id = models.ForeignKey('WechatUser',
+                                on_delete = models.DO_NOTHING,
+                                verbose_name = '评论用户')
+    goods_reputation_str = models.CharField(verbose_name = "评价级别",
+                                            max_length = 20)
     goods_reputation_remark = models.TextField(verbose_name = "评论备注")
-    dates_reputation = models.DateTimeField(verbose_name = "评论日期",auto_now_add = True)
+    dates_reputation = models.DateTimeField(verbose_name = "评论日期",
+                                            auto_now_add = True)
 
     class Meta:
         db_table = 'GoodsReputation'

@@ -3,7 +3,10 @@ province,city,district data
 """
 
 
-
+"""
+user
+"""
+USER_TYPE = [(0,"普通用户"),(1,"店主"),(2,"教练")]
 
 
 """
