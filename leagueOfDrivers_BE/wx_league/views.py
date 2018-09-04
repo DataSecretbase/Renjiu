@@ -396,7 +396,7 @@ def coupons_my(request):
     if request.method == 'POST':
         cookie = request.POST.get('cookie')
         user = check_user(cookie)
-        goodsList = request.POST.get('goodsList')
+        goodsListId = request.POST.get('goodsListId')
         basicInfo = {"coupons_id":[]}
         if user == {}:
             return JsonResponse({"code":500,"msg":"请重新登录"})
@@ -405,14 +405,16 @@ def coupons_my(request):
             for info in coupons_query:
                 basicInfo['coupons_id'].append(info.coupons_id)
             coupons_list = []
-            if goodsList is None:
+            if goodsListId is None:
                 for coupons_id in basicInfo['coupons_id']:
                     coupons_list.append(Coupons.objects.filter(id = coupons_id)[0])
             else:
                 for coupons_id in basicInfo['coupons_id']:
                     coupons_query = Coupons.objects.get(id = coupons_id)
-                    for good in goodsList:
-                        if coupons_query.goods_id == good['pk']:
+                    for good in goodsListId:
+                        print(coupons_query.goods_id.id)
+                        print(good)
+                        if coupons_query.goods_id.id == good:
                             coupons_list.append(Coupons.objects.filter(id = coupons_id)[0])
                             break
             data = serializers_json(coupons_list)

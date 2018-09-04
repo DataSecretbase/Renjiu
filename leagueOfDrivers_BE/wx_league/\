@@ -275,16 +275,16 @@ class Order(models.Model):
     status = models.SmallIntegerField(verbose_name = '状态',
                                       choices = ORDER_STATUS,
                                       default = 0)
-    remark = models.CharField(verbose_name  = '备注', max_length = 100, blank = True)
-    linkman = models.CharField(verbose_name = '联系人', max_length = 100, blank = True)
-    phone = models.CharField(verbose_name = '手机号码', max_length = 50, blank = True)
+    remark = models.CharField(verbose_name  = '备注', max_length = 100, default='')
+    linkman = models.CharField(verbose_name = '联系人', max_length = 100, default = '')
+    phone = models.CharField(verbose_name = '手机号码', max_length = 50, default = '')
     #PROVINCE = ((0,"22"))
     province_id = models.SmallIntegerField(verbose_name='省', default = 0)
     #CITY = ((0,"22"))
     city_id = models.SmallIntegerField(verbose_name = '市', default = 0)
     district_id = models.SmallIntegerField(verbose_name = '区', default = 0)
-    address = models.CharField(verbose_name = '详细地址', max_length = 100, blank = True)
-    postcode = models.CharField(verbose_name = '邮政编码', max_length = 20, blank = True)
+    address = models.CharField(verbose_name = '详细地址', max_length = 100, default = '')
+    postcode = models.CharField(verbose_name = '邮政编码', max_length = 20, default = '')
     shipper_id = models.ForeignKey('Shipper',
                                    verbose_name='快递承运商',
                                    on_delete = models.DO_NOTHING,
@@ -293,7 +293,7 @@ class Order(models.Model):
                                        max_length = 200,
                                        blank = True)
     #display_traces = fields.Html('物流信息', compute='_compute_display_traces')
-    traces = models.TextField(verbose_name = '物流信息', blank = True)
+    traces = models.TextField(verbose_name = '物流信息', default = '')
     date_add = models.DateTimeField(verbose_name = '下单时间',
                                    default = timezone.now)
 
@@ -600,7 +600,7 @@ class Coupons_users(models.Model):
         verbose_name_plural = "用户领取的优惠券"
 
     def __str__(self):
-        return self.id
+        return "11"
 
     def natural_key(self):
         return {"id":self.id,
@@ -712,7 +712,7 @@ class BargainFriend(models.Model):
         verbose_name_plural = "帮忙砍价的好友"
 
     def __str__(self):
-        return self.bargain_user_id.user_id.name+self.bargain_friend_id.name
+        return self.bargainUser_id.user_id.name+self.bargainFriend_id.name
  
     def natural_key(self):
         return {"id":self.id,
@@ -747,46 +747,3 @@ class GoodsReputation(models.Model):
                 "goods_reputation_str":self.goods_reputation_str,
                 "goods_reputation_remark":self.goods_reputation_remark,
                 "dates_reputation":self.dates_reputation}
-
-
-
-#forum 论坛 社区 交流
-#社区 主题 表
-class Forum(models.Model):
-    user_id = models.ForeignKey('WechatUser',
-                         on_delete = models.DO_NOTHING,
-                         verbose_name = '帖子发表者')
-    title = models.CharField(max_length = 50,verbose_name = '标题')
-    content = models.TextField(verbose_name = '帖子内容')
-    repley_count = models.IntegerField(verbose_name = '回复数量')
-    time_add = models.DateTimeField(verbose_name = '添加时间',auto_now_add = True)
-    last_reply_time = models.DateTimeField(verbose_name = '最后回复时间',auto_now = True)
-
-    class Meta:
-        db_table = 'Forum'
-        verbose_name = '帖子'
-        verbose_name_plural = '帖子'
-
-    def __str__(self):
-        return self.user_id.name + self.title
-
-
-class ForumReply(models.Model):
-    forum_id = models.ForeignKey('Forum',
-                          on_delete = models.CASCADE,
-                          verbose_name = '论坛内容')
-    user_id = models.ForeignKey('WechatUser',
-                         on_delete = models.SET_DEFAULT,
-                         default = '用户已注销',
-                         verbose_name = '回复用户')
-    content = models.TextField(verbose_name = '回复内容')
-
-    class Meta:
-        db_table = 'ForumReply'
-        verbose_name = '帖子回复'
-        verbose_name_plural = '帖子回复'
-
-    def __str__(self):
-        return self.user_id.name+self.content
-
-
