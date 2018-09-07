@@ -768,7 +768,64 @@ def book_add(request):
     if bookSet_query.cur_book == bookSet_query.num_student:
         return JsonResponse({"code":500,"msg":"当前预约已满,请换一个时间段"})
     coach_query = WechatUser.objects.get(id = coach_id)
-    book_create = Book.objects.create(coach = coach_query,user = user, train_ground = DriverSchool.objects.get(name = train_ground), book_time_start = startTime_datetime,book_time_end = endTime_datetime,status = 1)
+    book_create = Book.objects.create(coach = coach_query,
+                                      user = user,
+                                      train_ground = DriverSchool.objects.get(name = train_ground),
+                                      book_time_start = startTime_datetime,
+                                      book_time_end = endTime_datetime,
+                                      status = 1)
     bookSet_query.cur_book +=1
     bookSet_query.save()
     return JsonResponse({"code":0,"data":"预约成功"})
+
+def topic_get(request):
+    if request.method == "POST":
+        page = request.POST.get("page")
+        pageSize = request.POST.get("pageSize")
+        topic_id = request.POST.get('topicId')
+        data_all = request.POST.get("all")
+        iconList = []
+        if data_all == "true":
+            category = Category.objects.all()
+            for icon in category:
+                iconList.append({"id":id,"icon":icon.icon.display_pic})
+            ser_ = serializers_json(category)
+            for x in range(len(ser_)):
+                ser_[x]["fields"]["icon"] = "https://qgdxsw.com:8000"+iconList[x]["icon"].url
+            return JsonResponse({"code":0, "data":ser_})
+        category_goods = check_goods(int(page),int(pageSize),category_id = int(category_id))
+        if category_goods == {}:
+            return JsonResponse({"code":400}) #code 100 没有查询结果
+        else:
+            for icon in category_goods:
+                iconList.append({"id":id,"pic":icon.pic.display_pic})
+            ser_ = serializers_json(category_goods)
+            for x in range(len(ser_)):
+                ser_[x]["fields"]["pic"] = "https://qgdxsw.com:8000"+iconList[x]["pic"].url
+            return JsonResponse({"code":0,"data":ser_})
+
+def add_book_time_set(request):
+    if request.method == 'GET':
+        cookie = request.GET.get("cookie")
+        set_type = request.GET.get("type")
+        date = request.GET.get("date")
+        user = check_user(cookie)
+        if user is {}:
+            return JsonResponse({'code':500,"msg":"请重新登录"})
+        if type_set == "default":
+            book_set_query = BookSet.objects.filter(coach_driver_school = \
+                                                    CoachDriverSchool.objects.filter(coach = user.id)[0].id,
+                                                    set_type = set_type)
+            if len(book_set_query) == 0:
+                book_set_query = BookSet.objects.create(coach_driver_school =\
+                                                        CoachDriverSchool.objects.get(coach = user.id),
+                                                        num_student = 3,
+                                                        set_type = 0)
+                book_set_id = book_set_query.id
+            else:
+                book_set_id = book_set_query[0].id
+                option = [{"title":x,"value":"%d:00" % x} for x in range(7,22)]
+                return JsonResponse({"code":0,"data":{"option":option,"book_set_id":book_set_id}})
+        elif type_set == "custom":
+                return JsonResponse({"code":0,"data":{"option":"option","book_set_id":"book_set_id"}})
+        

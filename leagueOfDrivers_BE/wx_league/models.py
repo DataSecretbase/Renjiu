@@ -55,10 +55,11 @@ class BookSet(models.Model):
                                            on_delete = models.CASCADE,
                                            verbose_name = '教练所属驾校')
     num_student = models.SmallIntegerField(verbose_name = "预约学生数量")
-    book_date_start = models.DateTimeField(verbose_name = "预约设置开始的日期")
-    book_date_end = models.DateTimeField(verbose_name = "预约设置结束的日期")
+    book_date_start = models.DateTimeField(verbose_name = "预约设置开始的日期",null = True)
+    book_date_end = models.DateTimeField(verbose_name = "预约设置结束的日期", null = True)
     cur_book = models.SmallIntegerField(verbose_name = "当前已经预约学生",default = 0)
     status = models.SmallIntegerField(verbose_name = "预约状态",default = 0)
+    set_type = models.SmallIntegerField(verbose_name = '设置类型',default = 0, choices = m_set.BOOK_SET_TYPE)
     class Meta:
         db_table = 'BookSet'
         verbose_name = '预约设置'
@@ -73,7 +74,9 @@ class BookSet(models.Model):
                 "coach_driver_school":self.coach_driver_school.natural_key(),
                 "num_student":self.num_student,
                 "book_datetime":self.book_datetime,
-                "status":self.status}
+                "cur_book":self.cur_book,
+                "status":self.status,
+                "set_type":self.get_set_type_display()}
 
 
 class CoachDriverSchool(models.Model):
@@ -758,6 +761,9 @@ class Forum(models.Model):
                          verbose_name = '帖子发表者')
     title = models.CharField(max_length = 50,verbose_name = '标题')
     content = models.TextField(verbose_name = '帖子内容')
+    Topic_id = models.ForeignKey('Topic',
+                                 on_delete = models.DO_NOTHING,
+                                 verbose_name = '主题')
     repley_count = models.IntegerField(verbose_name = '回复数量')
     time_add = models.DateTimeField(verbose_name = '添加时间',auto_now_add = True)
     last_reply_time = models.DateTimeField(verbose_name = '最后回复时间',auto_now = True)
@@ -771,6 +777,41 @@ class Forum(models.Model):
         return self.user_id.name + self.title
 
 
+class Topic(models.Model):
+    name = models.CharField(max_length = 30, verbose_name = '主题名字') 
+    description = models.CharField(max_length = 255, verbose_name = '主题介绍')
+    eng_name = models.CharField(verbose_name = '名称(英文)', max_length = 100)
+    pid = models.ForeignKey('Category',
+                            verbose_name='上级主题',
+                            on_delete = models.SET_DEFAULT,
+                            default = 0)
+    icon = models.ForeignKey('Icon',
+                             verbose_name='图标',
+                             on_delete = models.CASCADE)
+    level = models.SmallIntegerField(verbose_name='分类级别')
+    is_use = models.BooleanField(verbose_name='是否启用', default=True)
+    sort = models.IntegerField(verbose_name='排序')
+
+    class Meta:
+        db_table = 'Topic'
+        verbose_name = '主题'
+        verbose_name_plural = '主题'
+
+    def __str__(self):
+        return self.name
+
+    def natural_key(self):
+        return {'id':self.id,
+                'name':self.name,
+                'description':self.description,
+                'eng_name':self.eng_name,
+                'pid':self.pid,
+                'icon':self.icon,
+                'level':self.level,
+                'is_use':self.is_use,
+                'sort':self.sort}
+
+ 
 class ForumReply(models.Model):
     forum_id = models.ForeignKey('Forum',
                           on_delete = models.CASCADE,
