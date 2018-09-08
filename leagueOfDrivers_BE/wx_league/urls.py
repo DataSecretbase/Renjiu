@@ -36,5 +36,7 @@ urlpatterns = [
     url('^isenrol', views.is_enrol, name = 'datein'),
     url('^coach/list', views.coach_list, name = 'datein'),
     url('^book/add', views.book_add, name = 'datein'),
+    url('^booksets/add', views.booksets_add, name = 'datein'),
+    url('^booksets/all', views.booksets_all, name = 'datein'),
     
 ]

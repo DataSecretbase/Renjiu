@@ -628,7 +628,7 @@ class Book(models.Model):
     book_time_start = models.DateTimeField(verbose_name = "预约开始时间")
     book_time_end = models.DateTimeField(verbose_name = "预约结束时间")
     last_active_time = models.DateTimeField('最近操作时间', auto_now=True)
-    status = models.SmallIntegerField(verbose_name = '预约状态')
+    status = models.SmallIntegerField(verbose_name = '预约状态',default = 0)
     
     class Meta:
         db_table = 'Book'
