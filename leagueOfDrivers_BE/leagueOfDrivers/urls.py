@@ -21,6 +21,8 @@ from wx_league import urls as user_urls
 from email_manage import urls as email_urls
 from django.conf.urls.static import static
 from . import settings
+import xadmin
+
 
 router = routers.DefaultRouter()
 router.register(r'coupons', views.CouponsViewSet)
@@ -28,6 +30,7 @@ router.register(r'coupons', views.CouponsViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('xadmin/', xadmin.site.urls),
     path('admin/', admin.site.urls),
     path('league/',include(user_urls)),
     path('email/',include(email_urls)),
