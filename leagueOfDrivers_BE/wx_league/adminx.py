@@ -154,9 +154,149 @@ class CategoryAdmin(object):
     search_fields = ['id','name','eng_name','category_type','pid','level']
     list_filter = ['category_type','pid','level','is_use']
     model_icon = 'fa fa-book'
-    ordering = ['-category_type','pid','sort']
+    ordering = ['-category_type','-pid','-sort']
     readonly_fields = ['category_type']
 
 xadmin.site.register(Category,CategoryAdmin)
 
 
+class IconAdmin(object):
+    list_display = ['id','name','display_pic']
+    search_fields = ['name']
+    model_icon = 'fa fa-book'
+    ordering = ['-id']
+    
+xadmin.site.register(Icon,IconAdmin)
+
+
+class AttachmentAdmin(object):
+    list_display = ['id','owner_id','display_pic']
+    search_fields = ['owner_id']
+    model_icon = 'fa fa-book'
+    ordering = ['-id','-owner_id']
+
+xadmin.site.register(Attachment,AttachmentAdmin)
+
+
+class PaymentAdmin(object):
+    list_display = ['id','order_id','payment_number','wechat_user_id',
+                    'price','status','openid','result_code',
+                    'err_code','err_code_des','transaction_id','bank_type',
+                    'fee_type','total_fee','settlement_total_fee','cash_fee',
+                    'cash_fee_type','coupon_fee','coupon_count']
+    search_fields = ['order_id','payment_number','wechat_user_id','price','status']
+    list_filter = ['price','stauts','result_code','err_code',
+                   'transaction_id','bank_type','fee_type','cash_fee_type']
+    model_icon = 'fa fa-book'
+    ordering = ['-order_id','-payment_number','-price']
+    
+xadmin.site.register(Payment,PaymentAdmin)
+
+
+class CouponsAdmin(object):
+    list_display = ['id','name','money_min','money_hreshold',
+                    'date_end_type','goods_id','is_active','date_add','coupons_type']
+    search_fields = ['name','money_min','money_hreshole','date_end_type','goods_id']
+    list_filter = ['money_min','money_hreshold','date_end_type','is_active','date_end_type']
+    model_icon = 'fa fa-book'
+    ordering = ['-money_min','-money_hreshold','-goods_id','-date_add']
+    readonly_fields = ['date_add']
+
+xadmin.site.register(Coupons,CouponsAdmin)
+
+
+class Coupons_usersAdmin(object):
+    list_display = ['id','coupons_id','user_id','date_add','date_end_days']
+    search_fields = ['coupons_id','user_id']
+    list_filter = ['date_add','date_end_days']
+    model_icon = 'fa fa-book'
+    ordering = ['-coupons_id','-date_add','-date_end_days','-user_id']
+    readonly_fields = ['coupons_id','user_id','date_add','date_end_days']
+
+xadmin.site.register(Coupons_users,Coupons_usersAdmin)
+
+
+class BookAdmin(object):
+    list_display = ['id','coach','user','train_ground','book_time_start','book_time_end','last_active_time','status']
+    search_fields = ['coach','user','train_ground']
+    list_filter = ['book_time_start','book_time_end','last_active_time','status']
+    model_icon = 'fa fa-book'
+    ordering = ['-book_time_start','-book_time_end','-last_active_time']
+    readonly_fields = ['coach','user','train_ground','book_time_start','book_time_end','last_active_time','status']
+    
+xadmin.site.register(Book,BookAdmin)
+
+
+class BargainAdmin(object):
+    list_display = ['id','goods_id','times','price',
+                    'min_price','calculate_method','expected_price','expected_times',
+                    'date_start','date_end']
+    search_fields = ['goods_id']
+    list_filter = ['times','price','min_price','caculate_method',
+                   'expected_price','expected_times','date_start','date_end']
+    model_icon = 'fa fa-book'
+    ordering = ['-times','-price','-min_price','-expected_price',
+                '-expected_times','-date_start','-date_end']
+
+xadmin.site.register(Bargain,BargainAdmin)
+
+
+class BargainUserAdmin(object):
+    list_display = ['id','bargain_id','user_id','bargain_date']
+    search_fields = ['bargain_id','user_id']
+    list_filter = ['bargain_date']
+    model_icon = 'fa fa-book'
+    ordering = ['-bargain_date']
+
+xadmin.site.register(BargainUser,BargainUserAdmin)
+
+
+class BargainFriendAdmin(object):
+    list_display = ['id','bargain_user_id','bargain_friend_id','rank','date_add']
+    search_fields = ['bargain_user_id','bargain_friend_id']
+    list_filter = ['rank','date_add']
+    model_icon = 'fa fa-book'
+    ordering = ['-rank','date_add']
+    readonly_fields = ['bargain_user_id','bargain_friend_id','rank','date_add']
+
+xadmin.site.register(BargainFriend,BargainFriendAdmin)
+
+
+class GoodsReputationAdmin(object):
+    list_display = ['id','goods_id','user_id','goods_reputation_str','goods_reputation_remark','dates_reputation']
+    search_fields = ['goods_id','user_id']
+    list_filter = ['dates_reputations']
+    model_icon = 'fa fa-book'
+    ordering = ['dates_reputation']
+    readonly_fields = ['goods_id','user_id','goods_reputation_str','goods_reputation_remark','dates_reputation']
+
+xadmin.site.register(GoodsReputation,GoodsReputationAdmin)
+
+
+class ForumAdmin(object):
+    list_display = ['id','user_id','title','content','Topic_id','repley_count','time_add','last_replay_time']
+    search_fields = ['user_id','title','Topic_id']
+    list_filter = ['repley_count','time_add','last_replay_time']
+    model_icon = 'fa fa-book'
+    ordering = ['-repley_count','-time_add','last_replay_time']
+    readonly_fields = ['user_id','content','repley_count','time_add','last_replay_time']
+
+xadmin.site.register(Forum,ForumAdmin)
+
+
+class TopicAdmin(object):
+    list_display = ['id','name','description','eng_name','pid','icon','level','is_use','sort']
+    search_fields = ['name','eng_name','level']
+    list_filter = ['pid','level','is_use','sort']
+    model_icon = 'fa fa-book'
+    ordering = ['-level','sort']
+
+xadmin.site.register(Topic, TopicAdmin)
+
+
+class ForumReplyAdmin(object):
+    list_display = ['id','forum_id','user_id','content']
+    search_fields = ['forum_id','user_id']
+    model_icon = 'fa fa-book'
+    
+xadmin.site.register(ForumReply,ForumReplyAdmin)
