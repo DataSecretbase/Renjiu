@@ -134,7 +134,8 @@ def verify(request):
                 username = openid,
                 password = passwd,
                 openid = openid,
-                cookie = res['cookie']
+                cookie = res['cookie'],
+                avatar = Icon.objects.get(name = '用户头像')
             )
             new_user = authenticate(username = openid, password = openid)
             login(request, new_user)
@@ -957,3 +958,20 @@ def booksets_update(request):
         if date_end is not None:
             book_set_query.book_date_end = date_end
         return JsonResponse({"code":0})
+
+
+def forum_add(request):
+    if request.method == 'GET':
+        cookie = request.GET.get("cookie")
+        title = request.GET.get("title")
+        content = request.GET.get("content")
+        topic = request.GET.get("topic")
+        user = check_user(cookie)
+        if user is {}:
+            return JsonResponse({"code":500,"msg":"请重新登录"})
+        forum_query = Forum.objects.create(user_id = user,
+                                           title = title, 
+                                           content = content, 
+                                           topic = Topic.objects.get(name = title))
+        return JsonResponse({"code":0,"msg":"帖子发表成功"})
+

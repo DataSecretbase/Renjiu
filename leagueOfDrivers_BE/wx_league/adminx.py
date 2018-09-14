@@ -78,7 +78,7 @@ class GoodsAdmin(object):
                     'views','weight']
     search_fields = ['id','category_id','name','original_price']
     list_filter = ['date_add','date_start','date_update','logistics_id',
-                   'minsocre','number_fav','number_good_reputation','number_orders',
+                   'min_score','number_fav','number_good_reputation','number_orders',
                    'original_price','recommend_status','status']
     model_icon = 'fa fa-book'
     ordering = ['-id','-category_id','-date_add','-date_start',
@@ -100,7 +100,7 @@ class OrderAdmin(object):
     list_filter = ['coupons_id','number_goods','goods_price','logistics_id',
                    'status','date_add']
     model_icon = 'fa fa-book'
-    ordering = ['-id','-goods_price','-logitics_price','-total',
+    ordering = ['-id','-goods_price','-logistics_price','-total',
                 '-province_id','-city_id','-district_id','-shipper_id']
     readonly_fields = ['number_goods','goods_price','coupons_id',
                     'logistics_id','logistics_price','total','status',
@@ -185,7 +185,7 @@ class PaymentAdmin(object):
                     'fee_type','total_fee','settlement_total_fee','cash_fee',
                     'cash_fee_type','coupon_fee','coupon_count']
     search_fields = ['order_id','payment_number','wechat_user_id','price','status']
-    list_filter = ['price','stauts','result_code','err_code',
+    list_filter = ['price','status','result_code','err_code',
                    'transaction_id','bank_type','fee_type','cash_fee_type']
     model_icon = 'fa fa-book'
     ordering = ['-order_id','-payment_number','-price']
@@ -232,7 +232,7 @@ class BargainAdmin(object):
                     'min_price','calculate_method','expected_price','expected_times',
                     'date_start','date_end']
     search_fields = ['goods_id']
-    list_filter = ['times','price','min_price','caculate_method',
+    list_filter = ['times','price','min_price','calculate_method',
                    'expected_price','expected_times','date_start','date_end']
     model_icon = 'fa fa-book'
     ordering = ['-times','-price','-min_price','-expected_price',
@@ -265,7 +265,7 @@ xadmin.site.register(BargainFriend,BargainFriendAdmin)
 class GoodsReputationAdmin(object):
     list_display = ['id','goods_id','user_id','goods_reputation_str','goods_reputation_remark','dates_reputation']
     search_fields = ['goods_id','user_id']
-    list_filter = ['dates_reputations']
+    list_filter = ['dates_reputation']
     model_icon = 'fa fa-book'
     ordering = ['dates_reputation']
     readonly_fields = ['goods_id','user_id','goods_reputation_str','goods_reputation_remark','dates_reputation']
@@ -274,12 +274,12 @@ xadmin.site.register(GoodsReputation,GoodsReputationAdmin)
 
 
 class ForumAdmin(object):
-    list_display = ['id','user_id','title','content','Topic_id','repley_count','time_add','last_replay_time']
+    list_display = ['id','user_id','title','content','Topic_id','repley_count','time_add','last_reply_time']
     search_fields = ['user_id','title','Topic_id']
-    list_filter = ['repley_count','time_add','last_replay_time']
+    list_filter = ['repley_count','time_add','last_reply_time']
     model_icon = 'fa fa-book'
-    ordering = ['-repley_count','-time_add','last_replay_time']
-    readonly_fields = ['user_id','content','repley_count','time_add','last_replay_time']
+    ordering = ['-repley_count','-time_add','last_reply_time']
+    readonly_fields = ['user_id','content','repley_count','time_add','last_reply_time']
 
 xadmin.site.register(Forum,ForumAdmin)
 

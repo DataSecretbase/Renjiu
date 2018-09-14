@@ -1,0 +1,41 @@
+[33m5084737[m HEAD@{0}: pull: Fast-forward
+[33md93bbaa[m HEAD@{1}: commit: feat book settingsfix No coupon has been filtered out of date.
+[33m12cf4ab[m HEAD@{2}: commit: api user exam manage
+[33mb6eaa63[m HEAD@{3}: commit: bargain api
+[33m2ebd269[m HEAD@{4}: pull: Merge made by the 'recursive' strategy.
+[33m94886b6[m HEAD@{5}: commit: joinus parter
+[33mff00342[m HEAD@{6}: commit: freeze lib
+[33m622eb68[m HEAD@{7}: pull: Fast-forward
+[33mec59e9f[m HEAD@{8}: pull: Merge made by the 'recursive' strategy.
+[33m0783d29[m HEAD@{9}: commit: order
+[33m8a2f136[m HEAD@{10}: commit: image display
+[33mc8c72f1[m HEAD@{11}: pull: Merge made by the 'recursive' strategy.
+[33m6779c76[m HEAD@{12}: commit: static rm
+[33m3e13b39[m HEAD@{13}: merge upstream/master: Merge made by the 'recursive' strategy.
+[33m0a72270[m HEAD@{14}: commit (merge): static file
+[33mb8cb91c[m HEAD@{15}: commit: add navigator diy
+[33mf2b694d[m HEAD@{16}: pull: Fast-forward
+[33m67be66e[m HEAD@{17}: checkout: moving from master to master
+[33m67be66e[m HEAD@{18}: pull: Merge made by the 'recursive' strategy.
+[33m7a4c966[m HEAD@{19}: checkout: moving from master to master
+[33m7a4c966[m HEAD@{20}: checkout: moving from master to master
+[33m7a4c966[m HEAD@{21}: commit: deconstruct imagefield upload to img /%Y/%M/%D uuic4 = randomint format filepath
+[33mafc32a2[m HEAD@{22}: commit: coupons fetch
+[33m2f379eb[m HEAD@{23}: commit: shangcheng
+[33mf6f0f63[m HEAD@{24}: commit: add coupons rest api
+[33ma7a283b[m HEAD@{25}: commit: add check password to let hash
+[33mc900bfa[m HEAD@{26}: commit: rm cache
+[33m4fbafe6[m HEAD@{27}: commit: add rest api
+[33md7ccef3[m HEAD@{28}: commit: add model coupons
+[33mbc3c701[m HEAD@{29}: commit: add api goods_detail
+[33m8880f22[m HEAD@{30}: commit: add api goods detial
+[33m319ed09[m HEAD@{31}: merge upstream/master: Fast-forward
+[33m5c23418[m HEAD@{32}: checkout: moving from master to master
+[33m5c23418[m HEAD@{33}: checkout: moving from master to master
+[33m5c23418[m HEAD@{34}: commit: add address list detail
+[33mfe24d00[m HEAD@{35}: commit: add auth login
+[33mf7a8105[m HEAD@{36}: commit: add api notice
+[33madb11d4[m HEAD@{37}: commit: add league
+[33me37e04d[m HEAD@{38}: commit: delete pip package
+[33m6cfb91b[m HEAD@{39}: commit: league of drivering school
+[33md3178f6[m HEAD@{40}: clone: from https://github.com/developertqw2017/Renjiu.git
