@@ -29,7 +29,7 @@
                 <view class="price-box">
                     <view class="total-price">合计：¥ {{childItem.fields.goods_price}}</view>
                     <view class="btn cancel-btn" hidden="{{childItem.fields.status==0? false : true}}" bindtap="cancelOrderTap"  data-id="{{childItem.pk}}">取消订单</view>
-                    <view class="btn topay-btn" hidden="{{childItem.fields.status==0? fslse : true}}" bindtap="toPayTap" data-id="{{childItem.fields.id}}" data-money="{{childItem.fields.total}}">马上付款</view>        
+                    <view class="btn topay-btn" hidden="{{childItem.fields.status==0? fslse : true}}" bindtap="toPayTap" data-id="{{childItem.pk}}" data-money="{{childItem.fields.total}}">马上付款</view>        
                 </view>  
               </view>
             </scroll-view>

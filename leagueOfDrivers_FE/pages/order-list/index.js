@@ -126,22 +126,10 @@ Page({
   toPayTap: function (e) {
     var that = this;
     var orderId = e.currentTarget.dataset.id;
+    console.log(e)
     var money = e.currentTarget.dataset.money;
-    wx.request({
-      url: 'https://qgdxsw.com:8000/league/check/user',
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
-      method: "POST",
-      data: {
-        cookie: wx.getStorageSync('cookie')
-      },
-      success: function (res) {
-        if (res.data.code == 0) {
-          // res.data.data.balance
-          money = money - res.data.data.balance;
-          if (money <= 0) {
-            // 直接使用余额支付
-            wx.request({
-              url: app.globalData.baseUrl + '/order/pay',
+          wx.request({
+            url: 'https://qgdxsw.com:8000/league/order/pay',
               method:'POST',
               header: {
                 'content-type': 'application/x-www-form-urlencoded'
@@ -156,18 +144,47 @@ Page({
                 });
               }
             })
-          } else {
-            wxpay.wxpay(app, money, orderId, "/pages/order-list/index");
-          }
-        } else {
-          wx.showModal({
-            title: '错误',
-            content: '无法获取用户资金信息',
-            showCancel: false
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          wx.request({
+            url: 'https://qgdxsw.com:8000/league/order/pay',
+            method: 'POST',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+              cookie: wx.getStorageSync('cookie'),
+              orderId: orderId
+            },
+            success: function (res) {
+              console.log(res.data)
+              wx.requestPayment({
+                timeStamp: res.data.timeStamp,
+                nonceStr: res.data.nonceStr,
+                package: res.data.package,
+                signType: 'MD5',
+                paySign: res.data.paySign,
+                success: function (res) {
+                  // success
+                  console.log(res);
+                },
+                fail: function (res) {
+                  // fail
+                  console.log(res);
+                },
+                complete: function (res) {
+                  // complete
+                  console.log(res);
+                }
+              })
+            }
           })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
         }
       }
-    })
+    });
     wxpay.wxpay(app, money, orderId, "/pages/order-list/index");
   },
   onHide:function(){

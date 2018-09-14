@@ -6,6 +6,7 @@ Page({
     coupons:[]
   },
   onLoad: function () {
+    getMyCoupons();
   },
   onShow : function () {
     this.getMyCoupons();

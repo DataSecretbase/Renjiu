@@ -23,12 +23,15 @@
     "pages/my-footprint/index",
     "pages/my-customerService/index",
     "pages/my-setUp/index",
-    "pages/community/community",
     "pages/tologin/index",
     "pages/stubook/index",
     "components/joinus/index",
     "pages/joinus/index",
-    "pages/kanjia/index"
+    "pages/kanjia/index",
+    "pages/tribune/index",
+    "pages/profile/index",
+    "pages/booksettings/index",
+    "pages/book-set/index"
   ],
   "window": {
     "navigationBarTextStyle": "#ffffff",
@@ -73,7 +76,10 @@
     "myPlugin": {
       "version": "1.0.0",
       "provider": "wx84472d5652384779"
+    },
+    "myPlugins": {
+      "version": "2.0.0",
+      "provider": "wx6b6cb15df2836ebe"
     }
   }
-  
 }

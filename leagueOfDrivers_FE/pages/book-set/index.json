@@ -1,0 +1,18 @@
+{
+  "navigationBarTitleText": "WhiteSpace",
+  "usingComponents": {
+    "yycalendar": "plugin://myPlugins/yycalendar",
+    "van-slider": "/dist/vant_dist/slider/index",
+    "van-badge": "/dist/vant_dist/badge/index",
+    "van-badge-group": "/dist/vant_dist/badge-group/index",
+    "van-row": "/dist/vant_dist/row/index",
+    "van-col": "/dist/vant_dist/col/index",
+    "wux-white-space": "/dist/wux_dist/white-space/index",
+    "wux-segmented-control": "/dist/wux_dist/segmented-control/index",
+    "wux-cell-group": "/dist/wux_dist/cell-group/index",
+    "wux-cell": "/dist/wux_dist/cell/index",
+    "wux-select": "/dist/wux_dist/select/index",
+    "wux-icon": "/dist/wux_dist/icon/index",
+    "wux-button": "/dist/wux_dist/button/index"
+    }
+}

@@ -244,13 +244,21 @@ Page({
   },
   getMyCoupons: function () {
     var that = this;
+    console.log('that.data.goodsList')
+    var goodsList = that.data.goodsList
+    var goodsListId = []
+    for(var x in goodsList){
+      goodsListId.push(goodsList[x]['goodsId'])
+    }
+    console.log(goodsListId)
     wx.request({
       url: 'https://qgdxsw.com:8000/league/coupons/my',
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       method: "POST",
       data: {
         cookie: wx.getStorageSync('cookie'),
-        status:0
+        status:0,
+        goodsList: goodsListId
       },
       success: function (res) {
         console.log(res.data.data)
