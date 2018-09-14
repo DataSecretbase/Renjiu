@@ -9,6 +9,9 @@ from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms.models import model_to_dict
 
+from rest_framework.decorators import api_view
+
+
 from django.core.mail import send_mail
 from django.conf import settings
 from .serializers import CouponsSerializer
@@ -26,6 +29,8 @@ import requests
 
 import datetime
 
+from . import config
+from wechatpy.pay import WeChatPay
 # Create your views here.
 
 
@@ -396,7 +401,7 @@ def coupons_my(request):
     if request.method == 'POST':
         cookie = request.POST.get('cookie')
         user = check_user(cookie)
-        goodsList = request.POST.get('goodsList')
+        goodsListId = request.POST.get('goodsListId')
         basicInfo = {"coupons_id":[]}
         if user == {}:
             return JsonResponse({"code":500,"msg":"请重新登录"})
@@ -405,14 +410,16 @@ def coupons_my(request):
             for info in coupons_query:
                 basicInfo['coupons_id'].append(info.coupons_id)
             coupons_list = []
-            if goodsList is None:
+            if goodsListId is None:
                 for coupons_id in basicInfo['coupons_id']:
                     coupons_list.append(Coupons.objects.filter(id = coupons_id)[0])
             else:
                 for coupons_id in basicInfo['coupons_id']:
                     coupons_query = Coupons.objects.get(id = coupons_id)
-                    for good in goodsList:
-                        if coupons_query.goods_id == good['pk']:
+                    for good in goodsListId:
+                        print(coupons_query.goods_id.id)
+                        print(good)
+                        if coupons_query.goods_id.id == good:
                             coupons_list.append(Coupons.objects.filter(id = coupons_id)[0])
                             break
             data = serializers_json(coupons_list)
@@ -528,22 +535,73 @@ def order_detail(request):
         ser_ = serializers_json(order_obj)
         return JsonResponse({"code":0,"data":ser_})
 
+def get_user_info(js_code):
+    """
+    使用 临时登录凭证code 获取 session_key 和 openid 等
+    支付部分仅需 openid，如需其他用户信息请按微信官方开发文档自行解密
+    """
+    req_params = {
+        'appid': config.APPINFO["appid"],
+        'secret': config.APPINFO["secret"],
+        'js_code': js_code,
+        'grant_type': 'authorization_code',
+    }
+    user_info = requests.get('https://api.weixin.qq.com/sns/jscode2session', 
+                              params=req_params, timeout=3, verify=False)
+    return user_info.json()
+
+
+
+
 @csrf_exempt
 def order_pay(request):
     if request.method == "POST":
         cookie = request.POST.get('cookie')
-        remark = request.POST.get('remark')
-        goodsJsonStr = request.POST.get('goodsJsonStr')
-        payOnDelivery = request.POST.get('payOnDelivery')
+        order_id = request.POST.get('order_id')
+        openid = get_user_info(code)['openid']
         user = check_user(cookie)
         if user == {}:
             return JsonResponse({"code":0,"msg":"请重新登录"})
-        order = Order.objects.create(wechat_user_id = user,\
-                                     status = 0,\
-                                     remark = remark,\
-                                     logistics_id = Logistics.objects.get(id = 1)
-                                     )
-        goods_list = json.loads(goodsJsonStr)
+        pay = WeChatPay(config.APPINFO['appid'], settings.WECHAT['MERCHANT_KEY'], settings.WECHAT['MCH_ID'])
+        order = pay.order.create(
+            trade_type = config.WECHAT['TRADE_TYPE'],     # 交易类型，小程序取值：JSAPI
+            body = config.WECHAT['BODY'],                 # 商品描述，商品简单描述
+            total_fee = config.WECHAT['TOTAL_FEE'],       # 标价金额，订单总金额，单位为分
+            notify_url = config.WECHAT['NOTIFY_URL'],    
+            user_id = openid                          
+        )
+        wxpay_params = pay.jsapi.get_jsapi_params(order['prepay_id'])
+        order = Order.objects.get(id = order_id)
+        order.status = 5
+        order.save()
+        return JsonResponse({"code":0,"data":"wxpay_params"})
+
+@api_view(['GET', 'POST'])
+def wxpayNotify(request):
+    _xml = request.body
+    #拿到微信发送的xml请求 即微信支付后的回调内容
+    xml = str(_xml, encoding="utf-8")
+    print("xml", xml)
+    return_dict = {}
+    tree = et.fromstring(xml)
+    #xml 解析
+    return_code = tree.find("return_code").text
+    try:
+        if return_code == 'FAIL':
+            # 官方发出错误
+            return_dict['message'] = '支付失败'
+            #return Response(return_dict, status=status.HTTP_400_BAD_REQUEST)
+        elif return_code == 'SUCCESS':
+        #拿到自己这次支付的 out_trade_no 
+            _out_trade_no = tree.find("out_trade_no").text
+                #这里省略了 拿到订单号后的操作 看自己的业务需求
+    except Exception as e:
+        pass
+    finally:
+        return HttpResponse(return_dict, status=status.HTTP_200_OK)
+
+
+
 
 def datein(request):
 
@@ -762,11 +820,140 @@ def book_add(request):
                                             book_date_start = startTime_datetime,
                                             book_date_end = endTime_datetime)
     except ObjectDoesNotExist:
-        return JsonResponse({"code":500,"msg":"不能查找到预约设置"})
+        bookSet_query = BookSet.objects.create(coach_driver_school = coachDriverSchool_query, num_student = 3, book_date_start = startTime_datetime, book_date_end = endTime_datetime, set_type = 1)
     if bookSet_query.cur_book == bookSet_query.num_student:
         return JsonResponse({"code":500,"msg":"当前预约已满,请换一个时间段"})
     coach_query = WechatUser.objects.get(id = coach_id)
-    book_create = Book.objects.create(coach = coach_query,user = user, train_ground = DriverSchool.objects.get(name = train_ground), book_time_start = startTime_datetime,book_time_end = endTime_datetime,status = 1)
+    book_create = Book.objects.create(coach = coach_query,
+                                      user = user,
+                                      train_ground = DriverSchool.objects.get(name = train_ground),
+                                      book_time_start = startTime_datetime,
+                                      book_time_end = endTime_datetime,
+                                      status = 0)
     bookSet_query.cur_book +=1
     bookSet_query.save()
     return JsonResponse({"code":0,"data":"预约成功"})
+
+def topic_get(request):
+    if request.method == "POST":
+        page = request.POST.get("page")
+        pageSize = request.POST.get("pageSize")
+        topic_id = request.POST.get('topicId')
+        data_all = request.POST.get("all")
+        iconList = []
+        if data_all == "true":
+            category = Category.objects.all()
+            for icon in category:
+                iconList.append({"id":id,"icon":icon.icon.display_pic})
+            ser_ = serializers_json(category)
+            for x in range(len(ser_)):
+                ser_[x]["fields"]["icon"] = "https://qgdxsw.com:8000"+iconList[x]["icon"].url
+            return JsonResponse({"code":0, "data":ser_})
+        category_goods = check_goods(int(page),int(pageSize),category_id = int(category_id))
+        if category_goods == {}:
+            return JsonResponse({"code":400}) #code 100 没有查询结果
+        else:
+            for icon in category_goods:
+                iconList.append({"id":id,"pic":icon.pic.display_pic})
+            ser_ = serializers_json(category_goods)
+            for x in range(len(ser_)):
+                ser_[x]["fields"]["pic"] = "https://qgdxsw.com:8000"+iconList[x]["pic"].url
+            return JsonResponse({"code":0,"data":ser_})
+
+def booksets_add(request):
+    if request.method == 'GET':
+        cookie = request.GET.get("cookie")
+        set_type = request.GET.get("type")
+        date = request.GET.get("date")
+        user = check_user(cookie)
+        if user is {}:
+            return JsonResponse({'code':500,"msg":"请重新登录"})
+        if set_type == "default":
+            book_set_query = BookSet.objects.filter(coach_driver_school = \
+                                                    CoachDriverSchool.objects.filter(coach = user.id)[0].id,
+                                                    set_type = 0)
+            if len(book_set_query) == 0:
+                book_set_query = BookSet.objects.create(coach_driver_school =\
+                                                        CoachDriverSchool.objects.get(coach = user.id),
+                                                        num_student = 3,
+                                                        set_type = 0)
+                book_set_id = book_set_query.id
+            else:
+                book_set_id = book_set_query[0].id
+                option = [{"value":x,"title":"%d:00" % x} for x in range(7,22)]
+                return JsonResponse({"code":0,"data":{"option":option,"book_set_id":book_set_id}})
+        elif set_type == "custom":
+            book_set_query = BookSet.objects.filter(coach_driver_school = \
+                                                    CoachDriverSchool.objects.filter(coach = user.id)[0].id,
+                                                    set_type = 1)
+            if len(book_set_query) == 0:
+                book_set_query = BookSet.objects.create(coach_driver_school =\
+                                                        CoachDriverSchool.objects.get(coach = user.id),
+                                                        num_student = 3,
+                                                        set_type = 0)
+                book_set_id = book_set_query.id
+            else:
+                book_set_id = book_set_query[0].id
+                option = [{"value":x,"title":"%d:00" % x} for x in range(7,22)]
+                return JsonResponse({"code":0,"data":{"option":option,"book_set_id":book_set_id}})
+       
+
+def booksets_all(request):
+    if request.method == 'GET':
+        cookie = request.GET.get("cookie")
+        set_type = request.GET.get("set_type")
+        date = request.GET.get("date")
+        user = check_user(cookie)
+        if user is {}:
+            return JsonResponse({'code':500,"msg":"请重新登录"})
+        if set_type == "default":
+            book_set_query = BookSet.objects.filter(coach_driver_school = \
+                                                    CoachDriverSchool.objects.filter(coach = user.id)[0].id,
+                                                    set_type = 0)
+            if len(book_set_query) == 0:
+                book_set_query = BookSet.objects.create(coach_driver_school =\
+                                                        CoachDriverSchool.objects.filter(coach = user.id),
+                                                        num_student = 3,
+                                                        set_type = 0)
+                book_set_id = book_set_query.id
+            else:
+                book_set_id = [x.id for x in book_set_query]
+                option = [{"value":x,"title":"%d:00" % x} for x in range(7,22)]
+                return JsonResponse({"code":0,"data":{"option":option,"book_set_id":book_set_id}})
+            
+        elif set_type == 'custom':
+            book_set_query = BookSet.objects.filter(coach_driver_school = \
+                                                    CoachDriverSchool.objects.filter(coach = user.id)[0].id,
+                                                    set_type = 1)
+            if len(book_set_query) == 0:
+                book_set_query = BookSet.objects.filter(coach_driver_school =\
+                                                        CoachDriverSchool.objects.filter(coach = user.id)[0].id,
+                                                        set_type = 0,
+                                                        book_date_start = date)
+                book_set_id = book_set_query[0].id
+            else:
+                coustom_set_id = [x.id for x in book_set_query]
+                option = [{"value":x,"title":"%d:00" % x} for x in range(7,22)]
+                return JsonResponse({"code":0,"data":{"option":option,"book_set_id":custom_set_id}})
+ 
+
+def booksets_update(request):
+    if request.method == 'GET':
+        cookie = request.GET.get("cookie")
+        set_id = request.GET.get("set_id")
+        set_id = int(set_id) if isinstance(set_id,(str)) else set_id
+        date_start = request.GET.get("date_start")
+        date_end = request.GET.get("date_end")
+        student_num = request.GET.get("student_num")
+        student_num = int(student_num) if isinstance(student_num,(str)) else student_num
+        user = check_user(cookie)
+        if user is {}:
+            return JsonResponse({"code":"500","msg":"请重新登录"})
+        book_set_query = BookSet.objects.get(id = set_id)
+        if student_num is not None and student_num <= book_set_query.num_student:
+            book_set_query.num_student = student_num
+        if date_start is not None:
+            book_set_query.book_date_start = date_start
+        if date_end is not None:
+            book_set_query.book_date_end = date_end
+        return JsonResponse({"code":0})

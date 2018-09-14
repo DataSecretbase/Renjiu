@@ -5,4 +5,13 @@ APPINFO = {
 
 
 #USER_TYPE
-
+# wechat config
+WECHAT = {
+        'MCH_ID': 'mch_id',                                     # 商户号
+        'TOTAL_FEE': '1',                                           # 总金额
+        'SPBILL_CREATE_IP': '127.0.0.1',                            # 终端IP
+        'NOTIFY_URL': 'http://127.0.0.1:8000/wxpayNotify',          # 通知地址
+        'TRADE_TYPE': 'JSAPI',                                      # 交易类型
+        'MERCHANT_KEY': 'merchant_key',         # 商户KEY
+        'BODY': '商品描述',                                #
+}

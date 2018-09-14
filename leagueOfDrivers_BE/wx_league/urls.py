@@ -1,8 +1,8 @@
 from django.conf.urls import include, url
 from . import views
 
-urlpatterns = [
 
+urlpatterns = [
     url('^notice/list/$', views.notice_list, name='datein'),
     url('^discounts/coupons/$', views.discounts_coupons, name='datein'),
     url('^discounts/fetch/$', views.discounts_fetch, name='datein'),
@@ -36,5 +36,7 @@ urlpatterns = [
     url('^isenrol', views.is_enrol, name = 'datein'),
     url('^coach/list', views.coach_list, name = 'datein'),
     url('^book/add', views.book_add, name = 'datein'),
+    url('^booksets/add', views.booksets_add, name = 'datein'),
+    url('^booksets/all', views.booksets_all, name = 'datein'),
     
 ]
