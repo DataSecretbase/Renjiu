@@ -1,0 +1,40 @@
+<!--pages/book-set/index.wxml-->
+<view class='container'>
+  <view class='top_view'>Demo·演示</view>
+  <view class='cell_view' bindtap='cellClick'>
+    <text class='title_text'>选择时间</text>
+    <text class='subtitle_text'>1111</text>
+  </view>
+
+  <yycalendar show='{{isShow}}' beginTime="08:00" endTime="22:00" timeGap="1" bind:yybindchange="_yybindchange"/>
+
+</view>
+<van-row>
+  <van-col span="8"><van-badge style="width:100% hight:25px" data-id = "{{booksets_id}}" title="最多预约数量" info="8"/> </van-col>
+  <van-col span="16" >   <van-slider  custom-class="page__desc" style="width:100%;" value="50" step="10" bar-height="20px" min="0" max="100" bind:change="onChange" /></van-col>
+</van-row>
+<van-row>
+<van-col span="6">
+  <van-badge title="预约时间" info="8" />
+  </van-col>
+  <van-col span="9" >
+  <wux-cell title="开始" data-id = "{{booksets_id}}" extra="11：00" bind:click="onClick1"></wux-cell>
+  </van-col>
+  <van-col span="9" >
+  <wux-cell title="结束" data-id = "{{booksets_id}}" extra="{{ title2 }}" bind:click="onClick2"></wux-cell>
+  </van-col>
+</van-row>
+<wux-button block size="small" type="light"  bind:click="addBookTimeSet">添加预约时间</wux-button>
+  <van-badge title="预约时间" info="9" />
+  <van-badge title="时间段调整" info="3" />
+<wux-select id="wux-select1" />
+<wux-select id="wux-select2" />
+<wux-select id="wux-select3" />
+<view class="page">
+    <view class="page__bd">
+        <wux-cell-group title="Select">
+            <wux-cell title="职业" extra="{{ title1 }}" bind:click="onClick1"></wux-cell>
+            <wux-cell title="手机" extra="{{ title2 }}" bind:click="onClick2"></wux-cell>
+        </wux-cell-group>
+    </view>
+</view>

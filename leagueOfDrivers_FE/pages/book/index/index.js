@@ -80,7 +80,6 @@ Page({
             success: function (res) {
                 if (res.confirm) {
                   el['fields']['status'] = '0',
-                  el['fields']['book_time_start'] = new Date().getTime(),
                   _this.showCur(temp)
                   wx.setStorage({
                     key:"lists",
@@ -363,7 +362,7 @@ Page({
         console.log(res['data'])
         that.setData({
           lists: info['data'],
-          curLists: info['data'][0]
+          curLists: info['data']
         })
       }
     })

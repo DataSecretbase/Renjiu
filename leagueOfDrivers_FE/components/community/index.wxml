@@ -1,7 +1,7 @@
 <view class="container">
     <view class="text">
         <view class="line_flag"></view>
-        <text>正在上映</text>
+        <text>正在报名</text>
     </view>
 
     <block wx:for-items="{{pList}}">

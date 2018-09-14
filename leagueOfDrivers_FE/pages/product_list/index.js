@@ -61,7 +61,7 @@ Page({
         categoryId: self.data.id
       },
       success: function (res) {
-        console.log(res.data.data[0].fields.category_id)
+        console.log(res)
         if (!res.data.data) {
           wx.showToast({
             title: res.data.msg
@@ -84,6 +84,18 @@ Page({
         if (en_name == "parter") {
           wx.navigateTo({
             url: "/pages/joinus/index"
+          })
+          return
+        }
+        if (en_name == 'coupons'){
+          wx.navigateTo({
+            url: "/pages/my-coupon/index"
+          })
+          return
+        }
+        if (en_name == "community") {
+          wx.navigateTo({
+            url: "/pages/tribune/index"
           })
           return
         }

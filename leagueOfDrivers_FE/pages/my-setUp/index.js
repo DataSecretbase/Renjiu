@@ -38,6 +38,12 @@ Page({
       }
     })
   },
+  getProductList(e) {
+    var _id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: "/pages/product_list/index?id=" + _id
+    })
+  },
   allOrder(e) {
     var _id = e.currentTarget.dataset.id;
     wx.navigateTo({

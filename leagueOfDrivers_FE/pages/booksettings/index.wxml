@@ -1,0 +1,39 @@
+<!--pages/booksettings/index.wxml-->
+<view class="container">
+  <view class="topic-main">
+      <block wx:for="{{pList}}">
+        <view class="topic-item" index="{{index}}" id="{{item.pk}}" catchtap="redictDetail" data-item="{{item.fields.show}}" data-index = "{{index}}">
+            <image class="member-avatar" src="{{item.fields.coach.url}}" background-size="cover"></image>
+            <view class="topic-info">
+                <view class="topic-inner">
+                    <view class="topic-left">
+                        <view class="topic-title"><text>{{item.fields.coach.name}}</text></view>
+                        <view >
+                            <text class="node-name">{{item.fields.train_ground}}</text>
+                            <text class="member-nickname">{{item.fields.train_ground}}</text>
+                        </view>
+                    </view>
+                    <view class="reply-num">22</view>
+                </view>
+            </view>
+        </view>
+          <date-picker  
+    startTime="09:00" 
+    endTime="19:00"
+    unit="60"
+    reserveUnit="60"
+    activedConst="101"
+    disabledConst="1"
+    themeColor="#1f78d1"
+    unreserveTime="{{item.bookSet_list}}"
+    bind:selectTime="onSelectTime"
+     style="display:{{item.fields.show}}"/>
+      <button class="weui-btn" type="warn" bindtap="commit" data-item="{{item.fields.show}}" data-index = "{{index}}" style="display:{{item.fields.show}}">确定提交</button>
+      </block>
+
+  </view>
+
+  <loading hidden="{{true}}">
+    加载中...
+  </loading>
+</view>
