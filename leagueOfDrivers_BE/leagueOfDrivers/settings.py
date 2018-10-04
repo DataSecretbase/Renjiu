@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'wx_league.apps.WxLeagueConfig',
     'email_manage',
-    'xadmin',
     'crispy_forms',
     'reversion',
     'werkzeug_debugger_runserver',

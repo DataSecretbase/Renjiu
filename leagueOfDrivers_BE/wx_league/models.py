@@ -651,8 +651,7 @@ class Bargain(models.Model):
     price = models.FloatField(verbose_name = '砍价当前价格')
     min_price = models.FloatField(verbose_name = '砍价最低价格')
     calculate_method = models.SmallIntegerField(verbose_name = '砍价计算模式',
-                                                choices = m_set.BARGAIN_CALCULATE_METHOD,
-                                                max_length = 50)
+                                                choices = m_set.BARGAIN_CALCULATE_METHOD)
     expected_price = models.FloatField(verbose_name = '期望砍价价格') 
     expected_times = models.FloatField(verbose_name = '期望砍价次数') 
     date_start = models.DateTimeField(verbose_name = '活动开始时间',

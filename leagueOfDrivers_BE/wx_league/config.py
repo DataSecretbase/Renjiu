@@ -1,8 +1,8 @@
 APPINFO = {
-    "appid":"wx1ddf77091caaad0f",
-    "secret":"3ea0a87305000f627cb744e2b0fc516f",
-#    "appid":"wxe781c0daf36963a0",
-#    "secret":"1c602456f614fef60a8e74f901d4aa63",
+#    "appid":"wx1ddf77091caaad0f",
+#    "secret":"3ea0a87305000f627cb744e2b0fc516f",
+    "appid":"wxe781c0daf36963a0",
+    "secret":"1c602456f614fef60a8e74f901d4aa63",
 }
 
 

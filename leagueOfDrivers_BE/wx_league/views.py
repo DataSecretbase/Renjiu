@@ -388,11 +388,14 @@ def coupons_fetch(request):
         coupons_id = int(coupons_id) if isinstance(coupons_id,(str)) else coupons_id
         cookie = request.POST.get('cookie')
         user = check_user(cookie)
+        coupons_query = Coupons.objects.get(id = coupons_id)
         if user == {}:
             return JsonResponse({"code":500,"msg":"请重新登录"})
         else:
             try:
-                coupons = Coupons_users.objects.create(coupons_id = coupons_id, user_id = user.id,date_end_days = Coupons.objects.get(id = coupons_id).date_end_days)
+                coupons = Coupons_users.objects.create(coupons_id = coupons_query, 
+                        user_id = user,
+                        date_end_days = Coupons.objects.get(id = coupons_id).date_end_days)
             except ObjectDoesNotExist:
                 return JsonResponse({"code":20001})
             return JsonResponse({"code":0})
