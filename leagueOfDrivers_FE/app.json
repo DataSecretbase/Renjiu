@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/classify/index",
     "pages/shop-cart/index",
     "pages/my/index",
     "pages/product_list/index",
@@ -15,7 +16,6 @@
     "pages/address-add/index",
     "pages/notice/show",
     "pages/order-details/index",
-    "pages/classify/index",
     "pages/search/index",
     "pages/my-info/index",
     "pages/my-collection/index",
