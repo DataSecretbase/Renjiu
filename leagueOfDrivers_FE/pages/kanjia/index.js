@@ -8,8 +8,9 @@ Page({
     autoplay: true,
     interval: 3000,
     duration: 1000,
-    goodsDetail: {},
-    swiperCurrent: 0
+    swiperCurrent: 0,
+    goodsDetail: {}
+
   },
 
   //事件处理函数
@@ -33,6 +34,8 @@ Page({
       success: function (res) {
         console.log(res.data.data)
         that.data.goodsDetail = res.data.data;
+        console.log("goodsDetail")
+        console.log(res.data.data)
         that.setData({
           goodsDetail: res.data.data
         });
