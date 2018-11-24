@@ -141,7 +141,7 @@ class WechatUser(AbstractUser):
                               max_length=100,
                               default='',
                               blank = True)
-    name = models.CharField(verbose_name = '昵称',
+    name = models.CharField(verbose_name = '姓名',
                             max_length = 40,
                             blank = True)
     openid = models.CharField(verbose_name = 'OpenId',
@@ -773,12 +773,13 @@ class Forum(models.Model):
                          verbose_name = '帖子发表者')
     title = models.CharField(max_length = 50,verbose_name = '标题')
     content = models.TextField(verbose_name = '帖子内容')
-    Topic_id = models.ForeignKey('Topic',
+    topic_id = models.ForeignKey('Topic',
                                  on_delete = models.DO_NOTHING,
                                  verbose_name = '主题')
     repley_count = models.IntegerField(verbose_name = '回复数量',default = 0)
     time_add = models.DateTimeField(verbose_name = '添加时间',auto_now_add = True)
     last_reply_time = models.DateTimeField(verbose_name = '最后回复时间',auto_now = True)
+    browse_times = models.IntegerField(verbose_name = '浏览次数', default = 0)
 
     class Meta:
         db_table = 'Forum'
@@ -787,6 +788,20 @@ class Forum(models.Model):
 
     def __str__(self):
         return self.user_id.name + self.title
+
+
+class BrowseRecords(models.Model):
+    forum_id = models.ForeignKey('Forum', on_delete = models.DO_NOTHING, verbose_name = '浏览记录')
+    user_id = models.ForeignKey('WechatUser', on_delete = models.DO_NOTHING, verbose_name = '访客')
+    browse_time = models.DateTimeField(verbose_name = '浏览时间',auto_now_add = True)
+
+    class Meta:
+        db_table = 'BrowseRecords'
+        verbose_name = '浏览记录'
+        verbose_name_plural = '浏览记录'
+
+    def __str__(self):
+        return self.user_id.name+self.forum_id.title
 
 
 class Topic(models.Model):

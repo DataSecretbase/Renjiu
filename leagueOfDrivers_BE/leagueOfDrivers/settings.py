@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-
+from django.utils.translation import ugettext_lazy as _
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,10 +40,12 @@ INSTALLED_APPS = [
     'wx_league.apps.WxLeagueConfig',
     'share',
     'email_manage',
+    'share',
     'crispy_forms',
     'werkzeug_debugger_runserver',
     'django_extensions',
     'rest_framework',
+    'xadmin'
 ]
 
 MIDDLEWARE = [
@@ -112,6 +114,12 @@ AUTH_USER_MODEL = "wx_league.WechatUser"
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'zh-hans'
+
+LANGUAGES = [
+        ('en',_('English')),
+        ('zh-hans',_('Simplified Chinese')),
+        ('zh-hant',_('Traditional Chinese')),
+        ]
 
 TIME_ZONE = 'Asia/Shanghai'
 
