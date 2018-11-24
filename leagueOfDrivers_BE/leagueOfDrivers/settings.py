@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wx_league.apps.WxLeagueConfig',
+    'share',
     'email_manage',
     'crispy_forms',
-    'reversion',
     'werkzeug_debugger_runserver',
     'django_extensions',
     'rest_framework',
@@ -170,5 +170,7 @@ EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 EMAIL_FROM = '2144799613@qq.com'
+
+DOMAIN = "https://qgdxsw.com/"
 
 

@@ -15,3 +15,17 @@ class CouponsSerializer(serializers.ModelSerializer):
     def get_restOfDay(self, obj):
         return (now() - obj.date_add).days
 
+class IconSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Icon
+        fields = ("__all__")
+
+
+class WechatUserSerializer(serializers.ModelSerializer):
+    avatar = IconSerializer(read_only=True)
+
+    class Meta:
+        model = WechatUser
+        fields = ("name","gender","phone","get_address","avatar")
+

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+
 import django.utils.timezone as timezone
 import random
 import time
@@ -8,6 +9,7 @@ from datetime import datetime,date
 
 from .datasettings import league_model as m_set
 # Create your models here.
+
 
 class DriverSchool(models.Model):
     province_id = models.IntegerField(verbose_name = '省', default = 0)
@@ -195,6 +197,14 @@ class WechatUser(AbstractUser):
                 "name":self.name,
                 "id":self.id}
 
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        """
+        Sends an email to this User.
+        """
+        send_mail(subject, message, from_email, [self.email], **kwargs)
+
+    def get_address(self):
+        return self.country
 
 class Goods(models.Model):
     category_id = models.ForeignKey('Category',
