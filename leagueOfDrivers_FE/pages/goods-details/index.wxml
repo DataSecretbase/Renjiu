@@ -44,12 +44,7 @@
           <contact-button style="opacity:0;position:absolute;" type="default-dark"  session-from="weapp" size="27"></contact-button>
           客服
         </view>
-        <view class="shop-cart-btn" bindtap="goShopCar">
-            <view class="shop-num">({{shopNum}})</view>
-            购物车
-        </view>
-        <view class="join-shop-cart" bindtap="toAddShopCar">加入购物车</view>
-        <view class="now-buy" bindtap="tobuy">立即购买</view>
+        <view class="now-buy" bindtap="tobuy">立即预定</view>
    </view>
     <view class="show-popup" hidden="{{hideShopPopup}}" >
         <view class="popup-mask" bindtap="closePopupTap"></view>
@@ -74,21 +69,8 @@
                 </view>
                 </block>
              </view> 
-             <view class="buy-num-box">
-                <view class="num-label">购买数量</view>
-                <view class="num-box">
-                    <view class="num-jian {{buyNumber == buyNumMin ? 'hui': ''}}" bindtap="numJianTap">-</view>
-                    <view class="num-input">
-                       <input  type="number" value="{{buyNumber}}" disabled/>
-                    </view>
-                    <view class="num-jia {{buyNumber== buyNumMax ? 'hui': ''}}" bindtap="numJiaTap">+</view>
-                </view>
-             </view>  
-             <view class="popup-join-btn" wx:if="{{shopType =='addShopCar'}}" bindtap="addShopCar">
-                加入购物车
-             </view>
              <view class="popup-join-btn" wx:if="{{shopType =='tobuy'}}" bindtap="buyNow">
-                立即购买
+                立即报名
              </view>                      
         </view>
     </view>

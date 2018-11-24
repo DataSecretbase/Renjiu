@@ -1,7 +1,6 @@
 /* pages/book-set/index.wxss */
 
 page {
-  min-height: 100vh;
   background:#f6f8f9;
 }
 .container {
