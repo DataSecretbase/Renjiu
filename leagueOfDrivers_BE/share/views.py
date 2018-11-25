@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from wx_league import models as wx_league
+from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse, HttpResponse
 from rest_framework import permissions, status, views, viewsets
 from rest_framework.decorators import list_route, detail_route
 from rest_framework.response import Response
 from utils import auth
+from wx_league import models as wx_league
 from .models import *
 from .serializers import *
 # Create your views here.
@@ -46,6 +47,8 @@ class CashViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(shareuser, data=request.data)
         if serializer.is_valid():
             shareuser.price = serializer.validated_data.get("cash", 0)
+            if serializer.validated_data.get("cash", 0) <= 0:
+                shareuser.status = 3
             shareuser.save()
             return Response({
                 'cash': serializer.data,
@@ -60,15 +63,17 @@ class CashViewSet(viewsets.ModelViewSet):
     def add(self, request, pk=None):
         return self.create(request, pk)
 
-    @detail_route(method=['get'])
-    def list(self, request, pk=None):
+    @detail_route(methods=['get'])
+    def lists(self, request, pk=None):
         shareuser = self.get_object()
-        cash_list = Cash.objects.filter(user=shareuser)
-        serializer = CashListSerializer(cash_list)
+        cash_list = Cash.objects.filter(user=shareuser).filter(~Q(status=3)).order_by('-add_time')
+        page = self.paginate_queryset(cash_list)
+        serializer = CashListSerializer(page if page else cash_list, data=request.data, many=True)
         if serializer.is_valid():
-            return Reponse({
+            return Response({
                 'cash_list': serializer.data
             }, status=status.HTTP_200_OK)
+
         return Response({
             'status': 'Bad request',
             'message': 'Cash list could not be search with received data.',

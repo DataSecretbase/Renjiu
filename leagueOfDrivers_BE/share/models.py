@@ -76,5 +76,5 @@ class RebateLog(models.Model):
 class Cash(models.Model):
     user = models.ForeignKey(ShareUser, on_delete=models.CASCADE, verbose_name="用户",)
     cash = models.FloatField(verbose_name="提现金额")
-    add_time = models.DateField(verbose_name="添加时间", auto_now_add=True)
+    add_time = models.DateTimeField(verbose_name="添加时间", auto_now_add=True)
     status = models.SmallIntegerField(verbose_name="提现状态", choices=models_set.CASH_STATUS, default=0)
