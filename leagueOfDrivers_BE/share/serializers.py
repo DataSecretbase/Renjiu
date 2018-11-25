@@ -47,11 +47,6 @@ class CashCreateSerializer(serializers.ModelSerializer):
         model = Cash
         fields = ('user', 'cash')
 
-    def __init__(self, data, **kwargs):
-        user = ShareUser.objects.get(user=wx_league.WechatUser.objects.get(cookie = kwargs.pop("cookie", None)))
-        self.cash =kwargs.pop("cash",0)
-        super(CashCreateSerializer, self).__init__(data, **kwargs)
-
     @staticmethod
     def check_balance(price, validated_data):
         cash = validated_data.get('cash', None)

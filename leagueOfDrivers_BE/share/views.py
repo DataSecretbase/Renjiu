@@ -3,7 +3,7 @@ from wx_league import models as wx_league
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse, HttpResponse
 from rest_framework import permissions, status, views, viewsets
-from rest_framework.decorators import list_route
+from rest_framework.decorators import list_route, detail_route
 from rest_framework.response import Response
 from utils import auth
 from .models import *
@@ -36,15 +36,20 @@ class ShareUserProfileViewSet(viewsets.ModelViewSet):
 
 class CashViewSet(viewsets.ModelViewSet):
     serializer_class = CashCreateSerializer
-
+    queryset = Cash.objects.all()
     def get_queryset(self):
-        return Cash.objects.all()
+        return ShareUser.objects.all()
 
-    def create(self, request):
-        print(request.GET)
-        serializer = self.serializer_class(data = {}, cookie=request.GET.get("cookie",None), cash=request.GET.get("cash",None))
+    def create(self, request, pk=None):
+        shareuser = self.get_object()
+        print(shareuser.id)
+        shareuser = Cash.objects.create(user=shareuser,cash=0)
+        print(shareuser)
+        print(request.data)
+        serializer = self.serializer_class(shareuser, data=request.data)
         if serializer.is_valid():
-            Cash.objects.create(**serializer.validated_data)
+            shareuser.price = serializer.validated_data.get("cash", 0)
+            shareuser.save()
             return Response({
                 'account': serializer.data,
             }, status=status.HTTP_201_CREATED)
@@ -54,6 +59,6 @@ class CashViewSet(viewsets.ModelViewSet):
             'errors': serializer.errors
             }, status=status.HTTP_400_BAD_REQUEST)
 
-    @list_route(methods=['get'])
-    def add(self, request):
-        return self.create(request)
+    @detail_route(methods=['post'])
+    def add(self, request, pk=None):
+        return self.create(request, pk)
