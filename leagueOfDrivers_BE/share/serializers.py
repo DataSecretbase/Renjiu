@@ -59,6 +59,16 @@ class CashCreateSerializer(serializers.ModelSerializer):
     def get_shareuser(self,cookie):
         return ShareUser.objects.get(user=wx_league.WechatUser.objects.get(cookie = cookie))
 
+
+class CashListSerializer(serializers.ModelSerializer):
+    user = UserShareSerializer(read_only=True)
+
+    class Meta:
+        model = Cash
+        fields = ('user', 'cash', 'add_time', 'status')
+
+
+
     def create(self, instance,validated_data):
         instance.user = self.get_shareuser(validated_data.get("cookie", None))
         user = auth.check_cookie(self, user_type="ShareUserProfile" )

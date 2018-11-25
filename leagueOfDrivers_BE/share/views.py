@@ -42,16 +42,13 @@ class CashViewSet(viewsets.ModelViewSet):
 
     def create(self, request, pk=None):
         shareuser = self.get_object()
-        print(shareuser.id)
         shareuser = Cash.objects.create(user=shareuser,cash=0)
-        print(shareuser)
-        print(request.data)
         serializer = self.serializer_class(shareuser, data=request.data)
         if serializer.is_valid():
             shareuser.price = serializer.validated_data.get("cash", 0)
             shareuser.save()
             return Response({
-                'account': serializer.data,
+                'cash': serializer.data,
             }, status=status.HTTP_201_CREATED)
         return Response({
             'status': 'Bad request',
@@ -62,3 +59,18 @@ class CashViewSet(viewsets.ModelViewSet):
     @detail_route(methods=['post'])
     def add(self, request, pk=None):
         return self.create(request, pk)
+
+    @detail_route(method=['get'])
+    def list(self, request, pk=None):
+        shareuser = self.get_object()
+        cash_list = Cash.objects.filter(user=shareuser)
+        serializer = CashListSerializer(cash_list)
+        if serializer.is_valid():
+            return Reponse({
+                'cash_list': serializer.data
+            }, status=status.HTTP_200_OK)
+        return Response({
+            'status': 'Bad request',
+            'message': 'Cash list could not be search with received data.',
+            'errors': serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
