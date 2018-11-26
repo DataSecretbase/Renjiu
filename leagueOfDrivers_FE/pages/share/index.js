@@ -57,8 +57,11 @@ Page({
         app.request({
           url: api.share.get_info,
           success: function (res) {
+            console.log("res")
+
               console.log(res)
               page.setData({
+                userprofile: res[0].user,
                 total_price: res[0].total_price,
                 price: res[0].price,
                 cash_price: res[0].cash_price,

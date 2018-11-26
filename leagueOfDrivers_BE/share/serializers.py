@@ -14,6 +14,7 @@ class UserShareCreateSerializer(serializers.ModelSerializer):
 
 class UserShareSerializer(serializers.ModelSerializer):
     user = lea_serializer.WechatUserSerializer(read_only=True)
+    first_leader = lea_serializer.WechatUserSerializer(read_only=True)
 
     class Meta:
         model = ShareUser
@@ -47,11 +48,6 @@ class CashCreateSerializer(serializers.ModelSerializer):
         model = Cash
         fields = ('user', 'cash')
 
-    def __init__(self, data, **kwargs):
-        user = ShareUser.objects.get(user=wx_league.WechatUser.objects.get(cookie = kwargs.pop("cookie", None)))
-        self.cash =kwargs.pop("cash",0)
-        super(CashCreateSerializer, self).__init__(data, **kwargs)
-
     @staticmethod
     def check_balance(price, validated_data):
         cash = validated_data.get('cash', None)
@@ -64,6 +60,14 @@ class CashCreateSerializer(serializers.ModelSerializer):
     def get_shareuser(self,cookie):
         return ShareUser.objects.get(user=wx_league.WechatUser.objects.get(cookie = cookie))
 
+
+class CashListSerializer(serializers.ModelSerializer):
+    user = UserShareSerializer(read_only=True)
+
+    class Meta:
+        model = Cash
+        fields = ('user', 'cash', 'add_time', 'status')
+
     def create(self, instance,validated_data):
         instance.user = self.get_shareuser(validated_data.get("cookie", None))
         user = auth.check_cookie(self, user_type="ShareUserProfile" )
@@ -72,3 +76,9 @@ class CashCreateSerializer(serializers.ModelSerializer):
             instance.cash = validated_data.get("cash", 0)
         instance.save()
         return instance
+
+
+class ShareOrderGoodsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ShareOrderGoods
+        fields = ("__all__",)

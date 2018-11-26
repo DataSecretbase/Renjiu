@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'email_manage',
     'share',
     'crispy_forms',
+    'rest_framework.authtoken',
     'werkzeug_debugger_runserver',
     'django_extensions',
     'rest_framework',

@@ -4,8 +4,8 @@
       <image class="info-img" src="{{userInfo.avatarUrl}}"></image>
     </view>
     <view class="info-block">
-      <view class="info-up info-blod">{{userInfo.nickname}}</view>
-      <view class="info-bottom">推荐人：{{userInfo.parent}}</view>
+      <view class="info-up info-blod">{{userprofile.user.name}}</view>
+      <view class="info-bottom">推荐人：{{userprofile.first_leader.name}}</view>
     </view>
   </view>
   <view class="info-content flex-row">
