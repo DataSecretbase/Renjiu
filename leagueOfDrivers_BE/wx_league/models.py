@@ -181,11 +181,11 @@ class AccountManager(BaseUserManager):
         return account
 
     def create_user(self, username, password, avatar=None, email=None, **extra_fields):
-        return self._create_user(email, username, password, avatar, False,
+        return self._create_user(email, username, password, avatar, False, False,
                                  **extra_fields)
 
     def create_superuser(self, email, username, password, avatar=None, **extra_fields):
-        return self._create_user(email, username, password,  avatar, **extra_fields)
+        return self._create_user(email, username, password,  avatar, True,True, **extra_fields)
 
 
 class WechatUser(AbstractBaseUser, PermissionsMixin):
@@ -194,11 +194,16 @@ class WechatUser(AbstractBaseUser, PermissionsMixin):
         max_length=255,
         unique=True,
     )
+    username = models.CharField(_('username'), max_length=30, blank=True,
+                help_text=_('Required. 30 characters or fewer. Letters, digits'
+                            ' and ./+/-/_ only.'),
+                validators=[
+                    validators.RegexValidator(r'^[\w.+-]+$', _('Enter a valid username jebal.'), 'invalid')
+                ])
     cookie = models.CharField(verbose_name='用户认证标识', max_length=100, default='', blank=True)
     name = models.CharField(verbose_name='昵称', max_length=40, blank=True)
     openid = models.CharField(verbose_name='OpenId', max_length=255, blank=True)
     union_id = models.CharField(verbose_name='UnionId', max_length=255, blank=True)
-    gender = models.SmallIntegerField(verbose_name='gender',default=0, blank=True)
     language = models.CharField(verbose_name='语言', max_length=40, blank=True)
     user_type = models.SmallIntegerField(verbose_name='用户类型', choices=m_set.USER_TYPE, default=0)
     register_type = models.SmallIntegerField( verbose_name='注册来源', default=0)
@@ -206,7 +211,8 @@ class WechatUser(AbstractBaseUser, PermissionsMixin):
     country = models.IntegerField(verbose_name='国家', default=0, blank=True)
     province = models.IntegerField(verbose_name='省份', default=0)
     city = models.IntegerField(verbose_name='城市', default=0)
-    avatar = models.ForeignKey('Icon', verbose_name='头像', on_delete=models.SET_DEFAULT, default=0)
+    avatar = models.ForeignKey('Icon', verbose_name='头像', on_delete=models.SET_DEFAULT,
+                               default=0, null=True,blank=True)
     register_ip = models.CharField(verbose_name='注册IP', max_length=80, blank=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     #last_login = models.DateTimeField(verbose_name = '登陆时间')
@@ -216,6 +222,9 @@ class WechatUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(_('active'), default=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     objects = AccountManager()
 
     USERNAME_FIELD = 'email'
