@@ -275,11 +275,6 @@ class Order(models.Model):
     number_goods = models.IntegerField(verbose_name = '商品数量',default = 0)
     goods_price = models.FloatField(verbose_name = '商品总金额', default=0)
     coupons_id = models.IntegerField(verbose_name = '使用的优惠券id', default=0)
-    logistics_id = models.ForeignKey('Logistics',
-                                     verbose_name = '物流id',
-                                     on_delete = models.SET_DEFAULT,
-                                     default = 0)
-    logistics_price = models.FloatField(verbose_name = '物流费用', default=0)
     total = models.FloatField('实际支付', default=0 )
     ORDER_STATUS = [(0,"待付款"),(1,'待发货'),
                     (2,'待收货'),(3,'待评价'),
@@ -290,24 +285,12 @@ class Order(models.Model):
     remark = models.CharField(verbose_name  = '备注', max_length = 100, blank = True)
     linkman = models.CharField(verbose_name = '联系人', max_length = 100, blank = True)
     phone = models.CharField(verbose_name = '手机号码', max_length = 50, blank = True)
-    #PROVINCE = ((0,"22"))
     province_id = models.SmallIntegerField(verbose_name='省', default = 0)
-    #CITY = ((0,"22"))
     city_id = models.SmallIntegerField(verbose_name = '市', default = 0)
     district_id = models.SmallIntegerField(verbose_name = '区', default = 0)
     address = models.CharField(verbose_name = '详细地址', max_length = 100, blank = True)
     postcode = models.CharField(verbose_name = '邮政编码', max_length = 20, blank = True)
-    shipper_id = models.ForeignKey('Shipper',
-                                   verbose_name='快递承运商',
-                                   on_delete = models.DO_NOTHING,
-                                   default = 1)
-    tracking_number = models.CharField(verbose_name = '运单号',
-                                       max_length = 200,
-                                       blank = True)
-    #display_traces = fields.Html('物流信息', compute='_compute_display_traces')
-    traces = models.TextField(verbose_name = '物流信息', blank = True)
-    date_add = models.DateTimeField(verbose_name = '下单时间',
-                                   default = timezone.now)
+    date_add = models.DateTimeField(verbose_name='下单时间', auto_now_add=True)
 
     class Meta:
         db_table = 'Order'

@@ -48,9 +48,31 @@ class ShareGoods(models.Model):
                               on_delete=models.SET_NULL, null=True, blank=True)
     share_times = models.IntegerField(verbose_name="分享次数")
     sales_num = models.IntegerField(verbose_name='分销销量')
-    store = models.ForeignKey(wx_league.DriverSchool, verbose_name='商店',
+    store = models.ForeignKey(wx_league.DriverSchool, verbose_name='分销商',
                               on_delete=models.SET_NULL, null=True, blank=True)
+    cash_scheme = models.SmallIntegerField(choices=models_set.CASH_SCHEME, default=0)
     add_time = models.DateTimeField(verbose_name="加入分销时间", auto_now_add=True)
+
+
+class ShareOrderGoods(models.Model):
+    order = models.ForeignKey('wx_league.Order', verbose_name='订单',
+                              on_delete=models.SET_NULL, null=True, blank=True)
+    # 冗余记录商品，防止商品删除后订单数据不完整
+    # 分销商品 数据关联 本app的Sharegoods
+    sharegoods = models.ForeignKey('ShareGoods', verbose_name='分销商品',
+                                   on_delete=models.SET_NULL, blank=True, null=True)
+    name = models.CharField(verbose_name='商品名称', max_length=50, blank=True)
+    display_pic = models.ForeignKey('wx_league.Icon', verbose_name='图片',
+                                    on_delete=models.SET_DEFAULT, default=0)
+    property_str = models.CharField(verbose_name='商品规格', max_length=200, blank=True)
+    price = models.FloatField(verbose_name='单价', default=0)
+    amount = models.IntegerField(verbose_name='商品数量', default=0)
+    total = models.FloatField(verbose_name='总价', default=0)
+
+    class Meta:
+        db_table = 'ShareOrderGoods'
+        verbose_name = '订单商品'
+        verbose_name_plural = '订单商品'
 
 
 class RebateLog(models.Model):

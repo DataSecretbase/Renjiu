@@ -14,6 +14,7 @@ class UserShareCreateSerializer(serializers.ModelSerializer):
 
 class UserShareSerializer(serializers.ModelSerializer):
     user = lea_serializer.WechatUserSerializer(read_only=True)
+    first_leader = lea_serializer.WechatUserSerializer(read_only=True)
 
     class Meta:
         model = ShareUser
@@ -67,8 +68,6 @@ class CashListSerializer(serializers.ModelSerializer):
         model = Cash
         fields = ('user', 'cash', 'add_time', 'status')
 
-
-
     def create(self, instance,validated_data):
         instance.user = self.get_shareuser(validated_data.get("cookie", None))
         user = auth.check_cookie(self, user_type="ShareUserProfile" )
@@ -77,3 +76,9 @@ class CashListSerializer(serializers.ModelSerializer):
             instance.cash = validated_data.get("cash", 0)
         instance.save()
         return instance
+
+
+class ShareOrderGoodsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ShareOrderGoods
+        fields = ("__all__",)
