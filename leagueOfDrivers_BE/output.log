@@ -1,0 +1,1645 @@
+nohup: ignoring input
+ * Debugger is active!
+ * Debugger PIN: 473-843-945
+210.42.151.73 - - [27/Oct/2018 18:47:37] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [27/Oct/2018 18:47:38] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [27/Oct/2018 18:47:38] "POST /league/coupons HTTP/1.1" 200 -
+/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/views.py:294: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'wx_league.models.Goods'> QuerySet.
+  paginator = Paginator(goods_list, pageSize)
+210.42.151.73 - - [27/Oct/2018 18:47:38] "POST /league/goods/list HTTP/1.1" 200 -
+59.68.33.209 - - [29/Oct/2018 08:42:58] "POST /league/goods/list HTTP/1.1" 200 -
+59.68.33.209 - - [29/Oct/2018 08:42:58] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+59.68.33.209 - - [29/Oct/2018 08:42:58] "POST /league/coupons HTTP/1.1" 200 -
+59.68.33.209 - - [29/Oct/2018 08:42:58] "POST /league/goods/list HTTP/1.1" 200 -
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/__pycache__/adminx.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/__pycache__/apps.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/__pycache__/filters.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/__pycache__/forms.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/__pycache__/layout.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/__pycache__/models.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/__pycache__/sites.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/__pycache__/vendors.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/__pycache__/widgets.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/adminx.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/apps.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/filters.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/forms.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/layout.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/migrations/0001_initial.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/migrations/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/migrations/__pycache__/0001_initial.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/migrations/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/models.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/actions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/aggregation.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/ajax.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/auth.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/batch.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/bookmark.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/comments.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/details.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/editable.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/export.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/images.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/inline.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/language.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/layout.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/mobile.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/multiselect.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/passwords.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/portal.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/quickform.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/refresh.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/relate.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/relfield.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/sitemenu.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/sortable.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/topnav.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/utils.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/wizard.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/__pycache__/xversion.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/actions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/aggregation.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/ajax.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/auth.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/batch.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/bookmark.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/comments.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/details.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/editable.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/export.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/filters.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/images.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/inline.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/language.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/layout.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/mobile.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/multiselect.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/passwords.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/portal.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/quickfilter.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/quickform.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/refresh.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/relate.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/relfield.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/sitemenu.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/sortable.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/themes.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/topnav.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/utils.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/wizard.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/plugins/xversion.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/sites.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/templatetags/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/templatetags/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/templatetags/__pycache__/xadmin_tags.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/templatetags/xadmin_tags.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/util.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/vendors.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/__pycache__/base.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/__pycache__/delete.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/__pycache__/detail.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/__pycache__/edit.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/__pycache__/form.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/__pycache__/list.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/__pycache__/website.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/base.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/dashboard.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/delete.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/detail.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/edit.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/form.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/list.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/website.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/widgets.py', reloading
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+Django version 2.1.2, using settings 'leagueOfDrivers.settings'
+Development server is running at https://0.0.0.0:8000/
+Using the Werkzeug debugger (http://werkzeug.pocoo.org/)
+Quit the server with CONTROL-C.
+ * Debugger is active!
+ * Debugger PIN: 473-843-945
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/models.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/models.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/signals.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/signals.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/errors.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/errors.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/views.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/views.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/middleware.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/middleware.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/admin.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/admin.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/revisions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/revisions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0001_initial.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0001_initial.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0001_initial.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0002_auto_20141216_1509.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0002_auto_20141216_1509.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0004_auto_20160611_1202.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0004_auto_20160611_1202.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0001_squashed_0004_auto_20160611_1202.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0001_squashed_0004_auto_20160611_1202.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0001_squashed_0004_auto_20160611_1202.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0003_auto_20160601_1600.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0003_auto_20160601_1600.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/0003_auto_20160601_1600.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/0004_auto_20160611_1202.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/0004_auto_20160611_1202.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/0004_auto_20160611_1202.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/0001_squashed_0004_auto_20160611_1202.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/0001_squashed_0004_auto_20160611_1202.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/0003_auto_20160601_1600.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/0003_auto_20160601_1600.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/0002_auto_20141216_1509.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/0002_auto_20141216_1509.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/0001_initial.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/migrations/__pycache__/0001_initial.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/middleware.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/middleware.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/middleware.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/revisions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/revisions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/admin.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/admin.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/signals.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/signals.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/models.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/models.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/views.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/views.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/errors.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/__pycache__/errors.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/deleterevisions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/deleterevisions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/createinitialrevisions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/createinitialrevisions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/__pycache__/deleterevisions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/__pycache__/deleterevisions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/__pycache__/deleterevisions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/__pycache__/createinitialrevisions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/reversion/management/commands/__pycache__/createinitialrevisions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/odfmanifest.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/odfmanifest.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/table.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/table.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/table.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/meta.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/meta.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/odf2xhtml.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/odf2xhtml.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/odf2xhtml.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/office.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/office.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/office.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/opendocument.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/opendocument.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/opendocument.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/grammar.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/grammar.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/grammar.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/grammar.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/grammar.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/grammar.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/namespaces.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/namespaces.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/elementtypes.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/elementtypes.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/elementtypes.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/load.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/load.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/load.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/math.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/math.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/xforms.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/xforms.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/odf2moinmoin.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/odf2moinmoin.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/anim.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/anim.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/config.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/config.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/draw.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/draw.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/number.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/number.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/manifest.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/manifest.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/dc.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/dc.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/script.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/script.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/svg.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/svg.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/form.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/form.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/element.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/element.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/style.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/style.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/teletype.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/teletype.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/easyliststyle.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/easyliststyle.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/attrconverters.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/attrconverters.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/attrconverters.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/text.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/text.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/text.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/dr3d.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/dr3d.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/userfield.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/userfield.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/thumbnail.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/thumbnail.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/presentation.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/presentation.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/dc.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/dc.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/odf2moinmoin.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/odf2moinmoin.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/odf2moinmoin.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/odf2xhtml.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/odf2xhtml.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/odfmanifest.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/odfmanifest.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/odfmanifest.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/load.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/load.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/load.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/attrconverters.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/attrconverters.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/grammar.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/grammar.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/easyliststyle.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/easyliststyle.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/opendocument.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/opendocument.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/form.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/form.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/office.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/office.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/userfield.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/userfield.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/teletype.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/teletype.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/namespaces.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/namespaces.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/anim.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/anim.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/manifest.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/manifest.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/dr3d.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/dr3d.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/text.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/text.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/thumbnail.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/thumbnail.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/meta.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/meta.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/number.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/number.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/style.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/style.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/svg.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/svg.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/draw.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/draw.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/config.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/config.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/xforms.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/xforms.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/element.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/element.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/math.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/math.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/table.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/table.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/presentation.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/presentation.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/elementtypes.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/elementtypes.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/script.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/odf/__pycache__/script.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/jdcal.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/jdcal.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/jdcal.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/__pycache__/jdcal.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/__pycache__/jdcal.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/xmlfile.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/xmlfile.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/common_imports.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/common_imports.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/helper.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/helper.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/test_incremental_xmlfile.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/test_incremental_xmlfile.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/__pycache__/helper.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/__pycache__/helper.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/__pycache__/test_incremental_xmlfile.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/__pycache__/test_incremental_xmlfile.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/__pycache__/test_incremental_xmlfile.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/__pycache__/common_imports.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/__pycache__/common_imports.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/tests/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/__pycache__/xmlfile.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/__pycache__/xmlfile.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/et_xmlfile/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/_constants.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/_constants.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/conftest.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/conftest.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/escape.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/escape.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/escape.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/bound_dictionary.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/bound_dictionary.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/bound_dictionary.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/datetime.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/datetime.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/cell.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/cell.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/exceptions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/exceptions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/dataframe.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/dataframe.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/protection.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/protection.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/indexed_list.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/indexed_list.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/formulas.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/formulas.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/units.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/units.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/indexed_list.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/indexed_list.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/indexed_list.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/exceptions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/exceptions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/cell.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/cell.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/dataframe.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/dataframe.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/escape.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/escape.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/bound_dictionary.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/bound_dictionary.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/datetime.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/datetime.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/formulas.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/formulas.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/protection.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/protection.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/units.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/utils/__pycache__/units.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/table.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/table.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/fields.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/fields.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/cache.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/cache.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/record.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/record.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/__pycache__/record.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/__pycache__/record.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/__pycache__/cache.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/__pycache__/cache.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/__pycache__/table.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/__pycache__/table.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/__pycache__/fields.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/pivot/__pycache__/fields.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/comments.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/comments.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/comment_sheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/comment_sheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/shape_writer.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/shape_writer.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/author.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/author.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/__pycache__/comments.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/__pycache__/comments.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/__pycache__/author.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/__pycache__/author.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/__pycache__/comment_sheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/__pycache__/comment_sheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/__pycache__/shape_writer.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/comments/__pycache__/shape_writer.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/workbook.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/workbook.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/interface.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/interface.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/core.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/core.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/extended.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/extended.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/manifest.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/manifest.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/relationship.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/relationship.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/core.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/core.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/extended.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/extended.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/relationship.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/relationship.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/manifest.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/manifest.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/interface.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/interface.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/workbook.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/packaging/__pycache__/workbook.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/base.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/base.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/sequence.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/sequence.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/serialisable.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/serialisable.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/excel.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/excel.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/nested.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/nested.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/namespace.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/namespace.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/slots.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/slots.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/sequence.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/sequence.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/serialisable.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/serialisable.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/nested.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/nested.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/namespace.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/namespace.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/excel.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/excel.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/slots.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/slots.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/base.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/descriptors/__pycache__/base.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/worksheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/worksheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/drawings.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/drawings.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/strings.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/strings.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/excel.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/excel.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/__pycache__/strings.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/__pycache__/strings.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/__pycache__/worksheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/__pycache__/worksheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/__pycache__/excel.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/__pycache__/excel.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/__pycache__/drawings.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/reader/__pycache__/drawings.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/table.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/table.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/stylesheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/stylesheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/borders.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/borders.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/named_styles.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/named_styles.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/builtins.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/builtins.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/colors.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/colors.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/fonts.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/fonts.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/styleable.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/styleable.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/cell_style.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/cell_style.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/protection.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/protection.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/fills.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/fills.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/proxy.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/proxy.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/numbers.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/numbers.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/alignment.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/alignment.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/differential.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/differential.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/fills.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/fills.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/styleable.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/styleable.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/colors.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/colors.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/numbers.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/numbers.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/cell_style.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/cell_style.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/named_styles.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/named_styles.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/borders.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/borders.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/fonts.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/fonts.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/differential.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/differential.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/builtins.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/builtins.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/proxy.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/proxy.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/stylesheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/stylesheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/table.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/table.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/alignment.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/alignment.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/protection.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/styles/__pycache__/protection.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formula/tokenizer.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formula/tokenizer.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formula/translate.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formula/translate.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formula/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formula/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formula/__pycache__/tokenizer.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formula/__pycache__/tokenizer.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formula/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formula/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formula/__pycache__/translate.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formula/__pycache__/translate.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/web.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/web.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/smart_tags.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/smart_tags.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/workbook.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/workbook.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/views.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/views.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/parser.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/parser.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/function_group.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/function_group.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/child.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/child.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/defined_name.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/defined_name.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/external_reference.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/external_reference.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/properties.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/properties.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/protection.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/protection.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/external_link/external.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/external_link/external.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/external_link/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/external_link/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/external_link/__pycache__/external.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/external_link/__pycache__/external.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/external_link/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/external_link/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/smart_tags.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/smart_tags.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/external_reference.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/external_reference.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/function_group.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/function_group.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/properties.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/properties.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/web.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/web.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/child.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/child.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/defined_name.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/defined_name.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/parser.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/parser.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/views.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/views.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/workbook.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/workbook.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/protection.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/workbook/__pycache__/protection.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formatting/rule.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formatting/rule.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formatting/formatting.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formatting/formatting.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formatting/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formatting/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formatting/__pycache__/rule.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formatting/__pycache__/rule.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formatting/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formatting/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formatting/__pycache__/formatting.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/formatting/__pycache__/formatting.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/abc.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/abc.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/strings.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/strings.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/accumulate.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/accumulate.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/numbers.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/numbers.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/singleton.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/singleton.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__pycache__/strings.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__pycache__/strings.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__pycache__/numbers.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__pycache__/numbers.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__pycache__/singleton.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__pycache__/singleton.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__pycache__/abc.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__pycache__/abc.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__pycache__/accumulate.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/compat/__pycache__/accumulate.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/table.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/table.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/pagebreak.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/pagebreak.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/copier.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/copier.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/datavalidation.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/datavalidation.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/dimensions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/dimensions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/header_footer.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/header_footer.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/worksheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/worksheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/views.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/views.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/related.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/related.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/cell_range.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/cell_range.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/read_only.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/read_only.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/merge.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/merge.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/page.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/page.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/drawing.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/drawing.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/filters.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/filters.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/write_only.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/write_only.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/hyperlink.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/hyperlink.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/properties.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/properties.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/protection.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/protection.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/dimensions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/dimensions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/filters.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/filters.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/cell_range.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/cell_range.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/worksheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/worksheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/pagebreak.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/pagebreak.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/page.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/page.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/header_footer.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/header_footer.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/properties.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/properties.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/datavalidation.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/datavalidation.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/hyperlink.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/hyperlink.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/copier.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/copier.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/merge.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/merge.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/write_only.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/write_only.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/read_only.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/read_only.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/table.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/table.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/views.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/views.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/related.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/related.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/protection.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/protection.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/drawing.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/worksheet/__pycache__/drawing.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/publish.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/publish.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/chartsheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/chartsheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/views.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/views.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/custom.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/custom.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/properties.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/properties.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/protection.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/protection.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/relation.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/relation.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/properties.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/properties.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/custom.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/custom.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/relation.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/relation.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/chartsheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/chartsheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/publish.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/publish.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/views.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/views.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/protection.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chartsheet/__pycache__/protection.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/cell.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/cell.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/interface.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/interface.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/read_only.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/read_only.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/text.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/text.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/__pycache__/cell.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/__pycache__/cell.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/__pycache__/interface.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/__pycache__/interface.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/__pycache__/text.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/__pycache__/text.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/__pycache__/read_only.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/cell/__pycache__/read_only.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/line.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/line.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/graphic.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/graphic.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/shape.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/shape.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/geometry.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/geometry.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/spreadsheet_drawing.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/spreadsheet_drawing.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/xdr.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/xdr.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/fill.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/fill.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/colors.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/colors.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/drawing.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/drawing.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/connector.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/connector.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/image.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/image.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/properties.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/properties.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/text.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/text.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/effect.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/effect.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/picture.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/picture.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/relation.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/relation.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/colors.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/colors.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/line.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/line.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/spreadsheet_drawing.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/spreadsheet_drawing.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/picture.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/picture.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/effect.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/effect.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/fill.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/fill.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/image.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/image.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/properties.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/properties.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/connector.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/connector.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/relation.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/relation.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/text.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/text.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/shape.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/shape.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/graphic.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/graphic.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/xdr.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/xdr.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/geometry.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/geometry.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/drawing.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/drawing/__pycache__/drawing.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/theme.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/theme.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/etree_worksheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/etree_worksheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/worksheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/worksheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/workbook.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/workbook.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/strings.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/strings.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/excel.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/excel.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/strings.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/strings.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/etree_worksheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/etree_worksheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/worksheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/worksheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/excel.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/excel.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/workbook.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/workbook.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/theme.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/writer/__pycache__/theme.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/stock_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/stock_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/layout.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/layout.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/scatter_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/scatter_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/trendline.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/trendline.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/shapes.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/shapes.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/data_source.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/data_source.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/label.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/label.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/radar_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/radar_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/series.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/series.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/bar_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/bar_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/descriptors.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/descriptors.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/legend.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/legend.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/chartspace.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/chartspace.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/surface_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/surface_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/plotarea.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/plotarea.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/reader.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/reader.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/bubble_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/bubble_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/_3d.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/_3d.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/line_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/line_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/error_bar.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/error_bar.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/axis.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/axis.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/print_settings.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/print_settings.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/reference.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/reference.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/area_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/area_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/pie_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/pie_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/marker.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/marker.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/title.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/title.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/_chart.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/text.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/text.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/series_factory.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/series_factory.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/picture.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/picture.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/updown_bars.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/updown_bars.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/series_factory.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/series_factory.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/title.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/title.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/marker.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/marker.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/layout.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/layout.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/_3d.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/_3d.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/surface_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/surface_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/picture.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/picture.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/axis.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/axis.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/radar_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/radar_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/line_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/line_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/descriptors.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/descriptors.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/scatter_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/scatter_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/pie_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/pie_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/reader.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/reader.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/stock_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/stock_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/bubble_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/bubble_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/series.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/series.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/updown_bars.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/updown_bars.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/trendline.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/trendline.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/chartspace.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/chartspace.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/text.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/text.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/area_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/area_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/error_bar.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/error_bar.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/reference.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/reference.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/plotarea.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/plotarea.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/legend.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/legend.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/data_source.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/data_source.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/shapes.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/shapes.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/label.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/label.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/print_settings.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/print_settings.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/bar_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/chart/__pycache__/bar_chart.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/__pycache__/conftest.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/__pycache__/conftest.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/__pycache__/_constants.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/__pycache__/_constants.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/xml/functions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/xml/functions.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/xml/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/xml/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/xml/constants.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/xml/constants.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/xml/__pycache__/constants.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/xml/__pycache__/constants.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/xml/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/xml/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/xml/__pycache__/functions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/openpyxl/xml/__pycache__/functions.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/test.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/test.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/py2.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/py2.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/py3.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/py3.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/__pycache__/py3.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/__pycache__/py3.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/__pycache__/test.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/__pycache__/test.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/__pycache__/py2.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/unicodecsv/__pycache__/py2.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/xldate.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/xldate.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/timemachine.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/timemachine.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/formula.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/formula.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/formula.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/formatting.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/formatting.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/formatting.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/book.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/book.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/book.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/compdoc.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/compdoc.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/compdoc.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/sheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/sheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/sheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/info.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/info.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/biffh.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/biffh.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/xlsx.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/xlsx.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/xlsx.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/examples/xlrdnameAPIdemo.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/examples/xlrdnameAPIdemo.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/examples/xlrdnameAPIdemo.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/examples/__pycache__/xlrdnameAPIdemo.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/examples/__pycache__/xlrdnameAPIdemo.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/xldate.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/xldate.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/timemachine.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/timemachine.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/formula.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/formula.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/xlsx.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/xlsx.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/compdoc.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/compdoc.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/biffh.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/biffh.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/__init__.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/formatting.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/formatting.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/info.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/info.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/sheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/sheet.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/book.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/book.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlrd/__pycache__/book.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/compat.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/compat.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/ExcelFormulaLexer.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/ExcelFormulaLexer.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Cell.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Cell.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/ExcelMagic.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/ExcelMagic.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/CompoundDoc.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/CompoundDoc.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/UnicodeUtils.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/UnicodeUtils.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/antlr.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/antlr.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/ExcelFormulaParser.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/ExcelFormulaParser.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/ExcelFormula.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/ExcelFormula.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Column.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Column.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Workbook.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Workbook.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/BIFFRecords.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/BIFFRecords.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Utils.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Utils.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Bitmap.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Bitmap.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Style.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Style.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/__init__.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Formatting.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Formatting.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Row.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Row.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Worksheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/Worksheet.py', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/__pycache__/UnicodeUtils.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/__pycache__/UnicodeUtils.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/__pycache__/Formatting.cpython-35.pyc', reloading
+ * Detected change in '/home/ubuntu/renjiu/lib/python3.5/site-packages/xlwt/__pycache__/Formatting.cpython-35.pyc', reloading
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+Django version 2.1.2, using settings 'leagueOfDrivers.settings'
+Development server is running at https://0.0.0.0:8000/
+Using the Werkzeug debugger (http://werkzeug.pocoo.org/)
+Quit the server with CONTROL-C.
+ * Debugger is active!
+ * Debugger PIN: 473-843-945
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/leagueOfDrivers/urls.py', reloading
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/leagueOfDrivers/urls.py', reloading
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 1 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): reversion.
+Run 'python manage.py migrate' to apply them.
+
+Django version 2.1.2, using settings 'leagueOfDrivers.settings'
+Development server is running at https://0.0.0.0:8000/
+Using the Werkzeug debugger (http://werkzeug.pocoo.org/)
+Quit the server with CONTROL-C.
+Performing system checks...
+
+Traceback (most recent call last):
+  File "manage.py", line 15, in <module>
+    execute_from_command_line(sys.argv)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/core/management/__init__.py", line 381, in execute_from_command_line
+    utility.execute()
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/core/management/__init__.py", line 375, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/core/management/base.py", line 316, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/core/management/base.py", line 353, in execute
+    output = self.handle(*args, **options)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django_extensions/management/utils.py", line 59, in inner
+    ret = func(self, *args, **kwargs)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django_extensions/management/commands/runserver_plus.py", line 258, in handle
+    self.inner_run(options)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django_extensions/management/commands/runserver_plus.py", line 297, in inner_run
+    self.check(display_num_errors=self.show_startup_messages)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/core/management/base.py", line 379, in check
+    include_deployment_checks=include_deployment_checks,
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/core/management/base.py", line 366, in _run_checks
+    return checks.run_checks(**kwargs)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/core/checks/registry.py", line 71, in run_checks
+    new_errors = check(app_configs=app_configs)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/core/checks/urls.py", line 13, in check_url_config
+    return check_resolver(resolver)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/core/checks/urls.py", line 23, in check_resolver
+    return check_method()
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/urls/resolvers.py", line 396, in check
+    for pattern in self.url_patterns:
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/utils/functional.py", line 37, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/urls/resolvers.py", line 533, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/utils/functional.py", line 37, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/urls/resolvers.py", line 526, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/home/ubuntu/renjiu/lib/python3.5/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 986, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 969, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 958, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 673, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 665, in exec_module
+  File "<frozen importlib._bootstrap>", line 222, in _call_with_frames_removed
+  File "/home/ubuntu/Renjiu/leagueOfDrivers_BE/leagueOfDrivers/urls.py", line 33, in <module>
+    path('xadmin/', xadmin.site.urls),
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/sites.py", line 340, in urls
+    return self.get_urls(), self.name, self.app_name
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/sites.py", line 293, in get_urls
+    from xadmin.views.base import BaseAdminView
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/__init__.py", line 3, in <module>
+    from .base import BaseAdminPlugin, BaseAdminView, CommAdminView, ModelAdminView, filter_hook, csrf_protect_m, BaseAdminObject
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/views/base.py", line 33, in <module>
+    from xadmin.models import Log
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/xadmin/models.py", line 46, in <module>
+    class Bookmark(models.Model):
+  File "/home/ubuntu/renjiu/lib/python3.5/site-packages/django/db/models/base.py", line 95, in __new__
+    "INSTALLED_APPS." % (module, name)
+RuntimeError: Model class xadmin.models.Bookmark doesn't declare an explicit app_label and isn't in an application in INSTALLED_APPS.
+ * Running on https://0.0.0.0:8000/ (Press CTRL+C to quit)
+ * Restarting with inotify reloader
+ * Restarting with inotify reloader
+ * Restarting with inotify reloader
+ * Restarting with inotify reloader
+nohup: ignoring input
+ * Running on https://127.0.0.1:8000/ (Press CTRL+C to quit)
+ * Restarting with inotify reloader
+
+You have 1 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): reversion.
+Run 'python manage.py migrate' to apply them.
+nohup: ignoring input
+ * Debugger is active!
+ * Debugger PIN: 473-843-945
+210.42.151.73 - - [31/Oct/2018 19:40:05] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:40:06] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:40:06] "POST /league/coupons HTTP/1.1" 200 -
+/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/views.py:294: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'wx_league.models.Goods'> QuerySet.
+  paginator = Paginator(goods_list, pageSize)
+210.42.151.73 - - [31/Oct/2018 19:40:06] "POST /league/goods/list HTTP/1.1" 200 -
+Not Found: /league/booksets/update
+210.42.151.73 - - [31/Oct/2018 19:40:27] "POST /league/booksets/update HTTP/1.1" 404 -
+Not Found: /league/booksets/update
+210.42.151.73 - - [31/Oct/2018 19:40:28] "POST /league/booksets/update HTTP/1.1" 404 -
+Not Found: /league/booksets/update
+210.42.151.73 - - [31/Oct/2018 19:40:30] "POST /league/booksets/update HTTP/1.1" 404 -
+210.42.151.73 - - [31/Oct/2018 19:41:15] "GET / HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:15] "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:15] "GET /static/rest_framework/css/default.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:16] "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:16] "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:16] "GET /static/rest_framework/js/jquery-3.3.1.min.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:16] "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:16] "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:16] "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:16] "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:16] "GET /static/rest_framework/js/default.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:16] "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 -
+Not Found: /favicon.ico
+210.42.151.73 - - [31/Oct/2018 19:41:17] "GET /favicon.ico HTTP/1.1" 404 -
+Not Found: /favicon.ico
+210.42.151.73 - - [31/Oct/2018 19:41:17] "GET /favicon.ico HTTP/1.1" 404 -
+210.42.151.73 - - [31/Oct/2018 19:41:22] "GET /admin/ HTTP/1.1" 302 -
+210.42.151.73 - - [31/Oct/2018 19:41:22] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:22] "GET /static/admin/css/base.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:22] "GET /static/admin/css/login.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:22] "GET /static/admin/css/responsive.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:22] "GET /static/admin/css/fonts.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:22] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:22] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:29] "POST /admin/login/?next=/admin/ HTTP/1.1" 302 -
+210.42.151.73 - - [31/Oct/2018 19:41:30] "GET /admin/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:30] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:30] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:30] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:30] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:30] "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:37] "GET /admin/wx_league/wechatuser/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:37] "GET /static/admin/css/changelists.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:37] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:37] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:37] "GET /static/admin/js/core.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:38] "GET /admin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:38] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:38] "GET /static/admin/js/actions.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:38] "GET /static/admin/js/urlify.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:38] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:38] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:40] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:45] "GET /admin/wx_league/wechatuser/23/change/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:45] "GET /static/admin/css/forms.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:45] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:45] "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:45] "GET /admin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:45] "GET /static/admin/js/change_form.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:45] "GET /static/admin/js/calendar.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:45] "GET /static/admin/css/widgets.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:45] "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:41:45] "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:42:45] "POST /league/order/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:37] "GET /admin/wx_league/wechatuser/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:37] "GET /admin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:45] "GET /admin/wx_league/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:51] "GET /admin/ HTTP/1.1" 302 -
+210.42.151.73 - - [31/Oct/2018 19:43:51] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:51] "GET /static/admin/css/base.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:51] "GET /static/admin/css/login.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:51] "GET /static/admin/css/responsive.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:51] "GET /static/admin/css/fonts.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:51] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:51] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /xadmin/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /static/xadmin/css/themes/bootstrap-xadmin.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /static/xadmin/vendor/bootstrap/css/bootstrap.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /static/xadmin/vendor/font-awesome/css/font-awesome.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /static/xadmin/css/xadmin.plugins.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /static/xadmin/css/xadmin.main.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /static/xadmin/css/xadmin.responsive.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /static/xadmin/css/xadmin.page.dashboard.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /static/xadmin/vendor/jquery/jquery.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /static/xadmin/vendor/jquery-ui/jquery.ui.core.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /static/xadmin/vendor/jquery-ui/jquery.ui.widget.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:53] "GET /static/xadmin/vendor/jquery-ui/jquery.ui.mouse.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:54] "GET /static/xadmin/vendor/jquery-ui/jquery.ui.sortable.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:54] "GET /static/xadmin/vendor/bootstrap/js/bootstrap.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:54] "GET /static/xadmin/js/xadmin.main.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:54] "GET /static/xadmin/js/xadmin.responsive.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:54] "GET /static/xadmin/js/xadmin.page.dashboard.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:54] "GET /static/xadmin/js/xadmin.plugin.portal.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:57] "GET /static/xadmin/vendor/font-awesome/fonts/fontawesome-webfont.woff?v=4.0.3 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:59] "GET /xadmin/wx_league/wechatuser/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:43:59] "GET /static/xadmin/css/xadmin.form.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:00] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:00] "GET /static/xadmin/js/xadmin.plugin.details.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:00] "GET /static/xadmin/js/xadmin.plugin.bookmark.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:00] "GET /static/xadmin/js/xadmin.plugin.filters.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:00] "GET /static/xadmin/js/xadmin.plugin.actions.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:00] "GET /static/xadmin/js/xadmin.page.list.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:00] "GET /static/xadmin/js/xadmin.page.form.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:02] "GET /xadmin/wx_league/wechatuser/?_q_=1 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:02] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:04] "GET /xadmin/wx_league/wechatuser/?_q_=2 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:05] "GET /static/xadmin/css/xadmin.main.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:05] "GET /static/xadmin/css/xadmin.plugins.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:05] "GET /static/xadmin/css/xadmin.responsive.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:05] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:06] "GET /xadmin/wx_league/wechatuser/?_q_=3 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:07] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:09] "GET /xadmin/wx_league/wechatuser/?_q_=4 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:09] "GET /static/xadmin/css/themes/bootstrap-xadmin.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:09] "GET /static/xadmin/vendor/bootstrap/css/bootstrap.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:09] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:10] "GET /xadmin/wx_league/wechatuser/? HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:10] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:29] "GET /xadmin/wx_league/wechatuser/?_q_=tqw233 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:29] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:37] "GET /xadmin/wx_league/wechatuser/add/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:44:37] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:19] "GET /xadmin/wx_league/driverschool/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:19] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:20] "GET /xadmin/wx_league/coachdriverschool/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:20] "GET /static/xadmin/vendor/selectize/selectize.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:20] "GET /static/xadmin/vendor/select2/select2.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:20] "GET /static/xadmin/vendor/selectize/selectize.bootstrap3.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:20] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:20] "GET /static/xadmin/vendor/selectize/selectize.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:20] "GET /static/xadmin/vendor/select2/select2.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:20] "GET /static/xadmin/vendor/select2/select2_locale_zh-hans.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:20] "GET /static/xadmin/js/xadmin.widget.select.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:21] "GET /xadmin/wx_league/bookset/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:21] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:25] "GET /xadmin/wx_league/driverschool/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:25] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:26] "GET /xadmin/wx_league/wechatuser/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:26] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:34] "GET /xadmin/wx_league/coachdriverschool/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:34] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:34] "GET /static/xadmin/vendor/select2/select2.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:38] "GET /xadmin/wx_league/bookset/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:38] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:38] "GET /static/xadmin/vendor/bootstrap/css/bootstrap.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:38] "GET /static/xadmin/css/themes/bootstrap-xadmin.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:45] "GET /xadmin/wx_league/userexam/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:45] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:50] "GET /xadmin/wx_league/book/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:50] "GET /static/xadmin/vendor/bootstrap-datepicker/css/datepicker.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:50] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:51] "GET /static/xadmin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:46:51] "GET /static/xadmin/js/xadmin.widget.datetime.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:47:07] "GET /xadmin/wx_league/wechatuser/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:47:07] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:48:28] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:48:30] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:48:30] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:48:30] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:49:10] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:49:10] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:49:10] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:49:10] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:49:51] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:49:53] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:49:53] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:49:53] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:50:16] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:52:13] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:52:31] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:52:33] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:52:34] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:52:34] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:52:40] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:52:42] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:52:42] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:52:42] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:53:53] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:53:54] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:53:54] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:53:55] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:54:44] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:54:47] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:54:47] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:54:47] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:54:59] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:55:00] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:55:00] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:55:00] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:55:20] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:55:22] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:55:22] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:55:22] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:56:20] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:56:22] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:56:22] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:56:22] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:56:39] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:56:40] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:56:40] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:56:40] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:57:06] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:57:08] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:57:08] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:57:08] "POST /league/goods/list HTTP/1.1" 200 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "POST /league/goods/list HTTP/1.1" 200 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "POST /league/coupons HTTP/1.1" 200 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "POST /league/goods/list HTTP/1.1" 200 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /media/img/2018/8/14/f3fd0e9432a049c4bb3f3a6e378c181b.png HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /media/img/2018/8/14/216685722e6e4d2ea1fa1d8f4f241720.png HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /media/img/2018/8/14/75cbd7f504f84dfaaedb2e82166112d9.png HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /media/img/2018/8/14/8cd867c24a714026bace96a2cba38128.png HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /media/img/2018/8/14/5280363e947040538d970eaf89588447.png HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /media/img/2018/8/14/5298397f75b044549862eb286f29b94c.png HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /media/img/2018/8/14/2bb63edd55ca4a15b0823e16402a932f.png HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /media/img/2018/8/14/dc150343280f4e70aa5e0903c05b7ea4.png HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /media/img/2018/8/14/e9f0edc7dc16404bafc3905f381bf126.png HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /media/img/2018/8/14/8615d6a61ee94d54822503e1f7d524f9.jpg HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /media/img/2018/8/14/4bd8551edc964802971af590ca6e9b0a.jpg HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:47] "GET /media/img/2018/8/14/2f114cbb47044a9b9ab10840da5b3d85.jpg HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:48] "GET /media/img/2018/8/14/3ed510ed8e6d4426951a19d40390ddf3.jpg HTTP/1.1" 304 -
+58.19.2.23 - - [31/Oct/2018 19:57:48] "GET /media/img/2018/8/12/d5839deeeca44687bde3def0776446d6.png HTTP/1.1" 304 -
+210.42.151.73 - - [31/Oct/2018 19:58:44] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:58:44] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:58:44] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:58:44] "POST /league/goods/list HTTP/1.1" 200 -
+58.19.2.23 - - [31/Oct/2018 19:59:00] "POST /league/goods/list HTTP/1.1" 200 -
+58.19.2.23 - - [31/Oct/2018 19:59:00] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+58.19.2.23 - - [31/Oct/2018 19:59:00] "POST /league/coupons HTTP/1.1" 200 -
+58.19.2.23 - - [31/Oct/2018 19:59:01] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:59:47] "POST /league/goods/list HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:59:47] "GET /league/index/imageList?type=0 HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:59:47] "POST /league/coupons HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 19:59:47] "POST /league/goods/list HTTP/1.1" 200 -
+/home/ubuntu/renjiu/lib/python3.5/site-packages/django/forms/widgets.py:126: MediaOrderConflictWarning: Detected duplicate Media files in an opposite order:
+/static/xadmin/js/xadmin.plugin.quick-form.js
+/static/xadmin/js/xadmin.widget.select.js
+  MediaOrderConflictWarning,
+210.42.151.73 - - [31/Oct/2018 20:11:17] "GET /xadmin/wx_league/wechatuser/21/update/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 20:11:17] "GET /static/xadmin/vendor/bootstrap-clockpicker/bootstrap-clockpicker.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 20:11:17] "GET /static/xadmin/css/xadmin.widget.select-transfer.css HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 20:11:17] "GET /xadmin/jsi18n/ HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 20:11:17] "GET /static/xadmin/vendor/bootstrap-clockpicker/bootstrap-clockpicker.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 20:11:17] "GET /static/xadmin/js/xadmin.widget.select-transfer.js HTTP/1.1" 200 -
+210.42.151.73 - - [31/Oct/2018 20:11:17] "GET /static/xadmin/js/xadmin.plugin.quick-form.js HTTP/1.1" 200 -
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/views.py', reloading
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/views.py', reloading
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/views.py', reloading
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/views.py', reloading
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 1 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): reversion.
+Run 'python manage.py migrate' to apply them.
+
+Django version 2.1.2, using settings 'leagueOfDrivers.settings'
+Development server is running at https://0.0.0.0:8000/
+Using the Werkzeug debugger (http://werkzeug.pocoo.org/)
+Quit the server with CONTROL-C.
+ * Debugger is active!
+ * Debugger PIN: 473-843-945
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/models.py', reloading
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/models.py', reloading
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/models.py', reloading
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 1 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): reversion.
+Run 'python manage.py migrate' to apply them.
+
+Django version 2.1.2, using settings 'leagueOfDrivers.settings'
+Development server is running at https://0.0.0.0:8000/
+Using the Werkzeug debugger (http://werkzeug.pocoo.org/)
+Quit the server with CONTROL-C.
+ * Debugger is active!
+ * Debugger PIN: 473-843-945
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/views.py', reloading
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/views.py', reloading
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 1 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): reversion.
+Run 'python manage.py migrate' to apply them.
+
+Django version 2.1.2, using settings 'leagueOfDrivers.settings'
+Development server is running at https://0.0.0.0:8000/
+Using the Werkzeug debugger (http://werkzeug.pocoo.org/)
+Quit the server with CONTROL-C.
+ * Debugger is active!
+ * Debugger PIN: 473-843-945
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/urls.py', reloading
+ * Detected change in '/home/ubuntu/Renjiu/leagueOfDrivers_BE/wx_league/urls.py', reloading
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 1 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): reversion.
+Run 'python manage.py migrate' to apply them.
+
+Django version 2.1.2, using settings 'leagueOfDrivers.settings'
+Development server is running at https://0.0.0.0:8000/
+Using the Werkzeug debugger (http://werkzeug.pocoo.org/)
+Quit the server with CONTROL-C.
+ * Running on https://0.0.0.0:8000/ (Press CTRL+C to quit)
+ * Restarting with inotify reloader
+ * Restarting with inotify reloader
+ * Restarting with inotify reloader
+ * Restarting with inotify reloader
+ * Restarting with inotify reloader
+
+You have 1 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): reversion.
+Run 'python manage.py migrate' to apply them.

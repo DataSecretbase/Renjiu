@@ -1,11 +1,22 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/classify/index",
     "pages/shop-cart/index",
     "pages/my/index",
+    "pages/share/index",
     "pages/product_list/index",
     "pages/goods-details/index",
     "pages/book/index/index",
+    "pages/kanjia/index",
+    "pages/tribune/index/index",
+    "pages/tribune/contact/contact",
+    "pages/tribune/news/news",
+    "pages/tribune/news/news-details",
+    "pages/tribune/product/product",
+    "pages/tribune/introduction/introduction",
+    "pages/tribune/video/video",
+    "pages/tologin/index",
     "pages/to-pay-order/index",
     "pages/recharge/index",
     "pages/withdraw/index",
@@ -15,7 +26,6 @@
     "pages/address-add/index",
     "pages/notice/show",
     "pages/order-details/index",
-    "pages/classify/index",
     "pages/search/index",
     "pages/my-info/index",
     "pages/my-collection/index",
@@ -23,15 +33,19 @@
     "pages/my-footprint/index",
     "pages/my-customerService/index",
     "pages/my-setUp/index",
-    "pages/tologin/index",
+    "pages/share-money/share-money",
+    "pages/share-order/share-order",
+    "pages/share-qrcode/share-qrcode",
+    "pages/share-team/share-team",
+    "pages/cash-detail/cash-detail",
     "pages/stubook/index",
     "components/joinus/index",
     "pages/joinus/index",
-    "pages/kanjia/index",
-    "pages/tribune/index",
+    "pages/coach_login/index",
     "pages/profile/index",
     "pages/booksettings/index",
-    "pages/book-set/index"
+    "pages/book-set/index",
+    "pages/chat/index"
   ],
   "window": {
     "navigationBarTextStyle": "#ffffff",
@@ -59,10 +73,10 @@
         "text": "分类"
       },
       {
-        "pagePath": "pages/shop-cart/index",
-        "iconPath": "assets/imgs/nav/cart-off.png",
-        "selectedIconPath": "assets/imgs/nav/cart-on.png",
-        "text": "购物车"
+        "pagePath": "pages/tribune/index/index",
+        "iconPath": "assets/imgs/nav/zixun-off.png",
+        "selectedIconPath": "assets/imgs/nav/zixun-on.png",
+        "text": "资讯"
       },
       {
         "pagePath": "pages/my/index",

@@ -58,7 +58,7 @@ Page({
       data: {
         page: _page,
         pageSize: 6,
-        categoryId: self.data.id
+        categoryId: self.data.id,
       },
       success: function (res) {
         console.log(res)
@@ -79,7 +79,9 @@ Page({
            if(second[x].pk == res.data.data[0].fields.category_id)
            {
              en_name = second[x].fields.eng_name;
+             
            }
+           
         }
         if (en_name == "parter") {
           wx.navigateTo({
@@ -87,17 +89,41 @@ Page({
           })
           return
         }
-        if (en_name == 'coupons'){
+        if (en_name == "tuisong") {
           wx.navigateTo({
-            url: "/pages/my-coupon/index"
+            url: "/pages/tribune/index/index"
           })
           return
         }
-        if (en_name == "community") {
+        if (en_name == "share") {
           wx.navigateTo({
-            url: "/pages/tribune/index"
+            url: "/pages/tribune/news/news-details?id=0"
           })
           return
+        }
+        if (en_name == "jiakaoliucheng") {
+          wx.navigateTo({
+            url: "/pages/tribune/news/news-details?id=1"
+          })
+          return
+        }
+        if (en_name == "jiakaobaodian") {
+          wx.navigateTo({
+            url: "/pages/tribune/news/news-details?id=2"
+          })
+          return
+        }
+        if (en_name == "zixun") {
+          wx.navigateTo({
+            url: "/pages/tribune/news/news-details?id=3"
+          })
+          return
+        }
+        if (en_name == "coupons") {
+            wx.navigateTo({
+              url: "/pages/my-coupon/index"
+            })
+            return
         }
         self.setData({
           en_name:en_name,
@@ -212,10 +238,9 @@ Page({
                 }
 
         }
-        
+
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
-        console.log(en_name)
         self.setData({
           hidden: true
         })

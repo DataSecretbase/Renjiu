@@ -161,7 +161,7 @@ swiper-item image {
 .footer-box .now-buy{
   text-align: center;
   height: 100%;
-  width: 250rpx;
+  width: 500rpx;
   line-height: 100rpx;
   background:linear-gradient(to top right,#FF7701,#e64340 );
   color:#fff;

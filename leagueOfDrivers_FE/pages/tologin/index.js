@@ -55,7 +55,7 @@ Page({
   onShareAppMessage: function () {
 
   },
-  bindGetUserInfo: function (e) {
+  GetUserInfo: function (e) {
     if (!e.detail.userInfo) {
       return;
     }
