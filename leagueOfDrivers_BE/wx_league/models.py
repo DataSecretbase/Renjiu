@@ -1,7 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-
+from django.contrib.auth.models import (
+    AbstractBaseUser, BaseUserManager, PermissionsMixin
+)
+from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 import django.utils.timezone as timezone
+from django.dispatch import receiver
+from django.core import validators
+from django.db.models.signals import post_save
+from rest_framework.authtoken.models import Token
 import random
 import time
 from uuid import uuid4
@@ -134,55 +141,85 @@ class UserExam(models.Model):
                 "date_add":self.date_add,
                 "date_and":self.date_end}
 
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    """
+    Generate a token every time a new account object
+    is created.
+    """
+    if created:
+        Token.objects.create(user=instance)
 
 
-class WechatUser(AbstractUser):
-    cookie = models.CharField('用户认证标识',
-                              max_length=100,
-                              default='',
-                              blank = True)
-    name = models.CharField(verbose_name = '昵称',
-                            max_length = 40,
-                            blank = True)
-    openid = models.CharField(verbose_name = 'OpenId',
-                              max_length = 255,
-                              blank = True)
-    union_id = models.CharField(verbose_name = 'UnionId',
-                                max_length = 255,
-                                blank = True)
-    gender = models.SmallIntegerField(verbose_name = 'gender',
-                                      default = 0,
-                                      blank = True)
-    language = models.CharField(verbose_name = '语言',
-                                max_length = 40,
-                                blank = True)
-    #REGISTERTYPE = ((0,"beijin"))
-    user_type = models.SmallIntegerField(verbose_name = '用户类型',
-                                         choices = m_set.USER_TYPE,
-                                         default = 0)
-    register_type = models.SmallIntegerField( verbose_name='注册来源',
-                                     default=0)
-    phone = models.CharField(verbose_name = '手机号码',
-                             max_length = 50,
-                             blank = True)
-    #COUNTRY = ((0,"beijin"))
-    country = models.IntegerField(verbose_name = '国家',
-                                  default = 0,
-                                  blank = True) 
-    #PROVINCE = ((0,"beijin"))
-    province = models.IntegerField(verbose_name = '省份', default = 0)
-    #CITY = ((0,"beijin"))
-    city = models.IntegerField(verbose_name = '城市', default = 0)
-    avatar = models.ForeignKey('Icon',
-                               verbose_name='头像',
-                               on_delete = models.SET_DEFAULT,default = 0)
-    register_ip = models.CharField(verbose_name = '注册IP',
-                                   max_length = 80,
-                                   blank = True)
+class AccountManager(BaseUserManager):
+    def _create_user(self, email, username, password, avatar,
+                     is_staff, is_superuser, **extra_fields):
+        """
+        Creates and saves a Account with the given email, username and password.
+        """
+        now = timezone.now()
+
+        if not email:
+            raise ValueError('Users must have a valid email address.')
+
+        if not username:
+            raise ValueError('The given username must be set')
+
+        email = self.normalize_email(email)
+        try:
+            del extra_fields['confirm_password']
+        except KeyError:
+            pass
+
+        account = self.model(email=email, username=username, avatar=avatar,
+                             is_staff=is_staff, is_active=True,
+                             is_superuser=is_superuser, last_login=now,
+                             date_joined=now, **extra_fields)
+
+        account.set_password(password)
+        account.save(using=self._db)
+        return account
+
+    def create_user(self, username, password, avatar=None, email=None, **extra_fields):
+        return self._create_user(email, username, password, avatar, False,
+                                 **extra_fields)
+
+    def create_superuser(self, email, username, password, avatar=None, **extra_fields):
+        return self._create_user(email, username, password,  avatar, **extra_fields)
+
+
+class WechatUser(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(
+        verbose_name=_('email address'),
+        max_length=255,
+        unique=True,
+    )
+    cookie = models.CharField(verbose_name='用户认证标识', max_length=100, default='', blank=True)
+    name = models.CharField(verbose_name='昵称', max_length=40, blank=True)
+    openid = models.CharField(verbose_name='OpenId', max_length=255, blank=True)
+    union_id = models.CharField(verbose_name='UnionId', max_length=255, blank=True)
+    gender = models.SmallIntegerField(verbose_name='gender',default=0, blank=True)
+    language = models.CharField(verbose_name='语言', max_length=40, blank=True)
+    user_type = models.SmallIntegerField(verbose_name='用户类型', choices=m_set.USER_TYPE, default=0)
+    register_type = models.SmallIntegerField( verbose_name='注册来源', default=0)
+    phone = models.CharField(verbose_name='手机号码', max_length=50, blank=True)
+    country = models.IntegerField(verbose_name='国家', default=0, blank=True)
+    province = models.IntegerField(verbose_name='省份', default=0)
+    city = models.IntegerField(verbose_name='城市', default=0)
+    avatar = models.ForeignKey('Icon', verbose_name='头像', on_delete=models.SET_DEFAULT, default=0)
+    register_ip = models.CharField(verbose_name='注册IP', max_length=80, blank=True)
+    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     #last_login = models.DateTimeField(verbose_name = '登陆时间')
-    ip = models.CharField(verbose_name = '登陆IP',
-                          max_length = 80,
-                          blank = True)
+    ip = models.CharField(verbose_name='登陆IP', max_length=80, blank=True)
+    is_staff = models.BooleanField(_('staff status'), default=False,
+        help_text=_('Designates whether the user can log into this admin site.'))
+    is_active = models.BooleanField(_('active'), default=True,
+        help_text=_('Designates whether this user should be treated as '
+                    'active. Unselect this instead of deleting accounts.'))
+    objects = AccountManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
     
     def __str__(self):
         return self.name
@@ -191,6 +228,8 @@ class WechatUser(AbstractUser):
         db_table = 'WechatUser'
         verbose_name = '微信用户'
         verbose_name_plural = '微信用户'
+        swappable = 'AUTH_USER_MODEL'
+
 
     def natural_key(self):
         return {"url":"https://qgdxsw.com:8000"+self.avatar.display_pic.url,
@@ -205,6 +244,12 @@ class WechatUser(AbstractUser):
 
     def get_address(self):
         return self.country
+
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        """
+        Sends an email to this User.
+        """
+        send_mail(subject, message, from_email, [self.email], **kwargs)
 
 class Goods(models.Model):
     category_id = models.ForeignKey('Category',
