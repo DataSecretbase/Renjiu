@@ -13,7 +13,6 @@ from actstream import action
 from actstream.actions import follow
 from actstream.models import user_stream, Action, followers, following
 
-from vecihi.posts.models import Post
 from .models import WechatUser, ViewedProfileTracking
 from .serializers import AccountSerializer, ActionSerializer, ViewedProfileTrackingSerializer
 from .permissions import IsAccountOwner
