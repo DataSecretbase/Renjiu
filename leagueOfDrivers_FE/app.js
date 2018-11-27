@@ -83,6 +83,56 @@ App({
       }
     })
   },
+      request: function (object) {
+        if (!object.data)
+            object.data = {};
+        var cookie = wx.getStorageSync("cookie");
+        if (cookie) {
+          object.data.cookie = cookie;
+        }
+
+        wx.request({
+            url: object.url,
+            header: object.header || {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: object.data || {},
+            method: object.method || "GET",
+            dataType: object.dataType || "json",
+            success: function (res) {
+                if (res.data.code == -1) {
+                    getApp().login();
+                } else {
+                    if (object.success)
+                        object.success(res.data);
+                }
+            },
+            fail: function (res) {
+                var app = getApp();
+                if (app.is_on_launch) {
+                    app.is_on_launch = false;
+                    wx.showModal({
+                        title: "网络请求出错",
+                        content: res.errMsg,
+                        showCancel: false,
+                        success: function (res) {
+                            if (res.confirm) {
+                                if (object.fail)
+                                    object.fail(res);
+                            }
+                        }
+                    });
+                } else {
+                    wx.showToast({
+                        title: res.errMsg,
+                        image: "/images/icon-warning.png",
+                    });
+                    if (object.fail)
+                        object.fail(res);
+                }
+            },
+        });
+    },
   
   //获取类别列表
   getTlist() {
@@ -163,8 +213,6 @@ App({
           }
         }
         self.globalData.tlist = _tlist;
-        console.log("_tlist!!!!!!!!!!!!!!!")
-        console.log(_tlist)
 
       }
     })

@@ -1,0 +1,13 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="sub-title">Placement</view>
+        <view class="button-sp-area text-left">
+            <wux-popover theme="dark" placement="rightTop" title="{{title}}" content="{{content}}">
+                <button size="mini">rightTop</button>
+            </wux-popover>
+        </view>
+
+
+    </view>
+</view>
+-
