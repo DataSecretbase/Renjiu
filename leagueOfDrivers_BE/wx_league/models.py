@@ -775,3 +775,9 @@ class ForumReply(models.Model):
 
     def __str__(self):
         return self.user_id.name+self.content
+
+
+class ViewedProfileTracking(models.Model):
+    actor = models.ForeignKey(WechatUser, related_name='who_visit_profile', on_delete=models.SET_NULL, null=True, blank=True)
+    visited_profile = models.ForeignKey(WechatUser, related_name='visited_profile', on_delete=models.SET_NULL, null=True, blank=True)
+    visited_time = models.DateTimeField(auto_now_add=True)
