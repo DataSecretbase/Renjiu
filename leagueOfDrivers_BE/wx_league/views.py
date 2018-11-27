@@ -416,7 +416,7 @@ def coupons_my(request):
             coupons_list = []
             if goodsListId is None:
                 for coupons_id in basicInfo['coupons_id']:
-                    coupons_list.append(Coupons.objects.filter(id = coupons_id.id)[0])
+                    coupons_list.append(Coupons.objects.filter(id = coupons_id)[0])
             else:
                 for coupons_id in basicInfo['coupons_id']:
                     coupons_query = Coupons.objects.get(id = coupons_id)
@@ -652,7 +652,7 @@ def checkqr(request):
         if user == {}:
             data = {'error': '用户错误'}
             return JsonResponse(data)
-        book_query = Book.objects.filter(user = user.id)
+        book_query = Book.objects.filter(coach = user.id)
         book_ser = serializers_json(book_query,True) 
 
         return JsonResponse({"code":0,"data":book_ser})
@@ -782,7 +782,7 @@ def coach_list(request):
     if user is {}:
         return JsonResponse({"code":500,"msg":"请重新登录"})
     userExam_query = UserExam.objects.filter(user_id = user.id,exam_status = 1)
-    print(len(userExam_query))
+    print(userExam_query.values()[0]['train_ground_id'])
     train_ground = userExam_query.values()[0]['train_ground_id']
     coachDriverSchool_query = CoachDriverSchool.objects.filter(train_ground = train_ground)
     coachDriverSchool_json = serializers_json(coachDriverSchool_query, use_natural = True)
@@ -978,19 +978,3 @@ def forum_add(request):
                                            topic = Topic.objects.get(name = title))
         return JsonResponse({"code":0,"msg":"帖子发表成功"})
 
-def coach_login(request):
-    if request.method == 'GET':
-        username = request.GET.get("username")
-        password = request.GET.get("password")
-        cookie = request.GET.get("cookie")
-        user_coach = authenticate(username = username, password = password)
-        if user_coach is not None:
-            user = check_user(cookie)
-            if user == {} or user is None:
-                return JsonResponse({'msg':'用户会话失败'})
-            user.phone = user_coach.id
-            user.user_type = 2
-            user.save()
-            return JsonResponse({'code':200,"msg":user_coach.name})
-
-        return JsonResponse({'code':200,"msg":"身份失败"})
