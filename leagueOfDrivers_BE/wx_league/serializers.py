@@ -52,24 +52,6 @@ class AccountSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("Password is not matched with a confirm password")
         return attrs
 
-    def to_representation(self, obj):
-        returnObj = super(AccountSerializer,self).to_representation(obj)
-        followers_count = len(followers(obj))
-        following_count = len(following(obj))
-        total_posts = len(Post.objects.filter(author=obj.id))
-        new_obj = {}
-
-        # if isinstance(self.context['request'].user, User):
-        if self.context['request'].user.id == obj.id:
-            new_obj["email"] = obj.email
-        new_obj.update({
-            "following": following_count,
-            "followers": followers_count,
-            'total_posts': total_posts,
-            "am_I_following": is_following(self.context['request'].user, obj)
-        })
-        returnObj.update(new_obj)
-        return returnObj
 
 
     def update(self, instance, validated_data):

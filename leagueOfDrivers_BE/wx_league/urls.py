@@ -3,8 +3,8 @@ from . import views
 from rest_framework_nested import routers
 
 from .views_api import AccountViewSet, LoginView, LogoutView, \
-                            ActivityViewSet, FollowShipView, \
-                             UserFollowersViewSet, UserFollowingViewSet
+    ActivityViewSet, FollowShipView, \
+    UserFollowersViewSet, UserFollowingViewSet
 
 
 router = routers.SimpleRouter()
@@ -12,7 +12,6 @@ router.register(r'accounts', AccountViewSet)
 router.register(r'accounts/(?P<userid>[0-9]+)/followers', UserFollowersViewSet, base_name='accounts')
 router.register(r'accounts/(?P<userid>[0-9]+)/following', UserFollowingViewSet, base_name='accounts')
 router.register(r'get-activity', ActivityViewSet, base_name='get-activity')
-
 
 
 urlpatterns = [
@@ -46,14 +45,14 @@ urlpatterns = [
     url('^checkqr$', views.checkqr, name='datein'),
     url('^dateupdate$', views.datein, name='datein'),
     url('^school/detail$', views.school_detail, name='datein'),
-    url('^email', views.send_email, name = 'datein'),
-    url('^goods/reputation', views.goods_reputation, name = 'datein'),
-    url('^bargain/detail', views.bargain_detail, name = 'datein'),
-    url('^bargain/add', views.bargain_add, name = 'datein'),
-    url('^isenrol', views.is_enrol, name = 'datein'),
-    url('^coach/list', views.coach_list, name = 'datein'),
-    url('^book/add', views.book_add, name = 'datein'),
-    url('^booksets/add', views.booksets_add, name = 'datein'),
-    url('^booksets/all', views.booksets_all, name = 'datein'),
+    url('^email', views.send_email, name='datein'),
+    url('^goods/reputation', views.goods_reputation, name='datein'),
+    url('^bargain/detail', views.bargain_detail, name='datein'),
+    url('^bargain/add', views.bargain_add, name='datein'),
+    url('^isenrol', views.is_enrol, name='datein'),
+    url('^coach/list', views.coach_list, name='datein'),
+    url('^book/add', views.book_add, name='datein'),
+    url('^booksets/add', views.booksets_add, name='datein'),
+    url('^booksets/all', views.booksets_all, name='datein'),
     
 ]

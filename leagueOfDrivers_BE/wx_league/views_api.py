@@ -17,6 +17,7 @@ from .models import WechatUser, ViewedProfileTracking
 from .serializers import AccountSerializer, ActionSerializer, ViewedProfileTrackingSerializer
 from .permissions import IsAccountOwner
 
+
 class FollowShipView(views.APIView):
     permission_classes = (permissions.IsAuthenticated, )
 
@@ -44,6 +45,7 @@ class UserFollowersViewSet(viewsets.ReadOnlyModelViewSet):
         user = User.objects.get(id=user_id)
         return followers(user)
 
+
 class UserFollowingViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = AccountSerializer
 
@@ -63,6 +65,7 @@ class ActivityViewSet(viewsets.ReadOnlyModelViewSet):
         'action_object_content_type', 'action_object_content_type__model',
     )
 
+
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = WechatUser.objects.all()
     serializer_class = AccountSerializer
@@ -70,10 +73,10 @@ class AccountViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         if self.request.query_params.get("search", None):
             params = self.request.query_params.get("search", None)
-            return WechatUser.objects.filter( Q(username__icontains=params)|
-                                        Q(phone__icontains=params)|
-                                        Q(name__icontains=params)
-                                    )
+            return WechatUser.objects.filter(Q(username__icontains=params) |
+                                             Q(phone__icontains=params) |
+                                             Q(name__icontains=params)
+                                             )
         if self.kwargs.get('pk') is None:
             return WechatUser.objects.all()
         user_id = int(self.kwargs['pk'])
@@ -138,7 +141,6 @@ class AccountViewSet(viewsets.ModelViewSet):
             return self.get_paginated_response(serializer.data)
         serializer = ViewedProfileTrackingSerializer(response, many=True)
         return Response(serializer.data)
-
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data)

@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.http import Http404
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import logout,login,authenticate
-from django.contrib.auth.hashers import make_password,check_password
+from django.contrib.auth import logout, login,authenticate
+from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth.models import User
 from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
@@ -34,8 +34,8 @@ from wechatpy.pay import WeChatPay
 # Create your views here.
 
 
-def serializers_json(seri,use_natural = False):
-    ser_ = serializers.serialize("json", seri,use_natural_foreign_keys = use_natural)
+def serializers_json(seri, use_natural=False):
+    ser_ = serializers.serialize("json", seri, use_natural_foreign_keys=use_natural)
     json_ = json.loads(ser_)
     return json_
 
