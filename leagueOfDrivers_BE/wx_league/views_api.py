@@ -3,8 +3,10 @@ import json
 from django.utils.decorators import method_decorator
 from django.db.models import Q
 from django.views.decorators.cache import cache_page
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import update_session_auth_hash
+from .checkuser import checkdata
 from rest_framework import permissions, status, views, viewsets
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
@@ -204,14 +206,28 @@ class AccountViewSet(viewsets.ModelViewSet):
                             status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class LoginView(views.APIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
+        data = {}
 
-        username = request.data.get('username', None)
-        password = request.data.get('password', None)
+        #获取小程序数据
+        code = request.data.get('code', '')
+        encrypteddata = request.data.get('encrypteddata', '')
+        iv = request.data.get('iv', '')
+
+        #检查用户
+        res = checkdata(code, encrypteddata, iv)
+        #检查不通过
+        errorinfo = res.get('error', None)
+        if errorinfo:
+            return JsonResponse(res)
+
+        openid = res['openid']
+
+        username = openid
+        password = openid
 
         account = authenticate(username=username, password=password)
 
@@ -226,6 +242,7 @@ class LoginView(views.APIView):
                 })
             else:
                 return Response({
+
                     'status': 'Unauthorized',
                     'message': 'This authentication has been disabled.'
                 }, status=status.HTTP_401_UNAUTHORIZED)

@@ -174,7 +174,7 @@ class WechatUser(AbstractBaseUser, PermissionsMixin):
         max_length=255,
         unique=True,
     )
-    username = models.CharField(_('username'), max_length=30, blank=True,
+    username = models.CharField(_('username'), max_length=30, blank=True, unique=True,
                                 help_text=_('Required. 30 characters or fewer. Letters, digits'
                                             ' and ./+/-/_ only.'),
                                 validators=[
@@ -208,8 +208,8 @@ class WechatUser(AbstractBaseUser, PermissionsMixin):
 
     objects = AccountManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = 'username'
+#    REQUIRED_FIELDS = ['username']
     
     def __str__(self):
         return self.name
