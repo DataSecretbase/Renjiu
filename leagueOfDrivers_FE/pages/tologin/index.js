@@ -89,7 +89,7 @@ Page({
             console.log(r.encryptedData)
             wx.request({
               //url:that.globalData.baseUrl +'/user/wxapp/login',
-              url: 'https://qgdxsw.com:8000/league/user/login',
+              url: 'https://qgdxsw.com:8000/league/api/v1/auth/login/',
               header: { "Content-Type": "application/x-www-form-urlencoded" },
               method: 'POST',
               data: {
@@ -101,7 +101,7 @@ Page({
               success: function (res) {
 
                 console.log(res.data)
-                if (res.data.code != 0) {
+                if (!res.acount) {
                   // 登录错误
                   wx.hideLoading();
                   wx.showModal({
@@ -111,9 +111,9 @@ Page({
                   })
                   return;
                 }
-                console.log(res.data.info.cookie)
-                wx.setStorageSync('cookie',res.data.info.cookie)
-                wx.setStorageSync('uid', res.data.info.openid)
+                console.log(res.token)
+                wx.setStorageSync('cookie',res.token)
+                wx.setStorageSync('uid', res.username)
               }
             })
           }
