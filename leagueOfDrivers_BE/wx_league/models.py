@@ -112,65 +112,6 @@ class UserExam(models.Model):
         return self.user_id.name + " " + self.get_exam_type_display()
 
     def natural_key(self):
-<<<<<<< HEAD
-        return {"id":self.id,
-                "user_id":self.user_id.natural_key(),
-                "exam_status":self.exam_status,
-                "exam_type":self.exam_type,
-                "exam_results":self.exam_results,
-                "date_add":self.date_add,
-                "date_and":self.date_end}
-
-
-
-class WechatUser(AbstractUser):
-    cookie = models.CharField('用户认证标识',
-                              max_length=100,
-                              default='',
-                              blank = True)
-    name = models.CharField(verbose_name = '姓名',
-                            max_length = 40,
-                            blank = True)
-    openid = models.CharField(verbose_name = 'OpenId',
-                              max_length = 255,
-                              blank = True)
-    union_id = models.CharField(verbose_name = 'UnionId',
-                                max_length = 255,
-                                blank = True)
-    gender = models.SmallIntegerField(verbose_name = 'gender',
-                                      default = 0,
-                                      blank = True)
-    language = models.CharField(verbose_name = '语言',
-                                max_length = 40,
-                                blank = True)
-    #REGISTERTYPE = ((0,"beijin"))
-    user_type = models.SmallIntegerField(verbose_name = '用户类型',
-                                         choices = m_set.USER_TYPE,
-                                         default = 0)
-    register_type = models.SmallIntegerField( verbose_name='注册来源',
-                                     default=0)
-    phone = models.CharField(verbose_name = '手机号码',
-                             max_length = 50,
-                             blank = True)
-    #COUNTRY = ((0,"beijin"))
-    country = models.IntegerField(verbose_name = '国家',
-                                  default = 0,
-                                  blank = True) 
-    #PROVINCE = ((0,"beijin"))
-    province = models.IntegerField(verbose_name = '省份', default = 0)
-    #CITY = ((0,"beijin"))
-    city = models.IntegerField(verbose_name = '城市', default = 0)
-    avatar = models.ForeignKey('Icon',
-                               verbose_name='头像',
-                               on_delete = models.SET_DEFAULT,default = 0)
-    register_ip = models.CharField(verbose_name = '注册IP',
-                                   max_length = 80,
-                                   blank = True)
-    #last_login = models.DateTimeField(verbose_name = '登陆时间')
-    ip = models.CharField(verbose_name = '登陆IP',
-                          max_length = 80,
-                          blank = True)
-=======
         return {"id": self.id,
                 "user_id": self.user_id.natural_key(),
                 "exam_status": self.exam_status,
@@ -269,7 +210,6 @@ class WechatUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
->>>>>>> 9505a7a53ebd8f7d43821ba97794df498552449b
     
     def __str__(self):
         return self.name
@@ -774,20 +714,6 @@ forum 论坛 社区 交流
 
 
 class Forum(models.Model):
-<<<<<<< HEAD
-    user_id = models.ForeignKey('WechatUser',
-                         on_delete = models.DO_NOTHING,
-                         verbose_name = '帖子发表者')
-    title = models.CharField(max_length = 50,verbose_name = '标题')
-    content = models.TextField(verbose_name = '帖子内容')
-    topic_id = models.ForeignKey('Topic',
-                                 on_delete = models.DO_NOTHING,
-                                 verbose_name = '主题')
-    repley_count = models.IntegerField(verbose_name = '回复数量',default = 0)
-    time_add = models.DateTimeField(verbose_name = '添加时间',auto_now_add = True)
-    last_reply_time = models.DateTimeField(verbose_name = '最后回复时间',auto_now = True)
-    browse_times = models.IntegerField(verbose_name = '浏览次数', default = 0)
-=======
     user_id = models.ForeignKey('WechatUser', on_delete=models.DO_NOTHING, verbose_name='帖子发表者')
     title = models.CharField(max_length=50, verbose_name='标题')
     content = models.TextField(verbose_name='帖子内容')
@@ -795,7 +721,6 @@ class Forum(models.Model):
     repley_count = models.IntegerField(verbose_name='回复数量', default=0)
     time_add = models.DateTimeField(verbose_name='添加时间', auto_now_add=True)
     last_reply_time = models.DateTimeField(verbose_name='最后回复时间', auto_now=True)
->>>>>>> 9505a7a53ebd8f7d43821ba97794df498552449b
 
     class Meta:
         db_table = 'Forum'
@@ -804,20 +729,6 @@ class Forum(models.Model):
 
     def __str__(self):
         return self.user_id.name + self.title
-
-
-class BrowseRecords(models.Model):
-    forum_id = models.ForeignKey('Forum', on_delete = models.DO_NOTHING, verbose_name = '浏览记录')
-    user_id = models.ForeignKey('WechatUser', on_delete = models.DO_NOTHING, verbose_name = '访客')
-    browse_time = models.DateTimeField(verbose_name = '浏览时间',auto_now_add = True)
-
-    class Meta:
-        db_table = 'BrowseRecords'
-        verbose_name = '浏览记录'
-        verbose_name_plural = '浏览记录'
-
-    def __str__(self):
-        return self.user_id.name+self.forum_id.title
 
 
 class Topic(models.Model):
@@ -864,3 +775,9 @@ class ForumReply(models.Model):
 
     def __str__(self):
         return self.user_id.name+self.content
+
+
+class ViewedProfileTracking(models.Model):
+    actor = models.ForeignKey(WechatUser, related_name='who_visit_profile', on_delete=models.SET_NULL, null=True, blank=True)
+    visited_profile = models.ForeignKey(WechatUser, related_name='visited_profile', on_delete=models.SET_NULL, null=True, blank=True)
+    visited_time = models.DateTimeField(auto_now_add=True)

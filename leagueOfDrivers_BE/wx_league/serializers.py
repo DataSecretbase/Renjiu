@@ -5,6 +5,8 @@ from .models import *
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
+from actstream.models import Action, followers, following
+from actstream.actions import is_following
 
 class CouponsSerializer(serializers.ModelSerializer):
     restOfDay = serializers.SerializerMethodField()
@@ -50,24 +52,6 @@ class AccountSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("Password is not matched with a confirm password")
         return attrs
 
-    def to_representation(self, obj):
-        returnObj = super(AccountSerializer,self).to_representation(obj)
-        followers_count = len(followers(obj))
-        following_count = len(following(obj))
-        total_posts = len(Post.objects.filter(author=obj.id))
-        new_obj = {}
-
-        # if isinstance(self.context['request'].user, User):
-        if self.context['request'].user.id == obj.id:
-            new_obj["email"] = obj.email
-        new_obj.update({
-            "following": following_count,
-            "followers": followers_count,
-            'total_posts': total_posts,
-            "am_I_following": is_following(self.context['request'].user, obj)
-        })
-        returnObj.update(new_obj)
-        return returnObj
 
 
     def update(self, instance, validated_data):
@@ -94,3 +78,52 @@ class AccountSerializer(serializers.ModelSerializer):
         if password and confirm_password and password == confirm_password:
             return True
         return False
+
+
+
+class UserSerializer(serializers.ModelSerializer):
+    avatar = IconSerializer(read_only=False)
+
+    class Meta:
+        model = WechatUser
+        fields = ('id', 'username',  'email', 'avatar', 'name')
+        read_only_fields = ('id', 'username', 'email')
+
+
+    def to_representation(self, obj):
+        return_obj = super(UserSerializer, self).to_representation(obj)
+        followers_count = len(followers(obj))
+        following_count = len(following(obj))
+
+        new_obj = {
+            "following": following_count,
+            "followers": followers_count
+        }
+        return_obj.update(new_obj)
+        return return_obj
+
+
+class ViewedProfileTrackingSerializer(serializers.ModelSerializer):
+    actor = UserSerializer(default=serializers.CurrentUserDefault(), read_only=True)
+    visited_profile = UserSerializer(default=serializers.CurrentUserDefault(), read_only=True)
+    class Meta:
+        model = ViewedProfileTracking
+        fields = ('actor', 'visited_profile', 'visited_time')
+
+
+class GenericRelatedField(serializers.Field):
+    def to_representation(self, value):
+        if isinstance(value, User):
+            return UserSerializer(value).data
+        # Not found - return string.
+        return str(value)
+
+
+class ActionSerializer(serializers.ModelSerializer):
+    actor = GenericRelatedField(read_only=True)
+    target = GenericRelatedField(read_only=True)
+    action_object = GenericRelatedField(read_only=True)
+
+    class Meta:
+        model = Action
+        fields = '__all__'

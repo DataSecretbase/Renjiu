@@ -1,10 +1,5 @@
 from django.shortcuts import render
-<<<<<<< HEAD
-<<<<<<< HEAD
-from wx_league import models as wx_league
-=======
 from django.db.models import Q
->>>>>>> 9505a7a53ebd8f7d43821ba97794df498552449b
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse, HttpResponse
 from rest_framework import permissions, status, views, viewsets
@@ -64,37 +59,6 @@ class CashViewSet(viewsets.ModelViewSet):
             'errors': serializer.errors
             }, status=status.HTTP_400_BAD_REQUEST)
 
-<<<<<<< HEAD
-    @list_route(methods=['get'])
-    def add(self, request):
-        return self.create(request)
-=======
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
-from django.core.exceptions import ObjectDoesNotExist
-from rest_framework import permissions, viewsets
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.decorations import detail_route
-
-from .models import *
-from wx_league import models as wx_league
-from serializers import *
-
-# Create your views here.
-
-class UserShareCreateViewSet(viewsets.ModelViewSet):
-    serializer_class = UserShareCreateSerializer
-
-    def create(self, request):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            ShareUser.objects.create(user = WechatUser.objects.get(cookie = request.data.get("cookie", None)))
-            return Response({
-                    "status":"regist success!",
-                }, status=status.HTTP_201_CREATED)
->>>>>>> f732481b08b46fe49ae469347944bf5ec8ca3422
-=======
     @detail_route(methods=['post'])
     def add(self, request, pk=None):
         return self.create(request, pk)
@@ -115,4 +79,3 @@ class UserShareCreateViewSet(viewsets.ModelViewSet):
             'message': 'Cash list could not be search with received data.',
             'errors': serializer.errors
             }, status=status.HTTP_400_BAD_REQUEST)
->>>>>>> 9505a7a53ebd8f7d43821ba97794df498552449b
