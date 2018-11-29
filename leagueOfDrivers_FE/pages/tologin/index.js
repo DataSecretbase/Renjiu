@@ -100,8 +100,8 @@ Page({
 
               success: function (res) {
 
-                console.log(res.data)
-                if (!res.acount) {
+                console.log(res)
+                if (!res.data.account) {
                   // 登录错误
                   wx.hideLoading();
                   wx.showModal({
@@ -110,15 +110,22 @@ Page({
                     showCancel: false
                   })
                   return;
+                }else{
+                  wx.setStorageSync('cookie', res.data.token)
+                  wx.setStorageSync('uid', res.data.username)                  
+                  wx.showModal({
+                    title: '提示',
+                    content: '登录成功，请返回',
+                    showCancel: false
+                  })
                 }
-                console.log(res.token)
-                wx.setStorageSync('cookie',res.token)
-                wx.setStorageSync('uid', res.username)
+                console.log(res.data.token)
               }
             })
           }
         })
       }
+      
     })
   },
   sendTempleMsg: function (orderId, trigger, template_id, form_id, page, postJsonString) {
