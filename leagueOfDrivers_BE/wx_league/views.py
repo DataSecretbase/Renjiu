@@ -9,6 +9,7 @@ from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms.models import model_to_dict
 
+from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 
 
@@ -93,8 +94,8 @@ def banner_list(request):
 
 
 def check_cookies(request):
-    check_cookie(request.POST.get("cookei"))
-    return JsonResponse({"code":200})
+    check_cookie(request.POST.get("token"))
+    return JsonResponse({"token":200})
 
 @csrf_exempt
 def verify(request):
@@ -155,7 +156,7 @@ def register(request):
 @csrf_exempt
 def address(request):
     data = {}
-    cookie = request.POST.get('cookie','')
+    token = request.POST.get('token','')
     address_id = request.POST.get('id','')
     provinceId = request.POST.get('provinceId','')
     cityId = request.POST.get('cityId','')
@@ -165,7 +166,7 @@ def address(request):
     mobile = request.POST.get('mobile','')
     code = request.POST.get('code','')
     isDefault = request.POST.get('isDefault','')
-    user = check_user(cookie)
+    user = check_user(token)
     if user == {}:
         return JsonResponse({'error':'用户会话信息失败,请重新登录'})
     address = Address.objects.filter(id = address_id)
@@ -194,10 +195,10 @@ def address(request):
         return JsonResponse({'code':0})
 
 
-def check_user(cookie):
+def check_user(token):
     try:
-        user = WechatUser.objects.get(cookie = cookie)
-        return user
+        user = Token.objects.get(key = token)
+        return user.user
     except ObjectDoesNotExist:
         user = {}
    
@@ -211,9 +212,9 @@ def check_address(**filter_kwargs):
 @csrf_exempt 
 def address_detail(request):
     if request.method =="POST":
-        cookie = request.POST.get('cookie')
+        token = request.POST.get('token')
         address_id = request.POST.get('id')
-        user = check_user(cookie)
+        user = check_user(token)
         if user == {}:
             return JsonResponse({'error':'用户会话信息失败,请重新登录'})
         else:
@@ -228,12 +229,14 @@ def address_detail(request):
 @csrf_exempt
 def address_list(request):
     if request.method =="POST":
-        cookie = request.POST.get('cookie')
-        user = check_user(cookie)
+        print(request.POST)
+        token = request.POST.get('token')
+        user = check_user(token)
         default = request.POST.get('default')
         if user == {}:
             return JsonResponse({'error':'用户会话信息失败,请重新登录'})
         else:
+            print(user.id)
             address = check_address(owner_id = user.id)
             if default == 'true':
                 address = check_address(owner_id = user.id, is_default = True)
@@ -247,8 +250,8 @@ def address_list(request):
 @csrf_exempt
 def address_update(request):
     if request.method =="POST":
-        cookie = request.POST.get('cookie')
-        user = check_user(cookie)
+        token = request.POST.get('token')
+        user = check_user(token)
         address_id = request.POST.get('id')
         address_id = int(address_id) if isinstance(address_id,(str)) else address_id
         if user == {}:
@@ -271,8 +274,8 @@ def address_update(request):
 @csrf_exempt
 def address_delete(request):
     if request.method =="POST":
-        cookie = request.POST.get('cookie')
-        user = check_user(cookie)
+        token = request.POST.get('token')
+        user = check_user(token)
         address_id = request.POST.get('id')
         if user == {}:
             return JsonResponse({'error':'用户会话信息失败,请重新登录'})
@@ -386,8 +389,8 @@ def coupons_fetch(request):
     if request.method == "POST":
         coupons_id = request.POST.get('id')
         coupons_id = int(coupons_id) if isinstance(coupons_id,(str)) else coupons_id
-        cookie = request.POST.get('cookie')
-        user = check_user(cookie)
+        token = request.POST.get('token')
+        user = check_user(token)
         coupons_query = Coupons.objects.get(id = coupons_id)
         if user == {}:
             return JsonResponse({"code":500,"msg":"请重新登录"})
@@ -403,8 +406,8 @@ def coupons_fetch(request):
 @csrf_exempt
 def coupons_my(request):
     if request.method == 'POST':
-        cookie = request.POST.get('cookie')
-        user = check_user(cookie)
+        token = request.POST.get('token')
+        user = check_user(token)
         goodsListId = request.POST.get('goodsListId')
         basicInfo = {"coupons_id":[]}
         if user == {}:
@@ -432,10 +435,10 @@ def coupons_my(request):
 @csrf_exempt
 def order_list(request):
     if request.method == 'POST':
-        cookie = request.POST.get('cookie')
+        token = request.POST.get('token')
         status = request.POST.get('status')
         status = int(status) if isinstance(status,(str)) else status
-        user = check_user(cookie)
+        user = check_user(token)
         basicInfo = {"order_id":[]}
         if user == {}:
             return JsonResponse({"code":500,"msg":"请重新登录"})
@@ -456,10 +459,10 @@ def order_list(request):
 @csrf_exempt
 def order_close(request):
     if request.method == "POST":
-        cookie = request.POST.get('cookie')
+        token = request.POST.get('token')
         orderId = request.POST.get('orderId')
         orderId = int(orderId) if isinstance(orderId,(str)) else orderId
-        user = check_user(cookie)
+        user = check_user(token)
         if user == {}:
             return JsonResponse({"code":500,"msg":"请重新登录"})       
         order = Order.objects.get(wechat_user_id = user.id, id = orderId)
@@ -478,14 +481,14 @@ def goods_price(request):
 @csrf_exempt
 def order_create(request):
     if request.method == "POST":
-        cookie = request.POST.get('cookie')
+        token = request.POST.get('token')
         remark = request.POST.get('remark')
         goodsJsonStr = request.POST.get('goodsJsonStr')
         payOnDelivery = request.POST.get('payOnDelivery')
         couponId = request.POST.get('couponId')
         caculate = request.POST.get('caculate')
         
-        user = check_user(cookie)
+        user = check_user(token)
         if user == {}:
             return JsonResponse({"code":0,"msg":"请重新登录"})
         #检查优惠券信息
@@ -501,7 +504,6 @@ def order_create(request):
                                      status = 0,
                                      remark = remark,
                                      coupons_id = couponId,
-                                     logistics_id = Logistics.objects.get(id = 1)
                                      )
         goods_list = json.loads(goodsJsonStr)
         amountTotle = []
@@ -529,10 +531,10 @@ def order_create(request):
 @csrf_exempt
 def order_detail(request):
     if request.method == "POST":
-        cookie = request.POST.get('cookie')
+        token = request.POST.get('token')
         orderId = request.POST.get('id')
         orderId = int(orderId) if isinstance(orderId, (str)) else orderId
-        user = check_user(cookie)
+        user = check_user(token)
         if user == {}:
             return JsonResponse({"code":400,"msg":"请重新登录"})
         order_obj = Order.objects.filter(wechat_user_id = user.id, id = orderId )
@@ -560,10 +562,10 @@ def get_user_info(js_code):
 @csrf_exempt
 def order_pay(request):
     if request.method == "POST":
-        cookie = request.POST.get('cookie')
+        token = request.POST.get('token')
         order_id = request.POST.get('order_id')
         openid = get_user_info(code)['openid']
-        user = check_user(cookie)
+        user = check_user(token)
         if user == {}:
             return JsonResponse({"code":0,"msg":"请重新登录"})
         pay = WeChatPay(config.APPINFO['appid'], settings.WECHAT['MERCHANT_KEY'], settings.WECHAT['MCH_ID'])
@@ -611,9 +613,9 @@ def datein(request):
 
     if request.method == 'GET':
         data = {}
-        cookie = request.GET.get('cookie')
+        token = request.GET.get('token')
         datetime = request.GET.get('date')
-        user = check_user(cookie)
+        user = check_user(token)
         if user == "{}":
             return JsonResponse({code:500,err:"请重新登录"})
 
@@ -645,10 +647,10 @@ def checkqr(request):
     # pass
     if request.method == 'GET':
         data = {}
-        cookie = request.GET.get("cookie")
-        print(cookie)
+        token = request.GET.get("token")
+        print(token)
         # 验证用户
-        user = check_user(cookie)
+        user = check_user(token)
         if user == {}:
             data = {'error': '用户错误'}
             return JsonResponse(data)
@@ -691,10 +693,10 @@ def goods_reputation(request):
 def bargain_add(request):
     bargain_id = request.GET.get('kjid')
     bargain_id = int(bargain_id) if isinstance(bargain_id,(str)) else bargain_id
-    cookie = request.GET.get('cookie')
+    token = request.GET.get('token')
     joiner = request.GET.get('joinerUser')
     joiner = int(joiner) if isinstance(joiner,(str)) else joiner
-    user = check_user(cookie)
+    user = check_user(token)
     if user == {}:
         return JsonResponse({"code":500,"msg":"请重新登录"})
     try:
@@ -718,13 +720,13 @@ def bargain_detail(request):
     goods_id = int(goods_id) if isinstance(goods_id,(str)) else goods_id
     kjid = request.GET.get('kjid')
     kjid = int(kjid) if isinstance(kjid,(str)) else kjid
-    cookie = request.GET.get('cookie')
+    token = request.GET.get('token')
     joiner = request.GET.get('joiner')
     bargain_query = Bargain.objects.filter(goods_id = goods_id)
     if kjid is not None: 
         bargain_query = Bargain.objects.filter(id = kjid)
     print(bargain_query.values(), goods_id)
-    user = check_user(cookie)
+    user = check_user(token)
     if user == {}:
         return JsonResponse({"code":500,"msg":"请重新登录"})
     joiner = int(joiner) if isinstance(joiner,(str)) else joiner
@@ -766,8 +768,8 @@ def bargain_detail(request):
 
 
 def is_enrol(request):
-    cookie = request.GET.get("cookie")
-    user = check_user(cookie)
+    token = request.GET.get("token")
+    user = check_user(token)
     if user is {}:
         return JsonResponse({"code":500,"msg":"请重新登录"})
     userExam_query = UserExam.objects.filter(user_id = user.id,exam_status = 1)
@@ -777,8 +779,8 @@ def is_enrol(request):
 
 
 def coach_list(request):
-    cookie = request.GET.get("cookie")
-    user = check_user(cookie)
+    token = request.GET.get("token")
+    user = check_user(token)
     if user is {}:
         return JsonResponse({"code":500,"msg":"请重新登录"})
     userExam_query = UserExam.objects.filter(user_id = user.id,exam_status = 1)
@@ -807,11 +809,11 @@ def book_add(request):
     startTime_datetime = datetime.datetime.strptime(startTimeText, "%Y-%m-%d %H:%M:%S")
     endTimeText = request.GET.get('endTimeText')
     endTime_datetime = datetime.datetime.strptime(endTimeText, "%Y-%m-%d %H:%M:%S")
-    cookie = request.GET.get('cookie')
+    token = request.GET.get('token')
     coach_id = request.GET.get('coach_id')
     coach_id = int(coach_id) if isinstance(coach_id,(str)) else coach_id
     train_ground = request.GET.get('train_ground')
-    user = check_user(cookie)
+    user = check_user(token)
     if user is {}:
         return JsonResponse({"code":500,"msg":"请重新登录"})
     try:
@@ -866,10 +868,10 @@ def topic_get(request):
 
 def booksets_add(request):
     if request.method == 'GET':
-        cookie = request.GET.get("cookie")
+        token = request.GET.get("token")
         set_type = request.GET.get("type")
         date = request.GET.get("date")
-        user = check_user(cookie)
+        user = check_user(token)
         if user is {}:
             return JsonResponse({'code':500,"msg":"请重新登录"})
         if set_type == "default":
@@ -904,10 +906,10 @@ def booksets_add(request):
 
 def booksets_all(request):
     if request.method == 'GET':
-        cookie = request.GET.get("cookie")
+        token = request.GET.get("token")
         set_type = request.GET.get("set_type")
         date = request.GET.get("date")
-        user = check_user(cookie)
+        user = check_user(token)
         if user is {}:
             return JsonResponse({'code':500,"msg":"请重新登录"})
         if set_type == "default":
@@ -943,14 +945,14 @@ def booksets_all(request):
 
 def booksets_update(request):
     if request.method == 'GET':
-        cookie = request.GET.get("cookie")
+        token = request.GET.get("token")
         set_id = request.GET.get("set_id")
         set_id = int(set_id) if isinstance(set_id,(str)) else set_id
         date_start = request.GET.get("date_start")
         date_end = request.GET.get("date_end")
         student_num = request.GET.get("student_num")
         student_num = int(student_num) if isinstance(student_num,(str)) else student_num
-        user = check_user(cookie)
+        user = check_user(token)
         if user is {}:
             return JsonResponse({"code":"500","msg":"请重新登录"})
         book_set_query = BookSet.objects.get(id = set_id)
@@ -965,11 +967,11 @@ def booksets_update(request):
 
 def forum_add(request):
     if request.method == 'GET':
-        cookie = request.GET.get("cookie")
+        token = request.GET.get("token")
         title = request.GET.get("title")
         content = request.GET.get("content")
         topic = request.GET.get("topic")
-        user = check_user(cookie)
+        user = check_user(token)
         if user is {}:
             return JsonResponse({"code":500,"msg":"请重新登录"})
         forum_query = Forum.objects.create(user_id = user,
