@@ -67,7 +67,7 @@ Page({
   },
   relogin:function(){
     var that = this;
-    app.globalData.cookie = null;
+    app.globalData.token = null;
     app.login();
     wx.showModal({
       title: '提示',

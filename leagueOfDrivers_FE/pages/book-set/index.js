@@ -90,7 +90,7 @@ Page({
     wx.request({
       url: 'https://qgdxsw.com:8000/league/booksets/all',
       data: {
-        cookie: wx.getStorageSync("cookie"),
+        token: wx.getStorageSync("token"),
         set_type:"default"
       },
       success(res) {
@@ -130,7 +130,7 @@ Page({
       url: 'https://qgdxsw.com:8000/league/booksets/update',
       data: {
 
-        cookie: wx.getStorageSync("cookie"),
+        token: wx.getStorageSync("token"),
       },
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       method: "POST",
@@ -206,7 +206,7 @@ Page({
     wx.request({
       url: 'https://qgdxsw.com:8000/league/booksets/all',
       data: {
-        cookie: wx.getStorageSync('cookie'),
+        token: wx.getStorageSync('token'),
       },
       success(res) {
         if (res.data.code == 0) {
@@ -231,7 +231,7 @@ Page({
     wx.request({
       url: 'https://qgdxsw.com:8000/league/booksets/add',
       data: {
-        cookie:wx.getStorageSync('cookie'),
+        token:wx.getStorageSync('token'),
         type:"default",
       },
       success(res) {

@@ -52,7 +52,7 @@ Page({
   formSubmit: function (e) {
     var that = this;
     console.log(that.data)
-    console.log(wx.getStorageSync('cookie'))
+    console.log(wx.getStorageSync('token'))
 
     wx.request({
       url: 'https://qgdxsw.com:8000/league/coach/login',
@@ -61,7 +61,7 @@ Page({
         username: 'tqw233',
 
         password: 'tqw503417',
-        cookie: wx.getStorageSync('cookie')
+        token: wx.getStorageSync('token')
       },
       header: {
         'Content-Type': 'application/json'

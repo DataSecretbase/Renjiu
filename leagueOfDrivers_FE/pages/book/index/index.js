@@ -114,9 +114,9 @@ Page({
               console.log(form)
               //发起日期更新request
               wx.getStorage({
-                key: 'cookie',
+                key: 'token',
                 success: function (res) {
-                  form['cookie'] = res;
+                  form['token'] = res;
                   wx.request({
                     url: 'https://qgdxsw.com:8000/league/dateupdate',
                     method: 'GET',
@@ -344,7 +344,7 @@ Page({
     wx.request({
       url: "https://qgdxsw.com:8000/league/checkqr",
       data: {
-        cookie: wx.getStorageSync('cookie'),
+        token: wx.getStorageSync('token'),
       },
       method: "GET",
       success: function (res) {
@@ -371,7 +371,7 @@ Page({
 
   globalData: {
     domain: 'https://qgdxsw.com:8000/league/',
-    cookie: ''
+    token: ''
   },
 
 })
