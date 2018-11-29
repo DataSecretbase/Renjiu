@@ -11,9 +11,9 @@ Page({
     wx.request({
       url: 'https://qgdxsw.com:8000/league/address/update',
       method: "POST",
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      header: { "Content-Type": "application/x-www-form-urlencoded", 'Authorization': 'Token ' + token},
       data: {
-        cookie: wx.getStorageSync('cookie'),
+        token: wx.getStorageSync('token'),
         id:id,
         isDefault:'true'
       },
@@ -49,7 +49,7 @@ Page({
     wx.request({
       url: "https://qgdxsw.com:8000/league/address/list",
       data: {
-        cookie: wx.getStorageSync('cookie')
+        token: wx.getStorageSync('token')
       },
       method:"POST",
       header: { "Content-Type": "application/x-www-form-urlencoded" },

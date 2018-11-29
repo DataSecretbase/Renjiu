@@ -64,14 +64,14 @@ Page({
   createOrder:function (e) {
     wx.showLoading();
     var that = this;
-    var loginToken = wx.getStorageSync('cookie')// 用户登录 token
+    var loginToken = wx.getStorageSync('token')// 用户登录 token
     var remark = ""; // 备注信息
     if (e) {
       remark = e.detail.value.remark; // 备注信息
     }
 
     var postData = {
-      cookie: loginToken,
+      token: loginToken,
       goodsJsonStr: that.data.goodsJsonStr,
       remark: remark
     };
@@ -111,7 +111,7 @@ Page({
       method:'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
-      }, 
+      },
       data: postData, // 设置请求的 参数
       success: (res) =>{
         console.log(res)
@@ -170,9 +170,9 @@ Page({
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
-      }, 
+      },
       data: {
-        cookie: wx.getStorageSync('cookie'),
+        token: wx.getStorageSync('token'),
         default:'true'
       },
       success: (res) =>{
@@ -256,7 +256,7 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       method: "POST",
       data: {
-        cookie: wx.getStorageSync('cookie'),
+        token: wx.getStorageSync('token'),
         status:0,
         goodsList: goodsListId
       },

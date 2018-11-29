@@ -62,24 +62,10 @@ Page({
     wx.setStorageSync('userInfo', e.detail.userInfo)
     this.login();
   },
-  login: function () {
+  login: function () {  
     var that = this;
-    var cookie = wx.getStorageSync('cookie');
-    if (cookie) {
-      wx.request({
-        url: 'https://qgdxsw.com:8000/league/user/login',
-        data: {
-          cookie: cookie
-        },
-        success: function (res) {
-          if (res.data.code != 0) {
-            that.globalData.cookie = null;
-            that.login();
-          }
-        }
-      })
-      return;
-    }
+    var token = wx.getStorageSync('token');
+    if (!token) {
     wx.login({
       success: function (res) {
         console.log(res.code)
@@ -89,7 +75,7 @@ Page({
             console.log(r.encryptedData)
             wx.request({
               //url:that.globalData.baseUrl +'/user/wxapp/login',
-              url: 'https://qgdxsw.com:8000/league/user/login',
+              url: 'https://qgdxsw.com:8000/league/api/v1/auth/login/',
               header: { "Content-Type": "application/x-www-form-urlencoded" },
               method: 'POST',
               data: {
@@ -100,8 +86,8 @@ Page({
 
               success: function (res) {
 
-                console.log(res.data)
-                if (res.data.code != 0) {
+                console.log(res)
+                if (!res.data.account) {
                   // 登录错误
                   wx.hideLoading();
                   wx.showModal({
@@ -110,16 +96,25 @@ Page({
                     showCancel: false
                   })
                   return;
+                }else{
+                  wx.setStorageSync('token', res.data.token)
+                  wx.setStorageSync('account', res.data.account)
+                  wx.setStorageSync('uid', res.data.username)                  
+                  wx.showModal({
+                    title: '提示',
+                    content: '登录成功，请返回',
+                    showCancel: false
+                  })
                 }
-                console.log(res.data.info.cookie)
-                wx.setStorageSync('cookie',res.data.info.cookie)
-                wx.setStorageSync('uid', res.data.info.openid)
+                console.log(res.data.token)
               }
             })
           }
         })
       }
+      
     })
+    }
   },
   sendTempleMsg: function (orderId, trigger, template_id, form_id, page, postJsonString) {
     var that = this;
@@ -130,7 +125,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        cookie: wx.getStorageSync('cookie'),
+        token: wx.getStorageSync('token'),
         type: 0,
         module: 'order',
         business_id: orderId,

@@ -81,7 +81,7 @@ Page({
     wx.request({
       url: app.globalData.baseUrl + '/user/withDraw/apply',
       data: {
-        cookie: app.globalData.cookie,
+        token: app.globalData.token,
         money: amount
       },
       success: function (res) {

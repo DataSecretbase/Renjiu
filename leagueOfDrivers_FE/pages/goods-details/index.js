@@ -9,7 +9,7 @@ Page({
     interval: 3000,
     duration: 1000,
     goodsDetail:{},
-    swiperCurrent: 0,  
+    swiperCurrent: 0,
     hasMoreSelect:false,
     hasCoupons:false,
     couponsList:[],
@@ -32,9 +32,9 @@ Page({
   //事件处理函数
   swiperchange: function(e) {
       //console.log(e.detail.current)
-       this.setData({  
-        swiperCurrent: e.detail.current  
-    })  
+       this.setData({
+        swiperCurrent: e.detail.current
+    })
   },
   onLoad: function (e) {
     if (e.inviter_id) {
@@ -52,7 +52,7 @@ Page({
           shopCarInfo:res.data,
           shopNum:res.data.shopNum
         });
-      } 
+      }
     })
     wx.request({
       url: 'https://qgdxsw.com:8000/league/goods/detail',
@@ -133,8 +133,8 @@ Page({
       url: 'https://qgdxsw.com:8000/league/coupons/fetch',
       data: {
         id: e.currentTarget.dataset.id,
-        cookie: wx.getStorageSync('cookie')
-      }, 
+        token: wx.getStorageSync('token')
+      },
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       method: "POST",
       success: function (res) {
@@ -217,14 +217,14 @@ Page({
         }
         this.addShopCar();
         this.goShopCar();*/
-  },  
+  },
   /**
    * 规格选择弹出框
    */
   bindGuiGeTap: function() {
-     this.setData({  
-        hideShopPopup: false 
-    })  
+     this.setData({
+        hideShopPopup: false
+    })
   },
   /**
    * 优惠券弹出框
@@ -232,33 +232,33 @@ Page({
   bindCouponTap:function(){
     this.setData({
       hideCouponPopup: false
-    })  
+    })
   },
   /**
    * 规格选择弹出框隐藏
    */
   closePopupTap: function() {
-     this.setData({  
+     this.setData({
         hideShopPopup: true ,
         hideCouponPopup: true
-    })  
+    })
   },
   numJianTap: function() {
      if(this.data.buyNumber > this.data.buyNumMin){
         var currentNum = this.data.buyNumber;
-        currentNum--; 
-        this.setData({  
+        currentNum--;
+        this.setData({
             buyNumber: currentNum
-        })  
+        })
      }
   },
   numJiaTap: function() {
      if(this.data.buyNumber < this.data.buyNumMax){
         var currentNum = this.data.buyNumber;
         currentNum++ ;
-        this.setData({  
+        this.setData({
             buyNumber: currentNum
-        })  
+        })
      }
   },
   /**
@@ -320,11 +320,11 @@ Page({
       })
     }
 
-    
+
     this.setData({
       goodsDetail: that.data.goodsDetail,
       canSubmit:canSubmit
-    })  
+    })
   },
   /**
   * 加入购物车
@@ -336,7 +336,7 @@ Page({
           title: '提示',
           content: '请选择商品规格！',
           showCancel: false
-        })       
+        })
       }
       this.bindGuiGeTap();
       return;
@@ -391,7 +391,7 @@ Page({
         showCancel:false
       })
       return;
-    }    
+    }
     if(this.data.buyNumber < 1){
       wx.showModal({
         title: '提示',
@@ -411,7 +411,7 @@ Page({
 
     wx.navigateTo({
       url: "/pages/to-pay-order/index?orderType=buyNow"
-    })    
+    })
   },
   /**
    * 组建购物车信息
@@ -423,7 +423,7 @@ Page({
     shopCarMap.goodsId = this.data.goodsDetail.basicInfo[0].pk;
     shopCarMap.pic = this.data.goodsDetail.basicInfo[0].fields.pic;
     shopCarMap.name = this.data.goodsDetail.basicInfo[0].fields.name;
-    // shopCarMap.label=this.data.goodsDetail.basicInfo[0].id; 规格尺寸 
+    // shopCarMap.label=this.data.goodsDetail.basicInfo[0].id; 规格尺寸
     shopCarMap.propertyChildIds = this.data.propertyChildIds;
     shopCarMap.label = this.data.propertyChildNames;
     shopCarMap.price = this.data.selectSizePrice;
@@ -467,7 +467,7 @@ Page({
     shopCarMap.goodsId = this.data.goodsDetail.basicInfo[0].pk;
     shopCarMap.pic = this.data.goodsDetail.basicInfo[0].fields.pic;
     shopCarMap.name = this.data.goodsDetail.basicInfo[0].fields.name;
-    // shopCarMap.label=this.data.goodsDetail.basicInfo[0].id; 规格尺寸 
+    // shopCarMap.label=this.data.goodsDetail.basicInfo[0].id; 规格尺寸
     shopCarMap.propertyChildIds = this.data.propertyChildIds;
     shopCarMap.label = this.data.propertyChildNames;
     shopCarMap.price = this.data.selectSizePrice;
@@ -503,7 +503,7 @@ Page({
 
     buyNowInfo.shopList.push(shopCarMap);
     return buyNowInfo;
-  },   
+  },
   onShareAppMessage: function () {
     return {
       title: this.data.goodsDetail.basicInfo[0].fields.name,
@@ -566,7 +566,7 @@ Page({
       url: 'https://qgdxsw.com:8000/league/bargain/detail/',
       data: {
         goods_id: that.data.goodsDetail.basicInfo[0].pk,
-        cookie: wx.getStorageSync('cookie')
+        token: wx.getStorageSync('token')
       },
       success: function (res) {
         console.log(res.data.data);

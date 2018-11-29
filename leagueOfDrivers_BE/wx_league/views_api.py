@@ -3,8 +3,10 @@ import json
 from django.utils.decorators import method_decorator
 from django.db.models import Q
 from django.views.decorators.cache import cache_page
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import update_session_auth_hash
+from .checkuser import checkdata
 from rest_framework import permissions, status, views, viewsets
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
@@ -13,10 +15,10 @@ from actstream import action
 from actstream.actions import follow
 from actstream.models import user_stream, Action, followers, following
 
-from vecihi.posts.models import Post
 from .models import WechatUser, ViewedProfileTracking
 from .serializers import AccountSerializer, ActionSerializer, ViewedProfileTrackingSerializer
 from .permissions import IsAccountOwner
+
 
 class FollowShipView(views.APIView):
     permission_classes = (permissions.IsAuthenticated, )
@@ -45,6 +47,7 @@ class UserFollowersViewSet(viewsets.ReadOnlyModelViewSet):
         user = User.objects.get(id=user_id)
         return followers(user)
 
+
 class UserFollowingViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = AccountSerializer
 
@@ -64,6 +67,7 @@ class ActivityViewSet(viewsets.ReadOnlyModelViewSet):
         'action_object_content_type', 'action_object_content_type__model',
     )
 
+
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = WechatUser.objects.all()
     serializer_class = AccountSerializer
@@ -71,10 +75,10 @@ class AccountViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         if self.request.query_params.get("search", None):
             params = self.request.query_params.get("search", None)
-            return WechatUser.objects.filter( Q(username__icontains=params)|
-                                        Q(phone__icontains=params)|
-                                        Q(name__icontains=params)
-                                    )
+            return WechatUser.objects.filter(Q(username__icontains=params) |
+                                             Q(phone__icontains=params) |
+                                             Q(name__icontains=params)
+                                             )
         if self.kwargs.get('pk') is None:
             return WechatUser.objects.all()
         user_id = int(self.kwargs['pk'])
@@ -140,7 +144,6 @@ class AccountViewSet(viewsets.ModelViewSet):
         serializer = ViewedProfileTrackingSerializer(response, many=True)
         return Response(serializer.data)
 
-
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -203,14 +206,28 @@ class AccountViewSet(viewsets.ModelViewSet):
                             status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class LoginView(views.APIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
+        data = {}
 
-        username = request.data.get('username', None)
-        password = request.data.get('password', None)
+        #获取小程序数据
+        code = request.data.get('code', '')
+        encrypteddata = request.data.get('encrypteddata', '')
+        iv = request.data.get('iv', '')
+
+        #检查用户
+        res = checkdata(code, encrypteddata, iv)
+        #检查不通过
+        errorinfo = res.get('error', None)
+        if errorinfo:
+            return JsonResponse(res)
+
+        openid = res['openid']
+
+        username = openid
+        password = openid
 
         account = authenticate(username=username, password=password)
 
@@ -225,6 +242,7 @@ class LoginView(views.APIView):
                 })
             else:
                 return Response({
+
                     'status': 'Unauthorized',
                     'message': 'This authentication has been disabled.'
                 }, status=status.HTTP_401_UNAUTHORIZED)

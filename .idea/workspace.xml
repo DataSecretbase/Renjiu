@@ -45,8 +45,6 @@
       <change beforePath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/product_list/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/product_list/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/select-address/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/select-address/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/select-address/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/select-address/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/share/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/share/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/share/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/share/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/shop-cart/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/shop-cart/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/shop-cart/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/shop-cart/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/to-pay-order/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/leagueOfDrivers_FE/pages/to-pay-order/index.js" afterDir="false" />
@@ -80,7 +78,7 @@
     <session id="1539096255">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.23" value="4" />
           <entry key="project.open.time.24" value="3" />
           <entry key="project.open.time.25" value="2" />
@@ -91,42 +89,28 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="107" />
+          <entry key="py" value="117" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="107" />
+          <entry key="Python" value="117" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="8858" />
+          <entry key="py" value="10224" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="8858" />
+          <entry key="Python" value="10224" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="true" current-in-tab="true">
-        <entry file="remoteDeploymentFS://&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="78" column="38" lean-forward="true" selection-start-line="78" selection-start-column="38" selection-end-line="78" selection-end-column="38" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-                <marker date="0" expanded="true" signature="3383:3388" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -152,6 +136,11 @@
       <find>WeChatUser.objects.cre</find>
       <find>django.core.validators</find>
       <find>class WechatUser</find>
+      <find>class Coach</find>
+      <find>AUTHENTICATION</find>
+      <find>viewset</find>
+      <find>views</find>
+      <find>Post</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -163,7 +152,6 @@
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/permissions.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/leagueOfDrivers/urls.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/share/serializer.py" />
-        <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/views.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/models/base.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/modelss/mall.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/share/urls.py" />
@@ -171,7 +159,6 @@
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/manage.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/bargain_method/method.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/checkuser.py" />
-        <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/WXDataCrypt.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/email_manage/urls.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/email_manage/apps.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/email_manage/email_template/joinus.py" />
@@ -182,9 +169,13 @@
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/share/models.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/share/serializers.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/share/config/models_set.py" />
-        <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/leagueOfDrivers/settings.py" />
-        <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/serializers.py" />
         <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/models.py" />
+        <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/serializers.py" />
+        <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/leagueOfDrivers/settings.py" />
+        <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/urls.py" />
+        <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/views.py" />
+        <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/views_api.py" />
+        <option value="&lt;214056cc-4770-49d8-a173-9175dd5153d5&gt;/leagueOfDrivers_BE/wx_league/WXDataCrypt.py" />
       </list>
     </option>
   </component>
@@ -247,7 +238,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.26021504" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -265,7 +255,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32867885" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32980973" />
-      <window_info active="true" anchor="bottom" id="File Transfer" order="13" visible="true" weight="0.77135676" />
+      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.77121377" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -304,5 +294,14 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/remote_sources/-1743728367/1952507786/rest_framework/generics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

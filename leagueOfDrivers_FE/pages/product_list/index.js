@@ -136,7 +136,7 @@ Page({
             url: 'https://qgdxsw.com:8000/league/isenrol',
             method: "GET",
             data: {
-              cookie: wx.getStorageSync('cookie')
+              token: wx.getStorageSync('token')
             },
             success: function (res) {
               console.log(res.data.code)
@@ -182,7 +182,7 @@ Page({
             url: 'https://qgdxsw.com:8000/league/coach/list',
             method: "GET",
             data: {
-              cookie: wx.getStorageSync('cookie')
+              token: wx.getStorageSync('token')
             },
             success: function (res) {
               console.log(res.data.code)

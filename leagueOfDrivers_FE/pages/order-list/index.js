@@ -41,7 +41,7 @@ Page({
     wx.showLoading();
     var that = this;
     var postData = {
-      cookie: wx.getStorageSync('cookie'),
+      token: wx.getStorageSync('token'),
       status: that.data.currentType
     };
     var _page = that.data.statusType[that.data.currentType].page+1 ;;
@@ -107,7 +107,7 @@ Page({
             header: { "Content-Type": "application/x-www-form-urlencoded" },
             method: "POST",
             data: {
-              cookie: wx.getStorageSync('cookie'),
+              token: wx.getStorageSync('token'),
               orderId: orderId
             },
             success: (res) => {
@@ -135,7 +135,7 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               data: {
-                cookie: wx.getStorageSync('cookie'),
+                token: wx.getStorageSync('token'),
                 orderId: orderId
               },
               success: function (res2) {
@@ -154,7 +154,7 @@ Page({
               'content-type': 'application/x-www-form-urlencoded'
             },
             data: {
-              cookie: wx.getStorageSync('cookie'),
+              token: wx.getStorageSync('token'),
               orderId: orderId
             },
             success: function (res) {
