@@ -5,6 +5,7 @@ from django.http import JsonResponse, HttpResponse
 from rest_framework import permissions, status, views, viewsets
 from rest_framework.decorators import list_route, detail_route
 from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 from utils import auth
 from wx_league import models as wx_league
 from .models import *
@@ -13,10 +14,10 @@ from .serializers import *
 
 
 def is_shareuser(request):
-    cookie = request.GET.get("cookie")
+    token = request.GET.get("token")
     try:
-        user = wx_league.WechatUser.objects.get(cookie=cookie)
-        if len(ShareUser.objects.filter(user=user)) == 1:
+        user = Token.objects.get(key=token)
+        if len(ShareUser.objects.filter(user=user.user)) == 1:
             return JsonResponse({"code": 0, "status": "success"})
         else:
             return JsonResponse({"code": 400, "msg": "你还不是分销商"})
@@ -24,15 +25,58 @@ def is_shareuser(request):
         return JsonResponse({"code": 500, "msg": "你还未登录"})
 
 
+class ShareUserViewSet(viewsets.ModelViewSet):
+    serializer_class = UserShareSerializer
+
+    def get_queryset(self):
+        token = self.request.query_params.get("token", None)
+        if token is not None:
+            account = Token.objects.get(key=token).user
+            return ShareUser.objects.filter(Q(first_leader=account) |
+                                            Q(second_leader=account) |
+                                            Q(third_leader=account)
+                                            )
+
+
+    @detail_route(methods=['get'], permission_classes=[permissions.IsAuthenticated])
+    def lists(self, request, pk=None):
+        shareuser = wx_league.WechatUser.objects.get(pk=pk)
+        print(shareuser)
+        team = ShareUser.objects.filter(Q(first_leader=shareuser) |
+                                        Q(second_leader=shareuser) |
+                                        Q(third_leader=shareuser)
+                                        )
+        page = self.paginate_queryset(team)
+
+        print(type(team))
+        if page is not None:
+            serializer = self.get_serializer(page, context={'request': request}, many=True)
+            return self.get_paginated_response(serializer.data)
+        elif len(team)==1:
+            serializer = self.get_serializer(team[0], data=request.data)
+        else:
+            serializer = self.get_serializer(team, context={'request': request}, many=True)
+        if serializer.is_valid():
+            return Response({
+                'team': serializer.data,
+            }, status=status.HTTP_200_OK)
+        return Response({
+            'status': 'Bad request',
+            'message': 'User could not be found.',
+            'errors': serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 class ShareUserProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ShareUserProfileSerializer
 
     def get_queryset(self):
-        cookie = self.request.query_params.get("cookie", None)
-        if cookie is not None:
+        token = self.request.query_params.get("token", None)
+        if token is not None:
             return ShareUserProfile.objects.filter(
                 user=ShareUser.objects.get(
-                    user=wx_league.WechatUser.objects.get(cookie=cookie)))
+                    user=Token.objects.get(key=token).user))
 
 
 class CashViewSet(viewsets.ModelViewSet):

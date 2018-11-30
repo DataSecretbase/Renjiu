@@ -15,6 +15,9 @@ class UserShareCreateSerializer(serializers.ModelSerializer):
 class UserShareSerializer(serializers.ModelSerializer):
     user = lea_serializer.WechatUserSerializer(read_only=True)
     first_leader = lea_serializer.WechatUserSerializer(read_only=True)
+    second_leader = lea_serializer.WechatUserSerializer(read_only=True)
+    third_leader = lea_serializer.WechatUserSerializer(read_only=True)
+
 
     class Meta:
         model = ShareUser

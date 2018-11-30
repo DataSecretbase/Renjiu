@@ -8,6 +8,8 @@ router.register(r'ShareUserProfile', views.ShareUserProfileViewSet,
                 base_name='profile_shareuser')
 router.register(r'Cash', views.CashViewSet,
                 base_name='Cash')
+router.register(r'ShareUser', views.ShareUserViewSet,
+                base_name='ShareUser')
 
 urlpatterns = [
     url(r'', include(router.urls)),

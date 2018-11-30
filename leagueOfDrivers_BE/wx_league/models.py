@@ -138,10 +138,6 @@ class AccountManager(BaseUserManager):
         Creates and saves a Account with the given email, username and password.
         """
         now = timezone.now()
-
-        if not email:
-            raise ValueError('Users must have a valid email address.')
-
         if not username:
             raise ValueError('The given username must be set')
 
@@ -164,7 +160,7 @@ class AccountManager(BaseUserManager):
         return self._create_user(email, username, password, avatar, False, False,
                                  **extra_fields)
 
-    def create_superuser(self, email, username, password, avatar=None, **extra_fields):
+    def create_superuser(self, username, password, avatar=None, email=None,  **extra_fields):
         return self._create_user(email, username, password, avatar, True, True, **extra_fields)
 
 
