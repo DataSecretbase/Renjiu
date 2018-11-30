@@ -34,7 +34,7 @@ Page({
         header: { "Content-Type": "application/x-www-form-urlencoded" },
         method: "POST",
         data: {
-          cookie: wx.getStorageSync('cookie'),
+          token: wx.getStorageSync('token'),
           id: that.data.orderId
         },
         success: (res) => {
@@ -82,7 +82,7 @@ Page({
               wx.request({
                 url: app.globalData.baseUrl + '/order/delivery',
                 data: {
-                  cookie: wx.getStorageSync('cookie'),
+                  token: wx.getStorageSync('token'),
                   orderId: orderId
                 },
                 success: (res) => {
@@ -98,7 +98,7 @@ Page({
     submitReputation: function (e) {
       var that = this;
       var postJsonString = {};
-      postJsonString.cookie = wx.getStorageSync('cookie');
+      postJsonString.token = wx.getStorageSync('token');
       postJsonString.orderId = this.data.orderId;
       var reputations = [];
       var i = 0;

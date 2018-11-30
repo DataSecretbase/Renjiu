@@ -62,24 +62,10 @@ Page({
     wx.setStorageSync('userInfo', e.detail.userInfo)
     this.login();
   },
-  login: function () {
+  login: function () {  
     var that = this;
-    var cookie = wx.getStorageSync('cookie');
-    if (cookie) {
-      wx.request({
-        url: 'https://qgdxsw.com:8000/league/user/login',
-        data: {
-          cookie: cookie
-        },
-        success: function (res) {
-          if (res.data.code != 0) {
-            that.globalData.cookie = null;
-            that.login();
-          }
-        }
-      })
-      return;
-    }
+    var token = wx.getStorageSync('token');
+    if (!token) {
     wx.login({
       success: function (res) {
         console.log(res.code)
@@ -111,7 +97,8 @@ Page({
                   })
                   return;
                 }else{
-                  wx.setStorageSync('cookie', res.data.token)
+                  wx.setStorageSync('token', res.data.token)
+                  wx.setStorageSync('account', res.data.account)
                   wx.setStorageSync('uid', res.data.username)                  
                   wx.showModal({
                     title: '提示',
@@ -127,6 +114,7 @@ Page({
       }
       
     })
+    }
   },
   sendTempleMsg: function (orderId, trigger, template_id, form_id, page, postJsonString) {
     var that = this;
@@ -137,7 +125,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        cookie: wx.getStorageSync('cookie'),
+        token: wx.getStorageSync('token'),
         type: 0,
         module: 'order',
         business_id: orderId,

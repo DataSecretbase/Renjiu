@@ -113,7 +113,7 @@ Page({
       data: {
         kjid: kjid,
         joinerUser: joiner,
-        cookie: wx.getStorageSync('cookie')
+        token: wx.getStorageSync('token')
       },
       success: function (res) {
         if (res.data.code == 0) {
@@ -132,7 +132,7 @@ Page({
       data: {
         kjid: that.data.kjId,
         joinerUser: that.data.joiner,
-        cookie: wx.getStorageSync('cookie')
+        token: wx.getStorageSync('token')
       },
       success: function (res) {
         if (res.data.code != 0) {
