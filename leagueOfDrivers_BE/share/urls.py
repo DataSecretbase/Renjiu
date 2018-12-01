@@ -10,6 +10,8 @@ router.register(r'Cash', views.CashViewSet,
                 base_name='Cash')
 router.register(r'ShareUser', views.ShareUserViewSet,
                 base_name='ShareUser')
+router.register(r'ShareOrder', views.ShareOrderViewSet,
+                base_name='ShareOrder')
 
 urlpatterns = [
     url(r'', include(router.urls)),

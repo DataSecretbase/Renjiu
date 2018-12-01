@@ -101,3 +101,23 @@ class ShareOrderGoodsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShareOrderGoods
         fields = ("__all__",)
+
+
+
+class ShareOrderSerializer(serializers.ModelSerializer):
+    wechat_user_id = lea_serializer.WechatUserSerializer(read_only=True)
+
+    class Meta:
+        model = wx_league.Order
+        fields = '__all__'
+
+    def to_representation(self, obj):
+        returnObj = super(UserShareSerializer,self).to_representation(obj)
+        goods = ShareOrderGoods.objects.filter(order=obj)
+        serializer = ShareGoodsSerializer(goods,many=True)
+        new_obj = {}
+        new_obj.update({
+            "ShareGoods": serializer.data,
+        })
+        returnObj.update(new_obj)
+        return returnObj
