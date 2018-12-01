@@ -82,7 +82,7 @@ var api = {
     shop_share: _api_root + 'share/shop-share',
     bind_parent: _api_root + 'share/bind-parent',
     get_team: _api_root + 'share/ShareUser/27/lists/',
-    get_order: _api_root + 'share/get-order',
+    get_order: _api_root + 'league/order/list',
   },
   coupon: {
     index: _api_root + 'coupon/index',

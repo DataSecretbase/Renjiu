@@ -19,7 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      app.pageOnLoad(this);
     var page = this;
     is_no_more = false;
     is_loading = false;
@@ -41,9 +40,12 @@ Page({
       data:{
         status:page.data.status
       },
+      method:'POST',
       success:function(res){
+        console.log('res')
+        console.log(res)
         page.setData({
-          list:res.data
+          list:res.data.orderList
         });
       },
       complete: function () {
