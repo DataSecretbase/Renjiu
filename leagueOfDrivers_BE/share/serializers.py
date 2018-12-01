@@ -23,6 +23,22 @@ class UserShareSerializer(serializers.ModelSerializer):
         model = ShareUser
         fields = ("user", "first_leader", "second_leader", "third_leader", "add_time")
 
+    def to_representation(self, obj):
+        print("obj")
+
+        print(obj)
+        returnObj = super(UserShareSerializer,self).to_representation(obj)
+        total_price = ShareUserProfile.objects.get(user=obj).total_price
+        order_num = len(wx_league.Order.objects.filter(wechat_user_id=obj.user, status=4))
+        people_num = len(ShareUser.objects.filter(user=obj.user))
+        new_obj = {}
+        new_obj.update({
+            "total_price": total_price,
+            "order_num": order_num,
+            'people_num': people_num
+        })
+        returnObj.update(new_obj)
+        return returnObj
 
 class ShareGoodsSerializer(serializers.ModelSerializer):
     class Meta:
