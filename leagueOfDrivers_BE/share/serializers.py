@@ -21,7 +21,7 @@ class UserShareSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ShareUser
-        fields = ("user", "first_leader", "second_leader", "third_leader")
+        fields = ("user", "first_leader", "second_leader", "third_leader", "add_time")
 
 
 class ShareGoodsSerializer(serializers.ModelSerializer):

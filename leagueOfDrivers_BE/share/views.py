@@ -26,6 +26,7 @@ def is_shareuser(request):
 
 
 class ShareUserViewSet(viewsets.ModelViewSet):
+    queryset = ShareUser.objects.all()
     serializer_class = UserShareSerializer
 
     def get_queryset(self):
@@ -38,34 +39,35 @@ class ShareUserViewSet(viewsets.ModelViewSet):
                                             )
 
 
-    @detail_route(methods=['get'], permission_classes=[permissions.IsAuthenticated])
+    @detail_route(methods=['get'])
     def lists(self, request, pk=None):
         shareuser = wx_league.WechatUser.objects.get(pk=pk)
         print(shareuser)
-        team = ShareUser.objects.filter(Q(first_leader=shareuser) |
-                                        Q(second_leader=shareuser) |
-                                        Q(third_leader=shareuser)
-                                        )
-        page = self.paginate_queryset(team)
+        data=[]
 
-        print(type(team))
-        if page is not None:
-            serializer = self.get_serializer(page, context={'request': request}, many=True)
-            return self.get_paginated_response(serializer.data)
-        elif len(team)==1:
-            serializer = self.get_serializer(team[0], data=request.data)
-        else:
-            serializer = self.get_serializer(team, context={'request': request}, many=True)
-        if serializer.is_valid():
-            return Response({
-                'team': serializer.data,
-            }, status=status.HTTP_200_OK)
+        for x in [{"user":shareuser},{"first_leader":shareuser},{"second_leader":shareuser},{"third_leader":shareuser}]:
+            team = ShareUser.objects.filter(**x)
+            page = self.paginate_queryset(team)
+
+
+            page = self.paginate_queryset(team)
+            if page is not None:
+                serializer = self.get_serializer(page,data=request.data, context={'request': request}, many=True)
+                return self.get_paginated_response(serializer.data)
+            elif len(team)==1:
+
+                    serializer = self.get_serializer(team[0], data=request.data)
+                    if serializer.is_valid():
+                        data.append([serializer.data,])
+                        continue
+            else:
+                serializer = self.get_serializer(team, many=True)
+
+            data.append(serializer.data)
+
         return Response({
-            'status': 'Bad request',
-            'message': 'User could not be found.',
-            'errors': serializer.errors
-            }, status=status.HTTP_400_BAD_REQUEST)
-
+            'team': data,
+        }, status=status.HTTP_200_OK)
 
 
 class ShareUserProfileViewSet(viewsets.ModelViewSet):
