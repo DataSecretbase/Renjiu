@@ -18,7 +18,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      app.pageOnLoad(this);
     var page = this;
     var share_setting = wx.getStorageSync("share_setting");
     page.setData({
@@ -31,26 +30,27 @@ Page({
     page.setData({
       status: parseInt(status || 1),
     });
-    wx.showLoading({
-      title: "正在加载",
-      mask: true,
-    });
+    if(page.data.list){
+      return
+    }
+    var account = wx.getStorageSync("account")
+
     app.request({
       url: api.share.get_team,
       data: {
         status: page.data.status,
       },
+      method:'GET',
       success: function (res) {
+        console.log(res)
         page.setData({
-          first_count: res.data.first,
-          second_count: res.data.second,
-          third_count: res.data.third,
-          list: res.data.list,
+          user: res.team[0],
+          first_count: res.team[1].length,
+          second_count: res.team[2].length,
+          third_count: res.team[3].length,
+          list: res.team,
         });
       },
-      complete: function () {
-        wx.hideLoading();
-      }
     });
   },
 

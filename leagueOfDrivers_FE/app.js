@@ -86,9 +86,9 @@ App({
       request: function (object) {
         if (!object.data)
             object.data = {};
-        var cookie = wx.getStorageSync("cookie");
-        if (cookie) {
-          object.data.cookie = cookie;
+        var token = wx.getStorageSync("token");
+        if (token) {
+          object.data.token = token;
         }
 
         wx.request({
