@@ -25,6 +25,7 @@ class ShareUser(models.Model):
     third_leader = models.ForeignKey(wx_league.WechatUser, related_name="share_t_leader",
                                      verbose_name='第三个上级', on_delete=models.SET_NULL,
                                      null=True, blank=True)
+    add_time = models.DateField(verbose_name="注册时间", auto_now_add=True)
 
 
 class ShareUserProfile(models.Model):

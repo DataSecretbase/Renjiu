@@ -81,7 +81,7 @@ var api = {
     get_qrcode: _api_root + 'share/get-qrcode',
     shop_share: _api_root + 'share/shop-share',
     bind_parent: _api_root + 'share/bind-parent',
-    get_team: _api_root + 'share/get-team',
+    get_team: _api_root + 'share/ShareUser/27/lists/',
     get_order: _api_root + 'share/get-order',
   },
   coupon: {

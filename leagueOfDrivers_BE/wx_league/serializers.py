@@ -30,7 +30,7 @@ class WechatUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WechatUser
-        fields = ("name","gender","phone","get_address","avatar")
+        fields = ("id", "name", "phone", "get_address", "avatar")
 
 
 class AccountSerializer(serializers.ModelSerializer):
