@@ -133,21 +133,21 @@ class ShareOrderViewSet(viewsets.ModelViewSet):
     queryset = wx_league.Order.objects.all()
 
     def get_queryset(self):
-        return ShareUser.objects.all()
+        return wx_league.Order.objects.all()
 
     @detail_route(methods=['get'])
     def lists(self, request, pk=None):
-        shareuser = self.get_object()
-        shareorder_list = wx_league.Order.objects.filter(user=shareuser.user).order_by('-date_add')
-        page = self.paginate_queryset(shareorder_list)
-        serializer = ShareOrderSerializer(page if page else shareorder_list, data=request.data, many=True)
-        if serializer.is_valid():
+        try:
+            user = wx_league.WechatUser.objects.get(id=pk)
+            shareuser = ShareUser.objects.get(user=user)
+        except ObjectDoesNotExist:
             return Response({
-                'cash_list': serializer.data
-            }, status=status.HTTP_200_OK)
-
-        return Response({
-            'status': 'Bad request',
-            'message': 'Cash list could not be search with received data.',
-            'errors': serializer.errors
+                "status": "Bad Request",
+                "message": "Share User is not be search with received data."
             }, status=status.HTTP_400_BAD_REQUEST)
+        shareorder_list = wx_league.Order.objects.filter(wechat_user_id=shareuser.user).order_by('-date_add')
+        page = self.paginate_queryset(shareorder_list)
+        serializer = ShareOrderSerializer(page if page else shareorder_list, many=True)
+        return Response({
+            'cash_list': serializer.data
+        }, status=status.HTTP_200_OK)

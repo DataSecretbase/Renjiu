@@ -112,7 +112,7 @@ class ShareOrderSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def to_representation(self, obj):
-        returnObj = super(UserShareSerializer,self).to_representation(obj)
+        returnObj = super(ShareOrderSerializer,self).to_representation(obj)
         goods = ShareOrderGoods.objects.filter(order=obj)
         serializer = ShareGoodsSerializer(goods,many=True)
         new_obj = {}
