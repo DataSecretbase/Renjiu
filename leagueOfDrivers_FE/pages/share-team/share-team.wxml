@@ -34,15 +34,15 @@
                     <view class="info-text flex-grow-1">
                         <view class="info-name flex-row" style='justify-content:space-between;'>
                             <view class='flex-grow-0 flex-y-center text-more' style='width:300rpx;display:block'>{{item.user.name}}</view>
-                            <view class='flex-grow-0 flex-y-center fs-sm'>推广{{item.child_count}}人</view>
+                            <view class='flex-grow-0 flex-y-center fs-sm'>推广{{item.people_num}}人</view>
                         </view>
                         <view class="info-time">注册时间：{{item.add_time}}</view>
                     </view>
                 </view>
                 <view class="info-down flex-y-center">
-                    <view class="info-left">消费{{item.price}}元</view>
+                    <view class="info-left">消费{{item.total_price}}元</view>
                     <view class="info-right">
-                        <view class="info-order">{{item.count}}个订单</view>
+                        <view class="info-order">{{item.order_num}}个订单</view>
                     </view>
                 </view>
             </view>
