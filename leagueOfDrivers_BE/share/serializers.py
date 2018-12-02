@@ -23,6 +23,22 @@ class UserShareSerializer(serializers.ModelSerializer):
         model = ShareUser
         fields = ("user", "first_leader", "second_leader", "third_leader", "add_time")
 
+    def to_representation(self, obj):
+        print("obj")
+
+        print(obj)
+        returnObj = super(UserShareSerializer,self).to_representation(obj)
+        total_price = ShareUserProfile.objects.get(user=obj).total_price
+        order_num = len(wx_league.Order.objects.filter(wechat_user_id=obj.user, status=4))
+        people_num = len(ShareUser.objects.filter(user=obj.user))
+        new_obj = {}
+        new_obj.update({
+            "total_price": total_price,
+            "order_num": order_num,
+            'people_num': people_num
+        })
+        returnObj.update(new_obj)
+        return returnObj
 
 class ShareGoodsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -85,3 +101,46 @@ class ShareOrderGoodsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShareOrderGoods
         fields = ("__all__",)
+
+
+
+class ShareOrderSerializer(serializers.ModelSerializer):
+    wechat_user_id = lea_serializer.WechatUserSerializer(read_only=True)
+
+    class Meta:
+        model = wx_league.Order
+        fields = '__all__'
+
+    def to_representation(self, obj):
+        returnObj = super(ShareOrderSerializer,self).to_representation(obj)
+        goods = ShareOrderGoods.objects.filter(order=obj)
+        serializer = ShareGoodsSerializer(goods,many=True)
+        new_obj = {}
+        new_obj.update({
+            "ShareGoods": serializer.data,
+        })
+        returnObj.update(new_obj)
+        return returnObj
+
+
+class ShareOrderTeamSerializer(serializers.ModelSerializer):
+    wechat_user_id = lea_serializer.WechatUserSerializer(read_only=True)
+
+    class Meta:
+        model = wx_league.Order
+        fields = '__all__'
+
+    def to_representation(self, obj):
+        returnObj = super(ShareOrderTeamSerializer, self).to_representation(obj)
+        goods = ShareOrderGoods.objects.filter(order=obj)
+        total = 0
+        for good in goods:
+            total += good.total*eval(good.sharegoods.get_cash_scheme_display())[2]
+            print(eval(good.sharegoods.get_cash_scheme_display())[2])
+        serializer = ShareGoodsSerializer(goods, many=True)
+        new_obj = {}
+        new_obj.update({
+            "ShareGoods": serializer.data,
+        })
+        returnObj.update(new_obj)
+        return returnObj

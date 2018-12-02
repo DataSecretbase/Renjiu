@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'email_manage',
     'crispy_forms',
     'actstream',
+    'xadmin',
     'rest_framework.authtoken',
     'werkzeug_debugger_runserver',
     'django_extensions',

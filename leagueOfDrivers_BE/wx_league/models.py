@@ -310,6 +310,7 @@ class Order(models.Model):
     district_id = models.SmallIntegerField(verbose_name='区', default=0)
     address = models.CharField(verbose_name='详细地址', max_length=100, blank=True)
     postcode = models.CharField(verbose_name='邮政编码', max_length=20, blank=True)
+    order_type = models.SmallIntegerField(verbose_name="订单类型", choices=m_set.ORDER_TYPE, default=0)
     date_add = models.DateTimeField(verbose_name='下单时间', auto_now_add=True)
 
     class Meta:

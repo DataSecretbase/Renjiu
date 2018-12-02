@@ -4,6 +4,7 @@ import django.utils.timezone as timezone
 import random
 import time
 from datetime import datetime, date
+from django.db.models import Q
 
 import wx_league.models as wx_league
 
@@ -34,12 +35,16 @@ class ShareUserProfile(models.Model):
     price = models.FloatField(verbose_name="可提现佣金", default=0)
     cash_price = models.FloatField(verbose_name="成功提现佣金", default=0)
     total_cash = models.FloatField(verbose_name="分销佣金", default=0)
-    team_count = models.IntegerField(verbose_name="我的团队人数", default=0)
     order_money = models.FloatField(verbose_name="分销订单", default=0)
     un_pay = models.FloatField(verbose_name="分销订单", default=0)
 
     def share_qrcode(self):
         return settings.DOMAIN+"share_code/"+str(self.user.id)
+
+    def team_count(self):
+        return len(ShareUser.objects.filter(Q(first_leader=self.user.user)|
+                                 Q(second_leader=self.user.user)|
+                                 Q(third_leader=self.user.user)))
 
 
 class ShareGoods(models.Model):
