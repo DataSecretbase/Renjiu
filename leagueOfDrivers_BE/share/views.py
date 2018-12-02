@@ -136,20 +136,25 @@ class CashViewSet(viewsets.ModelViewSet):
 
     @detail_route(methods=['get'])
     def lists(self, request, pk=None):
-        shareuser = self.get_object()
-        cash_list = Cash.objects.filter(user=shareuser).filter(~Q(status=3)).order_by('-add_time')
-        page = self.paginate_queryset(cash_list)
-        serializer = CashListSerializer(page if page else cash_list, data=request.data, many=True)
-        if serializer.is_valid():
+        statu = request.query_params.get("status", -1)
+        try:
+            user = wx_league.WechatUser.objects.get(id=pk)
+        except ObjectDoesNotExist:
             return Response({
-                'cash_list': serializer.data
-            }, status=status.HTTP_200_OK)
-
-        return Response({
-            'status': 'Bad request',
-            'message': 'Cash list could not be search with received data.',
-            'errors': serializer.errors
+                'status': 'Bad request',
+                'message': 'User could not be found.',
             }, status=status.HTTP_400_BAD_REQUEST)
+        shareuser = ShareUser.objects.get(user=user)
+        if int(statu) == -1:
+            cash_list = Cash.objects.filter(user=shareuser).order_by('-add_time')
+        else:
+            cash_list = Cash.objects.filter(user=shareuser).filter(Q(status=statu)).order_by('-add_time')
+        page = self.paginate_queryset(cash_list)
+        serializer = CashListSerializer(page if page else cash_list, many=True)
+        return Response({
+            'cash_list': serializer.data
+        }, status=status.HTTP_200_OK)
+
 
 
 class ShareOrderViewSet(viewsets.ModelViewSet):
