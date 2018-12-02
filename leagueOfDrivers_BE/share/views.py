@@ -129,7 +129,7 @@ class CashViewSet(viewsets.ModelViewSet):
 
 
 class ShareOrderViewSet(viewsets.ModelViewSet):
-    serializer_class = ShareOrderSerializer
+    serializer_class = ShareOrderTeamSerializer
     queryset = wx_league.Order.objects.all()
 
     def get_queryset(self):
@@ -147,7 +147,31 @@ class ShareOrderViewSet(viewsets.ModelViewSet):
             }, status=status.HTTP_400_BAD_REQUEST)
         shareorder_list = wx_league.Order.objects.filter(wechat_user_id=shareuser.user).order_by('-date_add')
         page = self.paginate_queryset(shareorder_list)
-        serializer = ShareOrderSerializer(page if page else shareorder_list, many=True)
+        serializer = ShareOrderTeamSerializer(page if page else shareorder_list, many=True)
         return Response({
             'cash_list': serializer.data
+        }, status=status.HTTP_200_OK)
+
+
+    @detail_route(methods=['get'])
+    def teamlists(self, request, pk=None):
+        try:
+            user = wx_league.WechatUser.objects.get(id=pk)
+            shareuser = ShareUser.objects.get(user=user)
+        except ObjectDoesNotExist:
+            return Response({
+                "status": "Bad Request",
+                "message": "Share User is not be search with received data."
+            }, status=status.HTTP_400_BAD_REQUEST)
+        data=[]
+
+        for x in [{"first_leader":user},{"second_leader":user},{"third_leader":user}]:
+            team = ShareUser.objects.filter(**x)
+            for mem in team:
+                shareorder_list = wx_league.Order.objects.filter(wechat_user_id=mem.user).order_by('-date_add')
+                page = self.paginate_queryset(shareorder_list)
+                serializer = ShareOrderTeamSerializer(page if page else shareorder_list, many=True)
+                data.append([serializer.data, ])
+        return Response({
+            'team': data,
         }, status=status.HTTP_200_OK)
