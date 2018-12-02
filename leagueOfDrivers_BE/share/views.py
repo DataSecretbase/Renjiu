@@ -39,6 +39,30 @@ class ShareUserViewSet(viewsets.ModelViewSet):
                                             Q(third_leader=account)
                                             )
 
+    def create(self,request, pk=None):
+        if self.request.user.id == int(pk):
+            return Response({
+                    'status': 'Bad Request',
+                    'message': 'You cant share yourself.'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            shareuser = wx_league.WechatUser.objects.get(pk=pk)
+        except ObjectDoesNotExist:
+            return Response({
+                "status": 'Bad Request',
+                'message': 'No such user',
+            }, status=status.HTTP_400_BAD_REQUEST)
+        shareuser_create = ShareUser.objects.create(user=request.user, first_leader=shareuser.user,
+                                 second_leader=shareuser.first_leader, third_leader=shareuser.second_leader)
+        serialized = self.serializer_class(shareuser_create, context={"context":request})
+        return Response({
+            'new_shareuser': serialized.data,
+        }, status=status.HTTP_201_CREATED)
+
+
+    @detail_route(methods=['post'], permission_classes=[permissions.IsAuthenticated])
+    def join(self, request, pk=None):
+        return self.create(request, pk)
 
     @detail_route(methods=['get'])
     def lists(self, request, pk=None):
