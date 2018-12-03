@@ -85,7 +85,7 @@ class CashListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cash
-        fields = ('user', 'cash', 'add_time', 'status')
+        fields = ('user', 'cash', 'add_time', 'get_status_display')
 
     def create(self, instance,validated_data):
         instance.user = self.get_shareuser(validated_data.get("cookie", None))
