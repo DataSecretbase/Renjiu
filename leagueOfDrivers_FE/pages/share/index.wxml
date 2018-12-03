@@ -35,7 +35,7 @@
     <view class="flex-x-center list-content">
       <view class="list-red">{{total_price}}</view>元</view>
   </navigator>
-  <navigator class="item border-bottom border-between" url="/pages/share-order/share-order">
+  <navigator class="item border-bottom border-between" url="/pages/order-list/index">
     <view class="list-img flex-x-center">
       <image class="img" src="/images/img-share-order.png"></image>
     </view>

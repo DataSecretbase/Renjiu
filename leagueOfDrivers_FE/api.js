@@ -77,7 +77,7 @@ var api = {
     check: _api_root + 'share/check',
     get_info: _api_root + 'share/ShareUserProfile/',
     apply: _api_root + 'share/apply',
-    cash_detail: _api_root + 'share/cash-detail',
+    cash_detail: _api_root + 'share/Cash/',
     get_qrcode: _api_root + 'share/get-qrcode',
     shop_share: _api_root + 'share/shop-share',
     bind_parent: _api_root + 'share/bind-parent',

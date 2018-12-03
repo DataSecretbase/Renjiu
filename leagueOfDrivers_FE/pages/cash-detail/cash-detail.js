@@ -19,7 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      app.pageOnLoad(this);
     var page = this;
     is_no_more = false;
     is_loading = false;
@@ -45,24 +44,20 @@ Page({
     page.setData({
       status: parseInt(status || -1),
     });
-    wx.showLoading({
-      title: "正在加载",
-      mask: true,
-    });
+
+    var account = wx.getStorageSync("account")
     app.request({
-      url: api.share.cash_detail,
+      url: api.share.cash_detail+account.id+"/lists/",
       data: {
         status: page.data.status,
       },
       success: function (res) {
-        if (res.code == 0) {
+        console.log(res)
+        if (res.cash_list) {
           page.setData({
-            cash_list: res.data.list,
+            cash_list: res.cash_list,
           });
         }
-        page.setData({
-          show_no_data_tip: (page.data.cash_list.length == 0),
-        });
       },
       complete: function () {
         wx.hideLoading();
@@ -112,7 +107,7 @@ Page({
           page.setData({
             cash_list: cash_list,
           });
-          if (res.data.list.length == 0) {
+          if (res.cash_list.length == 0) {
             is_no_more = true;
           }
         }
