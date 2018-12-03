@@ -14,35 +14,39 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        app.pageOnLoad(this);
         var page = this;
-        var setting = wx.getStorageSync("share_setting")
-        page.setData({
-            qrcode: setting.qrcode_bg
-        });
-        wx.showLoading({
-            title: "正在加载",
-            mask: true,
-        });
-        app.request({
-            url: api.share.get_qrcode,
-            success: function (res) {
-                if (res.code == 0) {
-                    page.setData({
-                        qrcode: res.data
-                    });
-                } else {
-                    wx.showModal({
-                        title: '提示',
-                        content: res.msg,
-                        showCancel: false
-                    })
-                }
-            },
-            complete: function () {
-                wx.hideLoading();
-            }
-        });
+        var access_token = '';
+      var scene = decodeURIComponent(options.scene)
+        wx.request({
+          url:"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxe781c0daf36963a0&secret=1c602456f614fef60a8e74f901d4aa63",
+          success: function (res) {
+            console.log(res)
+
+            access_token = res.data.access_token
+            console.log(access_token)
+            console.log('https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=' + access_token,)
+            wx.request({
+              url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=' + access_token,
+              data: {
+                scene: '000',
+                page: "pages/share/share"
+              },
+              method: "POST",
+              responseType: 'arraybuffer',  //设置响应类型
+              success(res) {
+                console.log(res)
+                var src2 = wx.arrayBufferToBase64(res.data);  //对数据进行转换操作
+                console.log(src2)
+                page.setData({
+                  src2
+                })
+              },
+              fail(e) {
+                console.log(e)
+              },
+            })
+          }
+        })
     },
 
     /**

@@ -1,4 +1,4 @@
-// pages/cash-detail/cash-detail.js
+  // pages/cash-detail/cash-detail.js
 var api = require('../../api.js');
 var app = getApp();
 var is_no_more = false;

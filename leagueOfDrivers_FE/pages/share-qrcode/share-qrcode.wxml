@@ -27,5 +27,5 @@
   </view>
 </view> -->
 <view class="i-qrcode flex-row">
-  <image class="img" src="{{qrcode}}" bindtap="click"></image>
+  <image class="img" src="data:image/png;base64,{{src2}}" bindtap="click"></image>
 </view>
