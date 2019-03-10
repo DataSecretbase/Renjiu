@@ -11,12 +11,9 @@ from rest_framework import permissions, status, views, viewsets
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from actstream import action
-from actstream.actions import follow
-from actstream.models import user_stream, Action, followers, following
 
 from .models import WechatUser, ViewedProfileTracking
-from .serializers import AccountSerializer, ActionSerializer, ViewedProfileTrackingSerializer
+from .serializers import AccountSerializer
 from .permissions import IsAccountOwner
 
 
@@ -38,34 +35,6 @@ class FollowShipView(views.APIView):
             "message": "You followed " + target_user.username
         }, status=status.HTTP_201_CREATED)
 
-
-class UserFollowersViewSet(viewsets.ReadOnlyModelViewSet):
-    serializer_class = AccountSerializer
-
-    def get_queryset(self):
-        user_id = self.kwargs['userid']
-        user = User.objects.get(id=user_id)
-        return followers(user)
-
-
-class UserFollowingViewSet(viewsets.ReadOnlyModelViewSet):
-    serializer_class = AccountSerializer
-
-    def get_queryset(self):
-        user_id = self.kwargs['userid']
-        user = WechatUser.objects.get(id=user_id)
-        return following(user)
-
-
-class ActivityViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Action.objects.all()
-    serializer_class = ActionSerializer
-
-    filter_fields = (
-        'actor_content_type', 'actor_content_type__model',
-        'target_content_type', 'target_content_type__model',
-        'action_object_content_type', 'action_object_content_type__model',
-    )
 
 
 class AccountViewSet(viewsets.ModelViewSet):
