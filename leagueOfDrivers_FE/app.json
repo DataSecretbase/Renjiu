@@ -48,7 +48,7 @@
     "pages/chat/index"
   ],
   "window": {
-    "navigationBarTextStyle": "#ffffff",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "教练预约",
     "navigationBarBackgroundColor": "#e02e24",
     "backgroundColor": "#e02e24"
