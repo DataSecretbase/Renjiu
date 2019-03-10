@@ -25,10 +25,10 @@
         <view class="info-content">
           <view class="info-label flex-row">
             <view class="info-left">
-              <view class="info-up">提现 {{item.price}}</view>
-              <view class="info-down">{{item.addtime}}</view>
+              <view class="info-up">提现 {{item.cash}}</view>
+              <view class="info-down">{{item.add_time}}</view>
             </view>
-            <view class="info-right">{{item.status}}</view>
+            <view class="info-right">{{item.get_status_display}}</view>
           </view>
         </view>
       </block>

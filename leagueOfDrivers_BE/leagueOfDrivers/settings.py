@@ -118,9 +118,13 @@ LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Shanghai'
 
-USE_I18N = True
+USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
+
+DATE_FORMAT = 'Y-m-d'
+
+DATETIME_FORMAT = 'Y-m-d H:i:s'
 
 USE_TZ = False
 
@@ -175,5 +179,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_FROM = '2144799613@qq.com'
 
 DOMAIN = "https://qgdxsw.com/"
+
+
 
 
