@@ -16,7 +16,7 @@ django-import-export==1.1.0
 django-rest-framework-nested==0.0.1
 django-reversion==3.0.1
 django-werkzeug-debugger-runserver==0.3.1
-djangorestframework==3.8.2
+djangorestframework==3.11.2
 et-xmlfile==1.0.1
 future==0.17.0
 get==1.0.3
