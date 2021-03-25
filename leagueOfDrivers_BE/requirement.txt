@@ -37,7 +37,7 @@ pycrypto==2.6.1
 pyOpenSSL==18.0.0
 python-dateutil==2.7.3
 pytz==2018.5
-PyYAML==3.13
+PyYAML==5.4
 query-string==1.0.2
 reload==0.9
 request==1.0.2
