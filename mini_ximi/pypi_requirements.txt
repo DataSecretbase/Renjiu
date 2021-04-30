@@ -1,4 +1,4 @@
-Twisted==14.0.0
+Twisted==20.3.0
 eventlet==0.23.0
 greenlet==0.4.2
 redis==2.10.3
