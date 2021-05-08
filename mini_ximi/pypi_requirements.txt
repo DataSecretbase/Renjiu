@@ -1,5 +1,5 @@
 Twisted==14.0.0
-eventlet==0.23.0
+eventlet==0.31.0
 greenlet==0.4.2
 redis==2.10.3
 txredisapi==1.1
